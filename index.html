@@ -3,83 +3,78 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+        <title>Ramya Iyer</title>
         <link rel="stylesheet" href="styles.css">
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
-
-        <title>Ramya Iyer</title> <!-- website title -->
-    </head>
+     </head>
 
     <body>
-        <!-- Navigation Bar -->
         <header class="header">
-            <nav class="nav bd-grid">
+            <nav class="nav grid">
                 <div>
-                    <a href="#" class="nav__logo">Ramya Iyer</a>
+                    <a href="#home" class="name_title">Ramya Iyer</a>
                 </div>
-
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active-link"> Home </a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link"> About </a></li>
-                        <li class="nav__item"><a href="#experiences" class="nav__link"> Experiences </a></li>
-                        <li class="nav__item"><a href="#projects" class="nav__link"> Projects </a></li>
+                <div class="header_menu" id="header-menu">
+                    <ul class="header_list">
+                        <li class="header_item"><a href="#home" class="header_link active-link">Home</a></li>
+                        <li class="header_item"><a href="#experiences" class="header_link">Experiences</a></li>
+                        <li class="header_item"><a href="#projects" class="header_link">Projects</a></li>
+                        <li class="header_item"><a href="#activites" class="header_link">Stanford Activities</a></li>
                     </ul>
-                </div>
-
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
                 </div>
             </nav>
         </header>
 
-        <main class="l-main">
-            <!-- Landing Page -->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi, I'm <span class="home__title-color">Ramya</span></h1>
-                </div>
-
-                <div class="home__icons">
-                    <a href="https://www.linkedin.com/in/ramya-i/" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://github.com/riyer8" class="home__social-icon"><i class='bx bxl-github'></i></a>
+        <main class="main">
+            <section class="home grid" id="home">
+                <div class="main_frame">
+                    <h1 class="main_title">Hi, I'm <span class="main_title_special">Ramya.</span></h1>
+                    <h2>  I'm an undergrad at Stanford University 🌲 majoring in Math & Computer Science!</h2>
                 </div>
             </section>
 
-            <!-- About Page -->
-            <section class="about section" id="about">
-                <h2 class="section-title">About</h2>
-
-                <div class="about__container bd-grid">
-                    <div>
-                        <p class="about__text">Hi! I'm a student at Stanford University majoring in computer science and math.</p>           
-                    </div>                                   
-                </div>
-            </section>
-
-            <!-- Experiences -->
             <section class="work section" id="experiences">
-                <h2 class="section-title"> Experiences </h2>
-                
+                <h2 class="section_divider">Experiences</h2>
+                <div class="timeline_item">
+                    <div class="date">6/2024</div>
+                    <div class="item">Started Quantitative Trading Internship at PEAK6. Focused on Options Trading.</div>
+                </div>
+                <div class="timeline_item">
+                    <div class="date">3/2024</div>
+                    <div class="item">GoAhead Venture Scout.</div>
+                </div>
+                <div class="timeline_item">
+                    <div class="date">6/2023</div>
+                    <div class="item">Started Software Engineering Internship at Square Internship under the Banking Connections Team.</div>
+                </div>
+                <div class="timeline_item">
+                    <div class="date">12/2022</div>
+                    <div class="item">Worked with Brookhaven National Laboratory on Deep Reinforcement Learning and Quantum Computing. Published arXiv paper for "Decoding Surface Codes with Deep Reinforcement Learning and Probabilistic Policy Reuse".</div>
+                </div>
             </section>
 
-            
-            <!-- Projects -->
             <section class="work section" id="projects">
-                <h2 class="section-title"> Projects </h2>
-
+                <h2 class="section_divider">Projects</h2>
+                <div class="timeline_item">
+                    <div class="date">6/2024</div>
+                    <div class="item">Completed our CS 224N Project.</div>
+                </div>
+                <div class="timeline_item">
+                    <div class="date">2/2024</div>
+                    <div class="item">TreeHacks Project: Generative Visual Novel (GenVN)</div>
+                </div>
             </section>
-            
+
+            <section class="work section" id="activities">
+                <h2 class="section_divider">Stanford Activities</h2>
+            </section>
+
         </main>
 
-        <!-- Footer Information -->
         <footer class="footer">
             <p class="footer__title">Ramya Iyer</p>
-            <p class="footer_text"> ramya1@stanford.edu </p>
+            <p class="footer_text">ramya1@stanford.edu</p>
         </footer>
 
-
-        <!-- Scripts -->
         <script src="https://unpkg.com/scrollreveal"></script>
         <script src="main.js"></script>
     </body>
