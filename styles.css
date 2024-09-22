@@ -5,7 +5,6 @@
   --special-color: #26bfd0;
   --second-color: #010231;
 
-  --body-font: Arial, sans-serif;
   --big-font-size: 2rem;
   --h2-font-size: 1.5rem;
   --normal-font-size: .938rem;
@@ -13,7 +12,6 @@
 
   --mb-2: 1rem;
   --mb-4: 2rem;
-  --mb-5: 2.5rem;
   --mb-6: 3rem;
 }
 
@@ -36,7 +34,7 @@ html {
 
 body {
   margin: var(--header-height) 0 0 0;
-  font-family: var(--body-font);
+  font-family: Arial, sans-serif;
   font-size: var(--normal-font-size);
   color: var(--second-color);
 }
