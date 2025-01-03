@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Serif&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: black;
+  color: white;
+}
+
+.about-container {
+  padding: 20px;
+}
+
+.about-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  position: relative;
+}
+
+.about-header-left {
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 15px;
+}
+
+.about-navigation a {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  transform: translateY(-50%);
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.about-navigation a:hover {
+  text-decoration: underline;
+}
+
+.about-content {
+  margin-top: 100px;
+  margin-left: 100px;
+  margin-right: 100px;
+  text-align: center;
+}
+
+.about-content h1 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.about-intro {
+  font-family: 'Hedvig Letters Serif', serif;
+  font-size: 40px;
+  line-height: 1.5;
+}
+
+.about-image {
+  width: 500px;
+  margin: 20px 0;
+}
+
+h2 {
+  text-align: left;
+  font-size: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+
+.experiences {
+  margin-top: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  justify-items: center;
+  max-width: 2000px;
+  margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+  .experience-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.experience-card {
+  /*background-color: #121212;*/
+  /*border: 0.5px solid #333;*/
+  padding: 20px;
+  text-align: left;
+  width: 100%;
+  max-width: 600px;
+  position: relative;
+}
+
+.experience-year {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.experience-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.experience-card h3 {
+  font-size: 30px;
+  margin-bottom: 5px;
+}
+
+.experience-card p {
+  font-size: 16px;
+  color: #b0c3cc;
+}
+
+.experience-role {
+  color: grey;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.education {
+  margin-top: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.education-list {
+  margin-top: 20px;
+}
+
+.education-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+}
+
+.education-details {
+  flex-grow: 1;
+}
+
+.education-details h3 {
+  font-size: 30px;
+  margin-bottom: 5px;
+  text-align: left;
+  
+}
+
+.education-details p {
+  font-size: 14px;
+  color: #aaa;
+  margin: 0;
+  text-align: left;
+}
+
+.education-year {
+  font-size: 14px;
+  color: white;
+  margin-left: auto;
+  text-align: right;
+}
+
+.education-divider {
+  border: none;
+  border-top: 1px solid #333;
+  margin: 20px 0;
+}
