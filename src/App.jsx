@@ -13,7 +13,6 @@ function App() {
         </header>
         <nav className="navigation">
           <Link to="/about">ABOUT</Link>
-         
         </nav>
         <Routes>
           <Route
