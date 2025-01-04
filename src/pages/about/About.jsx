@@ -13,7 +13,7 @@ function About() {
       <main className="about-content">
         <h1>ABOUT</h1>
         <p className="about-intro">
-          I’m Ramya Iyer, a software engineer + builder. Currently studying Math + AI @ Stanford.
+          I’m Ramya Iyer, a software engineer and builder currently studying Math + AI at Stanford.
         </p>
         <img
           className="about-image"
