@@ -13,9 +13,11 @@ body {
 }
 
 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 25px;
   font-weight: bold;
-  text-align: left;
   padding: 10px 20px;
 }
 
@@ -28,27 +30,95 @@ body {
   color: #a6ffff;
 }
 
-.navigation {
-  position: fixed;
-  top: 20px;
-  right: 20px;
+/* Navigation Menu (Desktop) */
+.nav-menu {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 15px;
+  gap: 20px;
 }
 
-.navigation a {
+.nav-menu a {
   color: grey;
   text-decoration: none;
   font-size: 15px;
-  text-align: right;
 }
 
-.navigation a:hover {
+.nav-menu a:hover {
   color: white;
 }
 
+/* Mobile Menu Toggle */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Dropdown Menu (Small Screens) */
+.dropdown-menu {
+  position: fixed;
+  top: 60px; /* Moves down so it doesn't overlap the header */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  background-color: rgba(40, 40, 40, 0.95); /* Slightly greyer */
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Close button */
+.close-menu {
+  align-self: flex-end;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Dropdown Links */
+.dropdown-links {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0;
+}
+
+.dropdown-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dropdown-links a:hover {
+  color: #a6ffff;
+}
+
+/* Footer icons inside dropdown */
+.dropdown-footer {
+  display: flex;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.dropdown-footer .footer-icon {
+  color: grey;
+  font-size: 24px;
+  text-decoration: none;
+}
+
+.dropdown-footer .footer-icon:hover {
+  color: white;
+}
+
+/* Main Content */
 .content {
   display: flex;
   flex-direction: column;
@@ -76,6 +146,7 @@ body {
   color: #ccc;
 }
 
+/* Footer (Visible on larger screens) */
 .footer {
   position: fixed;
   bottom: 20px;
@@ -98,4 +169,19 @@ body {
 
 .fab, .fas {
   font-size: 30px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-menu {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .footer {
+    display: none;
+  }
 }

@@ -15,11 +15,6 @@ function About() {
         <p className="about-intro">
           I’m Ramya Iyer, a software engineer and builder currently studying Math + AI at Stanford.
         </p>
-        <img
-          className="about-image"
-          src="/src/assets/about/ramya-iyer.png"
-          alt="Ramya Iyer"
-        />
 
         <section className="experiences">
           <h2>EXPERIENCES</h2>

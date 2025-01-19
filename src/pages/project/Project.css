@@ -1,90 +1,143 @@
-/* General Styling */
 .projects-container {
-    padding: 40px;
-    color: white;
-    background-color: black;
-    font-family: 'Arial', sans-serif;
-  }
-  
-  .projects-container h1 {
-    font-size: 36px;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .projects-container p {
-    font-size: 18px;
-    margin-bottom: 30px;
-  }
-  
-  /* Project Cards */
+  padding: 40px;
+  color: white;
+  background-color: black;
+  font-family: 'Arial', sans-serif;
+}
+
+.projects-container h1 {
+  font-size: 36px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.projects-container p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Project Cards */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.project-card {
+  background-color: #1c1c1c;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Image */
+.project-card .project-image {
+  width: 300px;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Project Content */
+.project-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.project-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.project-content .role {
+  font-size: 16px;
+  color: #ccc;
+  margin: 5px 0;
+  justify-content: left;
+  flex-direction: left;
+}
+
+.project-content .description {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+/* Project Links */
+.project-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.project-link {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: white;
+  background-color: #333;
+  border: 1px solid white;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.project-link:hover {
+  background-color: white;
+  color: black;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .projects {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    margin-left: 100px;
-    margin-right: 100px;
+      margin-left: 20px;
+      margin-right: 20px;
   }
-  
+
   .project-card {
-    background-color: #1c1c1c;
-    padding: 20px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      flex-direction: column; /* Stack image and text */
+      text-align: center;
+      align-items: center;
+      padding: 20px;
   }
-  
+
   .project-card .project-image {
-    width: 300px;
-    height: auto;
-    border-radius: 5px;
+      width: 100%; /* Make image full width */
+      max-width: 400px;
   }
-  
+
   .project-content {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+      align-items: center;
+      width: 100%;
   }
-  
-  .project-content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .project-content .role {
-    font-size: 16px;
-    color: #ccc;
-    margin: 5px 0;
-  }
-  
+
+  .project-content h2,
+  .project-content .role,
   .project-content .description {
-    font-size: 16px;
-    margin: 10px 0;
+      text-align: center;
   }
-  
+
+  /* Stack buttons vertically & make them full width */
   .project-links {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-top: 10px;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+      width: 100%;
   }
-  
+
   .project-link {
-    padding: 10px 20px;
-    font-size: 14px;
-    color: white;
-    background-color: #333;
-    border: 1px solid white;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
+      width: 100%; /* Make buttons stretch the full width of their container */
+      text-align: center;
+      max-width: 400px; /* Optional: prevents buttons from being too large */
   }
-  
-  .project-link:hover {
-    background-color: white;
-    color: black;
-  }  
+}
