@@ -4,12 +4,6 @@ import './About.css';
 function About() {
   return (
     <div className="about-container">
-      <header className="about-header">
-        <nav className="about-navigation">
-          <a href="/">BACK TO HOME</a>
-        </nav>
-      </header>
-
       <main className="about-content">
         <h1>ABOUT</h1>
         <p className="about-intro">
@@ -35,9 +29,8 @@ function About() {
               <div className="experience-role">Section Leader + Grader</div>
               <p>
                 Leading sections for Stanford’s foundational Computer Science
-                courses: Programming Methodology (CS 106A: Python), Programming
-                Abstractions (CS 106B: C++), and Standard C++ Programming
-                Laboratory (CS 106L).
+                courses: Programming Methodology (CS 106A) & Programming
+                Abstractions (CS 106B).
               </p>
             </div>
 

@@ -30,7 +30,6 @@ body {
   color: #a6ffff;
 }
 
-/* Navigation Menu (Desktop) */
 .nav-menu {
   display: flex;
   gap: 20px;
@@ -46,7 +45,6 @@ body {
   color: white;
 }
 
-/* Mobile Menu Toggle */
 .menu-toggle {
   display: none;
   background: none;
@@ -56,14 +54,13 @@ body {
   cursor: pointer;
 }
 
-/* Dropdown Menu (Small Screens) */
 .dropdown-menu {
   position: fixed;
-  top: 60px; /* Moves down so it doesn't overlap the header */
+  top: 60px;
   left: 50%;
   transform: translateX(-50%);
   width: 80%;
-  background-color: rgba(40, 40, 40, 0.95); /* Slightly greyer */
+  background-color: rgba(40, 40, 40, 0.95);
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.2);
@@ -73,7 +70,6 @@ body {
   z-index: 1000;
 }
 
-/* Close button */
 .close-menu {
   align-self: flex-end;
   background: none;
@@ -83,7 +79,6 @@ body {
   cursor: pointer;
 }
 
-/* Dropdown Links */
 .dropdown-links {
   display: flex;
   gap: 30px;
@@ -101,7 +96,6 @@ body {
   color: #a6ffff;
 }
 
-/* Footer icons inside dropdown */
 .dropdown-footer {
   display: flex;
   gap: 20px;
@@ -118,7 +112,6 @@ body {
   color: white;
 }
 
-/* Main Content */
 .content {
   display: flex;
   flex-direction: column;
@@ -146,7 +139,6 @@ body {
   color: #ccc;
 }
 
-/* Footer (Visible on larger screens) */
 .footer {
   position: fixed;
   bottom: 20px;
@@ -171,7 +163,6 @@ body {
   font-size: 30px;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .nav-menu {
     display: none;

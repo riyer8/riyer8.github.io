@@ -12,15 +12,6 @@ function Project() {
         { label: "VIEW GITHUB", url: "https://github.com/riyer8/cs229-project" },
       ],
     },
-    /*{
-      title: "Trading Data and Strategies",
-      role: "Developer",
-      description: "add a description here",
-      image: "/src/assets/projects/cs229_pipeline.png",
-      links: [
-        { label: "VIEW GITHUB", url: "https://github.com/riyer8/trading_data" },
-      ],
-    },*/
     {
       title: "Hivemind: An Architecture to Amalgamate Fine-Tuned LLMs",
       role: "Researcher | CS 224N",

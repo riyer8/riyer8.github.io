@@ -21,7 +21,6 @@
   justify-content: center;
 }
 
-/* Project Cards */
 .projects {
   display: flex;
   flex-direction: column;
@@ -40,14 +39,12 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Project Image */
 .project-card .project-image {
   width: 300px;
   height: auto;
   border-radius: 5px;
 }
 
-/* Project Content */
 .project-content {
   width: 100%;
   display: flex;
@@ -73,7 +70,6 @@
   margin: 10px 0;
 }
 
-/* Project Links */
 .project-links {
   display: flex;
   gap: 10px;
@@ -97,7 +93,6 @@
   color: black;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .projects {
       margin-left: 20px;
@@ -105,14 +100,14 @@
   }
 
   .project-card {
-      flex-direction: column; /* Stack image and text */
+      flex-direction: column;
       text-align: center;
       align-items: center;
       padding: 20px;
   }
 
   .project-card .project-image {
-      width: 100%; /* Make image full width */
+      width: 100%;
       max-width: 400px;
   }
 
@@ -127,7 +122,6 @@
       text-align: center;
   }
 
-  /* Stack buttons vertically & make them full width */
   .project-links {
       flex-direction: column;
       align-items: center;
@@ -136,8 +130,8 @@
   }
 
   .project-link {
-      width: 100%; /* Make buttons stretch the full width of their container */
+      width: 100%;
       text-align: center;
-      max-width: 400px; /* Optional: prevents buttons from being too large */
+      max-width: 400px;
   }
 }
