@@ -1,0 +1,38 @@
+/* Layout Styles */
+.main-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+}
+
+.sidebar {
+    width: 40%;
+    padding: 4rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(78, 205, 196, 0.2);
+}
+
+.main-content {
+    width: 60%;
+    padding: 4rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+    }
+    
+    .sidebar, .main-content {
+        width: 100%;
+        padding: 2rem 1.5rem;
+    }
+}
