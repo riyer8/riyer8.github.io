@@ -1,4 +1,5 @@
 import React from 'react';
+import { ThemeProvider } from './context/ThemeContext';
 import { PixelatedBackground, Sidebar, MainContent } from './components';
 
 const App = () => {
@@ -15,18 +16,18 @@ const App = () => {
     React.useEffect(() => {
         document.body.style.margin = '0';
         document.body.style.padding = '0';
-        document.body.style.backgroundColor = '#fafafa';
         document.body.style.overflowX = 'hidden';
+        // Remove the static backgroundColor since it will be handled by the theme
     }, []);
 
     return (
-        <>
+        <ThemeProvider>
             <PixelatedBackground theme="whoami" />
             <div style={containerStyle}>
                 <Sidebar />
                 <MainContent />
             </div>
-        </>
+        </ThemeProvider>
     );
 };
 

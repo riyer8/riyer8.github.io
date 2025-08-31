@@ -29,12 +29,8 @@ const StatusWidget = () => {
     return (
         <div style={widgetStyle}>
             <div style={statusItemStyle}>
-                <span style={statusLabelStyle}>Currently:</span>
+                <span style={statusLabelStyle}>Top of Mind:</span>
                 <span style={statusValueStyle}>Building this website (& reading something new) 🧠</span>
-            </div>
-            <div style={statusItemStyle}>
-                <span style={statusLabelStyle}>Last seen:</span>
-                <span style={statusValueStyle}>Writing my senior year bucket list ✍  </span>
             </div>
             <div style={{...statusItemStyle, marginBottom: 0}}>
                 <span style={statusLabelStyle}>Location:</span>

@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import StatusWidget from '../StatusWidget';
-import ProfilePhoto from '../ProfilePhoto';
+import { StatusWidget, ProfilePhoto, ThemeToggle } from '../../components';
+import { useTheme } from '../../context/ThemeContext';
 import { FaGithub, FaLinkedinIn, FaBars, FaTimes } from 'react-icons/fa';
 
 const MainContent = () => {
+    const { theme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
 
@@ -26,7 +27,7 @@ const MainContent = () => {
         padding: isMobile ? '1rem' : '3rem 6rem 3rem 3rem',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center', // Changed from 'flex-start' to 'center'
+        alignItems: 'center',
         justifyContent: 'flex-start',
         minHeight: '100vh',
         position: 'relative',
@@ -37,8 +38,8 @@ const MainContent = () => {
         display: isMobile ? 'flex' : 'none',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '2rem 2rem 1.5rem 2rem', // Increased top and side padding
-        borderBottom: '1px solid rgba(78, 205, 196, 0.15)',
+        padding: '2rem 2rem 1.5rem 2rem',
+        borderBottom: `1px solid ${theme.colors.border}`,
         marginBottom: '2rem',
         width: '100%',
         transition: 'all 0.3s ease'
@@ -46,12 +47,12 @@ const MainContent = () => {
 
     const hamburgerStyle = {
         fontSize: '1.5rem',
-        color: '#333',
+        color: theme.colors.text,
         cursor: 'pointer',
         background: 'none',
         border: 'none',
         padding: '0.5rem',
-        marginRight: '0.5rem', // Added right margin for the hamburger
+        marginRight: '0.5rem',
         transition: 'transform 0.3s ease'
     };
 
@@ -61,7 +62,7 @@ const MainContent = () => {
         left: 0,
         width: '100%',
         height: '100vh',
-        background: 'linear-gradient(to right, rgba(250,250,250,0.95), rgba(250,250,250,0.85))',
+        background: theme.colors.mobileMenuBg,
         zIndex: 1000,
         display: isMobileMenuOpen ? 'flex' : 'none',
         flexDirection: 'column',
@@ -77,12 +78,12 @@ const MainContent = () => {
         justifyContent: 'flex-start',
         alignItems: 'center',
         marginBottom: '1rem',
-        height: '60px' // Fixed header height
+        height: '60px'
     };
 
     const closeButtonStyle = {
         fontSize: '1.1rem',
-        color: '#4ECDC4',
+        color: theme.colors.accent,
         cursor: 'pointer',
         background: 'none',
         border: 'none',
@@ -97,27 +98,27 @@ const MainContent = () => {
         alignItems: 'center',
         justifyContent: 'center',
         textAlign: 'center',
-        flex: 1, // Take up remaining space
-        paddingBottom: '4rem' // Add some bottom padding
+        flex: 1,
+        paddingBottom: '4rem'
     };
 
     const mobileNameStyle = {
         fontSize: '1.8rem',
         fontWeight: 700,
-        color: '#333',
+        color: theme.colors.text,
         marginBottom: '0.5rem',
         marginTop: '1rem'
     };
 
     const mobileTaglineStyle = {
         fontSize: '1rem',
-        color: '#666',
+        color: theme.colors.textSecondary,
         lineHeight: 1.5,
         marginBottom: '0.5rem'
     };
 
     const mobileEmailStyle = {
-        color: '#4ECDC4',
+        color: theme.colors.accent,
         textDecoration: 'none',
         fontSize: '0.95rem',
         marginBottom: '2rem',
@@ -132,7 +133,7 @@ const MainContent = () => {
     };
 
     const mobileSocialLinkStyle = {
-        color: '#666',
+        color: theme.colors.textSecondary,
         fontSize: '1.5rem',
         textDecoration: 'none',
         transition: 'color 0.3s ease'
@@ -141,14 +142,14 @@ const MainContent = () => {
     const sectionStyle = { 
         maxWidth: isMobile ? '100%' : '800px',
         width: '100%',
-        textAlign: 'center', // Added to center the content within the section
+        textAlign: 'center',
         transition: 'max-width 0.3s ease'
     };
 
     const headingStyle = {
         fontSize: isMobile ? '2rem' : '2.5rem',
         fontWeight: 600,
-        color: '#333',
+        color: theme.colors.text,
         marginBottom: '1.5rem',
         lineHeight: 1.2,
         transition: 'font-size 0.3s ease'
@@ -157,12 +158,15 @@ const MainContent = () => {
     const brandStyle = {
         fontSize: '1.2rem',
         fontWeight: 600,
-        color: '#4ECDC4',
-        marginLeft: '0.5rem' // Added left margin for the name
+        color: theme.colors.accent,
+        marginLeft: '0.5rem'
     };
 
     return (
         <>
+            {/* Theme Toggle Button */}
+            <ThemeToggle />
+            
             <div style={contentStyle}>
                 {/* Mobile Header */}
                 <div style={mobileHeaderStyle}>
