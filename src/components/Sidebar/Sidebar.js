@@ -1,18 +1,32 @@
+import React, { useState, useEffect } from 'react';
 import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 const Sidebar = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreenSize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+        return () => window.removeEventListener('resize', checkScreenSize);
+    }, []);
+
     const sidebarStyle = {
         width: '20%',
         padding: '5rem 2rem 2rem 6rem',
-        display: 'flex',
+        display: isMobile ? 'none' : 'flex', // Hide on mobile
         flexDirection: 'column',
         justifyContent: 'flex-start',
         background: 'transparent',
         borderRight: '1px solid rgba(78, 205, 196, 0.15)',
         minHeight: '100vh',
         position: 'relative',
-        zIndex: 1
+        zIndex: 1,
+        transition: 'all 0.3s ease'
     };
 
     const overlayStyle = {
@@ -67,13 +81,13 @@ const Sidebar = () => {
                 <h1 style={nameStyle}>Ramya Iyer</h1>
                 <div style={taglineStyle}>CS (AI) + Math @ Stanford</div>
                 <div style={taglineStyle}>Working on exciting things!</div>
-                <a href="mailto:email@stanford.edu" style={emailStyle}>ramya1@stanford.edu</a>
+                <a href="mailto:ramya1@stanford.edu" style={emailStyle}>ramya1@stanford.edu</a>
             </div>
 
             <div style={socialLinksStyle}>
                 <a href="https://github.com/riyer8" style={socialLinkStyle} title="GitHub"><FaGithub /></a>
                 <a href="https://www.linkedin.com/in/ramya-i/" style={socialLinkStyle} title="LinkedIn"><FaLinkedinIn /></a>
-                <a href="mailto: ramya1@stanford.edu" style={socialLinkStyle} title="Email">💌</a>
+                <a href="mailto:ramya1@stanford.edu" style={socialLinkStyle} title="Email">💌</a>
                 <a href="#" style={socialLinkStyle} title="Surprise Me">✨</a>
             </div>
         </div>
