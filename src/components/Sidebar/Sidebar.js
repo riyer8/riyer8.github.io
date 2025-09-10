@@ -5,7 +5,7 @@ import {FaGithub, FaLinkedinIn, FaEnvelope} from 'react-icons/fa';
 
 const Sidebar = () => {
     const { theme } = useTheme();
-    const [isMobile, setIsMobile] = useState(false);
+    const [shouldCollapseSidebar, setShouldCollapseSidebar] = useState(false);
     const [currentActivityIndex, setCurrentActivityIndex] = useState(0);
     const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -20,7 +20,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         const checkScreenSize = () => {
-            setIsMobile(window.innerWidth <= 768);
+            setShouldCollapseSidebar(window.innerWidth <= 900); // Same breakpoint as MainContent
         };
 
         checkScreenSize();
@@ -42,7 +42,7 @@ const Sidebar = () => {
     const sidebarStyle = {
         width: '20%',
         padding: '5rem 2rem 2rem 6rem',
-        display: isMobile ? 'none' : 'flex',
+        display: shouldCollapseSidebar ? 'none' : 'flex', // Hide when collapsed
         flexDirection: 'column',
         justifyContent: 'flex-start',
         background: 'transparent',

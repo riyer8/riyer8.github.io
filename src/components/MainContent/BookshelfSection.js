@@ -11,12 +11,12 @@ import essay3 from '../../assets/bookshelf/books/book3.png';
 
 const BookshelfSection = ({ screenSize }) => {
     const { theme } = useTheme();
-    const { isMobile, isTablet, width } = screenSize;
+    const { width, shouldCollapseSidebar } = screenSize;
 
     // Determine how many items to show based on available space
     const getItemsToShow = () => {
-        if (width < 350) return 1; // Very small screens - show only 1 item
-        if (width < 500) return 2; // Small screens - show 2 items
+        if (width < 380) return 1; // Very small screens - show only 1 item
+        if (width < 600) return 2; // Small screens - show 2 items
         return 3; // Normal screens - show all 3 items
     };
 
@@ -24,13 +24,13 @@ const BookshelfSection = ({ screenSize }) => {
 
     // Responsive sizing calculations
     const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
-        if (isMobile) return mobileSize;
-        if (isTablet) return tabletSize;
+        if (shouldCollapseSidebar) return mobileSize;
+        if (screenSize.isTablet) return tabletSize;
         return desktopSize;
     };
 
-    // Calculate available width per section
-    const availableWidth = width - (isMobile ? 32 : 64); // Account for padding
+    // Calculate available width per section with better overflow protection
+    const availableWidth = Math.min(width - (shouldCollapseSidebar ? 32 : 64), 900); // Max width constraint
     const sectionWidth = availableWidth / itemsToShow;
 
     // Dynamic dimensions based on available space
@@ -72,7 +72,9 @@ const BookshelfSection = ({ screenSize }) => {
         width: '100%',
         marginTop: getResponsiveSize('2rem', '3rem', '4rem'),
         transition: 'all 0.3s ease',
-        padding: getResponsiveSize('0 0.5rem', '0 1rem', '0')
+        padding: getResponsiveSize('0 0.5rem', '0 1rem', '0'),
+        boxSizing: 'border-box',
+        overflow: 'hidden' // Prevent horizontal overflow
     };
 
     const bookshelfTitleStyle = {
@@ -89,7 +91,8 @@ const BookshelfSection = ({ screenSize }) => {
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center'
+        alignItems: 'center',
+        boxSizing: 'border-box'
     };
 
     const shelfStyle = {
@@ -112,7 +115,9 @@ const BookshelfSection = ({ screenSize }) => {
         width: '100%',
         marginBottom: '0',
         zIndex: 2,
-        gap: itemsToShow === 1 ? '0' : getResponsiveSize('0.5rem', '1rem', '1.5rem')
+        gap: itemsToShow === 1 ? '0' : getResponsiveSize('0.5rem', '1rem', '1.5rem'),
+        boxSizing: 'border-box',
+        overflow: 'hidden' // Prevent overflow
     };
 
     const bookStackStyle = {
@@ -121,7 +126,8 @@ const BookshelfSection = ({ screenSize }) => {
         alignItems: 'flex-end',
         justifyContent: 'center',
         flex: itemsToShow === 1 ? 'none' : 1,
-        maxWidth: itemsToShow === 1 ? 'none' : `${sectionWidth}px`
+        maxWidth: itemsToShow === 1 ? 'none' : `${Math.min(sectionWidth, 300)}px`, // Max width constraint
+        minWidth: 0 // Allow shrinking
     };
 
     const bookDimensions = getBookDimensions();
@@ -136,7 +142,8 @@ const BookshelfSection = ({ screenSize }) => {
         transition: 'all 0.3s ease',
         cursor: 'pointer',
         objectFit: 'cover',
-        border: '1px solid rgba(0,0,0,0.1)'
+        border: '1px solid rgba(0,0,0,0.1)',
+        flexShrink: 0 // Prevent shrinking
     };
 
     const createBookStyles = (dimensions, count = 3) => {
@@ -206,7 +213,8 @@ const BookshelfSection = ({ screenSize }) => {
         padding: getResponsiveSize('6px 4px', '10px 6px', '12px 8px'),
         fontSize: getResponsiveSize('5px', '6px', '7px'),
         color: '#333',
-        lineHeight: '1.2'
+        lineHeight: '1.2',
+        flexShrink: 0 // Prevent shrinking
     };
 
     const createPaperStyles = (dimensions, count = 3) => {
@@ -243,7 +251,8 @@ const BookshelfSection = ({ screenSize }) => {
         justifyContent: 'space-evenly',
         width: '100%',
         marginTop: '1rem',
-        gap: getResponsiveSize('0.5rem', '1rem', '0')
+        gap: getResponsiveSize('0.5rem', '1rem', '0'),
+        boxSizing: 'border-box'
     };
 
     const categoryStyle = {
@@ -252,7 +261,8 @@ const BookshelfSection = ({ screenSize }) => {
         color: theme.colors.text,
         textAlign: 'center',
         transition: 'font-size 0.3s ease',
-        flex: 1
+        flex: 1,
+        minWidth: 0 // Allow text truncation if needed
     };
 
     const paperTitleFontSize = getResponsiveSize('5px', '6px', '7px');

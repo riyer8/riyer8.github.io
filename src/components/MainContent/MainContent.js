@@ -11,7 +11,8 @@ const MainContent = () => {
         width: window.innerWidth,
         isMobile: window.innerWidth <= 768,
         isTablet: window.innerWidth > 768 && window.innerWidth <= 1024,
-        isDesktop: window.innerWidth > 1024
+        isDesktop: window.innerWidth > 1024,
+        shouldCollapseSidebar: window.innerWidth <= 900 // New breakpoint for sidebar collapse
     });
 
     useEffect(() => {
@@ -21,7 +22,8 @@ const MainContent = () => {
                 width,
                 isMobile: width <= 768,
                 isTablet: width > 768 && width <= 1024,
-                isDesktop: width > 1024
+                isDesktop: width > 1024,
+                shouldCollapseSidebar: width <= 900 // Collapse sidebar earlier to prevent cutoff
             });
         };
 
@@ -38,7 +40,7 @@ const MainContent = () => {
         return () => window.removeEventListener('resize', debouncedResize);
     }, []);
 
-    const { isMobile } = screenSize;
+    const { shouldCollapseSidebar } = screenSize;
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -46,7 +48,7 @@ const MainContent = () => {
 
     // Responsive sizing utility
     const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
-        if (screenSize.isMobile) return mobileSize;
+        if (screenSize.shouldCollapseSidebar) return mobileSize;
         if (screenSize.isTablet) return tabletSize;
         return desktopSize;
     };
@@ -60,18 +62,21 @@ const MainContent = () => {
         justifyContent: 'flex-start',
         minHeight: '100vh',
         position: 'relative',
-        transition: 'padding 0.3s ease'
+        transition: 'padding 0.3s ease',
+        maxWidth: '100%', // Prevent horizontal overflow
+        boxSizing: 'border-box'
     };
 
     const mobileHeaderStyle = {
-        display: isMobile ? 'flex' : 'none',
+        display: shouldCollapseSidebar ? 'flex' : 'none',
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: '2rem 2rem 1.5rem 2rem',
         borderBottom: `1px solid ${theme.colors.border}`,
         marginBottom: '2rem',
         width: '100%',
-        transition: 'all 0.3s ease'
+        transition: 'all 0.3s ease',
+        boxSizing: 'border-box'
     };
 
     const hamburgerStyle = {
@@ -96,7 +101,8 @@ const MainContent = () => {
         maxWidth: getResponsiveSize('100%', '700px', '800px'),
         width: '100%',
         textAlign: 'center',
-        transition: 'max-width 0.3s ease'
+        transition: 'max-width 0.3s ease',
+        boxSizing: 'border-box'
     };
 
     const headingStyle = {
@@ -123,7 +129,8 @@ const MainContent = () => {
         backdropFilter: 'blur(10px)',
         opacity: isMobileMenuOpen ? 1 : 0,
         transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
-        transition: 'all 0.3s ease'
+        transition: 'all 0.3s ease',
+        boxSizing: 'border-box'
     };
 
     const mobileMenuHeaderStyle = {
@@ -225,7 +232,7 @@ const MainContent = () => {
             </div>
 
             {/* Mobile Menu Overlay */}
-            {isMobile && (
+            {shouldCollapseSidebar && (
                 <div style={mobileMenuStyle}>
                     <div style={mobileMenuHeaderStyle}>
                         <button 
