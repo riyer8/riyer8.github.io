@@ -1,30 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { StatusWidget, ProfilePhoto, ThemeToggle } from '../../components';
+import BookshelfSection from './BookshelfSection';
 import { useTheme } from '../../context/ThemeContext';
-import { FaGithub, FaLinkedinIn, FaBars, FaTimes } from 'react-icons/fa';
+import { FaGithub, FaLinkedinIn, FaBars } from 'react-icons/fa';
 
 const MainContent = () => {
     const { theme } = useTheme();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
+    const [screenSize, setScreenSize] = useState({
+        width: window.innerWidth,
+        isMobile: window.innerWidth <= 768,
+        isTablet: window.innerWidth > 768 && window.innerWidth <= 1024,
+        isDesktop: window.innerWidth > 1024
+    });
 
     useEffect(() => {
         const checkScreenSize = () => {
-            setIsMobile(window.innerWidth <= 768);
+            const width = window.innerWidth;
+            setScreenSize({
+                width,
+                isMobile: width <= 768,
+                isTablet: width > 768 && width <= 1024,
+                isDesktop: width > 1024
+            });
         };
 
+        const debouncedResize = (() => {
+            let timeoutId;
+            return () => {
+                clearTimeout(timeoutId);
+                timeoutId = setTimeout(checkScreenSize, 150);
+            };
+        })();
+
         checkScreenSize();
-        window.addEventListener('resize', checkScreenSize);
-        return () => window.removeEventListener('resize', checkScreenSize);
+        window.addEventListener('resize', debouncedResize);
+        return () => window.removeEventListener('resize', debouncedResize);
     }, []);
+
+    const { isMobile } = screenSize;
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
+    // Responsive sizing utility
+    const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
+        if (screenSize.isMobile) return mobileSize;
+        if (screenSize.isTablet) return tabletSize;
+        return desktopSize;
+    };
+
     const contentStyle = {
         flex: 1,
-        padding: isMobile ? '1rem' : '3rem 6rem 3rem 3rem',
+        padding: getResponsiveSize('1rem', '2rem 4rem', '3rem 6rem 3rem 3rem'),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -56,6 +85,30 @@ const MainContent = () => {
         transition: 'transform 0.3s ease'
     };
 
+    const brandStyle = {
+        fontSize: '1.2rem',
+        fontWeight: 600,
+        color: theme.colors.accent,
+        marginLeft: '0.5rem'
+    };
+
+    const sectionStyle = { 
+        maxWidth: getResponsiveSize('100%', '700px', '800px'),
+        width: '100%',
+        textAlign: 'center',
+        transition: 'max-width 0.3s ease'
+    };
+
+    const headingStyle = {
+        fontSize: getResponsiveSize('1.8rem', '2.2rem', '2.5rem'),
+        fontWeight: 600,
+        color: theme.colors.text,
+        marginBottom: '1.5rem',
+        lineHeight: 1.2,
+        transition: 'font-size 0.3s ease'
+    };
+
+    // Mobile menu styles
     const mobileMenuStyle = {
         position: 'fixed',
         top: 0,
@@ -139,29 +192,6 @@ const MainContent = () => {
         transition: 'color 0.3s ease'
     };
 
-    const sectionStyle = { 
-        maxWidth: isMobile ? '100%' : '800px',
-        width: '100%',
-        textAlign: 'center',
-        transition: 'max-width 0.3s ease'
-    };
-
-    const headingStyle = {
-        fontSize: isMobile ? '2rem' : '2.5rem',
-        fontWeight: 600,
-        color: theme.colors.text,
-        marginBottom: '1.5rem',
-        lineHeight: 1.2,
-        transition: 'font-size 0.3s ease'
-    };
-
-    const brandStyle = {
-        fontSize: '1.2rem',
-        fontWeight: 600,
-        color: theme.colors.accent,
-        marginLeft: '0.5rem'
-    };
-
     return (
         <>
             {/* Theme Toggle Button */}
@@ -170,15 +200,16 @@ const MainContent = () => {
             <div style={contentStyle}>
                 {/* Mobile Header */}
                 <div style={mobileHeaderStyle}>
-                    <div style={brandStyle}>Ramya Iyer</div>
-                    <button 
-                        style={hamburgerStyle} 
-                        onClick={toggleMobileMenu}
-                        onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-                        onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                    >
-                        <FaBars />
-                    </button>
+                    <div style={brandStyle}>
+                        <button 
+                            style={hamburgerStyle} 
+                            onClick={toggleMobileMenu}
+                            onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
+                            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
+                        >
+                            <FaBars />
+                        </button>
+                    </div>
                 </div>
 
                 {/* Main Content */}
@@ -188,6 +219,9 @@ const MainContent = () => {
                     </h2>
                     <StatusWidget />
                 </div>
+
+                {/* Bookshelf Section */}
+                <BookshelfSection screenSize={screenSize} />
             </div>
 
             {/* Mobile Menu Overlay */}

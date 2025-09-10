@@ -10,11 +10,12 @@ const Sidebar = () => {
     const [isTransitioning, setIsTransitioning] = useState(false);
 
     const currentActivities = [
-        "building AI applications",
-        "researching about PCOS",
-        "planning my senior courses",
-        "creating this website",
-        "reading a book at a NY cafe"
+        "building AI applications 🤖",
+        "researching about PCOS 🧬",
+        "planning my senior courses 🎓",
+        "creating this website 💻",
+        "reading a book at a NY cafe ☕️",
+        "thinking about consumer products 🛍️"
     ];
 
     useEffect(() => {
