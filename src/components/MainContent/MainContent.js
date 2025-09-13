@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { StatusWidget, ProfilePhoto, ThemeToggle } from '../../components';
+import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
 import { useTheme } from '../../context/ThemeContext';
-import { FaGithub, FaLinkedinIn, FaBars } from 'react-icons/fa';
+import { FaBars } from 'react-icons/fa';
 
 const MainContent = () => {
     const { theme } = useTheme();
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
     const [screenSize, setScreenSize] = useState({
         width: window.innerWidth,
         isMobile: window.innerWidth <= 768,
@@ -42,9 +43,8 @@ const MainContent = () => {
 
     const { shouldCollapseSidebar } = screenSize;
 
-    const toggleMobileMenu = () => {
-        setIsMobileMenuOpen(!isMobileMenuOpen);
-    };
+    const openMobileSidebar = () => setIsMobileSidebarOpen(true);
+    const closeMobileSidebar = () => setIsMobileSidebarOpen(false);
 
     // Responsive sizing utility
     const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
@@ -62,32 +62,32 @@ const MainContent = () => {
         justifyContent: 'flex-start',
         minHeight: '100vh',
         position: 'relative',
-        transition: 'padding 0.3s ease',
+        transition: 'none',
         maxWidth: '100%', // Prevent horizontal overflow
         boxSizing: 'border-box'
     };
 
     const mobileHeaderStyle = {
         display: shouldCollapseSidebar ? 'flex' : 'none',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         padding: '2rem 2rem 1.5rem 2rem',
         borderBottom: `1px solid ${theme.colors.border}`,
         marginBottom: '2rem',
         width: '100%',
-        transition: 'all 0.3s ease',
-        boxSizing: 'border-box'
+        transition: 'none',
+        boxSizing: 'border-box',
     };
 
     const hamburgerStyle = {
-        fontSize: '1.5rem',
-        color: theme.colors.text,
+        fontSize: '1.8rem',
+        color: theme.colors.accent,
         cursor: 'pointer',
         background: 'none',
         border: 'none',
         padding: '0.5rem',
         marginRight: '0.5rem',
-        transition: 'transform 0.3s ease'
+        transition: 'none',
     };
 
     const brandStyle = {
@@ -101,7 +101,7 @@ const MainContent = () => {
         maxWidth: getResponsiveSize('100%', '700px', '800px'),
         width: '100%',
         textAlign: 'center',
-        transition: 'max-width 0.3s ease',
+        transition: 'none',
         boxSizing: 'border-box'
     };
 
@@ -111,112 +111,28 @@ const MainContent = () => {
         color: theme.colors.text,
         marginBottom: '1.5rem',
         lineHeight: 1.2,
-        transition: 'font-size 0.3s ease'
+        transition: 'none'
     };
 
-    // Mobile menu styles
-    const mobileMenuStyle = {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100vh',
-        background: theme.colors.mobileMenuBg,
-        zIndex: 1000,
-        display: isMobileMenuOpen ? 'flex' : 'none',
-        flexDirection: 'column',
-        padding: '2rem',
-        backdropFilter: 'blur(10px)',
-        opacity: isMobileMenuOpen ? 1 : 0,
-        transform: isMobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)',
-        transition: 'all 0.3s ease',
-        boxSizing: 'border-box'
-    };
-
-    const mobileMenuHeaderStyle = {
-        display: 'flex',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-        marginBottom: '1rem',
-        height: '60px'
-    };
-
-    const closeButtonStyle = {
-        fontSize: '1.1rem',
-        color: theme.colors.accent,
-        cursor: 'pointer',
-        background: 'none',
-        border: 'none',
-        padding: '0.5rem 1rem',
-        fontWeight: 500,
-        transition: 'all 0.3s ease'
-    };
-
-    const mobileProfileStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        textAlign: 'center',
-        flex: 1,
-        paddingBottom: '4rem'
-    };
-
-    const mobileNameStyle = {
-        fontSize: '1.8rem',
-        fontWeight: 700,
-        color: theme.colors.text,
-        marginBottom: '0.5rem',
-        marginTop: '1rem'
-    };
-
-    const mobileTaglineStyle = {
-        fontSize: '1rem',
-        color: theme.colors.textSecondary,
-        lineHeight: 1.5,
-        marginBottom: '0.5rem'
-    };
-
-    const mobileEmailStyle = {
-        color: theme.colors.accent,
-        textDecoration: 'none',
-        fontSize: '0.95rem',
-        marginBottom: '2rem',
-        display: 'inline-block'
-    };
-
-    const mobileSocialLinksStyle = {
-        display: 'flex',
-        justifyContent: 'center',
-        gap: '2rem',
-        marginTop: '1rem'
-    };
-
-    const mobileSocialLinkStyle = {
-        color: theme.colors.textSecondary,
-        fontSize: '1.5rem',
-        textDecoration: 'none',
-        transition: 'color 0.3s ease'
-    };
+    // ...existing code...
 
     return (
         <>
             {/* Theme Toggle Button */}
             <ThemeToggle />
-            
+
             <div style={contentStyle}>
                 {/* Mobile Header */}
                 <div style={mobileHeaderStyle}>
-                    <div style={brandStyle}>
-                        <button 
-                            style={hamburgerStyle} 
-                            onClick={toggleMobileMenu}
-                            onMouseEnter={(e) => e.target.style.transform = 'scale(1.1)'}
-                            onMouseLeave={(e) => e.target.style.transform = 'scale(1)'}
-                        >
-                            <FaBars />
-                        </button>
-                    </div>
+                    <button
+                        style={hamburgerStyle}
+                        onClick={openMobileSidebar}
+                        onMouseEnter={e => e.target.style.transform = 'scale(1.1)'}
+                        onMouseLeave={e => e.target.style.transform = 'scale(1)'}
+                        aria-label="Open sidebar"
+                    >
+                        <FaBars />
+                    </button>
                 </div>
 
                 {/* Main Content */}
@@ -231,36 +147,9 @@ const MainContent = () => {
                 <BookshelfSection screenSize={screenSize} />
             </div>
 
-            {/* Mobile Menu Overlay */}
+            {/* Mobile Sidebar Slide-in */}
             {shouldCollapseSidebar && (
-                <div style={mobileMenuStyle}>
-                    <div style={mobileMenuHeaderStyle}>
-                        <button 
-                            style={closeButtonStyle} 
-                            onClick={toggleMobileMenu}
-                            onMouseEnter={(e) => e.target.style.transform = 'translateX(-3px)'}
-                            onMouseLeave={(e) => e.target.style.transform = 'translateX(0)'}
-                        >
-                            ← Back
-                        </button>
-                        <div></div>
-                    </div>
-
-                    <div style={mobileProfileStyle}>
-                        <ProfilePhoto />
-                        <h1 style={mobileNameStyle}>Ramya Iyer</h1>
-                        <div style={mobileTaglineStyle}>CS (AI) + Math @ Stanford</div>
-                        <div style={mobileTaglineStyle}>Working on exciting things!</div>
-                        <a href="mailto:ramya1@stanford.edu" style={mobileEmailStyle}>ramya1@stanford.edu</a>
-                        
-                        <div style={mobileSocialLinksStyle}>
-                            <a href="https://github.com/riyer8" style={mobileSocialLinkStyle} title="GitHub"><FaGithub /></a>
-                            <a href="https://www.linkedin.com/in/ramya-i/" style={mobileSocialLinkStyle} title="LinkedIn"><FaLinkedinIn /></a>
-                            <a href="mailto:ramya1@stanford.edu" style={mobileSocialLinkStyle} title="Email">💌</a>
-                            <a href="#" style={mobileSocialLinkStyle} title="Surprise Me">✨</a>
-                        </div>
-                    </div>
-                </div>
+                <MobileSidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
             )}
         </>
     );
