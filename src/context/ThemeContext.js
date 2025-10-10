@@ -39,12 +39,14 @@ export const ThemeProvider = ({ children }) => {
             accent: '#4ECDC4',
             accentSecondary: '#FFB347',
             border: isDarkMode ? 'rgba(78, 205, 196, 0.2)' : 'rgba(78, 205, 196, 0.15)',
-            overlay: isDarkMode 
-                ? 'linear-gradient(to right, rgba(26, 26, 26, 0.35), rgba(26, 26, 26, 0))' 
+            overlay: isDarkMode
+                ? 'linear-gradient(to right, rgba(26, 26, 26, 0.35), rgba(26, 26, 26, 0))'
                 : 'linear-gradient(to right, rgba(250,250,250,0.35), rgba(250,250,250,0))',
-            mobileMenuBg: isDarkMode 
-                ? 'linear-gradient(to right, rgba(26, 26, 26, 0.95), rgba(26, 26, 26, 0.85))' 
-                : 'linear-gradient(to right, rgba(250,250,250,0.95), rgba(250,250,250,0.85))'
+            // Decorative gradient for mobile/sidebars in light mode. Use a softer gradient that
+            // preserves the original look; in dark mode we prefer a solid translucent bg.
+            mobileMenuBg: isDarkMode
+                ? 'linear-gradient(to right, rgba(26,26,26,0.95), rgba(26,26,26,0.85))'
+                : 'linear-gradient(135deg, #fff 80%, #f7eaff 100%)'
         }
     };
 

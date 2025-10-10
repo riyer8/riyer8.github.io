@@ -2,12 +2,16 @@ import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
 
 import bookCover1 from '../../assets/bookshelf/books/book1.png';
-import bookCover2 from '../../assets/bookshelf/books/book2.jpg';
+import bookCover2 from '../../assets/bookshelf/books/book2.png';
 import bookCover3 from '../../assets/bookshelf/books/book3.png';
 
-import essay1 from '../../assets/bookshelf/books/book1.png';
-import essay2 from '../../assets/bookshelf/books/book2.jpg';
-import essay3 from '../../assets/bookshelf/books/book3.png';
+import researchPaper1 from '../../assets/bookshelf/researchPapers/To Be Added.png';
+import researchPaper2 from '../../assets/bookshelf/researchPapers/To Be Added.png';
+import researchPaper3 from '../../assets/bookshelf/researchPapers/To Be Added.png';
+
+import essay1 from '../../assets/bookshelf/essays/To Be Added.png';
+import essay2 from '../../assets/bookshelf/essays/To Be Added.png';
+import essay3 from '../../assets/bookshelf/essays/To Be Added.png';
 
 const BookshelfSection = ({ screenSize }) => {
     const { theme } = useTheme();
@@ -15,9 +19,9 @@ const BookshelfSection = ({ screenSize }) => {
 
     // Determine how many items to show based on available space
     const getItemsToShow = () => {
-        if (width < 380) return 1; // Very small screens - show only 1 item
-        if (width < 600) return 2; // Small screens - show 2 items
-        return 3; // Normal screens - show all 3 items
+        if (width < 380) return 1;
+        if (width < 600) return 2;
+        return 3;
     };
 
     const itemsToShow = getItemsToShow();
@@ -29,15 +33,12 @@ const BookshelfSection = ({ screenSize }) => {
         return desktopSize;
     };
 
-    // Calculate available width per section with better overflow protection
-    const availableWidth = Math.min(width - (shouldCollapseSidebar ? 32 : 64), 900); // Max width constraint
+    const availableWidth = Math.min(width - (shouldCollapseSidebar ? 32 : 64), 900);
     const sectionWidth = availableWidth / itemsToShow;
 
-    // Dynamic dimensions based on available space
     const getBookDimensions = () => {
         const maxWidth = Math.min(sectionWidth * 0.22, getResponsiveSize(60, 75, 85));
-        const baseHeight = maxWidth * 1.67; // Maintain aspect ratio
-        
+        const baseHeight = maxWidth * 1.67;
         return {
             width: maxWidth,
             height: Math.min(baseHeight, getResponsiveSize(100, 130, 145)),
@@ -48,7 +49,6 @@ const BookshelfSection = ({ screenSize }) => {
     const getPaperDimensions = () => {
         const maxWidth = Math.min(sectionWidth * 0.25, getResponsiveSize(70, 85, 95));
         const baseHeight = maxWidth * 1.4;
-        
         return {
             width: maxWidth,
             height: Math.min(baseHeight, getResponsiveSize(95, 120, 135)),
@@ -59,7 +59,6 @@ const BookshelfSection = ({ screenSize }) => {
     const getEssayDimensions = () => {
         const maxWidth = Math.min(sectionWidth * 0.20, getResponsiveSize(50, 65, 75));
         const baseHeight = maxWidth * 1.73;
-        
         return {
             width: maxWidth,
             height: Math.min(baseHeight, getResponsiveSize(85, 110, 125)),
@@ -74,7 +73,7 @@ const BookshelfSection = ({ screenSize }) => {
         transition: 'all 0.3s ease',
         padding: getResponsiveSize('0 0.5rem', '0 1rem', '0'),
         boxSizing: 'border-box',
-        overflow: 'hidden' // Prevent horizontal overflow
+        overflow: 'hidden'
     };
 
     const bookshelfTitleStyle = {
@@ -117,134 +116,58 @@ const BookshelfSection = ({ screenSize }) => {
         zIndex: 2,
         gap: itemsToShow === 1 ? '0' : getResponsiveSize('0.5rem', '1rem', '1.5rem'),
         boxSizing: 'border-box',
-        overflow: 'hidden' // Prevent overflow
+        overflow: 'hidden'
     };
 
-    const bookStackStyle = {
+    const stackStyle = {
         position: 'relative',
         display: 'flex',
         alignItems: 'flex-end',
         justifyContent: 'center',
         flex: itemsToShow === 1 ? 'none' : 1,
-        maxWidth: itemsToShow === 1 ? 'none' : `${Math.min(sectionWidth, 300)}px`, // Max width constraint
-        minWidth: 0 // Allow shrinking
+        maxWidth: itemsToShow === 1 ? 'none' : `${Math.min(sectionWidth, 300)}px`,
+        minWidth: 0
     };
 
     const bookDimensions = getBookDimensions();
     const paperDimensions = getPaperDimensions();
     const essayDimensions = getEssayDimensions();
 
-    // Base book style
-    const bookStyle = {
-        height: `${bookDimensions.height}px`,
+    const baseItemStyle = {
         borderRadius: '2px 2px 0 0',
         boxShadow: '2px 0 6px rgba(0,0,0,0.3)',
         transition: 'all 0.3s ease',
         cursor: 'pointer',
         objectFit: 'cover',
         border: '1px solid rgba(0,0,0,0.1)',
-        flexShrink: 0 // Prevent shrinking
+        flexShrink: 0
     };
 
-    const createBookStyles = (dimensions, count = 3) => {
+    const createStackStyles = (dimensions, count = 3) => {
         if (count === 1) {
             return [{
-                ...bookStyle,
+                ...baseItemStyle,
                 height: `${dimensions.height}px`,
                 width: `${dimensions.width}px`,
                 zIndex: 1
             }];
         }
-        
         if (count === 2) {
             return [
-                {
-                    ...bookStyle,
-                    height: `${dimensions.height}px`,
-                    width: `${dimensions.width}px`,
-                    zIndex: 1,
-                    marginRight: `-${dimensions.overlap}px`
-                },
-                {
-                    ...bookStyle,
-                    height: `${dimensions.height}px`,
-                    width: `${dimensions.width}px`,
-                    zIndex: 2
-                }
+                { ...baseItemStyle, height: `${dimensions.height}px`, width: `${dimensions.width}px`, zIndex: 1, marginRight: `-${dimensions.overlap}px` },
+                { ...baseItemStyle, height: `${dimensions.height}px`, width: `${dimensions.width}px`, zIndex: 2 }
             ];
         }
-        
-        // 3 items
         return [
-            {
-                ...bookStyle,
-                height: `${dimensions.height}px`,
-                width: `${dimensions.width}px`,
-                zIndex: 1,
-                marginRight: `-${dimensions.overlap}px`
-            },
-            {
-                ...bookStyle,
-                height: `${dimensions.height}px`,
-                width: `${dimensions.width + 3}px`,
-                zIndex: 2,
-                marginRight: `-${dimensions.overlap - 3}px`
-            },
-            {
-                ...bookStyle,
-                height: `${dimensions.height}px`,
-                width: `${dimensions.width - 2}px`,
-                zIndex: 3
-            }
+            { ...baseItemStyle, height: `${dimensions.height}px`, width: `${dimensions.width}px`, zIndex: 1, marginRight: `-${dimensions.overlap}px` },
+            { ...baseItemStyle, height: `${dimensions.height}px`, width: `${dimensions.width + 3}px`, zIndex: 2, marginRight: `-${dimensions.overlap - 3}px` },
+            { ...baseItemStyle, height: `${dimensions.height}px`, width: `${dimensions.width - 2}px`, zIndex: 3 }
         ];
     };
 
-    // Paper styles
-    const paperStyle = {
-        backgroundColor: '#FFFFFF',
-        borderRadius: '2px 2px 0 0',
-        boxShadow: '2px 0 4px rgba(0,0,0,0.2)',
-        transition: 'all 0.3s ease',
-        cursor: 'pointer',
-        border: '1px solid #E0E0E0',
-        position: 'relative',
-        display: 'flex',
-        flexDirection: 'column',
-        padding: getResponsiveSize('6px 4px', '10px 6px', '12px 8px'),
-        fontSize: getResponsiveSize('5px', '6px', '7px'),
-        color: '#333',
-        lineHeight: '1.2',
-        flexShrink: 0 // Prevent shrinking
-    };
-
-    const createPaperStyles = (dimensions, count = 3) => {
-        const basePaper = {
-            ...paperStyle,
-            height: `${dimensions.height}px`,
-            width: `${dimensions.width}px`
-        };
-
-        if (count === 1) {
-            return [{ ...basePaper, zIndex: 1 }];
-        }
-        
-        if (count === 2) {
-            return [
-                { ...basePaper, zIndex: 1, marginRight: `-${dimensions.overlap}px` },
-                { ...basePaper, zIndex: 2 }
-            ];
-        }
-        
-        return [
-            { ...basePaper, zIndex: 1, marginRight: `-${dimensions.overlap}px` },
-            { ...basePaper, zIndex: 2, marginRight: `-${dimensions.overlap - 5}px` },
-            { ...basePaper, zIndex: 3 }
-        ];
-    };
-
-    const bookStyles = createBookStyles(bookDimensions, itemsToShow);
-    const paperStyles = createPaperStyles(paperDimensions, itemsToShow);
-    const essayStyles = createBookStyles(essayDimensions, itemsToShow);
+    const bookStyles = createStackStyles(bookDimensions, itemsToShow);
+    const paperStyles = createStackStyles(paperDimensions, itemsToShow);
+    const essayStyles = createStackStyles(essayDimensions, itemsToShow);
 
     const categoriesContainerStyle = {
         display: 'flex',
@@ -262,14 +185,9 @@ const BookshelfSection = ({ screenSize }) => {
         textAlign: 'center',
         transition: 'font-size 0.3s ease',
         flex: 1,
-        minWidth: 0 // Allow text truncation if needed
+        minWidth: 0
     };
 
-    const paperTitleFontSize = getResponsiveSize('5px', '6px', '7px');
-    const paperAuthorFontSize = getResponsiveSize('4px', '5px', '6px');
-    const paperDetailsFontSize = getResponsiveSize('3px', '4px', '5px');
-
-    // Book data arrays
     const books = [
         { src: bookCover1, alt: "Beyond the Ogdoad", color: '#4A90E2' },
         { src: bookCover2, alt: "The Hobbit", color: '#7ED321' },
@@ -282,78 +200,88 @@ const BookshelfSection = ({ screenSize }) => {
         { src: essay3, alt: "Essay 3", color: '#50E3C2' }
     ].slice(0, itemsToShow);
 
-    const papers = Array(itemsToShow).fill().map((_, index) => ({
-        title: "Title of your Paper",
-        author: "Author",
-        venue: "Conference/Journal",
-        year: "Year"
-    }));
+    const papers = [
+        { src: researchPaper1, alt: "Research Paper 1", color: '#E67E22' },
+        { src: researchPaper2, alt: "Research Paper 2", color: '#9B59B6' },
+        { src: researchPaper3, alt: "Research Paper 3", color: '#2ECC71' }
+    ].slice(0, itemsToShow);
 
     const categories = ['Books', 'Research Papers', 'Essays'].slice(0, itemsToShow);
 
     return (
         <div style={bookshelfSectionStyle}>
-            <h2 style={bookshelfTitleStyle}>Bookshelf</h2>
-            
+            <h2 style={bookshelfTitleStyle}><a href="/bookshelf" style={{ color: theme.colors.text, textDecoration: 'none' }}>Bookshelf</a></h2>
+
             <div style={bookshelfContainerStyle}>
                 <div style={booksContainerStyle}>
-                    {/* Books Stack */}
+                    {/* Books */}
                     {itemsToShow >= 1 && (
-                        <div style={bookStackStyle}>
+                        <div style={stackStyle}>
                             {books.map((book, index) => (
-                                <img 
-                                    key={`book-${index}`}
-                                    src={book.src} 
-                                    alt={book.alt}
-                                    style={bookStyles[index]}
-                                    onError={(e) => {
-                                        e.target.style.backgroundColor = book.color;
-                                        e.target.style.display = 'block';
-                                        e.target.alt = '';
-                                    }}
-                                />
+                                <a href="/bookshelf" key={`book-link-${index}`} style={{ display: 'inline-block', cursor: 'pointer' }}>
+                                    <img
+                                        key={`book-${index}`}
+                                        src={book.src}
+                                        alt={book.alt}
+                                        style={{ ...bookStyles[index], display: 'block' }}
+                                        onError={(e) => {
+                                            e.target.style.backgroundColor = book.color;
+                                            e.target.style.display = 'block';
+                                            e.target.alt = '';
+                                        }}
+                                    />
+                                </a>
                             ))}
                         </div>
                     )}
-                    
-                    {/* Research Papers Stack */}
+
+                    {/* Research Papers */}
                     {itemsToShow >= 2 && (
-                        <div style={bookStackStyle}>
+                        <div style={stackStyle}>
                             {papers.map((paper, index) => (
-                                <div key={`paper-${index}`} style={paperStyles[index]}>
-                                    <div style={{fontSize: paperTitleFontSize, fontWeight: 'bold', marginBottom: getResponsiveSize('3px', '4px', '5px')}}>{paper.title}</div>
-                                    <div style={{fontSize: paperAuthorFontSize, marginBottom: getResponsiveSize('2px', '2px', '3px')}}>{paper.author}</div>
-                                    <div style={{fontSize: paperDetailsFontSize, color: '#666'}}>{paper.venue}</div>
-                                    <div style={{fontSize: paperDetailsFontSize, color: '#666'}}>{paper.year}</div>
-                                </div>
+                                <a href="/bookshelf" key={`paper-link-${index}`} style={{ display: 'inline-block', cursor: 'pointer' }}>
+                                    <img
+                                        key={`paper-${index}`}
+                                        src={paper.src}
+                                        alt={paper.alt}
+                                        style={{ ...paperStyles[index], display: 'block' }}
+                                        onError={(e) => {
+                                            e.target.style.backgroundColor = paper.color;
+                                            e.target.style.display = 'block';
+                                            e.target.alt = '';
+                                        }}
+                                    />
+                                </a>
                             ))}
                         </div>
                     )}
-                    
-                    {/* Essays Stack */}
+
+                    {/* Essays */}
                     {itemsToShow >= 3 && (
-                        <div style={bookStackStyle}>
+                        <div style={stackStyle}>
                             {essays.map((essay, index) => (
-                                <img 
-                                    key={`essay-${index}`}
-                                    src={essay.src} 
-                                    alt={essay.alt}
-                                    style={essayStyles[index]}
-                                    onError={(e) => {
-                                        e.target.style.backgroundColor = essay.color;
-                                        e.target.style.display = 'block';
-                                        e.target.alt = '';
-                                    }}
-                                />
+                                <a href="/bookshelf" key={`essay-link-${index}`} style={{ display: 'inline-block', cursor: 'pointer' }}>
+                                    <img
+                                        key={`essay-${index}`}
+                                        src={essay.src}
+                                        alt={essay.alt}
+                                        style={{ ...essayStyles[index], display: 'block' }}
+                                        onError={(e) => {
+                                            e.target.style.backgroundColor = essay.color;
+                                            e.target.style.display = 'block';
+                                            e.target.alt = '';
+                                        }}
+                                    />
+                                </a>
                             ))}
                         </div>
                     )}
                 </div>
-                
-                {/* Wooden Shelf */}
+
+                {/* Shelf */}
                 <div style={shelfStyle}></div>
-                
-                {/* Category Labels */}
+
+                {/* Categories */}
                 <div style={categoriesContainerStyle}>
                     {categories.map((category, index) => (
                         <div key={index} style={categoryStyle}>{category}</div>

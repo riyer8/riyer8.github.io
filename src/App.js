@@ -1,6 +1,7 @@
 import React from 'react';
 import { ThemeProvider } from './context/ThemeContext';
-import { PixelatedBackground, Sidebar, MainContent } from './components';
+import { PixelatedBackground, Sidebar, MainContent, ThemeToggle } from './components';
+import BookshelfPage from './pages/BookshelfPage';
 
 const App = () => {
     const containerStyle = {
@@ -20,13 +21,20 @@ const App = () => {
         // Remove the static backgroundColor since it will be handled by the theme
     }, []);
 
+    const isBookshelf = typeof window !== 'undefined' && window.location && window.location.pathname === '/bookshelf';
+
     return (
         <ThemeProvider>
             <PixelatedBackground theme="whoami" />
-            <div style={containerStyle}>
-                <Sidebar />
-                <MainContent />
-            </div>
+            <ThemeToggle />
+            {isBookshelf ? (
+                <BookshelfPage />
+            ) : (
+                <div style={containerStyle}>
+                    <Sidebar />
+                    <MainContent />
+                </div>
+            )}
         </ThemeProvider>
     );
 };

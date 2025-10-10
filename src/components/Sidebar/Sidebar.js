@@ -5,7 +5,6 @@ import SidebarContent from './SidebarContent';
 const Sidebar = () => {
     const { theme } = useTheme();
     const [shouldCollapseSidebar, setShouldCollapseSidebar] = useState(false);
-    // ...existing code...
 
     useEffect(() => {
         const checkScreenSize = () => {
@@ -17,7 +16,6 @@ const Sidebar = () => {
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
-    // ...existing code...
 
     const sidebarStyle = {
         width: '20%',
@@ -25,25 +23,26 @@ const Sidebar = () => {
         display: shouldCollapseSidebar ? 'none' : 'flex', // Hide when collapsed
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        background: 'transparent',
+        background: shouldCollapseSidebar ? (theme.isDarkMode ? theme.colors.cardBackground : (theme.colors.mobileMenuBg || theme.colors.cardBackground)) : 'transparent',
         minHeight: '100vh',
         position: 'relative',
         zIndex: 1,
-        transition: 'all 0.3s ease'
+        backdropFilter: shouldCollapseSidebar ? 'blur(10px)' : undefined,
+        borderRight: shouldCollapseSidebar ? `1px solid ${theme.colors.border}` : 'none',
+        transition: 'all 0.3s ease',
+        boxShadow: theme.isDarkMode && shouldCollapseSidebar ? 'inset 0 0 0 1px rgba(255,255,255,0.02)' : undefined
     };
 
     const overlayStyle = {
         position: 'absolute',
         inset: 0,
         background: theme.colors.overlay,
-        zIndex: -1
+        zIndex: -1,
+        pointerEvents: 'none'
     };
 
-    // ...existing code...
-
     return (
-        <div style={sidebarStyle}>
-            <div style={overlayStyle}></div>
+        <div className="sidebar" style={sidebarStyle}>
             <SidebarContent compact={false} />
         </div>
     );

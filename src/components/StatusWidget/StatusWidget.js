@@ -34,7 +34,7 @@ const StatusWidget = () => {
             </div>
             <div style={{...statusItemStyle, marginBottom: 0}}>
                 <span style={statusLabelStyle}>Location:</span>
-                <span style={statusValueStyle}>New York (for the summer at least!) 🗽</span>
+                <span style={statusValueStyle}>Stanford, CA 🌲</span>
             </div>
         </div>
     );

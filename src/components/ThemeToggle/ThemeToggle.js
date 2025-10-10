@@ -7,10 +7,10 @@ const ThemeToggle = () => {
 
     const buttonStyle = {
         position: 'fixed',
-        top: '2rem',
-        right: '2rem',
-        width: '48px',
-        height: '48px',
+        top: '1rem',
+        right: '1rem',
+        width: '44px',
+        height: '44px',
         borderRadius: '50%',
         background: theme.colors.cardBackground,
         border: `1px solid ${theme.colors.border}`,

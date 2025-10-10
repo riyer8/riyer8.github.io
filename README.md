@@ -1,3 +1,3 @@
-# riyer8
+# Ramya's Website
 
-building a website is hard. it's still scrappy right now.
+Building the website when I get some time :D

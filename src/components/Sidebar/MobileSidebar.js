@@ -22,11 +22,11 @@ const MobileSidebar = ({ isOpen, onClose }) => {
         left: 0,
         width: '100vw',
         height: '100vh',
-        background: 'rgba(30, 30, 30, 0.65)',
+        background: theme.colors.overlay || 'rgba(0,0,0,0.5)',
         zIndex: 2000,
         opacity: isOpen ? 1 : 0,
         pointerEvents: isOpen ? 'auto' : 'none',
-        transition: 'opacity 2s ease',
+        transition: 'opacity 0.25s ease',
     };
 
     const sidebarStyle = {
@@ -36,8 +36,8 @@ const MobileSidebar = ({ isOpen, onClose }) => {
         width: '350px',
         maxWidth: '90vw',
         height: '100vh',
-        background: theme.colors.sidebarBg || '#fff',
-        boxShadow: '2px 0 24px rgba(0,0,0,0.18)',
+        background: theme.colors.cardBackground || '#fff',
+        boxShadow: theme.isDarkMode ? '2px 0 24px rgba(0,0,0,0.6)' : '2px 0 24px rgba(0,0,0,0.18)',
         zIndex: 2100,
         display: 'flex',
         flexDirection: 'column',
@@ -48,7 +48,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
         borderTopRightRadius: '18px',
         borderBottomRightRadius: '18px',
         boxSizing: 'border-box',
-        backgroundImage: 'linear-gradient(135deg, #fff 80%, #f7eaff 100%)',
+        backgroundImage: theme.colors.mobileMenuBg || undefined,
     };
 
     const closeBtnStyle = {
