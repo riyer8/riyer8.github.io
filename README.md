@@ -1,3 +1,3 @@
-# riyer8
+# Ramya's Website
 
-just a webpage in the works
+Just building it for fun :D
