@@ -138,7 +138,7 @@ const MainContent = () => {
                 {/* Main Content */}
                 <div style={sectionStyle}>
                     <h2 style={headingStyle}>
-                        Revamp Coming Soon! 🎉
+                        Welcome to my mind!
                     </h2>
                     <StatusWidget />
                 </div>

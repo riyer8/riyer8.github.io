@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./context/ThemeContext";
 import { PixelatedBackground, Sidebar, MainContent, ThemeToggle } from "./components";
 import BookshelfPage from "./pages/BookshelfPage";
+import WritingsPage from "./pages/WritingsPage";
 
 const App = () => {
   const containerStyle = {
@@ -36,6 +37,7 @@ const App = () => {
           }
         />
         <Route path="/bookshelf" element={<BookshelfPage />} />
+        <Route path="/writings" element={<WritingsPage />} />
       </Routes>
     </ThemeProvider>
   );

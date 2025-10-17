@@ -63,6 +63,8 @@ const renderMarkdownWithKatexPlaceholders = (text) => {
   let html;
   if (typeof window !== 'undefined' && window.marked) {
     try {
+      // configure marked to enable GFM, line breaks, and smart lists so headings, nested lists, images, and breaks render
+      try { window.marked.setOptions({ gfm: true, breaks: true, smartLists: true }); } catch (e) {}
       html = window.marked.parse(text);
     } catch (e) {
       html = text.replace(/\n\n+/g, '</p><p>').replace(/\n/g, '<br/>');
@@ -83,7 +85,8 @@ const renderMarkdownWithKatexPlaceholders = (text) => {
   // Step 4: Sanitize with DOMPurify when available; allow data-katex-* attributes
   if (typeof window !== 'undefined' && window.DOMPurify) {
     try {
-      html = window.DOMPurify.sanitize(html, { ADD_ATTR: ['data-katex-display', 'data-katex-inline'] });
+      // Allow data-katex attributes and typical image/link attributes so images/links render from data
+      html = window.DOMPurify.sanitize(html, { ADD_ATTR: ['data-katex-display', 'data-katex-inline', 'target'], ALLOWED_URI_REGEXP: /^(?:http|https|data):/i });
     } catch (e) {
       // fall back to raw html
     }
@@ -148,8 +151,68 @@ const MarkdownMath = ({ text }) => {
 
   const html = renderMarkdownWithKatexPlaceholders(text);
 
+  // Styles scoped to the markdown root to avoid overflowing the slide-over panel.
+  const styles = `
+    /* Ensure the markdown root respects container width */
+    #markdown-math-root { box-sizing: border-box; width: 100%; }
+
+    /* Paragraphs, headings, list items wrap and break long words */
+    #markdown-math-root p,
+    #markdown-math-root li,
+    #markdown-math-root h1,
+    #markdown-math-root h2,
+    #markdown-math-root h3,
+    #markdown-math-root h4,
+    #markdown-math-root h5,
+    #markdown-math-root span {
+      word-break: break-word;
+      overflow-wrap: anywhere;
+      white-space: normal;
+    }
+
+    /* Code blocks and inline code should wrap and allow horizontal scrolling if needed */
+    #markdown-math-root pre,
+    #markdown-math-root code {
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap; /* allow wrapping in long code blocks */
+      word-break: break-word;
+      background: rgba(0,0,0,0.03);
+      padding: 6px 8px;
+      border-radius: 6px;
+    }
+
+    /* Images and tables should not overflow the container */
+    #markdown-math-root img,
+    #markdown-math-root table {
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Blockquotes should wrap normally */
+    #markdown-math-root blockquote {
+      white-space: normal;
+      word-break: break-word;
+      border-left: 3px solid rgba(0,0,0,0.08);
+      margin-left: 0;
+      padding-left: 12px;
+      color: inherit;
+      background: transparent;
+    }
+
+    /* KaTeX output: prevent math from causing overflow */
+    #markdown-math-root .katex {
+      max-width: 100%;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+  `;
+
   return (
-    <div ref={rootRef} id="markdown-math-root" dangerouslySetInnerHTML={{ __html: html }} />
+    <div>
+      <style>{styles}</style>
+      <div ref={rootRef} id="markdown-math-root" dangerouslySetInnerHTML={{ __html: html }} />
+    </div>
   );
 };
 

@@ -26,7 +26,7 @@ const BookshelfSection = ({ screenSize }) => {
 
     const itemsToShow = getItemsToShow();
 
-    // Responsive sizing calculations
+    // Responsive sizing utility
     const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
         if (shouldCollapseSidebar) return mobileSize;
         if (screenSize.isTablet) return tabletSize;
