@@ -9,9 +9,9 @@ import researchPaper1 from '../../assets/bookshelf/researchPapers/To Be Added.pn
 import researchPaper2 from '../../assets/bookshelf/researchPapers/To Be Added.png';
 import researchPaper3 from '../../assets/bookshelf/researchPapers/To Be Added.png';
 
-import essay1 from '../../assets/bookshelf/essays/To Be Added.png';
-import essay2 from '../../assets/bookshelf/essays/To Be Added.png';
-import essay3 from '../../assets/bookshelf/essays/To Be Added.png';
+import essay1 from '../../assets/bookshelf/essays/essay1.png';
+import essay2 from '../../assets/bookshelf/essays/essay2.png';
+import essay3 from '../../assets/bookshelf/essays/essay3.png';
 
 const BookshelfSection = ({ screenSize }) => {
     const { theme } = useTheme();
