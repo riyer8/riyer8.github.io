@@ -3,7 +3,7 @@
 //   title, url, dateAdded, category, categories, medium, tldr, thoughts, tags, notes
 // }
 
-import photo3 from '../assets/photo3.JPG';
+import frequency_reduction from './bookshelfData/frequency_reduction.png'
 
 const bookshelfData = [
   /*
@@ -203,7 +203,115 @@ The idea of **regret minimization**:
 > Ira Glass bit about the taste gap: “It is only by going through a volume of work that you will close that gap, and your work will be as good as your ambitions… It’s gonna take awhile. It’s normal to take awhile. You’ve just gotta fight your way through.”
     `
 
+  },
+  {
+    title: "A Roadmap to AI Utopia",
+    url: "https://www.khoslaventures.com/posts/a-roadmap-to-ai-utopia",
+    dateAdded:"2025-10-24",
+    category: "essay",
+    categories: ['AI', 'future'],
+    medium: "digital",
+    tldr: "🌏 A rather optimistic view on how AI can lead to a prosperous future for all of humanity.",
+    thoughts: "A refreshing and optimistic perspective on AI's potential to improve lives globally. There is a chance that it remains to be too optimistic without real actionable changes to implement said ideas.",
+    tags: ['AI', 'future', 'optimism'],
+    notes: `### General thoughts:
+- As evident as the comparison is, I really loved the parallelism presented between the stream engine and AI. Both are revolutionizing how we view productivity and human capacity.
+- His idea on pessimistic viewpoints are blanketed. I think they're too broad and superficial to be relevant to the degree that AI is changing the world.
+- He presents the idea of a UBI, but I would love a more fleshed out version of the implementation and consequences of such a policy.
+    
+> "I estimate that over the next 25 years, AI can perform 80% of the work in 80% of all jobs—whether doctors, salespeople, engineers, or farm workers."
+- There's a chance it might be much closer than that.
+
+> "The current challenge is not a lack of resources, but a limitation in our capacity to find them – a barrier AI is poised to help break."
+- I think this may be an overly optimistic viewpoint on our current resource limitations.
+`
+  },
+
+  {
+    title: "Pick Three Things. Now Do Them Well",
+    url: "https://www.scotthyoung.com/blog/2014/10/17/pick-just-three/",
+    dateAdded: "2025-11-14",
+    category: "essay",
+    categories: ['productivity', 'focus'],
+    medium: "digital",
+    tldr: "🎯 Limit your focus to three main projects at a time to maximize effectiveness and avoid burnout.",
+    thoughts: "",
+    tags: ['productivity', 'focus', 'time-management'],
+    notes: ``
+  },
+/*
+  {
+    title: "Tackle the Hard Stuff First",
+    url: "https://www.codingvc.com/p/tackle-the-hard-stuff-first",
+    dateAdded: "2025-11-14",
+  },
+  */
+
+  {
+    title: "In the Age of AI, All We Have Left Is Taste",
+    url: "https://miscellaneousgood.substack.com/p/in-the-age-of-ai-all-we-have-left",
+    dateAdded: "2025-11-16",
+    category: "essay",
+    categories: ['AI', 'recommendations', 'consumers'],
+    medium: "digital",
+    tldr: "AI taking over taste won't result in personal, intimate connections with other people's personal taste.",
+    thoughts: "As someone who deeply thinks about personalization in the face of AI, this essay was really opening to me. We don't want to OR even need to automate everything. Allow people to have personal connections with others.",
+    tags: ['AI', 'personalization', 'taste', 'consumers'],
+    notes: ` One quote I liked:
+> AI gives you exactly what you want. But in doing so, you never get what you didn’t know you needed.
+
+Another quote:
+> Human recommendations, according to that logic, are not comprehensive or unbiased. They favor certain things and overlook others. In doing so, they create meaning. 
+
+Quote from another source:
+> Creative ideas are best evaluated through the senses not the intellect - Rick Rubin`
+  },
+
+  {
+    title: "Don't Read History for Lessons",
+    url: "https://commoncog.com/dont-read-history-for-lessons/",
+    dateAdded: "2025-11-19",
+    category: "essay",
+    categories: ['history', 'advice'],
+    medium: "digital",
+    tags: ['history', 'advice', 'lessons', 'entrepreneurship'],
+    notes: `
+> This has always been the tricky thing about learning from history. History is context dependent.
+
+> Learning narrow lessons from history is extremely risky because things that are true in one specific context might not be true in a different context — even a slightly different context.
+
+> The person who has read history would know not to overreact to certain events; the person who hasn’t is seeing everything for the very first time.
+
+> I think we should read history for **concept instantiations, not lessons.**
+
+> Concepts are represented not as abstract principles in their heads, but a cluster of real world cases that serve as prototypes.
+
+> **The goal of reading from history, then, is to expand the set of prototypes in your head.**
+`
+  },
+  {
+    title: "Frequency Reduces Difficulty",
+    url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
+    dateAdded: "2025-11-24",
+    category: "essay",
+    categories: ['advice', 'exposure therapy', 'procrastination'],
+    medium: "digital",
+    tags: ['advice'],
+    thought: "Directly aligned with the principle of exposure therapy, do what you don't like the most (within reason).",
+    notes: `My notes:
+
+<img src="${frequency_reduction}" alt="frequency reduction diagram" style="width:100%; max-width:300px;" />
+
+
+Three main reasons why it is beneficial to do exposure therapy:
+- Tasks, when decomposes, are easier to tackle.
+- Feedback. Like reinforcement learning. Look for every opportunity to add feedback loops.
+- Practice. The more often you do it, the better you get at it. Makes you familiar with the patterns.
+
+    `
+
   }
+  
 ];
 
 export default bookshelfData;

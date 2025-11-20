@@ -1,5 +1,5 @@
 import React, { useState, useEffect, use } from 'react';
-import { StatusWidget, ProfilePhoto, ThemeToggle } from '../../components';
+import { StatusWidget, ProfilePhoto, ThemeToggle, ReadingWidget } from '../../components';
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
 import { useTheme } from '../../context/ThemeContext';
@@ -141,6 +141,7 @@ const MainContent = () => {
                         Welcome to my mind!
                     </h2>
                     <StatusWidget />
+                    {/*<ReadingWidget />*/}
                 </div>
 
                 {/* Bookshelf Section */}

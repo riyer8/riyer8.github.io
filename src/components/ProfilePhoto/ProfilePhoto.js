@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
+import photo1 from '../../assets/photo1.png'
+import photo2 from '../../assets/photo2.png'
 import photo3 from '../../assets/photo3.JPG';
 
 const ProfilePhoto = () => {
-    const photos = [photo3];
+    const photos = [photo3, photo1, photo2];
 
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -98,7 +100,7 @@ const ProfilePhoto = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={handlePhotoClick}
-                title="Click to cycle photos"
+                title="click to cycle!"
             >
                 <div style={photoStyle} />
                 
