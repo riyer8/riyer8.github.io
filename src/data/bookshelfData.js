@@ -3,7 +3,7 @@
 //   title, url, dateAdded, category, categories, medium, tldr, thoughts, tags, notes
 // }
 
-import photo3 from '../assets/photo3.JPG';
+import frequency_reduction from './bookshelfData/frequency_reduction.png'
 
 const bookshelfData = [
   /*
@@ -288,6 +288,28 @@ Quote from another source:
 
 > **The goal of reading from history, then, is to expand the set of prototypes in your head.**
 `
+  },
+  {
+    title: "Frequency Reduces Difficulty",
+    url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
+    dateAdded: "2025-11-24",
+    category: "essay",
+    categories: ['advice', 'exposure therapy', 'procrastination'],
+    medium: "digital",
+    tags: ['advice'],
+    thought: "Directly aligned with the principle of exposure therapy, do what you don't like the most (within reason).",
+    notes: `My notes:
+
+<img src="${frequency_reduction}" alt="frequency reduction diagram" style="width:100%; max-width:300px;" />
+
+
+Three main reasons why it is beneficial to do exposure therapy:
+- Tasks, when decomposes, are easier to tackle.
+- Feedback. Like reinforcement learning. Look for every opportunity to add feedback loops.
+- Practice. The more often you do it, the better you get at it. Makes you familiar with the patterns.
+
+    `
+
   }
   
 ];
