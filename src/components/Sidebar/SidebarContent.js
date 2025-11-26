@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
@@ -15,14 +15,26 @@ const currentActivities = [
 const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
     const [currentActivityIndex, setCurrentActivityIndex] = useState(0);
-    const [isTransitioning, setIsTransitioning] = useState(false);
+    const [displayText, setDisplayText] = useState("");
+    const [typingIndex, setTypingIndex] = useState(0);
+    const fullText = currentActivities[currentActivityIndex];
+
+    useEffect(() => {
+        if (typingIndex < fullText.length) {
+            const timeout = setTimeout(() => {
+                setDisplayText(fullText.slice(0, typingIndex + 1));
+                setTypingIndex(typingIndex + 1);
+            }, 40);
+
+            return () => clearTimeout(timeout);
+        }
+    }, [typingIndex, fullText]);
 
     const handleActivityClick = () => {
-        setIsTransitioning(true);
-        setTimeout(() => {
-            setCurrentActivityIndex((prevIndex) => (prevIndex + 1) % currentActivities.length);
-            setIsTransitioning(false);
-        }, 200);
+        const nextIndex = (currentActivityIndex + 1) % currentActivities.length;
+        setCurrentActivityIndex(nextIndex);
+        setDisplayText("");
+        setTypingIndex(0);
     };
 
     const nameStyle = {
@@ -62,10 +74,9 @@ const SidebarContent = ({ compact = false }) => {
         color: theme.colors.accent,
         fontSize: '0.95rem',
         cursor: 'pointer',
-        transition: 'opacity 0.4s ease',
-        opacity: isTransitioning ? 0 : 1,
         userSelect: 'none',
         textAlign: 'center',
+        whiteSpace: 'pre',
     };
 
     const socialLinksStyle = {
@@ -100,17 +111,16 @@ const SidebarContent = ({ compact = false }) => {
                 <div
                     style={activityTextStyle}
                     onClick={handleActivityClick}
-                    onMouseEnter={e => e.target.style.opacity = '0.8'}
-                    onMouseLeave={e => e.target.style.opacity = isTransitioning ? '0' : '1'}
-                    title="click around!"
+                    title="click to cycle!"
                 >
-                    {currentActivities[currentActivityIndex]}
+                    {displayText}
+                    <span style={{ opacity: 0.6 }}>|</span> {/* blinking cursor */}
                 </div>
             </div>
             <div style={socialLinksStyle}>
-                <a href="https://github.com/riyer8" style={socialLinkStyle} title="GitHub"><FaGithub /></a>
-                <a href="https://www.linkedin.com/in/ramya-i/" style={socialLinkStyle} title="LinkedIn"><FaLinkedinIn /></a>
-                <a href="mailto:ramya1@stanford.edu" style={socialLinkStyle} title="Email"><FaEnvelope/></a>
+                <a href="https://github.com/riyer8" style={socialLinkStyle}><FaGithub /></a>
+                <a href="https://www.linkedin.com/in/ramya-i/" style={socialLinkStyle}><FaLinkedinIn /></a>
+                <a href="mailto:ramya1@stanford.edu" style={socialLinkStyle}><FaEnvelope /></a>
             </div>
         </div>
     );
