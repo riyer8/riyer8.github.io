@@ -100,7 +100,7 @@ const ProfilePhoto = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={handlePhotoClick}
-                title="Click to cycle photos"
+                title="click to cycle!"
             >
                 <div style={photoStyle} />
                 

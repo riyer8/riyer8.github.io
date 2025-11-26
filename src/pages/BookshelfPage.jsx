@@ -344,7 +344,6 @@ const BookshelfPage = () => {
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                   <div style={{ color: theme.colors.textSecondary, fontSize: '0.9rem', fontWeight: 600 }}>Notes</div>
                   <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    <button onClick={() => setNotesOpen(o => !o)} style={{ padding: '0.2rem 0.5rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: 'transparent', cursor: 'pointer' }}>{notesOpen ? 'Collapse' : 'Open'}</button>
                   </div>
                 </div>
 
