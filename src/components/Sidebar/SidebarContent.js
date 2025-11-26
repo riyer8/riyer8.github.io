@@ -1,40 +1,83 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
 
 const currentActivities = [
-    "building AI applications 🤖",
+    "building AI agents 🤖",
     "researching about PCOS 🧬",
     "planning my senior courses 🎓",
     "creating this website 💻",
-    "reading a book at a NY cafe ☕️",
-    "thinking about consumer products 🛍️"
+    "reading a book at a SF cafe ☕️",
+    "thinking about consumer products 🛍️",
+    "hiking at the Stanford Dish 🌳"
 ];
 
 const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
-    const [currentActivityIndex, setCurrentActivityIndex] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
     const [displayText, setDisplayText] = useState("");
-    const [typingIndex, setTypingIndex] = useState(0);
-    const fullText = currentActivities[currentActivityIndex];
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [isPaused, setIsPaused] = useState(false);
+    const [cursorVisible, setCursorVisible] = useState(true);
+
+    const fullText = currentActivities[currentIndex];
 
     useEffect(() => {
-        if (typingIndex < fullText.length) {
-            const timeout = setTimeout(() => {
-                setDisplayText(fullText.slice(0, typingIndex + 1));
-                setTypingIndex(typingIndex + 1);
-            }, 40);
+        const blink = setInterval(() => {
+            setCursorVisible(v => !v);
+        }, 500);
+        return () => clearInterval(blink);
+    }, []);
 
-            return () => clearTimeout(timeout);
-        }
-    }, [typingIndex, fullText]);
+    useEffect(() => {
+        if (isPaused) return;
+
+        const typingSpeed = isDeleting
+            ? 50 + Math.random() * 20
+            : 35 + Math.random() * 25;
+
+        const timeout = setTimeout(() => {
+            if (!isDeleting) {
+                if (displayText.length < fullText.length) {
+                    setDisplayText(fullText.slice(0, displayText.length + 1));
+                } else {
+                    setIsPaused(true);
+                    setTimeout(() => {
+                        setIsPaused(false);
+                        setIsDeleting(true);
+                    }, 1000);
+                }
+            } else {
+                if (displayText.length > 0) {
+                    setDisplayText(displayText.slice(0, -1));
+                } else {
+                    setIsDeleting(false);
+                    setCurrentIndex((currentIndex + 1) % currentActivities.length);
+                }
+            }
+        }, typingSpeed);
+
+        return () => clearTimeout(timeout);
+    }, [displayText, isDeleting, isPaused, fullText, currentIndex]);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            instantAdvance();
+        }, 15000);
+
+        return () => clearInterval(interval);
+    });
+
+    const instantAdvance = () => {
+        setIsPaused(false);
+        setIsDeleting(false);
+        setDisplayText("");
+        setCurrentIndex((i) => (i + 1) % currentActivities.length);
+    };
 
     const handleActivityClick = () => {
-        const nextIndex = (currentActivityIndex + 1) % currentActivities.length;
-        setCurrentActivityIndex(nextIndex);
-        setDisplayText("");
-        setTypingIndex(0);
+        instantAdvance();
     };
 
     const nameStyle = {
@@ -73,10 +116,15 @@ const SidebarContent = ({ compact = false }) => {
     const activityTextStyle = {
         color: theme.colors.accent,
         fontSize: '0.95rem',
-        cursor: 'pointer',
-        userSelect: 'none',
-        textAlign: 'center',
-        whiteSpace: 'pre',
+        cursor: "pointer",
+        userSelect: "none",
+        textAlign: "center",
+        whiteSpace: "normal",
+        wordWrap: "break-word",
+        maxWidth: "90%",
+        margin: "0 auto",
+        lineHeight: 1.4,
+        transition: "opacity 0.3s ease",
     };
 
     const socialLinksStyle = {
@@ -114,7 +162,12 @@ const SidebarContent = ({ compact = false }) => {
                     title="click to cycle!"
                 >
                     {displayText}
-                    <span style={{ opacity: 0.6 }}>|</span> {/* blinking cursor */}
+                    <span style={{
+                        opacity: cursorVisible ? 1 : 0.2,
+                        transition: "opacity 0.2s ease"
+                    }}>
+                        |
+                    </span>
                 </div>
             </div>
             <div style={socialLinksStyle}>
