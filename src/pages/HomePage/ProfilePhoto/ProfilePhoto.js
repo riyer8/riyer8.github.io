@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-import photo1 from '../../assets/photo1.png'
-import photo2 from '../../assets/photo2.png'
-import photo3 from '../../assets/photo3.JPG';
+import photo1 from '../../../assets/photo1.png'
+import photo2 from '../../../assets/photo2.png'
+import photo3 from '../../../assets/photo3.JPG';
 
 const ProfilePhoto = () => {
     const photos = [photo3, photo1, photo2];

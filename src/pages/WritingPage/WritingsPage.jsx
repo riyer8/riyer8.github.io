@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import writings from '../data/writingsData';
-import profilePhoto from '../assets/photo3.JPG';
+import { useTheme } from '../../components/ThemeContext/ThemeContext';
+import writings from './data/writingsData';
+import profilePhoto from '../../assets/photo3.JPG';
 
 const WritingTile = ({ item, theme }) => (
   <div style={{ flex: '0 0 20%', padding: '1rem', boxSizing: 'border-box' }}>

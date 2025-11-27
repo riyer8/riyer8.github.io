@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../ThemeContext/ThemeContext';
 
 const PixelatedBackground = ({ theme: themeProp = 'whoami' }) => {
     const { theme } = useTheme();

@@ -1,10 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "./context/ThemeContext";
-import { PixelatedBackground, Sidebar, MainContent, ThemeToggle } from "./components";
-import BookshelfPage from "./pages/BookshelfPage";
-import WritingsPage from "./pages/WritingsPage";
-import Taps103Page from "./pages/Taps103Page";
+import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
+import { PixelatedBackground, ThemeToggle } from "./components";
+import { Sidebar, MainContent } from "./pages/HomePage"
+import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
+import WritingsPage from "./pages/WritingPage/WritingsPage";
+import Taps103Page from "./pages/Taps103Page/Taps103Page";
 
 const App = () => {
   const containerStyle = {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useTheme } from "../context/ThemeContext";
-import profilePhoto from "../assets/photo3.JPG";
-import MarkdownMath from "../components/MarkdownMath/MarkdownMath";
+import { useTheme } from "../../components/ThemeContext/ThemeContext";
+import profilePhoto from "../../assets/photo3.JPG";
+import MarkdownMath from "../../components/MarkdownMath/MarkdownMath";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight, materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "./Taps103.css";
@@ -9,11 +9,11 @@ import "./Taps103.css";
 // Markdown essay imports
 const commandFiles = {
   /*
-  play: () => import("../essays/play.md"),
-  dumbidea: () => import("../essays/dumbidea.md"),
-  boost: () => import("../essays/boost.md"),
-  status: () => import("../essays/status.md"),
-  space: () => import("../essays/space.md"),
+  play: () => import("./essays/play.md"),
+  dumbidea: () => import("./essays/dumbidea.md"),
+  boost: () => import("./essays/boost.md"),
+  status: () => import("./essays/status.md"),
+  space: () => import("./essays/space.md"),
   */
 };
 

@@ -3,8 +3,6 @@
 //   title, url, dateAdded, category, medium, tldr, thoughts, tags, notes
 // }
 
-import frequency_reduction from './bookshelfData/frequency_reduction.png'
-
 const bookshelfData = [
   /*
   {

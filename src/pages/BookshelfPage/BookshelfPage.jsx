@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import bookshelfData from '../data/bookshelfData';
+import { useTheme } from '../../components/ThemeContext/ThemeContext';
+import bookshelfData from './data/bookshelfData';
 import { FaExternalLinkAlt } from 'react-icons/fa';
-import profilePhoto from '../assets/photo3.JPG';
-import MarkdownMath from '../components/MarkdownMath/MarkdownMath';
+import profilePhoto from '../../assets/photo3.JPG';
+import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
 
 const Badge = ({ children, theme }) => (

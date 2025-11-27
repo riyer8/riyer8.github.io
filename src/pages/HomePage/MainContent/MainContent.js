@@ -1,8 +1,9 @@
 import React, { useState, useEffect, use } from 'react';
-import { StatusWidget, ProfilePhoto, ThemeToggle, ReadingWidget } from '../../components';
+import { ThemeToggle } from '../../../components';
+import StatusWidget from '../StatusWidget/StatusWidget'
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaBars } from 'react-icons/fa';
 
 const MainContent = () => {
