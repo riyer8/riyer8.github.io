@@ -1,2 +1,0 @@
-.reading-widget{animation:readingBg 10s ease-in-out infinite alternate;-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);background:linear-gradient(135deg,#fff9,#f5fffa99);overflow:hidden;position:relative}@keyframes readingBg{0%{background:linear-gradient(135deg,#ffffffb3,#f5fffab3)}50%{background:linear-gradient(135deg,#fafaffb8,#f5faffb8)}to{background:linear-gradient(135deg,#fffffaad,#fafff5ad)}}.reading-widget ul{list-style:disc}.reading-widget a:hover{text-decoration:underline}
-/*# sourceMappingURL=main.4c4a9cb7.css.map*/
