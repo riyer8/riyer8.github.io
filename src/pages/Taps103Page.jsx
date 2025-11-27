@@ -8,11 +8,13 @@ import "./Taps103.css";
 
 // Markdown essay imports
 const commandFiles = {
+  /*
   play: () => import("../essays/play.md"),
   dumbidea: () => import("../essays/dumbidea.md"),
   boost: () => import("../essays/boost.md"),
   status: () => import("../essays/status.md"),
   space: () => import("../essays/space.md"),
+  */
 };
 
 const initialWelcome = `Welcome to TAPS 103 Reflections!
