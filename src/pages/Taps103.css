@@ -1,0 +1,121 @@
+.taps-page {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.taps-header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.taps-avatar {
+  width: 84px;
+  height: 84px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.taps-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.taps-subtitle {
+  margin: 0.4rem 0 0 0;
+  font-weight: 400;
+  color: #555;
+}
+
+.taps-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  min-height: 70vh;
+}
+
+.terminal {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.terminal.light {
+  border: 1px solid #ccc;
+  background: #f0f0f0;
+  color: #111;
+}
+
+.terminal.dark {
+  border: 1px solid #333;
+  background: #111;
+  color: #0f0;
+}
+
+.terminal-window {
+  padding: 1rem;
+  font-size: 0.9rem;
+  flex: 1;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+.terminal-line {
+  margin-bottom: 0.25rem;
+}
+
+.terminal-input {
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+.reflection {
+  padding: 1rem;
+  line-height: 1.7;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  word-wrap: break-word;
+  transition: opacity 0.5s ease;
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.5s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Markdown-specific styles */
+.markdown-img {
+  max-width: 100%;
+  height: auto;
+  margin: 1rem 0;
+}
+
+.reflection h1, .reflection h2, .reflection h3 {
+  margin-top: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+
+.reflection a {
+  color: #0070f3;
+  text-decoration: underline;
+}

@@ -4,6 +4,7 @@ import { ThemeProvider } from "./context/ThemeContext";
 import { PixelatedBackground, Sidebar, MainContent, ThemeToggle } from "./components";
 import BookshelfPage from "./pages/BookshelfPage";
 import WritingsPage from "./pages/WritingsPage";
+import Taps103Page from "./pages/Taps103Page"; // <-- NEW
 
 const App = () => {
   const containerStyle = {
@@ -38,6 +39,7 @@ const App = () => {
         />
         <Route path="/bookshelf" element={<BookshelfPage />} />
         <Route path="/writings" element={<WritingsPage />} />
+        <Route path="/taps-103" element={<Taps103Page />} />
       </Routes>
     </ThemeProvider>
   );
