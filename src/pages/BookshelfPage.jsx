@@ -141,28 +141,26 @@ const BookshelfPage = () => {
           
           <a href="/" style={{ textDecoration: 'none' }}>
             <button style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.4rem 0.6rem',
-              borderRadius: 8,
-              background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : theme.colors.accent,
-              color: theme.isDarkMode ? theme.colors.text : '#fff',
-              border: `1px solid ${theme.colors.border}`,
-              cursor: 'pointer'
-            }}>
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.4rem 0.6rem',
+                borderRadius: 8,
+                background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : theme.colors.accent,
+                color: theme.isDarkMode ? theme.colors.text : '#fff',
+                border: `1px solid ${theme.colors.border}`,
+                cursor: 'pointer'
+              }}>
               ← Home
             </button>
           </a>
         </div>
 
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          {/* header controls kept intentionally minimal; sorting moved into toolbar */}
         </div>
       </div>
 
-  <div>
-        {/* Top description card */}
+     <div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
           <div style={{ width: 84, height: 84 }}>
             <img src={profilePhoto} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
@@ -172,11 +170,9 @@ const BookshelfPage = () => {
             <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary }}>knowledge i've been consuming.</p>
           </div>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
-           
           </div>
         </div>
 
-        {/* Toolbar: filters + search */}
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
             <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}` }}>All</button>
@@ -197,16 +193,41 @@ const BookshelfPage = () => {
                 cursor: 'pointer'
               }}
             >
-             <FaStar color={showFavorites ? '#fff' : theme.isDarkMode ? '#FFD700' : '#000'} /> Favorites
+             <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> Favorites
             </button>
-
           </div>
 
-          <div style={{ marginLeft: 'auto', minWidth: 260, position: 'relative', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <input id="bookshelf-search" placeholder="Search reading notes..." value={search} onChange={(e) => setSearch(e.target.value)} style={{ width: 340, padding: '0.6rem 0.75rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text }} />
+          <div
+            style={{
+              marginLeft: 'auto',
+              minWidth: 260,
+              position: 'relative',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              flex: 1,
+              maxWidth: '100%'
+            }}
+          >
+          <input
+            id="bookshelf-search"
+            placeholder="Search reading notes..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            style={{
+              flex: 1,
+              minWidth: 120,
+              maxWidth: '100%',
+              padding: '0.6rem 0.75rem',
+              borderRadius: 8,
+              border: `1px solid ${theme.colors.border}`,
+              background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
+              color: theme.colors.text,
+              boxSizing: 'border-box'
+            }}
+          />
 
-            {/* Filter + Sort buttons (single of each) */}
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem' }}>
               <div style={{ position: 'relative' }}>
                 <button onClick={() => { setFilterOpen(o => !o); setSortOpen(false); }} aria-expanded={false} style={{ padding: '0.45rem 0.6rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', cursor: 'pointer' }}>⚲ Filter</button>
                 {typeof filterOpen !== 'undefined' && filterOpen ? (
@@ -249,7 +270,6 @@ const BookshelfPage = () => {
           </div>
         </div>
 
-        {/* Single table */}
         <div style={{ overflowX: 'auto' }}>
           <table style={tableStyle}>
             <thead>
@@ -266,7 +286,7 @@ const BookshelfPage = () => {
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <button onClick={() => setSelectedItem(row)} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600 }}>
-                        {row.favorite ? <FaStar color={showFavorites ? '#fff' : theme.isDarkMode ? '#FFD700' : '#000'} /> : ''} {row.title}
+                        {row.favorite ? <FaStar color={ theme.isDarkMode ? '#FFD700' : '#000'} /> : ''} {row.title}
                       </button>
                       {row.url && (
                         <a href={row.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary }}>
@@ -285,8 +305,6 @@ const BookshelfPage = () => {
         </div>
       </div>
 
-          {/* Detail slide-over panel */}
-      {/* Backdrop overlay for smoother feel */}
       <div style={{
         position: 'fixed',
         inset: 0,
@@ -296,21 +314,60 @@ const BookshelfPage = () => {
         zIndex: 2100
       }} onClick={closeDetail} />
 
-      <div style={{
-        position: 'fixed',
-        top: 0,
-        right: 0,
-        transform: selectedItem ? 'translateX(0%)' : 'translateX(105%)',
-        width: '460px',
-        maxWidth: '96vw',
-        height: '100vh',
-        background: theme.colors.cardBackground,
-        boxShadow: ' -6px 0 30px rgba(0,0,0,0.14)',
-        transition: 'transform 320ms cubic-bezier(.22,.9,.34,1)',
-        zIndex: 2200,
-        overflowY: 'auto',
-        padding: '1.25rem 1.5rem'
-      }} aria-hidden={!selectedItem}>
+      <div
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          height: '100vh',
+          minWidth: '280px',
+          background: theme.colors.cardBackground,
+          boxShadow: '-6px 0 30px rgba(0,0,0,0.14)',
+          transition: 'transform 320ms cubic-bezier(.22,.9,.34,1)',
+          zIndex: 2200,
+          overflowY: 'auto',
+
+          width: 'min(460px, 90vw)',
+          maxWidth: '90vw',
+          padding: '1.25rem 1.5rem',
+
+          ...(window.innerWidth <= 480
+            ? {
+                width: '100vw',
+                maxWidth: '100vw',
+                borderRadius: 0,
+              }
+            : {}),
+
+          transform: selectedItem ? 'translateX(0%)' : 'translateX(105%)'
+        }}
+        aria-hidden={!selectedItem}
+      >
+
+      <style>
+        {`
+          :root {
+            --panel-width: 460px;
+            --panel-padding: 1.25rem 1.5rem;
+          }
+
+          @media (max-width: 900px) {
+            :root {
+              --panel-width: 80vw;
+              --panel-padding: 1rem;
+            }
+          }
+
+          @media (max-width: 600px) {
+            :root {
+              --panel-width: 100vw;
+              --panel-padding: 1rem;
+            }
+          }
+        `}
+      </style>
+
+
         {selectedItem ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
             {/* Header */}
@@ -326,7 +383,6 @@ const BookshelfPage = () => {
               </div>
             </div>
 
-            {/* Meta row */}
             <div style={{ display: 'flex', justifyContent: 'space-between', color: theme.colors.textSecondary, alignItems: 'center' }}>
               <div style={{ display: 'flex', gap: '1.25rem' }}>
                 <div style={{ fontSize: '0.85rem' }}>{/* placeholder left */}</div>
@@ -334,7 +390,6 @@ const BookshelfPage = () => {
               <div style={{ fontSize: '0.9rem' }}>{selectedItem.dateAdded}</div>
             </div>
 
-            {/* TLDR */}
             {selectedItem.tldr && (
               <div>
                 <div style={{ color: theme.colors.textSecondary, fontWeight: 600, marginBottom: '0.4rem' }}>TL;DR</div>
@@ -342,7 +397,6 @@ const BookshelfPage = () => {
               </div>
             )}
 
-            {/* 2 Cents / Personal */}
             {selectedItem.thoughts && (
               <div>
                 <div style={{ color: theme.colors.textSecondary, fontWeight: 600, marginBottom: '0.4rem' }}>Thoughts</div>
@@ -350,17 +404,28 @@ const BookshelfPage = () => {
               </div>
             )}
 
-            {/* Notes block */}
             {selectedItem.notes && (
-              <div style={{ marginTop: '0.75rem', padding: 16, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)', borderLeft: `4px solid ${theme.colors.border}`, color: theme.colors.text, fontSize: '15px', lineHeight: 1.6, fontFamily: 'Inter, -apple-system, system-ui, sans-serif' }}>
-                {/* notes controls row */}
+              <div
+                style={{
+                  marginTop: '0.75rem',
+                  marginBottom: '2rem',
+                  padding: 16,
+                  background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+                  borderLeft: `4px solid ${theme.colors.border}`,
+                  borderBottom: `4px solid ${theme.colors.border}`,
+                  borderTop: `4px solid ${theme.colors.border}`,
+                  borderRight: `4px solid ${theme.colors.border}`,
+                  color: theme.colors.text,
+                  fontSize: '15px',
+                  lineHeight: 1.6,
+                  fontFamily: 'Inter, -apple-system, system-ui, sans-serif',
+                  borderRadius: 6,
+                }}
+              >
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                   <div style={{ color: theme.colors.textSecondary, fontSize: '0.9rem', fontWeight: 600 }}>Notes</div>
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                  </div>
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}></div>
                 </div>
-
-                {/* images allowed by default; Markdown renders images via marked */}
 
                 <div style={{ marginTop: 0 }}>
                   <MarkdownMath text={selectedItem.notes} />
@@ -370,7 +435,6 @@ const BookshelfPage = () => {
           </div>
         ) : null}
       </div>
-
     </div>
   );
 };
