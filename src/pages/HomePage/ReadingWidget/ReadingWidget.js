@@ -1,6 +1,6 @@
 import React from 'react';
 import './ReadingWidget.css';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 
 // Simple, editable list of items to display. Edit this array to add/remove items.
 const readingList = [

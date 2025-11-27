@@ -98,7 +98,7 @@ const StatusWidget = () => {
 
     return (
         <div style={widgetStyle}>
-            <div style={statusItemStyle}>
+            <div style={{statusItemStyle, marginBottom: 0}}>
                 <span style={statusLabelStyle}>I'm currently...</span>
                 <span style={statusValueStyle}>
                     {displayText}
@@ -109,11 +109,6 @@ const StatusWidget = () => {
                         |
                     </span>
                 </span>
-            </div>
-
-            <div style={{ ...statusItemStyle, marginBottom: 0 }}>
-                <span style={statusLabelStyle}>Location:</span>
-                <span style={statusValueStyle}>Stanford, CA 🌲</span>
             </div>
         </div>
     );

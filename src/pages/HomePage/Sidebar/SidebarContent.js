@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
-import { useTheme } from '../../context/ThemeContext';
+import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 
 const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
