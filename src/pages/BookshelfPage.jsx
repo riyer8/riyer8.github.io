@@ -4,6 +4,7 @@ import bookshelfData from '../data/bookshelfData';
 import { FaExternalLinkAlt } from 'react-icons/fa';
 import profilePhoto from '../assets/photo3.JPG';
 import MarkdownMath from '../components/MarkdownMath/MarkdownMath';
+import { FaStar } from 'react-icons/fa'; 
 
 const Badge = ({ children, theme }) => (
   <span style={{
@@ -23,8 +24,10 @@ const BookshelfPage = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeMedium, setActiveMedium] = useState(null);
   const [sortKey, setSortKey] = useState('title'); // title | category | medium
+  const [showFavorites, setShowFavorites] = useState(false);
   
   // No per-user view customization: keep rendering simple and deterministic
+  
 
   // derive categories/mediums
   const categories = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.category).filter(Boolean))), []);
@@ -35,6 +38,7 @@ const BookshelfPage = () => {
     return bookshelfData.filter(r => {
       if (activeCategory && r.category !== activeCategory) return false;
       if (activeMedium && r.medium !== activeMedium) return false;
+      if (showFavorites && !r.favorite) return false;  // ← favorite filter
       if (!q) return true;
       return (
         (r.title || '').toLowerCase().includes(q) ||
@@ -45,11 +49,10 @@ const BookshelfPage = () => {
     }).sort((a,b) => {
       const A = (a[sortKey] || '').toString().toLowerCase();
       const B = (b[sortKey] || '').toString().toLowerCase();
-      if (A < B) return -1;
-      if (A > B) return 1;
-      return 0;
+      return A.localeCompare(B);
     });
-  }, [search, activeCategory, activeMedium, sortKey]);
+  }, [search, activeCategory, activeMedium, sortKey, showFavorites]);
+
 
   const [selectedItem, setSelectedItem] = useState(null);
   const [notesOpen, setNotesOpen] = useState(true);
@@ -183,6 +186,20 @@ const BookshelfPage = () => {
             {mediums.map(m => (
               <button key={m} onClick={() => { setActiveMedium(m); setActiveCategory(null); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}` }}>{m}</button>
             ))}
+            <button
+              onClick={() => setShowFavorites(f => !f)}
+              style={{
+                padding: '0.45rem 0.75rem',
+                borderRadius: 8,
+                background: showFavorites ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
+                color: showFavorites ? '#fff' : theme.colors.text,
+                border: `1px solid ${theme.colors.border}`,
+                cursor: 'pointer'
+              }}
+            >
+             <FaStar color={showFavorites ? '#fff' : theme.isDarkMode ? '#FFD700' : '#000'} /> Favorites
+            </button>
+
           </div>
 
           <div style={{ marginLeft: 'auto', minWidth: 260, position: 'relative', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
@@ -248,12 +265,14 @@ const BookshelfPage = () => {
                 <tr key={i} style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <button onClick={() => { setSelectedItem(row); }} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, transition: 'color 160ms ease' }} onMouseEnter={e => e.currentTarget.style.color = theme.colors.accent} onMouseLeave={e => e.currentTarget.style.color = theme.colors.accent}>{row.title}</button>
-                      {row.url ? (
-                        <a href={row.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'none', transition: 'color 160ms ease' }} title="Open main page">
+                      <button onClick={() => setSelectedItem(row)} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600 }}>
+                        {row.favorite ? <FaStar color={showFavorites ? '#fff' : theme.isDarkMode ? '#FFD700' : '#000'} /> : ''} {row.title}
+                      </button>
+                      {row.url && (
+                        <a href={row.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary }}>
                           <FaExternalLinkAlt />
                         </a>
-                      ) : null}
+                      )}
                     </div>
                   </td>
                   <td style={tdStyle}><button onClick={() => setActiveCategory(row.category)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.category}</button></td>
@@ -298,7 +317,7 @@ const BookshelfPage = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
               <div style={{ flex: 1 }}>
                 <h2 style={{ margin: 0, color: theme.colors.text, fontSize: '1.2rem', letterSpacing: '0.2px' }}>{selectedItem.title}</h2>
-                <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>{(selectedItem.categories || []).map((t, i) => <Badge key={i} theme={theme}>{t}</Badge>)}</div>
+                <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>{(selectedItem.tags || []).map((t, i) => <Badge key={i} theme={theme}>{t}</Badge>)}</div>
               </div>
 
               <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
@@ -330,12 +349,6 @@ const BookshelfPage = () => {
                 <div style={{ color: theme.colors.text }}>{selectedItem.thoughts}</div>
               </div>
             )}
-
-            {/* Tags */}
-            <div>
-              <div style={{ color: theme.colors.textSecondary, fontWeight: 600, marginBottom: '0.4rem' }}>Tags</div>
-              <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>{(selectedItem.tags || []).map((t, i) => <Badge key={i} theme={theme}>{t}</Badge>)}</div>
-            </div>
 
             {/* Notes block */}
             {selectedItem.notes && (
