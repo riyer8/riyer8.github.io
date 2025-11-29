@@ -107,25 +107,150 @@ End of demo.
   },  */
   {
     title: "Keep Going",
-    url: 'https://austinkleon.com/keepgoing/',
+    url: 'https://www.goodreads.com/book/show/40591677-keep-going',
     dateAdded: '2023-08-25',
     category: 'book',
-    medium: 'paperback',
+    medium: 'digital',
     tldr: '🌻 Build routines, protect your solitude, focus on the work (not the identity). Keep some things just for joy.',
     thoughts: "I honestly still think about this book often and specifically that not everything you love has to be monetized or turned into a side hustle.",
     tags: ['growth', 'life-advice', 'advice'],
-    notes: ``
+    notes: `Below are some quotes that I really liked from the book.
+### I Wrote This Book Because I Needed To Read It
+> The principles apply to anyone trying to sustain a meaningful and productive creative life.
+
+## Chapters
+
+### 1. Every Day is Ground Hog Day
+> The creative life is not linear.
+
+> Rather than restricting your freedom, a routine gives you freedom by protecting you from the ups and downs of life and helping you take advantage of your limited time, energy, and talent.
+
+> When stuck in the mornings, I draw a line down the middle of the page. In one column, I list what I’m thankful for, and in the other, what I need help with.
+
+### 2. Build a Bliss Station
+> Silence and solitude are crucial.
+
+> This is a place where you can simply experience and bring forth what you are and what you might be. This is the place of creative incubation.
+
+> You must learn how to say “no.”
+
+> The only antidote is JOMO: The Joy of Missing Out.
+
+### 3. Forget the Noun, Do the Verb
+> Let go of the thing you’re trying to be (the noun) and focus on the actual work you need to be doing (the verb).
+
+> I am not a thing — a noun. I seem to be a verb, an evolutionary process.
+
+> Don’t get bogged down. Stay light. Play.
+
+### 4. Make Gifts
+> Resist the urge to monetize every bit of your creative practice. Be sure there's at least a tiny part of you that’s off-limits to the marketplace.
+
+> One of the easiest ways to hate something you love is to turn it into a job.
+
+### 5. The Ordinary + Extra Attention = The Extraordinary
+> Pay attention to what you pay attention to.
+
+> Your attention is one of the most valuable things you possess… First, you must protect it, and then you must point it in the right direction.
+
+> Attention is the most basic form of love. It provides material for your art and helps you fall in love with your life.
+
+### 7. You Are Allowed to Change Your Mind
+> To have hope, you must acknowledge that you don’t know everything and don’t know what’s going to happen.
+
+> Interacting with people who don’t share our perspective forces us to rethink, strengthen, or trade our ideas for better ones.
+
+> If you want to escape the noise of contemporary life, visit the past for a bit.
+
+### 8. When In Doubt, Tidy Up
+> There’s a balance in a workspace between chaos and order.
+
+> Keep your tools organized and your materials messy.
+
+### 9. Demons Hate Fresh Air
+> If we do not get outside, if we do not take a walk in the fresh air, we do not see our everyday world for what it really is.
+
+### 10. Plant Your Garden
+> Being an artist means: not numbering and counting, but ripening like a tree, which doesn’t force its sap, and stands confidently in the storms of spring… patience is everything!
+
+> The outer demons… they might take us with them, but this, too, shall pass.
+`
   },
   {
     title: "Limitless",
-    url: 'https://www.jimkwik.com/',
+    url: 'https://www.goodreads.com/book/show/49994260-limitless',
     dateAdded: '2023-11-25',
     category: 'book',
-    medium: 'paperback',
+    medium: 'digital',
     tldr: '🧠 Upgrade your mindset (what you believe), motivation (why you act), and methods (how you learn).',
     thoughts: "Lots of mental models about learning faster. Jim Kwik has such a rich background and story that makes his advice so deep.",
     tags: ['growth', 'life-advice'],
-    notes: ``
+    notes: ` This one is a long one, but here are some selected quotes I liked.
+    
+## Foreword
+- Technological advances can help or harm us; misuse leads to overload, memory loss, distraction, and dependency.
+- Living an exceptional life requires "unlimiting" yourself.
+> To reach any goal, first ask: Where is the limit?
+- Mindset must align with desires; identify and expunge limiting beliefs to achieve a limitless mindset.
+- Motivation is the second key to a limitless life:
+  - Purpose matters.
+  - Energy management enables action.
+  - Bite-size steps lead to success.
+- The right method completes the triad: Focus, Study, Memory Enhancement, Speed Reading, and Critical Thinking.
+> Learning how to learn is the ultimate superpower.
+- Limitless is a blueprint for upgrading your brain and life through mindset, motivation, methods, and brain health.
+
+## Introduction
+> We all have vast, untapped potential; unlimiting ourselves activates it.
+
+> If an egg is broken by an outside force, life ends. If broken by an inside force, life begins.
+
+## Becoming Limitless
+> Labels create limits; knowledge alone is not power — learning is our superpower.
+- Unlimiting is casting aside restrictive perceptions and embracing limitless potential.
+- Limits exist in three areas: Mindset, Motivation, Method.
+- Where all three intersect, you achieve a limitless state.
+
+## Why This Matters Now
+> Digital overload, distraction, and dementia threaten focus, memory, and reasoning.
+- Critical thinking and creativity are being automated; engagement and independent reasoning are vital.
+
+## Your Limitless Brain
+> The brain constantly changes in response to learning and environment.
+
+## FASTER Method
+- Forget distractions, old knowledge, and self-limiting beliefs.
+- Actively engage in learning; take notes and highlight key ideas.
+- Manage your state — thoughts and physiology affect learning.
+- Teach what you learn to solidify memory.
+- Enter and schedule personal growth.
+- Review using spaced repetition to retain knowledge.
+
+## Limitless Mindset
+> Helplessness is learned; so is being limitless.
+- LIE = Limited Idea Entertained.
+
+> Responsibility over assumptions and attitudes unlocks potential.
+- Positive emotions broaden possibilities; negative emotions narrow them.
+
+## 7 Lies of Learning
+> Intelligence is not fixed; it is fluid.
+
+> We use our whole brain; every region is active.
+
+> Mistakes are stepping stones, not failures.
+
+> Knowledge alone is not power; action turns it into power.
+
+> Learning is a process that can be easier with the right methods.
+
+> Don’t fear criticism; the effect you have on others is your true currency.
+
+> Genius is made through deep practice, not born.
+
+## Limitless Motivation
+> Motivation = purpose + energy + small, consistent actions.
+    `
   },
   {
     title: "Principles",
@@ -320,6 +445,82 @@ Three main reasons why it is beneficial to essentially do exposure therapy:
 This essay allows us to increase frequency with more painful work, expanding beyond just engineering.
     `
 
+  },
+
+  {
+    title: "Improv Wisdom",
+    url: "https://www.goodreads.com/book/show/182052.Improv_Wisdom",
+    dateAdded: "2025-11-28",
+    category: "book",
+    medium: "paperback",
+    tags: ["improv", "growth"],
+    tldr: "🎭 The art of improv is already within you; you just have to show up!",
+    thoughts: "A true insightful look at improv from someone highly respected in the field (and from Stanford Improv!).",
+    notes: `Below is a laundry list of self-selected quotes from the book that I really liked.
+## Prologue
+> A good improviser is someone who is awake, not entirely self-focused, and moved by a desire to do something useful and give something back. – pg. 15
+
+> Understanding the power of yes is easy; practicing that acceptance and affirmation in daily life becomes our challenge. – pg. 15
+
+> The world of improv is a portal into mindfulness and magic. – pg. 18
+
+> A successful life involves both planning and improvising. – pg. 24
+
+## Key Maxims
+
+### 1. Say Yes
+> Saying yes is an act of courage and optimism: it allows you to share control. Yes expands your world. – pg. 27
+
+> Players learn that sharing the control of the story is the only way to really have a good time. – pg. 30
+
+### 2. Don’t Prepare
+> Substitute attention for preparation. Then you will be working in real time… You discover that you already have the answers. – pg. 36
+
+> There is always something in the box. – pg. 43
+
+### 3. Just Show Up
+> Players step onto the stage because that is where things are happening. They just show up. Then the magic begins. – pg. 45
+
+### 4. Start Anywhere
+> There’s no need to find the right starting place… begin with the most obvious thing, whatever is in front of you. – pg. 53
+
+> To improvise is to create order out of chaos. – pg. 56
+
+### 5. Be Average
+> Giving up on perfection is the first step… Striving for an original idea can block access to the creative process. – pg. 62
+
+> Close enough is perfect. Dare to be dull. – pg. 66
+
+### 6. Attention / Mindfulness
+> Life *is* attention… This moment happens only once. Treasure it. – pg. 76
+
+### 7. Work With What You Have
+> Wishing things were different simply wastes time. – pg. 78
+
+> Embrace the wobble. Insecurity is normal. Count on it. – pg. 83
+
+### 9. Wake Up to the Gifts
+> I walked into a brand-new movie of my life, one in which I wasn’t the star, but one of many players… To see my story from the perspective of the others gave it new meaning. – pg. 92
+
+> Never let an hour go by without giving credit to someone. – pg. 95
+
+### 10. Make Mistakes, Please
+> If you are not making mistakes, you are not improvising. Mistakes may actually be blessings. – pg. 102
+
+### 11. Act Now
+> The essence of improvising is action. Act in order to discover what comes next. – pg. 122
+
+### 12. Take Care of Each Other
+> Be someone’s guardian angel. Share control; don’t hog it. Kindness is essential during chaos or a crisis. – pg. 136
+
+### 13. Enjoy the Ride
+> Find joy in whatever you are doing, including ordinary tasks. Play is essential to human growth. – pg. 143
+
+## Epilogue
+> Improv points to ways of being more and better alive… It is up to each of us, however, to make the move. – pg. 147
+
+> No dream or goal is too large or too small. A life of meaning and value is achieved through purposeful action. – pg. 147
+`
   }
   
 ];
