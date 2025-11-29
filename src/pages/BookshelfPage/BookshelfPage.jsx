@@ -303,6 +303,15 @@ const BookshelfPage = () => {
             </tbody>
           </table>
         </div>
+        <div style={{
+          paddingTop: '1rem',
+          borderTop: `1px solid ${theme.colors.border}`,
+          textAlign: 'center',
+          fontSize: '0.8rem',
+          color: theme.colors.textSecondary
+        }}>
+          Credits to <a href="https://masonjwang.com/bookshelf" target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'underline' }}>Mason Wang</a> for heavily inspiring this idea
+        </div>
       </div>
 
       <div style={{

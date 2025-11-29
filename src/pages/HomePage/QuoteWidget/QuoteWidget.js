@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './QuoteWidget.css';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import bookshelfData from '../../BookshelfPage/data/bookshelfData';
@@ -32,7 +32,8 @@ const HISTORY_LIMIT = 3;
 
 const QuoteWidget = () => {
     const { theme } = useTheme();
-    const quotes = extractQuotesWithMetadata();
+    const quotes = useMemo(() => extractQuotesWithMetadata(), []);
+
     const [quoteOfTheDay, setQuoteOfTheDay] = useState(null);
     const [historyVisible, setHistoryVisible] = useState(false);
     const [quoteHistory, setQuoteHistory] = useState([]);
@@ -48,13 +49,21 @@ const QuoteWidget = () => {
             todayQuote = stored.quote;
         } else {
             todayQuote = quotes[Math.floor(Math.random() * quotes.length)];
+
             localStorage.setItem(
                 LOCAL_STORAGE_KEY,
-                JSON.stringify({ date: todayStr, quote: todayQuote })
+                JSON.stringify({
+                    date: todayStr,
+                    quote: {
+                        quote: todayQuote.quote,
+                        title: todayQuote.title,
+                        url: todayQuote.url
+                    }
+                })
             );
 
             const prevHistory = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
-            const newHistory = [...prevHistory, { date: todayStr, quote: todayQuote }];
+            const newHistory = [...prevHistory, { date: todayStr, quote: todayQuote.quote }];
             if (newHistory.length > HISTORY_LIMIT) newHistory.shift();
             localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
         }
@@ -104,7 +113,7 @@ const QuoteWidget = () => {
                         )}
                     </div>
 
-                    {quoteHistory.length > 1 && (
+                    {quoteHistory.length > 0 && (
                         <div className="quote-history-section">
                             <button
                                 className="quote-history-toggle"
@@ -124,10 +133,15 @@ const QuoteWidget = () => {
                             {historyVisible && (
                                 <ul className="quote-history-list" style={{ marginTop: '0.5rem' }}>
                                     {quoteHistory
-                                        .slice(0, -1)
                                         .reverse()
                                         .map((entry, idx) => (
-                                            <li key={idx} style={{ color: theme.colors.textSecondary, marginBottom: '0.25rem' }}>
+                                            <li
+                                                key={idx}
+                                                style={{
+                                                    color: theme.colors.textSecondary,
+                                                    marginBottom: '0.25rem'
+                                                }}
+                                            >
                                                 “{cleanQuote(entry.quote)}” — <strong>{entry.date}</strong>
                                             </li>
                                         ))}

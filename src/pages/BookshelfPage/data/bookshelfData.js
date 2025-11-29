@@ -521,6 +521,76 @@ This essay allows us to increase frequency with more painful work, expanding bey
 
 > No dream or goal is too large or too small. A life of meaning and value is achieved through purposeful action. – pg. 147
 `
+  },
+  {
+    title: "How To Get Real Buy-In For Your Idea",
+    url: "https://www.forbes.com/sites/work-in-progress/2015/03/16/how-to-get-real-buy-in-for-your-idea/",
+    dateAdded: "2025-11-28",
+    category: "essay",
+    medium: "digital",
+    tags: ["career", "growth"],
+    tldr: "🤝 Getting real buy-in for an idea requires influence and co-creation.",
+    thoughts: "Such an interesting take on actually getting people to believe in your idea - career or even earlier stages.",
+    notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article is written in 2015, almost a decade old (is it still relevant? I'd personally assume so).
+
+At a high level, here are some of the introductory quotes that provide insight into how to get buy-in:
+
+> Most of the work in companies is done through influence rather than hierarchy due to corporate team-based structures, requiring professioanls to have considerable skill at getting support for their ideas.
+
+> Buy-in is critical to making any large organizational change happen. Unless you win support from your ideas, from people at all levels of your organization, big never seem to take hold or have the impact you want. - John Kotter, _Buy-In_
+
+> Real buy-in involves at least some element of co-creation. It invites discussion, debate, and allows everyone to feel even more vested in the outcome.
+
+Hedges provides the a model to get true buy:
+
+### Formula a coherent idea or vision - but keep it in draft form.
+- Lay out the idea clearly, but don't make it seem finalized (otherwise others won't feel a part of the solution). 
+- Convey the current concerns that you have (aka why haven't you solved it yourself? why are you seeking buy-in?).
+
+### Expose the idea to outside criticism - and acknowledge it.
+- Hedges quotes Kotter noting that "if people have no opinions, no objections, and no emotions, it usually means they don't care."
+- This involves **productive advocacy**. Here, you share what you've thought about but acknowledge that it's from a limited perspective and take genuine interest in others' opinions.
+- We should also practice **productive inquiry**. This is how we engage and present ourselves with others via attentiveness and curiosity.
+- Acknowledge others' criticism to gain a mutual understanding.
+
+### Leverage others' feedback for improvement to achieve your end goal.
+- Honestly, rather than this being _your_ end goal, it should now be _our_ end goal
+
+### Communicate your progress.
+> Research shows that people who ask for advice are seen as more credible, not less
+- "Most people tend to reject ideas out of fear, and particularly fear of the unknown"
+    `
+  },
+  {
+    title: "What Goes Wrong by Jessica Livingston",
+    url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
+    dateAdded: "2025-11-28",
+    category: "essay",
+    medium: "digital",
+    tags: ["career", "growth", "startups"],
+    tldr: "",
+    thoughts: "",
+    notes: `
+> Determination is really two seperate things: resilience and drive. Resilience keeps you from being pushed backwards. Drive moves you forwards.
+
+> What you don't realize until you start a startup is how much external validation you've gotten for the conservative choices you've made in the past.
+
+Livingston describes the various ways that people will quit on their ideas after seven years of YC:
+
+1. **Sheer variety of problems that will happen _technically_ with a startup**.
+2. **Cofounder disputes**. 
+   - It's a red flag when you find yourself worrying whether your cofounder is trustworthy or whether he/she works hard enough or is competent.
+3. **Investors**. 
+   - Investors tend to have a herd mentality. They like you if other investors like you.
+   - Investors will also drag their feet. There's no downside for them to delay whereas delay will kill you.
+4. **Distractions**.
+   > There are really only three things you should focus on: building things, talking to users, and exercising
+5. **HR Acquistions**.
+6. **Making Something People Don't Want**.
+   - Talk to users and adjust your idea accordingly
+
+> Just remember that no extreme ever lasts (good or bad). Don't let yourself get immobilized by sadness when things go wrong. Just keep putting one foot in front of the other and know it will get better.
+`
   }
   
 ];

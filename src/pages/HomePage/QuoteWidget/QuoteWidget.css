@@ -101,6 +101,8 @@
   margin-top: 0.25rem;
   max-height: 6rem; /* compact list */
   overflow-y: auto;
+  list-style: none !important;
+  padding-left: 0 !important;
   padding-left: 1rem;
   border-left: 2px solid rgba(78, 205, 196, 0.3);
 }
