@@ -32,7 +32,14 @@ const HISTORY_LIMIT = 3;
 
 const QuoteWidget = () => {
     const { theme } = useTheme();
-    const quotes = useMemo(() => extractQuotesWithMetadata(), []);
+    const quotes = useMemo(() => {
+        try {
+            return extractQuotesWithMetadata();
+        } catch (e) {
+            console.error('Failed to extract quotes', e);
+            return [];
+        }
+    }, []);
 
     const [quoteOfTheDay, setQuoteOfTheDay] = useState(null);
     const [historyVisible, setHistoryVisible] = useState(false);
@@ -42,37 +49,79 @@ const QuoteWidget = () => {
         if (!quotes.length) return;
 
         const todayStr = new Date().toDateString();
-        const stored = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-        let todayQuote;
+
+        let stored = null;
+        try {
+            stored = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
+        } catch {
+            stored = null;
+        }
+
+        let todayQuote = null;
 
         if (stored && stored.date === todayStr) {
             todayQuote = stored.quote;
         } else {
             todayQuote = quotes[Math.floor(Math.random() * quotes.length)];
 
-            localStorage.setItem(
-                LOCAL_STORAGE_KEY,
-                JSON.stringify({
-                    date: todayStr,
-                    quote: {
-                        quote: todayQuote.quote,
-                        title: todayQuote.title,
-                        url: todayQuote.url
-                    }
-                })
-            );
+            try {
+                localStorage.setItem(
+                    LOCAL_STORAGE_KEY,
+                    JSON.stringify({
+                        date: todayStr,
+                        quote: {
+                            quote: todayQuote.quote,
+                            title: todayQuote.title,
+                            url: todayQuote.url
+                        }
+                    })
+                );
+            } catch (e) {
+                console.warn('Failed to write daily quote to localStorage', e);
+            }
 
-            const prevHistory = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+            let prevHistory = [];
+            try {
+                prevHistory = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+            } catch {}
+
             const newHistory = [...prevHistory, { date: todayStr, quote: todayQuote.quote }];
             if (newHistory.length > HISTORY_LIMIT) newHistory.shift();
-            localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
+
+            try {
+                localStorage.setItem(HISTORY_KEY, JSON.stringify(newHistory));
+            } catch (e) {
+                console.warn('Failed to write quote history to localStorage', e);
+            }
         }
 
         setQuoteOfTheDay(todayQuote);
 
-        const loadedHistory = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+        let loadedHistory = [];
+        try {
+            loadedHistory = JSON.parse(localStorage.getItem(HISTORY_KEY)) || [];
+        } catch {}
+
         setQuoteHistory(loadedHistory);
     }, [quotes]);
+
+    if (!quotes.length) {
+        return (
+            <div
+                className="reading-widget quote-widget"
+                style={{
+                    border: `1px solid ${theme.colors.border}`,
+                    borderRadius: '8px',
+                    padding: '1.5rem',
+                    marginTop: '1rem',
+                    background: theme.colors.cardBackground,
+                    color: theme.colors.textSecondary
+                }}
+            >
+                No quotes available.
+            </div>
+        );
+    }
 
     return (
         <div
@@ -89,7 +138,7 @@ const QuoteWidget = () => {
                 Quote of the Day
             </div>
 
-            {quoteOfTheDay ? (
+            {quoteOfTheDay && (
                 <>
                     <div className="quote-text" style={{ color: theme.colors.textSecondary }}>
                         “{cleanQuote(quoteOfTheDay.quote)}”
@@ -112,48 +161,7 @@ const QuoteWidget = () => {
                             </a>
                         )}
                     </div>
-
-                    {quoteHistory.length > 0 && (
-                        <div className="quote-history-section">
-                            <button
-                                className="quote-history-toggle"
-                                onClick={() => setHistoryVisible(v => !v)}
-                                style={{
-                                    marginTop: '0.75rem',
-                                    background: 'transparent',
-                                    border: 'none',
-                                    color: theme.colors.accent,
-                                    cursor: 'pointer',
-                                    fontSize: '0.9rem'
-                                }}
-                            >
-                                {historyVisible ? 'Hide past quotes' : 'Show past quotes'}
-                            </button>
-
-                            {historyVisible && (
-                                <ul className="quote-history-list" style={{ marginTop: '0.5rem' }}>
-                                    {quoteHistory
-                                        .reverse()
-                                        .map((entry, idx) => (
-                                            <li
-                                                key={idx}
-                                                style={{
-                                                    color: theme.colors.textSecondary,
-                                                    marginBottom: '0.25rem'
-                                                }}
-                                            >
-                                                “{cleanQuote(entry.quote)}” — <strong>{entry.date}</strong>
-                                            </li>
-                                        ))}
-                                </ul>
-                            )}
-                        </div>
-                    )}
                 </>
-            ) : (
-                <div className="quote-text" style={{ color: theme.colors.textSecondary }}>
-                    No quotes available.
-                </div>
             )}
         </div>
     );

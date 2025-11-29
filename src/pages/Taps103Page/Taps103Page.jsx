@@ -17,19 +17,17 @@ const commandFiles = {
   */
 };
 
-const initialWelcome = `Welcome to TAPS 103 Reflections!
+const initialWelcome = `Welcome to my TAPS 103 Reflections :)
 ----------------------------------------
-Type a command on the left to see content.
+Here are the commands that you might find useful.
 
-Available Commands:
-  welcome    — show these instructions
-  help       — show available commands
-  clear      — clear previous commands
-  play       — on embracing play
-  dumbidea   — on following the “worst” idea
-  boost      — on making your partner look good
-  status     — on status & the body
-  space      — on taking up space
+  welcome / help   — show these instructions
+  clear            — clear previous commands
+  play             — on embracing play
+  dumbidea         — on following the “worst” idea
+  boost            — on making your partner look good
+  status           — on status & the body
+  space            — on taking up space
 `;
 
 export default function Taps103Page() {
@@ -135,11 +133,19 @@ export default function Taps103Page() {
           </SyntaxHighlighter>
         ),
         link: ({ href, children }) => (
-          <a href={href} target="_blank" rel="noopener noreferrer">
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: theme.colors.accent }}
+          >
             {children}
           </a>
         ),
-        image: ({ alt, src }) => <img src={src} alt={alt} className="markdown-img" />
+        image: ({ alt, src }) => <img src={src} alt={alt} className="markdown-img" />,
+        heading: ({ level, children }) =>
+          React.createElement(`h${level}`, { style: { color: theme.colors.text } }, children),
+        paragraph: ({ children }) => <p style={{ color: theme.colors.text }}>{children}</p>,
       }}
     />
   );
@@ -147,18 +153,67 @@ export default function Taps103Page() {
   return (
     <div className="taps-page">
       {/* Header */}
-      <div className="taps-header">
-        <img src={profilePhoto} alt="avatar" className="taps-avatar" />
-        <div>
-          <h1 className="taps-title">TAPS 103</h1>
-          <p className="taps-subtitle">Reflections on improvisation & presence.</p>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1rem',
+          marginBottom: '1.25rem',
+        }}
+      >
+        {/* Home button */}
+        <a href="/" style={{ textDecoration: 'none' }}>
+          <button
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              padding: '0.4rem 0.6rem',
+              borderRadius: 8,
+              background: theme.isDarkMode
+                ? 'rgba(255,255,255,0.04)'
+                : theme.colors.accent,
+              color: theme.isDarkMode ? theme.colors.text : '#fff',
+              border: `1px solid ${theme.colors.border || '#ccc'}`,
+              cursor: 'pointer',
+              fontSize: '0.9rem',
+            }}
+          >
+            ← Home
+          </button>
+        </a>
+
+        {/* Avatar + title */}
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+          <img src={profilePhoto} alt="avatar" className="taps-avatar" />
+          <div>
+            <h1 className="taps-title" style={{ color: theme.colors.text }}>
+              TAPS 103
+            </h1>
+            <p
+              className="taps-subtitle"
+              style={{ color: theme.colors.muted || theme.colors.textSecondary }}
+            >
+              reflections on my improv class.
+            </p>
+          </div>
         </div>
       </div>
 
       {/* Main grid */}
       <div className="taps-grid">
         {/* Terminal */}
-        <div className={`terminal ${theme.isDarkMode ? "dark" : "light"}`} ref={terminalRef}>
+        <div
+          className={`terminal`}
+          ref={terminalRef}
+          style={{
+            background: theme.isDarkMode
+              ? theme.colors.cardBackground
+              : '#f0f0f0',
+            color: theme.colors.text,
+            border: `1px solid ${theme.colors.border || (theme.isDarkMode ? '#333' : '#ccc')}`,
+          }}
+        >
           <div className="terminal-window">
             {history.map((line, i) => (
               <div key={i} className="terminal-line">
@@ -173,13 +228,17 @@ export default function Taps103Page() {
                 onKeyDown={handleKeyDown}
                 className="terminal-input"
                 autoFocus
+                style={{ color: theme.colors.text }}
               />
             </div>
           </div>
         </div>
 
         {/* Markdown Output */}
-        <div className={`reflection ${fadeIn ? "fade-in" : ""}`}>
+        <div
+          className={`reflection ${fadeIn ? 'fade-in' : ''}`}
+          style={{ color: theme.colors.text }}
+        >
           {renderMarkdown(output)}
         </div>
       </div>
