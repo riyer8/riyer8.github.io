@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import bookshelfData from './data/bookshelfData';
-import { FaExternalLinkAlt } from 'react-icons/fa';
 import profilePhoto from '../../assets/photo3.JPG';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
@@ -23,13 +22,9 @@ const BookshelfPage = () => {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeMedium, setActiveMedium] = useState(null);
-  const [sortKey, setSortKey] = useState('title'); // title | category | medium
+  const [sortKey, setSortKey] = useState('title');
   const [showFavorites, setShowFavorites] = useState(false);
   
-  // No per-user view customization: keep rendering simple and deterministic
-  
-
-  // derive categories/mediums
   const categories = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.category).filter(Boolean))), []);
   const mediums = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.medium).filter(Boolean))), []);
 
@@ -38,7 +33,7 @@ const BookshelfPage = () => {
     return bookshelfData.filter(r => {
       if (activeCategory && r.category !== activeCategory) return false;
       if (activeMedium && r.medium !== activeMedium) return false;
-      if (showFavorites && !r.favorite) return false;  // ← favorite filter
+      if (showFavorites && !r.favorite) return false;
       if (!q) return true;
       return (
         (r.title || '').toLowerCase().includes(q) ||
@@ -193,7 +188,7 @@ const BookshelfPage = () => {
                 cursor: 'pointer'
               }}
             >
-             <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> Favorites
+             <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> favorites
             </button>
           </div>
 
@@ -289,8 +284,8 @@ const BookshelfPage = () => {
                         {row.favorite ? <FaStar color={ theme.isDarkMode ? '#FFD700' : '#000'} /> : ''} {row.title}
                       </button>
                       {row.url && (
-                        <a href={row.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary }}>
-                          <FaExternalLinkAlt />
+                        <a href={row.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}>
+                          ↗
                         </a>
                       )}
                     </div>
@@ -302,6 +297,15 @@ const BookshelfPage = () => {
               ))}
             </tbody>
           </table>
+        </div>
+        <div style={{
+          paddingTop: '1rem',
+          borderTop: `1px solid ${theme.colors.border}`,
+          textAlign: 'center',
+          fontSize: '0.8rem',
+          color: theme.colors.textSecondary
+        }}>
+          Credits to <a href="https://masonjwang.com/bookshelf" target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'underline' }}>Mason Wang</a> for heavily inspiring this format and initial reads.
         </div>
       </div>
 
