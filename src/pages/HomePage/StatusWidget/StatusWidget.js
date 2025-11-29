@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useTheme } from '../../../components/ThemeContext/ThemeContext';
+import './StatusWidget.css';
 
 const currentActivities = [
     "Building AI agents 🤖",
@@ -11,6 +13,7 @@ const currentActivities = [
 ];
 
 const StatusWidget = () => {
+    const { theme } = useTheme();
     const [currentIndex, setCurrentIndex] = useState(0);
     const [displayText, setDisplayText] = useState("");
     const [isDeleting, setIsDeleting] = useState(false);
@@ -19,13 +22,11 @@ const StatusWidget = () => {
 
     const fullText = currentActivities[currentIndex];
 
-    // cursor blink
     useEffect(() => {
         const blink = setInterval(() => setCursorVisible(v => !v), 500);
         return () => clearInterval(blink);
     }, []);
 
-    // typing animation
     useEffect(() => {
         if (isPaused) return;
 
@@ -49,7 +50,7 @@ const StatusWidget = () => {
                     setDisplayText(displayText.slice(0, -1));
                 } else {
                     setIsDeleting(false);
-                    setCurrentIndex((i) => (i + 1) % currentActivities.length);
+                    setCurrentIndex(i => (i + 1) % currentActivities.length);
                 }
             }
         }, typingSpeed);
@@ -57,7 +58,6 @@ const StatusWidget = () => {
         return () => clearTimeout(timeout);
     }, [displayText, isDeleting, isPaused, fullText]);
 
-    // occasional instant skip
     useEffect(() => {
         const interval = setInterval(() => {
             setIsPaused(false);
@@ -69,45 +69,19 @@ const StatusWidget = () => {
         return () => clearInterval(interval);
     }, []);
 
-    const widgetStyle = {
-        background: 'rgba(255, 255, 255, 0.9)',
-        border: '1px solid rgba(78, 205, 196, 0.3)',
-        borderRadius: '8px',
-        padding: '1.5rem',
-        marginTop: '2rem'
-    };
-
-    const statusItemStyle = {
-        display: 'flex',
-        alignItems: 'center',
-        marginBottom: '0.8rem',
-        fontSize: '1rem'
-    };
-
-    const statusLabelStyle = {
-        fontWeight: 600,
-        color: '#333',
-        marginRight: '0.5rem'
-    };
-
-    const statusValueStyle = {
-        color: '#666',
-        cursor: "pointer",
-        userSelect: "none"
-    };
-
     return (
-        <div style={widgetStyle}>
-            <div style={{statusItemStyle, marginBottom: 0}}>
-                <span style={statusLabelStyle}>I'm currently...</span>
-                <span style={statusValueStyle}>
+        <div
+            className={`status-widget ${theme.isDarkMode ? 'dark' : 'light'}`}
+            style={{
+                border: `1px solid ${theme.colors.border}`,
+                color: theme.colors.textSecondary,
+            }}
+        >
+            <div className="status-item centered-text">
+                <span className="status-label" style={{ color: theme.colors.text }}>I'm currently...</span>
+                <span className="status-value">
                     {displayText}
-                    <span style={{
-                        opacity: cursorVisible ? 1 : 0.2,
-                        transition: "opacity 0.2s ease"
-                    }}>
-                        |
-                    </span>
+                    <span className="status-cursor" style={{ opacity: cursorVisible ? 1 : 0.2 }}>|</span>
                 </span>
             </div>
         </div>

@@ -8,7 +8,7 @@ const Sidebar = () => {
 
     useEffect(() => {
         const checkScreenSize = () => {
-            setShouldCollapseSidebar(window.innerWidth <= 900); // Same breakpoint as MainContent
+            setShouldCollapseSidebar(window.innerWidth <= 900);
         };
 
         checkScreenSize();
@@ -20,7 +20,7 @@ const Sidebar = () => {
     const sidebarStyle = {
         width: '20%',
         padding: '5rem 2rem 2rem 6rem',
-        display: shouldCollapseSidebar ? 'none' : 'flex', // Hide when collapsed
+        display: shouldCollapseSidebar ? 'none' : 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
         background: shouldCollapseSidebar ? (theme.isDarkMode ? theme.colors.cardBackground : (theme.colors.mobileMenuBg || theme.colors.cardBackground)) : 'transparent',

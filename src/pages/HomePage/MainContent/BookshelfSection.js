@@ -17,7 +17,6 @@ const BookshelfSection = ({ screenSize }) => {
     const { theme } = useTheme();
     const { width, shouldCollapseSidebar } = screenSize;
 
-    // Determine how many items to show based on available space
     const getItemsToShow = () => {
         if (width < 380) return 1;
         if (width < 600) return 2;
@@ -26,7 +25,6 @@ const BookshelfSection = ({ screenSize }) => {
 
     const itemsToShow = getItemsToShow();
 
-    // Responsive sizing utility
     const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
         if (shouldCollapseSidebar) return mobileSize;
         if (screenSize.isTablet) return tabletSize;
@@ -214,7 +212,6 @@ const BookshelfSection = ({ screenSize }) => {
 
             <div style={bookshelfContainerStyle}>
                 <div style={booksContainerStyle}>
-                    {/* Books */}
                     {itemsToShow >= 1 && (
                         <div style={stackStyle}>
                             {books.map((book, index) => (
@@ -235,7 +232,6 @@ const BookshelfSection = ({ screenSize }) => {
                         </div>
                     )}
 
-                    {/* Research Papers */}
                     {itemsToShow >= 2 && (
                         <div style={stackStyle}>
                             {papers.map((paper, index) => (
@@ -256,7 +252,6 @@ const BookshelfSection = ({ screenSize }) => {
                         </div>
                     )}
 
-                    {/* Essays */}
                     {itemsToShow >= 3 && (
                         <div style={stackStyle}>
                             {essays.map((essay, index) => (
@@ -277,11 +272,7 @@ const BookshelfSection = ({ screenSize }) => {
                         </div>
                     )}
                 </div>
-
-                {/* Shelf */}
                 <div style={shelfStyle}></div>
-
-                {/* Categories */}
                 <div style={categoriesContainerStyle}>
                     {categories.map((category, index) => (
                         <div key={index} style={categoryStyle}>{category}</div>

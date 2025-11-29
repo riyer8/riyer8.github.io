@@ -5,8 +5,6 @@ import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 
 const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
-
-    // --- Added for wrap detection ---
     const taglineRef = useRef(null);
     const [useShortHistory, setUseShortHistory] = useState(false);
 
@@ -15,13 +13,12 @@ const SidebarContent = ({ compact = false }) => {
         if (!el) return;
 
         const lineHeight = parseFloat(window.getComputedStyle(el).lineHeight);
-        const maxOneLineHeight = lineHeight * 1.8; // small buffer
+        const maxOneLineHeight = lineHeight * 1.8;
 
         if (el.clientHeight > maxOneLineHeight) {
             setUseShortHistory(true);
         }
     }, []);
-    // --------------------------------
 
     const nameStyle = {
         fontSize: compact ? '2rem' : '2rem',
