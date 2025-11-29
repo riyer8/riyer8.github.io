@@ -3,6 +3,7 @@ import { ThemeToggle } from '../../../components';
 import StatusWidget from '../StatusWidget/StatusWidget'
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
+import QuoteWidget from '../QuoteWidget';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaBars } from 'react-icons/fa';
 
@@ -14,7 +15,7 @@ const MainContent = () => {
         isMobile: window.innerWidth <= 768,
         isTablet: window.innerWidth > 768 && window.innerWidth <= 1024,
         isDesktop: window.innerWidth > 1024,
-        shouldCollapseSidebar: window.innerWidth <= 900 // New breakpoint for sidebar collapse
+        shouldCollapseSidebar: window.innerWidth <= 900
     });
 
     useEffect(() => {
@@ -25,7 +26,7 @@ const MainContent = () => {
                 isMobile: width <= 768,
                 isTablet: width > 768 && width <= 1024,
                 isDesktop: width > 1024,
-                shouldCollapseSidebar: width <= 900 // Collapse sidebar earlier to prevent cutoff
+                shouldCollapseSidebar: width <= 900
             });
         };
 
@@ -47,7 +48,6 @@ const MainContent = () => {
     const openMobileSidebar = () => setIsMobileSidebarOpen(true);
     const closeMobileSidebar = () => setIsMobileSidebarOpen(false);
 
-    // Responsive sizing utility
     const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
         if (screenSize.shouldCollapseSidebar) return mobileSize;
         if (screenSize.isTablet) return tabletSize;
@@ -64,7 +64,7 @@ const MainContent = () => {
         minHeight: '100vh',
         position: 'relative',
         transition: 'none',
-        maxWidth: '100%', // Prevent horizontal overflow
+        maxWidth: '100%',
         boxSizing: 'border-box'
     };
 
@@ -115,15 +115,11 @@ const MainContent = () => {
         transition: 'none'
     };
 
-    // ...existing code...
-
     return (
         <>
-            {/* Theme Toggle Button */}
             <ThemeToggle />
 
             <div style={contentStyle}>
-                {/* Mobile Header */}
                 <div style={mobileHeaderStyle}>
                     <button
                         style={hamburgerStyle}
@@ -136,20 +132,16 @@ const MainContent = () => {
                     </button>
                 </div>
 
-                {/* Main Content */}
                 <div style={sectionStyle}>
                     <h2 style={headingStyle}>
                         Welcome to my mind!
                     </h2>
                     <StatusWidget />
-                    {/*<ReadingWidget />*/}
+                    <QuoteWidget />
                 </div>
-
-                {/* Bookshelf Section */}
                 <BookshelfSection screenSize={screenSize} />
             </div>
 
-            {/* Mobile Sidebar Slide-in */}
             {shouldCollapseSidebar && (
                 <MobileSidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
             )}
