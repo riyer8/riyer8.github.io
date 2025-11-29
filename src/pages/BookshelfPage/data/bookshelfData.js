@@ -45,52 +45,6 @@ console.log('hello demo');
 > A short blockquote example.
 
 End of demo.
-`
-  },
-
-  {
-    title: "Demo — Notes Features",
-    url: '',
-    dateAdded: '2025-10-17',
-    category: 'demo',
-    medium: 'notes',
-    tldr: 'Demo of Markdown + KaTeX + code + images + tables in notes.',
-    thoughts: 'This entry demonstrates the renderer features used in the notes panel.',
-    tags: ['demo','markdown','katex'],
-    notes: `# Demo: Markdown & LaTeX
-
-This demo shows formatting features: headers, lists, math, images, code, blockquotes, and tables.
-
-## Lists
-
-- Top-level item
-  - nested bullet A
-  - nested bullet B
-- Another top-level
-
-Inline math example: Euler's identity — $e^{i\\pi} + 1 = 0$.
-
-Display math example:
-
-$$
-\\nabla \\cdot \\mathbf{E} = \\frac{\\rho}{\\varepsilon_0}
-$$
-
-## Code
-
-~~~js
-// Small snippet
-function add(a, b) {
-  return a + b;
-}
-console.log(add(2, 3)); // 5
-~~~
-
-## Image
-
-![local image](${photo3})
-
-> "Simplicity is the soul of efficiency." — a short quote
 
 ## Table
 
@@ -105,15 +59,16 @@ console.log(add(2, 3)); // 5
 End of demo.
 `
   },  */
+
   {
     title: "Keep Going",
     url: 'https://www.goodreads.com/book/show/40591677-keep-going',
     dateAdded: '2023-08-25',
-    category: 'advice',
+    category: 'self-improvement',
     medium: 'book',
-    tldr: '🌻 Build routines, protect your solitude, focus on the work (not the identity). Keep some things just for joy.',
+    tldr: '☀️ Build routines, protect your solitude, focus on the work (not the identity). Keep some things just for joy.',
     thoughts: "I honestly still think about this book often and specifically that not everything you love has to be monetized or turned into a side hustle.",
-    tags: ['growth', 'life-advice', 'advice'],
+    tags: ['growth', 'motivation', 'mindset'],
     notes: `Below are some quotes that I really liked from the book.
 ### I Wrote This Book Because I Needed To Read It
 > The principles apply to anyone trying to sustain a meaningful and productive creative life.
@@ -139,7 +94,7 @@ End of demo.
 ### 3. Forget the Noun, Do the Verb
 > Let go of the thing you’re trying to be (the noun) and focus on the actual work you need to be doing (the verb).
 
-> I am not a thing — a noun. I seem to be a verb, an evolutionary process.
+> I am not a thing - a noun. I seem to be a verb, an evolutionary process.
 
 > Don’t get bogged down. Stay light. Play.
 
@@ -176,15 +131,16 @@ End of demo.
 > The outer demons… they might take us with them, but this, too, shall pass.
 `
   },
+
   {
     title: "Limitless",
     url: 'https://www.goodreads.com/book/show/49994260-limitless',
     dateAdded: '2023-11-25',
-    category: 'advice',
+    category: 'self-improvement',
     medium: 'book',
     tldr: '🧠 Upgrade your mindset (what you believe), motivation (why you act), and methods (how you learn).',
     thoughts: "Lots of mental models about learning faster. Jim Kwik has such a rich background and story that makes his advice so deep.",
-    tags: ['growth', 'life-advice'],
+    tags: ['learning', 'brain', 'productivity', 'habits'],
     notes: ` This one is a long one, but here are some selected quotes I liked.
     
 ## Foreword
@@ -206,7 +162,7 @@ End of demo.
 > If an egg is broken by an outside force, life ends. If broken by an inside force, life begins.
 
 ## Becoming Limitless
-> Labels create limits; knowledge alone is not power — learning is our superpower.
+> Labels create limits; knowledge alone is not power - learning is our superpower.
 - Unlimiting is casting aside restrictive perceptions and embracing limitless potential.
 - Limits exist in three areas: Mindset, Motivation, Method.
 - Where all three intersect, you achieve a limitless state.
@@ -221,7 +177,7 @@ End of demo.
 ## FASTER Method
 - Forget distractions, old knowledge, and self-limiting beliefs.
 - Actively engage in learning; take notes and highlight key ideas.
-- Manage your state — thoughts and physiology affect learning.
+- Manage your state - thoughts and physiology affect learning.
 - Teach what you learn to solidify memory.
 - Enter and schedule personal growth.
 - Review using spaced repetition to retain knowledge.
@@ -250,73 +206,75 @@ End of demo.
 
 ## Limitless Motivation
 > Motivation = purpose + energy + small, consistent actions.
-    `
+`
   },
+
   {
     title: "Principles",
     url: "https://nabeelqu.substack.com/p/principles",
     dateAdded: "2025-10-11",
-    category: "advice",
+    category: "self-improvement",
     favorite: true,
     medium: "essay",
-    tldr: "Collection of personal principles from Nabeel Qureshi. Honestly can't write a complete TLDR about this based off its density.",
-    thoughts: "🔖 Incredible advice on personal principles, something I've been thinking about ever since I took ENGR 148 @ Stanford.",
-    tags: ['advice', 'principles'],
+    tldr: "🔖 Collection of personal principles from Nabeel Qureshi. Honestly can't write a complete TLDR about this based on its density.",
+    thoughts: "Incredible advice on personal principles, something I've been thinking about ever since I took ENGR 148 @ Stanford.",
+    tags: ['decision-making', 'principles', 'philosophy'],
     notes:` Some of my favorite principles:
 > 9\\. The world is a museum of passion projects.
 > 21\\. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
 > 23\\. Doing things is energizing, wasting time is depressing. You don’t need that much ‘rest’.
 > 31\\. Figure out what creates enduring value.
-> 34\\. “Aim for Chartres” (Christopher Alexander) — when doing something, aim to be the best there ever was at it. This compensates for your natural bias, which is to do something mediocre. You have to really aim to be as good as the greats.
+> 34\\. “Aim for Chartres” (Christopher Alexander) - when doing something, aim to be the best there ever was at it. This compensates for your natural bias, which is to do something mediocre. You have to really aim to be as good as the greats.
 > 35\\. Send more cold emails. People respond! Assume everyone’s your friend.
 > 51\\. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful.
 > 53\\. Think in writing. Write Google Docs, scrawl in notebooks. This extends working memory arbitrarily and allows your thoughts to compound on each other.
 > 57\\. Scrolling and reading too much drowns out your inner voice.
     `
   },
+
   {
     title: "What to do with your life",
     url: "https://www.julian.com/blog/life-planning",
     dateAdded: "2025-10-17",
-    category: "advice",
+    category: "self-improvement",
     medium: "essay",
     tldr: "🧭 Develop a framework to evaluate your values throughout your life.",
     thoughts: "I've been thinking a lot about what I want out of life and this essay was a quick read into Julian's approach.",
-    tags: ['advice', 'life-planning'],
+    tags: ['advice', 'career', 'purpose', 'life-planning'],
     notes: ` The main values described are:
 
-- Knowledge — Do you become more knowledgeable and skilled from it?
-- Adventure — Do you accrue novel, memorable experiences?
-- Fame — Do you build an audience you can later leverage?
-- Power — Do you acquire resources and connections?
-- Money — Do you increase your financial wealth?
-- Exercising Talent — Do you leverage your skill and creativity?
-- Human Connection — Do you bond with others?
+- Knowledge - Do you become more knowledgeable and skilled from it?
+- Adventure - Do you accrue novel, memorable experiences?
+- Fame - Do you build an audience you can later leverage?
+- Power - Do you acquire resources and connections?
+- Money - Do you increase your financial wealth?
+- Exercising Talent - Do you leverage your skill and creativity?
+- Human Connection - Do you bond with others?
 
 Shapiro frames these seven values as a lens for evaluating whether your decisions align with the kind of life that you want to build.
 
 He also frames the idea of **regret minimization**
 
 > What choices can you make today that minimize the regret you'll feel as an 80-year-old looking back on your life? When you minimize future regret, you sleep well knowing you're maximizing fulfillment.
-
 `
   },
+
   {
     title: "🌻 tryhard",
     url: "https://jasmi.news/p/tryhard",
     dateAdded: "2025-10-17",
-    category: "advice",
+    category: "self-improvement",
     medium: "essay",
     favorite: true,
     tldr: "🌻 A simple, reflective piece on the fruits of trying hard. Why not give it all you got?",
     thoughts: "Contrary to much of what I used to read, this one encourages that trying hard, harder than one expects. Maybe this is the best form of self help.",
-    tags: ['motivation', 'growth', 'advice'],
+    tags: ['motivation', 'growth', 'productivity', 'mindset'],
     notes: ` Contrary to the usual anti-hustle discourse, this essay reminds me that sometimes that best thing you can do for yourself is just try harder, longer, and more consistently than feels reasonable. Showing up because you care and effort is the human aspect of it.
-Ambition is reframed: don't set goals so you are able to *easily* hit them, but rather one that is exhilaratingly to play.
+Ambition is reframed: don't set goals so you are able to *easily* hit them, but rather one that is exhilarating to play.
 > The ones who succeed are often simply the ones who try harder than everybody else. 
 
-Sometimes people overstate "luck" as being the factor. Maybe trying harder will make you better.
-> Claire Dederer writes that “Finishers are always monsters”—that is, behind every completed oeuvre is a trail of broken promises to people you love. 
+Sometimes people overstate 'luck' as being the factor. Maybe trying harder will make you better.
+> Claire Dederer writes that “Finishers are always monsters” - that is, behind every completed oeuvre is a trail of broken promises to people you love. 
 
 I really like this quote mainly because finishers may be glamorous, but it comes with a trail that not everyone will love the way you get there. It's uncomfortable.
 
@@ -326,12 +284,13 @@ The big takeaway **ambition isn't about chasing outcomes; it is about choosing t
 
 > Never spend time on something I’d end up regretting if it didn’t lead to the outcome I hoped for.
 
-Make effort feel intentional. You get to choose the game you play, but you have to be play it. Not be on the sidelines.
+Make effort feel intentional. You get to choose the game you play, but you have to play it. Not be on the sidelines.
 
 > Ira Glass bit about the taste gap: “It is only by going through a volume of work that you will close that gap, and **your work will be as good as your ambitions**… It’s gonna take awhile. It’s normal to take awhile. You’ve just gotta fight your way through.”
     `
 
   },
+
   {
     title: "A Roadmap to AI Utopia",
     url: "https://www.khoslaventures.com/posts/a-roadmap-to-ai-utopia",
@@ -340,38 +299,19 @@ Make effort feel intentional. You get to choose the game you play, but you have 
     medium: "essay",
     tldr: "🌏 A rather optimistic view on how AI can lead to a prosperous future for all of humanity.",
     thoughts: "A refreshing and optimistic perspective on AI's potential to improve lives globally. There is a chance that it remains to be too optimistic without real actionable changes to implement said ideas.",
-    tags: ['AI', 'future', 'optimism'],
+    tags: ['AI', 'future', 'optimism', 'technology', 'society', 'startups'],
     notes: `I really enjoyed the parallel the author drew between AI and a stream engine, as evident as it seems. It's a compelling way to think about how AI is transforming productivity and expanding human capacity. Khosla is definitely optimistic, which made the piece engaging.
 
 That said, some ideas felt underdeveloped. For instance, the treatment of pessimistic viewpoints was too broad, lacking nuance about societal or economic challenges that AI may bring. Similarly, the mention of a universal basic income (UBI) was interesting, but I would have loved more detail on how it would be implemented and the consequences.
 
 Some quotes stood out:
-> "I estimate that over the next 25 years, AI can perform 80% of the work in 80% of all jobs—whether doctors, salespeople, engineers, or farm workers."
+> "I estimate that over the next 25 years, AI can perform 80% of the work in 80% of all jobs - whether doctors, salespeople, engineers, or farm workers."
 - Bold and thought-provoking, though perhaps optimistic and reliant on assumptions about AI adoption rates across industries.
 
 > "The current challenge is not a lack of resources, but a limitation in our capacity to find them – a barrier AI is poised to help break."
 - May overestimate AI's ability to overcome systemic or structural limitations.
 `
   },
-/*
-  {
-    title: "Pick Three Things. Now Do Them Well",
-    url: "https://www.scotthyoung.com/blog/2014/10/17/pick-just-three/",
-    dateAdded: "2025-11-14",
-    category: "essay",
-    medium: "digital",
-    tldr: "🎯 Limit your focus to three main projects at a time to maximize effectiveness and avoid burnout.",
-    thoughts: "",
-    tags: ['productivity', 'focus', 'time-management'],
-    notes: ``
-  },
-
-  {
-    title: "Tackle the Hard Stuff First",
-    url: "https://www.codingvc.com/p/tackle-the-hard-stuff-first",
-    dateAdded: "2025-11-14",
-  },
-  */
 
   {
     title: "In the Age of AI, All We Have Left Is Taste",
@@ -381,12 +321,12 @@ Some quotes stood out:
     medium: "essay",
     tldr: "✨ AI taking over taste won't result in personal, intimate connections with other people's personal taste.",
     thoughts: "As someone who deeply thinks about personalization in the face of AI, this essay was really opening to me. We don't want to OR even need to automate everything. Allow people to have personal connections with others.",
-    tags: ['AI', 'personalization', 'taste', 'consumers', 'recommendations'],
+    tags: ['AI', 'personalization', 'taste', 'consumer-behavior'],
     notes: ` I really love the contrast between the algorithmic optimization and deeply human texture of taste. The author argues that in a world where AI synthesizes everything we already know we want, the real value comes from the perspectives that we align with.
 
 > AI gives you exactly what you want. But in doing so, you never get what you didn’t know you needed.
 
-This captures this idea where taste isn't just about calcualting accuracy; it's about personal discovery.
+This captures the idea that taste isn't just about calculating accuracy; it's about personal discovery.
 
 > Human recommendations, according to that logic, are not comprehensive or unbiased. They favor certain things and overlook others. In doing so, they create meaning. 
 
@@ -403,13 +343,13 @@ The biases and preferences that we have actually help us when it comes to deciph
     category: "history",
     medium: "essay",
     favorite: true,
-    tldr: "🕰️ Just extracting lessons from history dimishes its purpose. History is context dependent that can help build mental models for future decisions.",
+    tldr: "🕰️ Just extracting lessons from history diminishes its purpose. History is context dependent that can help build mental models for future decisions.",
     thoughts: "Really fascinating as I learn more about history and reframing history",
-    tags: ['history', 'advice', 'lessons', 'entrepreneurship'],
-    notes: `A few quotes that stood out to me:
+    tags: ['history', 'lessons', 'entrepreneurship', 'mental-models'],
+    notes: `
 > This has always been the tricky thing about learning from history. History is context dependent.
 
-> Learning narrow lessons from history is extremely risky because things that are true in one specific context might not be true in a different context — even a slightly different context.
+> Learning narrow lessons from history is extremely risky because things that are true in one specific context might not be true in a different context - even a slightly different context.
 - I love these ideas. The reminder that history is context dependent also speaks to the empathy needed to understand the eras others lived in. Not everything translates to our lives now and each situation has its own conditions and constraints.
 
 > The person who has read history would know not to overreact to certain events; the person who hasn’t is seeing everything for the very first time.
@@ -423,13 +363,14 @@ The biases and preferences that we have actually help us when it comes to deciph
 - Instead of trying to replicate someone else’s exact path, we use examples to see concepts in motion. Over time, those examples broaden our internal library of prototypes, helping us recognize patterns and navigate situations that initially feel unfamiliar.
 `
   },
+
   {
     title: "Frequency Reduces Difficulty",
     url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
     dateAdded: "2025-11-24",
-    category: "advice",
+    category: "self-improvement",
     medium: "essay",
-    tags: ['advice', 'exposure therapy', 'procrastination'],
+    tags: ['habit', 'exposure', 'learning', 'practice', 'productivity'],
     tldr: "🔁 Doing painful tasks more frequently dramatically reduces the difficulty.",
     thoughts: "Directly aligned with the principle of exposure therapy, do what you don't like the most (within reason).",
     notes: `The central line **"if it hurts, do it more often"** sounds almost counterintuitive (or obvious if you've seen this idea before), but Fowler integrates it rather well.
@@ -444,16 +385,15 @@ Three main reasons why it is beneficial to essentially do exposure therapy:
 
 This essay allows us to increase frequency with more painful work, expanding beyond just engineering.
     `
-
   },
 
   {
     title: "Improv Wisdom",
     url: "https://www.goodreads.com/book/show/182052.Improv_Wisdom",
     dateAdded: "2025-11-28",
-    category: "improv",
+    category: "creativity",
     medium: "book",
-    tags: ["improv", "growth"],
+    tags: ["improv", "growth", 'creativity'],
     tldr: "🎭 The art of improv is already within you; you just have to show up!",
     thoughts: "A true insightful look at improv from someone highly respected in the field (and from Stanford Improv!).",
     notes: `Below is a laundry list of self-selected quotes from the book that I really liked.
@@ -522,26 +462,27 @@ This essay allows us to increase frequency with more painful work, expanding bey
 > No dream or goal is too large or too small. A life of meaning and value is achieved through purposeful action. – pg. 147
 `
   },
+
   {
     title: "How To Get Real Buy-In For Your Idea",
     url: "https://www.forbes.com/sites/work-in-progress/2015/03/16/how-to-get-real-buy-in-for-your-idea/",
     dateAdded: "2025-11-28",
-    category: "advice",
+    category: "career",
     medium: "essay",
-    tags: ["career", "growth"],
+    tags: ["career", "growth", 'influence', 'leadership'],
     tldr: "🤝 Getting real buy-in for an idea requires influence and co-creation.",
     thoughts: "Such an interesting take on actually getting people to believe in your idea - career or even earlier stages.",
     notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article is written in 2015, almost a decade old (is it still relevant? I'd personally assume so).
 
 At a high level, here are some of the introductory quotes that provide insight into how to get buy-in:
 
-> Most of the work in companies is done through influence rather than hierarchy due to corporate team-based structures, requiring professioanls to have considerable skill at getting support for their ideas.
+> Most of the work in companies is done through influence rather than hierarchy due to corporate team-based structures, requiring professionals to have considerable skill at getting support for their ideas.
 
-> Buy-in is critical to making any large organizational change happen. Unless you win support from your ideas, from people at all levels of your organization, big never seem to take hold or have the impact you want. - John Kotter, _Buy-In_
+> Buy-in is critical to making any large organizational change happen. Unless you win support from your ideas, from people at all levels of your organization, big change never seem to take hold or have the impact you want. - John Kotter, _Buy-In_
 
 > Real buy-in involves at least some element of co-creation. It invites discussion, debate, and allows everyone to feel even more vested in the outcome.
 
-Hedges provides the a model to get true buy:
+Hedges provides a model to get true buy:
 
 ### Formula a coherent idea or vision - but keep it in draft form.
 - Lay out the idea clearly, but don't make it seem finalized (otherwise others won't feel a part of the solution). 
@@ -561,17 +502,18 @@ Hedges provides the a model to get true buy:
 - "Most people tend to reject ideas out of fear, and particularly fear of the unknown"
     `
   },
+
   {
     title: "What Goes Wrong by Jessica Livingston",
     url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
     dateAdded: "2025-11-28",
     category: "startups",
     medium: "essay",
-    tags: ["career", "growth", "startups"],
-    tldr: "",
-    thoughts: "",
+    tags: ["entrepreneurship", "career", "lessons", "failure", "startups"],
+    tldr: "🚀 Livingston provides a recount of reasons why startups fail from her experience of founding YC",
+    thoughts: "I love how she backs up her points with incredibly successful companies at their earliest stages.",
     notes: `
-> Determination is really two seperate things: resilience and drive. Resilience keeps you from being pushed backwards. Drive moves you forwards.
+> Determination is really two separate things: resilience and drive. Resilience keeps you from being pushed backwards. Drive moves you forwards.
 
 > What you don't realize until you start a startup is how much external validation you've gotten for the conservative choices you've made in the past.
 
@@ -585,13 +527,126 @@ Livingston describes the various ways that people will quit on their ideas after
    - Investors will also drag their feet. There's no downside for them to delay whereas delay will kill you.
 4. **Distractions**.
    > There are really only three things you should focus on: building things, talking to users, and exercising
-5. **HR Acquistions**.
+5. **HR Acquisitions**.
 6. **Making Something People Don't Want**.
    - Talk to users and adjust your idea accordingly
 
 > Just remember that no extreme ever lasts (good or bad). Don't let yourself get immobilized by sadness when things go wrong. Just keep putting one foot in front of the other and know it will get better.
 `
+  },
+
+  {
+    title: "Thinking In Bets",
+    url: "https://www.goodreads.com/book/show/35957157-thinking-in-bets",
+    dateAdded: "2025-11-28",
+    category: "decision-making",
+    favorite: true,
+    medium: "book",
+    tags: ["decisions", "uncertainty", "poker", "probabilities"],
+    tldr: "🎲 Life is better modeled as a poker game, where this is much uncertainty about what is coming next.",
+    thoughts: "Such a nice parallel between life and poker, thinking in probabilities, and decisions.",
+    notes: `
+**Introduction: Why This Isn’t A Poker Book**
+
+> A Bet is really a decision about an uncertain future. (pg 3)  
+
+> Thinking in bets starts with recognizing that there are exactly two things that determine how our lives turn out: the quality of our decisions and luck. (pg 4)  
+
+> Learning to recognize the difference between decision quality and luck is what thinking in bets is all about. (pg 4)  
+
+**Chapter 1: Life is Poker, Not Chess**
+
+> Hindsight bias is the tendency, after an outcome is known, to see the outcome as having been inevitable. (pg 10)  
+
+> If we aren’t wrong just because things didn’t work out, then we aren’t right just because things turned out well. (pg 35)  
+
+> A great decision is the result of a good process, and that process must include an attempt to accurately represent our own state of knowledge. (pg 27)  
+
+> “I’m not sure” does not mean there is no objective truth. It means that we treat our beliefs as works in progress, as under construction. (pg 27)  
+
+**Chapter 2: Wanna Bet?**
+
+> Every decision commits us to some course of action that, by definition, eliminates acting on other alternatives. (pg 44)  
+
+> In most of our decisions, we are not betting against another person. Rather, we are betting against all the future versions of ourselves that we are not choosing. (pg 45-46)  
+
+> “Wanna bet?” triggers us to engage in a vetting process for our beliefs, reminding us that our beliefs are works in progress. (pg 66)  
+
+> Incorporating uncertainty into the way we think about our beliefs is the first step in measuring and narrowing it. (pg 70)  
+
+> There is no sin in finding out there is evidence that contradicts what we believe. The only sin is in not using that evidence to refine our beliefs. (pg 71)  
+
+**Chapter 3: Bet to Learn: Fielding the Unfolding Future**
+
+> The more evidence we get from experience, the less uncertainty we have about our beliefs and choices. (pg 80)  
+
+> Our lives turn out as a result of two things: the influence of skill and the influence of luck. (pg 82)  
+
+> Self-serving bias makes us take credit for good outcomes and blame bad outcomes on luck. (pg 89)  
+
+> Most of the variance in happiness comes from how we compare ourselves with others, not objective circumstances. (pg 104)  
+
+> Treating outcomes as bets makes us more compassionate toward others and encourages learning. (pg 114)  
+
+**Chapter 4: The Buddy System**
+
+> Groups improve thinking when members are accountable to a collective interest in accuracy. (pg 129)  
+
+> Accuracy, accountability, and diversity wrapped into a group’s charter contribute to better decision-making. (pg 151)  
+
+**Chapter 5: Dissent to Win**
+
+> Outcome-blind analysis reduces bias by hiding results until all decisions are made. (pg 166)  
+
+> Skepticism is about asking why things might not be true rather than why they are true. (pg 169)  
+
+> Expressing uncertainty invites helpful information and dissenting opinions. (pg 172-175)  
+
+**Chapter 6: Adventures in Mental Time Travel**
+
+> Improving decision quality is about increasing our chances of good outcomes, not guaranteeing them. (pg 180)  
+
+> Our vision of the future is a creative reassembling of our past experiences. (pg 183)  
+
+> Moving regret in front of a decision influences better choices and helps us treat ourselves compassionately. (pg 189)  
+
+> Premortems - imagining failure before it happens-help uncover potential risks and reduce hindsight bias. (pg 222-224)  
+
+**Extra Notes**
+
+> We win bets by striving to calibrate our beliefs and predictions about the future to more accurately represent the world.  
+
+> Declaring uncertainty makes us more credible communicators.  
+
+> Outcomes are feedback: “Experience is not what happens to a man; it is what a man does with what happens to him.”  
+
+> Self-serving bias and binary thinking are natural cognitive traps; thinking in bets helps us mitigate them.  
+
+> The Rashomon Effect reminds us that different interpretations of the same event are normal and shape beliefs.
+    
+    `
   }
+
+
+  /*
+  {
+    title: "Pick Three Things. Now Do Them Well",
+    url: "https://www.scotthyoung.com/blog/2014/10/17/pick-just-three/",
+    dateAdded: "2025-11-14",
+    category: "essay",
+    medium: "digital",
+    tldr: "🎯 Limit your focus to three main projects at a time to maximize effectiveness and avoid burnout.",
+    thoughts: "",
+    tags: ['productivity', 'focus', 'time-management'],
+    notes: ``
+  },
+
+  {
+    title: "Tackle the Hard Stuff First",
+    url: "https://www.codingvc.com/p/tackle-the-hard-stuff-first",
+    dateAdded: "2025-11-14",
+  },
+  */
   
 ];
 

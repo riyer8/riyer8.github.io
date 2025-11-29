@@ -39,7 +39,7 @@ const App = () => {
           }
         />
         <Route path="/bookshelf" element={<BookshelfPage />} />
-        <Route path="/writings" element={<WritingsPage />} />
+        {/*<Route path="/writings" element={<WritingsPage />} />*/}
         <Route path="/taps-103" element={<Taps103Page />} />
       </Routes>
     </ThemeProvider>

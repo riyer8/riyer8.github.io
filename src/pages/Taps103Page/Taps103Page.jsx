@@ -161,7 +161,6 @@ export default function Taps103Page() {
           marginBottom: '1.25rem',
         }}
       >
-        {/* Home button */}
         <a href="/" style={{ textDecoration: 'none' }}>
           <button
             style={{
@@ -183,7 +182,6 @@ export default function Taps103Page() {
           </button>
         </a>
 
-        {/* Avatar + title */}
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <img src={profilePhoto} alt="avatar" className="taps-avatar" />
           <div>
