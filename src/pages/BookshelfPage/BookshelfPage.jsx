@@ -193,7 +193,7 @@ const BookshelfPage = () => {
                 cursor: 'pointer'
               }}
             >
-             <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> Favorites
+             <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> favorites
             </button>
           </div>
 
