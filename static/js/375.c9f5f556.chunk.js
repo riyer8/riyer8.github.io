@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkriyer8_github_io=self.webpackChunkriyer8_github_io||[]).push([[375],{375:(e,i,t)=>{e.exports=t.p+"static/media/celebration.9b9f617cf32088cf1f2b.md"}}]);

@@ -1,7 +1,13 @@
 {
   "files": {
     "main.css": "/static/css/main.3afd58d4.css",
-    "main.js": "/static/js/main.ff02961c.js",
+    "main.js": "/static/js/main.27ab7f1f.js",
+    "static/js/703.73f395f0.chunk.js": "/static/js/703.73f395f0.chunk.js",
+    "static/js/278.34d9c6ff.chunk.js": "/static/js/278.34d9c6ff.chunk.js",
+    "static/js/864.865add2c.chunk.js": "/static/js/864.865add2c.chunk.js",
+    "static/js/737.14632729.chunk.js": "/static/js/737.14632729.chunk.js",
+    "static/js/375.c9f5f556.chunk.js": "/static/js/375.c9f5f556.chunk.js",
+    "static/js/335.15a5fe57.chunk.js": "/static/js/335.15a5fe57.chunk.js",
     "static/media/photo2.png": "/static/media/photo2.8b2fa0b5eb10b02445bb.png",
     "static/media/essay2.png": "/static/media/essay2.aba97662319588c66f8a.png",
     "static/media/photo1.png": "/static/media/photo1.abc614f286739e1abd11.png",
@@ -12,12 +18,18 @@
     "static/media/essay1.png": "/static/media/essay1.ab025c80ae57f1972484.png",
     "static/media/book1.png": "/static/media/book1.370f14356b5d0ab85c1c.png",
     "static/media/To Be Added.png": "/static/media/To Be Added.4fa0d8c6ad56ae54c460.png",
+    "static/media/improv-wisdom.md": "/static/media/improv-wisdom.ef8b6991d23349f07bdd.md",
+    "static/media/about.md": "/static/media/about.6b90daedb086fc2975f4.md",
+    "static/media/celebration.md": "/static/media/celebration.9b9f617cf32088cf1f2b.md",
+    "static/media/play.md": "/static/media/play.3544f94e2c28558e7423.md",
+    "static/media/welcome.md": "/static/media/welcome.08b623498cbc13ded76f.md",
     "index.html": "/index.html",
     "main.3afd58d4.css.map": "/static/css/main.3afd58d4.css.map",
-    "main.ff02961c.js.map": "/static/js/main.ff02961c.js.map"
+    "main.27ab7f1f.js.map": "/static/js/main.27ab7f1f.js.map",
+    "335.15a5fe57.chunk.js.map": "/static/js/335.15a5fe57.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3afd58d4.css",
-    "static/js/main.ff02961c.js"
+    "static/js/main.27ab7f1f.js"
   ]
 }
