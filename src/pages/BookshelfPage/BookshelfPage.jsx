@@ -1,9 +1,10 @@
 import React, { useMemo, useState } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
-import bookshelfData from './data/bookshelfData';
 import profilePhoto from '../../assets/photo3.JPG';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
+
+import bookshelfData from './data/bookshelfData.js';
 
 const Badge = ({ children, theme }) => (
   <span style={{
@@ -25,30 +26,45 @@ const BookshelfPage = () => {
   const [sortKey, setSortKey] = useState('title');
   const [sortDirection, setSortDirection] = useState('asc');
   const [showFavorites, setShowFavorites] = useState(false);
+  const [showArchives, setShowArchives] = useState(false);
   
   const categories = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.category).filter(Boolean))), []);
   const mediums = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.medium).filter(Boolean))), []);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
-    return bookshelfData.filter(r => {
-      if (activeCategory && r.category !== activeCategory) return false;
-      if (activeMedium && r.medium !== activeMedium) return false;
-      if (showFavorites && !r.favorite) return false;
-      if (!q) return true;
-      return (
-        (r.title || '').toLowerCase().includes(q) ||
-        (r.category || '').toLowerCase().includes(q) ||
-        (r.medium || '').toLowerCase().includes(q) ||
-        (r.tags || []).join(' ').toLowerCase().includes(q)
-      );
-    }).sort((a,b) => {
-      const A = (a[sortKey] || '').toString().toLowerCase();
-      const B = (b[sortKey] || '').toString().toLowerCase();
-      const comparison = A.localeCompare(B);
-      return sortDirection === 'asc' ? comparison : -comparison;
-    });
-  }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites]);
+
+    return bookshelfData
+      .filter(r => {
+        // 1. Hide archived items unless the archives filter is on
+        if (!showArchives && r.archives) return false;
+
+        // 2. Apply other filters normally
+        if (activeCategory && r.category !== activeCategory) return false;
+        if (activeMedium && r.medium !== activeMedium) return false;
+        if (showFavorites && !r.favorite) return false;
+
+        // 3. Search matching
+        if (q) {
+          const matches =
+            (r.title || '').toLowerCase().includes(q) ||
+            (r.category || '').toLowerCase().includes(q) ||
+            (r.medium || '').toLowerCase().includes(q) ||
+            (r.tags || []).join(' ').toLowerCase().includes(q);
+
+          if (!matches) return false;
+        }
+
+        return true;
+      })
+      .sort((a, b) => {
+        const A = (a[sortKey] || '').toString().toLowerCase();
+        const B = (b[sortKey] || '').toString().toLowerCase();
+        const comparison = A.localeCompare(B);
+        return sortDirection === 'asc' ? comparison : -comparison;
+      });
+  }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites, showArchives]);
+
 
   const handleHeaderSort = (key) => {
     if (sortKey === key) {
@@ -181,17 +197,12 @@ const BookshelfPage = () => {
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
+          
           {/* Category and Medium filters */}
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+            
             <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>All</button>
-            {categories.map(c => (
-              <button key={c} onClick={() => { setActiveCategory(c); setActiveMedium(null); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
-            ))}
-            {mediums.map(m => (
-              <button key={m} onClick={() => { setActiveMedium(m); setActiveCategory(null); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
-            ))}
-            <button
-              onClick={() => setShowFavorites(f => !f)}
+            <button onClick={() => setShowFavorites(f => !f)}
               style={{
                 padding: '0.45rem 0.75rem',
                 borderRadius: 8,
@@ -201,8 +212,34 @@ const BookshelfPage = () => {
                 cursor: 'pointer'
               }}
             >
-             <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> favorites
+            <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> favorites
             </button>
+            {categories.map(c => (
+              <button key={c} onClick={() => {
+                setActiveCategory(prev => prev === c ? null : c);
+                setActiveMedium(null);
+              }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
+            ))}
+            {mediums.map(m => (
+              <button key={m} onClick={() => {
+                setActiveMedium(prev => prev === m ? null : m);
+                setActiveCategory(null);
+              }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
+            ))}
+           <button
+              onClick={() => setShowArchives(a => !a)}
+              style={{
+                padding: '0.45rem 0.75rem',
+                borderRadius: 8,
+                background: showArchives ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
+                color: showArchives ? '#fff' : theme.colors.text,
+                border: `1px solid ${theme.colors.border}`,
+                cursor: 'pointer'
+              }}
+            >
+              archives
+            </button>
+
           </div>
 
           {/* Search, Filter, and Sort */}
@@ -316,8 +353,12 @@ const BookshelfPage = () => {
                 <tr key={i} style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <button onClick={() => setSelectedItem(row)} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600 }}>
-                        {row.favorite ? <FaStar color={ theme.isDarkMode ? '#FFD700' : '#000'} /> : ''} {row.title}
+                      <button onClick={() => setSelectedItem(row)} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                        {row.favorite ? <FaStar color={ theme.isDarkMode ? '#FFD700' : '#000'} /> : ''} 
+                        {row.title}
+                        {row.archives && (
+                          <span style={{ fontSize: '0.75rem', color: theme.colors.textSecondary, fontStyle: 'italic' }}>(archived)</span>
+                        )}
                       </button>
                       {row.url && (
                         <a href={row.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}>
@@ -326,8 +367,9 @@ const BookshelfPage = () => {
                       )}
                     </div>
                   </td>
-                  <td style={tdStyle}><button onClick={() => setActiveCategory(row.category)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.category}</button></td>
-                  <td style={tdStyle}><button onClick={() => setActiveMedium(row.medium)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.medium}</button></td>
+
+                  <td style={tdStyle}><button onClick={() => setActiveCategory(prev => prev === row.category ? null : row.category)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.category}</button></td>
+                  <td style={tdStyle}><button onClick={() => setActiveMedium(prev => prev === row.medium ? null : row.medium)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.medium}</button></td>
                   <td style={tdStyle}>{(row.tags || []).map((t, idx) => <Badge key={idx} theme={theme}>{t}</Badge>)}</td>
                 </tr>
               ))}

@@ -135,7 +135,7 @@ const QuoteWidget = () => {
             }}
         >
             <div className="quote-title" style={{ color: theme.colors.text }}>
-                Quote of the Day
+                Quote of the Day (from my Bookshelf)
             </div>
 
             {quoteOfTheDay && (
