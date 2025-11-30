@@ -8,37 +8,54 @@ import "./Taps103.css";
 
 // Markdown essay imports
 const commandFiles = {
-  /*
+  welcome: () => import("./essays/welcome.md"),
+  help: () => import("./essays/welcome.md"),
+  about: () => import("./essays/about.md"),
+  improvwisdom: () => import("./essays/improv-wisdom.md"),
   play: () => import("./essays/play.md"),
-  dumbidea: () => import("./essays/dumbidea.md"),
-  boost: () => import("./essays/boost.md"),
-  status: () => import("./essays/status.md"),
-  space: () => import("./essays/space.md"),
-  */
+  celebration: () => import("./essays/celebration.md"),
+  // Hidden / interactive commands
+  yeslets: () => import("./scripts/yeslets.jsx"),
+  //behindthescenes: () => import("./essays/behindthescenes.md"),
+  //"404game": () => import("./essays/404game.md"),
+  //asciiart: () => import("./essays/asciiart.md"),
 };
-
-const initialWelcome = `Welcome to my TAPS 103 Reflections :)
-----------------------------------------
-Here are the commands that you might find useful.
-
-  welcome / help   — show these instructions
-  clear            — clear previous commands
-  play             — on embracing play
-  dumbidea         — on following the “worst” idea
-  boost            — on making your partner look good
-  status           — on status & the body
-  space            — on taking up space
-`;
 
 export default function Taps103Page() {
   const { theme } = useTheme();
   const [terminalInput, setTerminalInput] = useState("");
   const [history, setHistory] = useState([]);
-  const [output, setOutput] = useState(initialWelcome);
+  const [output, setOutput] = useState("");
   const [commandHistory, setCommandHistory] = useState([]);
   const [historyIndex, setHistoryIndex] = useState(null);
   const terminalRef = useRef(null);
   const [fadeIn, setFadeIn] = useState(false);
+
+  // Load welcome.md on mount
+  useEffect(() => {
+    const loadWelcome = async () => {
+      try {
+        const mod = await commandFiles.welcome();
+        let content;
+        if (mod.default) {
+          if (mod.default.startsWith("/")) {
+            const res = await fetch(mod.default);
+            content = await res.text();
+          } else {
+            content = mod.default;
+          }
+        } else {
+          content = <mod.component />;
+        }
+        setOutput(content);
+      } catch (err) {
+        console.error(err);
+        setOutput("Error loading welcome message.");
+      }
+    };
+
+    loadWelcome();
+  }, []);
 
   // Scroll terminal to bottom
   useEffect(() => {
@@ -47,7 +64,7 @@ export default function Taps103Page() {
     }
   }, [history, output]);
 
-  // Fade-in effect for Markdown output
+  // Fade-in effect
   useEffect(() => {
     setFadeIn(true);
     const timeout = setTimeout(() => setFadeIn(false), 500);
@@ -59,26 +76,28 @@ export default function Taps103Page() {
     setCommandHistory((h) => [...h, cmd]);
     setHistoryIndex(null);
 
-    if (cmd === "help" || cmd === "welcome") {
-      setOutput(initialWelcome);
-    } else if (cmd === "clear") {
-      setHistory([]);
-      setOutput("");
-    } else if (commandFiles[cmd]) {
+    if (commandFiles[cmd]) {
       try {
         const mod = await commandFiles[cmd]();
-        let mdContent = mod.default;
 
-        if (mdContent.startsWith("/")) {
-          const res = await fetch(mdContent);
-          mdContent = await res.text();
+        // If it's a React component
+        if (mod.default && typeof mod.default === "function") {
+          setOutput(<mod.default />);
+        } else {
+          let mdContent = mod.default;
+          if (mdContent.startsWith("/")) {
+            const res = await fetch(mdContent);
+            mdContent = await res.text();
+          }
+          setOutput(mdContent);
         }
-
-        setOutput(mdContent);
       } catch (err) {
         console.error(err);
         setOutput("Error loading content.");
       }
+    } else if (cmd === "clear") {
+      setHistory([]);
+      setOutput("");
     } else {
       setOutput(`Command not found: ${cmd}`);
     }
@@ -96,10 +115,7 @@ export default function Taps103Page() {
     if (e.key === "ArrowUp") {
       e.preventDefault();
       if (commandHistory.length === 0) return;
-      const newIndex =
-        historyIndex === null
-          ? commandHistory.length - 1
-          : Math.max(historyIndex - 1, 0);
+      const newIndex = historyIndex === null ? commandHistory.length - 1 : Math.max(historyIndex - 1, 0);
       setHistoryIndex(newIndex);
       setTerminalInput(commandHistory[newIndex]);
     }
@@ -119,63 +135,44 @@ export default function Taps103Page() {
     }
   };
 
-  // Custom renderer for MarkdownMath to handle code blocks with syntax highlighting
-  const renderMarkdown = (text) => (
-    <MarkdownMath
-      text={text}
-      renderers={{
-        code: ({ language, value }) => (
-          <SyntaxHighlighter
-            style={theme.isDarkMode ? materialDark : materialLight}
-            language={language || null}
-          >
-            {value}
-          </SyntaxHighlighter>
-        ),
-        link: ({ href, children }) => (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ color: theme.colors.accent }}
-          >
-            {children}
-          </a>
-        ),
-        image: ({ alt, src }) => <img src={src} alt={alt} className="markdown-img" />,
-        heading: ({ level, children }) =>
-          React.createElement(`h${level}`, { style: { color: theme.colors.text } }, children),
-        paragraph: ({ children }) => <p style={{ color: theme.colors.text }}>{children}</p>,
-      }}
-    />
-  );
+  const renderMarkdown = (text) => {
+    if (React.isValidElement(text)) return text; // if it's a React component, just render it
+
+    return (
+      <MarkdownMath
+        text={text}
+        renderers={{
+          code: ({ language, value }) => (
+            <SyntaxHighlighter style={theme.isDarkMode ? materialDark : materialLight} language={language || null}>
+              {value}
+            </SyntaxHighlighter>
+          ),
+          link: ({ href, children }) => (
+            <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: theme.colors.accent }}>
+              {children}
+            </a>
+          ),
+          image: ({ alt, src }) => <img src={src} alt={alt} className="markdown-img" />,
+          heading: ({ level, children }) =>
+            React.createElement(`h${level}`, { style: { color: theme.colors.text } }, children),
+          paragraph: ({ children }) => <p style={{ color: theme.colors.text }}>{children}</p>,
+        }}
+      />
+    );
+  };
 
   return (
     <div className="taps-page">
       {/* Header */}
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '1rem',
-          marginBottom: '1.25rem',
-        }}
-      >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.25rem' }}>
         <a href="/" style={{ textDecoration: 'none' }}>
           <button
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              padding: '0.4rem 0.6rem',
-              borderRadius: 8,
-              background: theme.isDarkMode
-                ? 'rgba(255,255,255,0.04)'
-                : theme.colors.accent,
+              display: 'flex', alignItems: 'center', gap: '0.5rem', padding: '0.4rem 0.6rem', borderRadius: 8,
+              background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : theme.colors.accent,
               color: theme.isDarkMode ? theme.colors.text : '#fff',
               border: `1px solid ${theme.colors.border || '#ccc'}`,
-              cursor: 'pointer',
-              fontSize: '0.9rem',
+              cursor: 'pointer', fontSize: '0.9rem',
             }}
           >
             ← Home
@@ -185,14 +182,9 @@ export default function Taps103Page() {
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <img src={profilePhoto} alt="avatar" className="taps-avatar" />
           <div>
-            <h1 className="taps-title" style={{ color: theme.colors.text }}>
-              TAPS 103
-            </h1>
-            <p
-              className="taps-subtitle"
-              style={{ color: theme.colors.muted || theme.colors.textSecondary }}
-            >
-              reflections on my improv class.
+            <h1 className="taps-title" style={{ color: theme.colors.text }}>TAPS 103</h1>
+            <p className="taps-subtitle" style={{ color: theme.colors.muted || theme.colors.textSecondary }}>
+              Reflections on my improv class.
             </p>
           </div>
         </div>
@@ -201,22 +193,10 @@ export default function Taps103Page() {
       {/* Main grid */}
       <div className="taps-grid">
         {/* Terminal */}
-        <div
-          className={`terminal`}
-          ref={terminalRef}
-          style={{
-            background: theme.isDarkMode
-              ? theme.colors.cardBackground
-              : '#f0f0f0',
-            color: theme.colors.text,
-            border: `1px solid ${theme.colors.border || (theme.isDarkMode ? '#333' : '#ccc')}`,
-          }}
-        >
+        <div className="terminal" ref={terminalRef} style={{ background: theme.isDarkMode ? theme.colors.cardBackground : '#f0f0f0', color: theme.colors.text, border: `1px solid ${theme.colors.border || (theme.isDarkMode ? '#333' : '#ccc')}` }}>
           <div className="terminal-window">
             {history.map((line, i) => (
-              <div key={i} className="terminal-line">
-                {line}
-              </div>
+              <div key={i} className="terminal-line">{line}</div>
             ))}
             <div className="input-line">
               <span>&gt; </span>
@@ -233,10 +213,7 @@ export default function Taps103Page() {
         </div>
 
         {/* Markdown Output */}
-        <div
-          className={`reflection ${fadeIn ? 'fade-in' : ''}`}
-          style={{ color: theme.colors.text }}
-        >
+        <div className={`reflection ${fadeIn ? 'fade-in' : ''}`} style={{ color: theme.colors.text }}>
           {renderMarkdown(output)}
         </div>
       </div>
