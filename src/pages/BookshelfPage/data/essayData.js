@@ -1,0 +1,323 @@
+const essayData = [
+  {
+    title: "Principles",
+    url: "https://nabeelqu.substack.com/p/principles",
+    dateAdded: "2025-10-11",
+    category: "self-improvement",
+    favorite: true,
+    medium: "essay",
+    tldr: "🔖 Collection of personal principles from Nabeel Qureshi. Honestly can't write a complete TLDR about this based on its density.",
+    thoughts: "Incredible advice on personal principles, something I've been thinking about ever since I took ENGR 148 @ Stanford.",
+    tags: ['decision-making', 'principles', 'philosophy'],
+    notes:` Some of my favorite principles:
+> 9\\. The world is a museum of passion projects.
+> 21\\. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
+> 23\\. Doing things is energizing, wasting time is depressing. You don’t need that much ‘rest’.
+> 31\\. Figure out what creates enduring value.
+> 34\\. “Aim for Chartres” (Christopher Alexander) - when doing something, aim to be the best there ever was at it. This compensates for your natural bias, which is to do something mediocre. You have to really aim to be as good as the greats.
+> 35\\. Send more cold emails. People respond! Assume everyone’s your friend.
+> 51\\. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful.
+> 53\\. Think in writing. Write Google Docs, scrawl in notebooks. This extends working memory arbitrarily and allows your thoughts to compound on each other.
+> 57\\. Scrolling and reading too much drowns out your inner voice.
+    `
+  },
+
+  {
+    title: "What to do with your life",
+    url: "https://www.julian.com/blog/life-planning",
+    dateAdded: "2025-10-17",
+    category: "self-improvement",
+    medium: "essay",
+    tldr: "🧭 Develop a framework to evaluate your values throughout your life.",
+    thoughts: "I've been thinking a lot about what I want out of life and this essay was a quick read into Julian's approach.",
+    tags: ['advice', 'career', 'purpose', 'life-planning'],
+    notes: ` The main values described are:
+
+- Knowledge - Do you become more knowledgeable and skilled from it?
+- Adventure - Do you accrue novel, memorable experiences?
+- Fame - Do you build an audience you can later leverage?
+- Power - Do you acquire resources and connections?
+- Money - Do you increase your financial wealth?
+- Exercising Talent - Do you leverage your skill and creativity?
+- Human Connection - Do you bond with others?
+
+Shapiro frames these seven values as a lens for evaluating whether your decisions align with the kind of life that you want to build.
+
+He also frames the idea of **regret minimization**
+
+> What choices can you make today that minimize the regret you'll feel as an 80-year-old looking back on your life? When you minimize future regret, you sleep well knowing you're maximizing fulfillment.
+`
+  },
+
+  {
+    title: "🌻 tryhard",
+    url: "https://jasmi.news/p/tryhard",
+    dateAdded: "2025-10-17",
+    category: "self-improvement",
+    medium: "essay",
+    favorite: true,
+    tldr: "🌻 A simple, reflective piece on the fruits of trying hard. Why not give it all you got?",
+    thoughts: "Contrary to much of what I used to read, this one encourages that trying hard, harder than one expects. Maybe this is the best form of self help.",
+    tags: ['motivation', 'growth', 'productivity', 'mindset'],
+    notes: ` Contrary to the usual anti-hustle discourse, this essay reminds me that sometimes that best thing you can do for yourself is just try harder, longer, and more consistently than feels reasonable. Showing up because you care and effort is the human aspect of it.
+Ambition is reframed: don't set goals so you are able to *easily* hit them, but rather one that is exhilarating to play.
+> The ones who succeed are often simply the ones who try harder than everybody else. 
+
+Sometimes people overstate 'luck' as being the factor. Maybe trying harder will make you better.
+> Claire Dederer writes that “Finishers are always monsters” - that is, behind every completed oeuvre is a trail of broken promises to people you love. 
+
+I really like this quote mainly because finishers may be glamorous, but it comes with a trail that not everyone will love the way you get there. It's uncomfortable.
+
+> For many years, I obsessed over the “hedonic treadmill” and “cruel optimism” and all these other catchy phrases for feeling bad about achievement culture. What’s the point of working so hard for what you want, if you’ll simply adjust your expectations and revert to the mean after? What if the system is designed on purpose to keep us from success? But it’s Nguyen who gave me peace of mind: These questions are inverted. **I don’t play in order to hit the goals; I set goals so I can play.**
+
+The big takeaway **ambition isn't about chasing outcomes; it is about choosing the games that you want to struggle through**
+
+> Never spend time on something I’d end up regretting if it didn’t lead to the outcome I hoped for.
+
+Make effort feel intentional. You get to choose the game you play, but you have to play it. Not be on the sidelines.
+
+> Ira Glass bit about the taste gap: “It is only by going through a volume of work that you will close that gap, and **your work will be as good as your ambitions**… It’s gonna take awhile. It’s normal to take awhile. You’ve just gotta fight your way through.”
+    `
+
+  },
+
+  {
+    title: "A Roadmap to AI Utopia",
+    url: "https://www.khoslaventures.com/posts/a-roadmap-to-ai-utopia",
+    dateAdded:"2025-10-24",
+    category: "AI",
+    medium: "essay",
+    tldr: "🌏 A rather optimistic view on how AI can lead to a prosperous future for all of humanity.",
+    thoughts: "A refreshing and optimistic perspective on AI's potential to improve lives globally. There is a chance that it remains to be too optimistic without real actionable changes to implement said ideas.",
+    tags: ['AI', 'future', 'optimism', 'technology', 'society', 'startups'],
+    notes: `I really enjoyed the parallel the author drew between AI and a stream engine, as evident as it seems. It's a compelling way to think about how AI is transforming productivity and expanding human capacity. Khosla is definitely optimistic, which made the piece engaging.
+
+That said, some ideas felt underdeveloped. For instance, the treatment of pessimistic viewpoints was too broad, lacking nuance about societal or economic challenges that AI may bring. Similarly, the mention of a universal basic income (UBI) was interesting, but I would have loved more detail on how it would be implemented and the consequences.
+
+Some quotes stood out:
+> "I estimate that over the next 25 years, AI can perform 80% of the work in 80% of all jobs - whether doctors, salespeople, engineers, or farm workers."
+- Bold and thought-provoking, though perhaps optimistic and reliant on assumptions about AI adoption rates across industries.
+
+> "The current challenge is not a lack of resources, but a limitation in our capacity to find them – a barrier AI is poised to help break."
+- May overestimate AI's ability to overcome systemic or structural limitations.
+`
+  },
+
+  {
+    title: "In the Age of AI, All We Have Left Is Taste",
+    url: "https://miscellaneousgood.substack.com/p/in-the-age-of-ai-all-we-have-left",
+    dateAdded: "2025-11-16",
+    category: "AI",
+    medium: "essay",
+    tldr: "✨ AI taking over taste won't result in personal, intimate connections with other people's personal taste.",
+    thoughts: "As someone who deeply thinks about personalization in the face of AI, this essay was really opening to me. We don't want to OR even need to automate everything. Allow people to have personal connections with others.",
+    tags: ['AI', 'personalization', 'taste', 'consumer-behavior'],
+    notes: ` I really love the contrast between the algorithmic optimization and deeply human texture of taste. The author argues that in a world where AI synthesizes everything we already know we want, the real value comes from the perspectives that we align with.
+
+> AI gives you exactly what you want. But in doing so, you never get what you didn’t know you needed.
+
+This captures the idea that taste isn't just about calculating accuracy; it's about personal discovery.
+
+> Human recommendations, according to that logic, are not comprehensive or unbiased. They favor certain things and overlook others. In doing so, they create meaning. 
+
+The biases and preferences that we have actually help us when it comes to deciphering taste. It signals humanity.
+
+> Creative ideas are best evaluated through the senses not the intellect - Rick Rubin`
+
+  },
+
+  {
+    title: "Don't Read History for Lessons",
+    url: "https://commoncog.com/dont-read-history-for-lessons/",
+    dateAdded: "2025-11-19",
+    category: "history",
+    medium: "essay",
+    favorite: true,
+    tldr: "🕰️ Just extracting lessons from history diminishes its purpose. History is context dependent that can help build mental models for future decisions.",
+    thoughts: "Really fascinating as I learn more about history and reframing history",
+    tags: ['history', 'lessons', 'entrepreneurship', 'mental-models'],
+    notes: `
+> This has always been the tricky thing about learning from history. History is context dependent.
+
+> Learning narrow lessons from history is extremely risky because things that are true in one specific context might not be true in a different context - even a slightly different context.
+- I love these ideas. The reminder that history is context dependent also speaks to the empathy needed to understand the eras others lived in. Not everything translates to our lives now and each situation has its own conditions and constraints.
+
+> The person who has read history would know not to overreact to certain events; the person who hasn’t is seeing everything for the very first time.
+- This feels like a natural qualifier of the previous point. Even if events are context-bound, historical perspective can still calibrate how we react. It’s not prescriptive, but it stretches how far our intuition can be extrapolated.
+
+> I think we should read history for **concept instantiations, not lessons.**
+
+> Concepts are represented not as abstract principles in their heads, but a cluster of real world cases that serve as prototypes.
+
+> **The goal of reading from history, then, is to expand the set of prototypes in your head.**
+- Instead of trying to replicate someone else’s exact path, we use examples to see concepts in motion. Over time, those examples broaden our internal library of prototypes, helping us recognize patterns and navigate situations that initially feel unfamiliar.
+`
+  },
+
+  {
+    title: "Frequency Reduces Difficulty",
+    url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
+    dateAdded: "2025-11-24",
+    category: "self-improvement",
+    medium: "essay",
+    tags: ['habit', 'exposure', 'learning', 'practice', 'productivity'],
+    tldr: "🔁 Doing painful tasks more frequently dramatically reduces the difficulty.",
+    thoughts: "Directly aligned with the principle of exposure therapy, do what you don't like the most (within reason).",
+    notes: `The central line **"if it hurts, do it more often"** sounds almost counterintuitive (or obvious if you've seen this idea before), but Fowler integrates it rather well.
+He states that
+> "If we were able to plot pain versus time between integrations, we'd see an exponential curve."
+His argument is essentially exposure therapy for engineering. Painful tasks get exponentially worse the longer you avoid them, but breaking them into smaller, frequent chunks makes them more manageable.
+
+Three main reasons why it is beneficial to essentially do exposure therapy:
+- Tasks, when decomposed, are easier to tackle.
+- Feedback loops; the more often you do something, the faster you learn (like reinforcement learning). Look for every opportunity to add feedback loops.
+- Practice. The more often you do it, the better you get at it. Every iteration makes you familiar with the patterns.
+
+This essay allows us to increase frequency with more painful work, expanding beyond just engineering.
+    `
+  },
+
+  {
+    title: "How To Get Real Buy-In For Your Idea",
+    url: "https://www.forbes.com/sites/work-in-progress/2015/03/16/how-to-get-real-buy-in-for-your-idea/",
+    dateAdded: "2025-11-28",
+    category: "career",
+    medium: "essay",
+    tags: ["career", "growth", 'influence', 'leadership'],
+    tldr: "🤝 Getting real buy-in for an idea requires influence and co-creation.",
+    thoughts: "Such an interesting take on actually getting people to believe in your idea - career or even earlier stages.",
+    notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article is written in 2015, almost a decade old (is it still relevant? I'd personally assume so).
+
+At a high level, here are some of the introductory quotes that provide insight into how to get buy-in:
+
+> Most of the work in companies is done through influence rather than hierarchy due to corporate team-based structures, requiring professionals to have considerable skill at getting support for their ideas.
+
+> Buy-in is critical to making any large organizational change happen. Unless you win support from your ideas, from people at all levels of your organization, big change never seem to take hold or have the impact you want. - John Kotter, _Buy-In_
+
+> Real buy-in involves at least some element of co-creation. It invites discussion, debate, and allows everyone to feel even more vested in the outcome.
+
+Hedges provides a model to get true buy:
+
+### Formula a coherent idea or vision - but keep it in draft form.
+- Lay out the idea clearly, but don't make it seem finalized (otherwise others won't feel a part of the solution). 
+- Convey the current concerns that you have (aka why haven't you solved it yourself? why are you seeking buy-in?).
+
+### Expose the idea to outside criticism - and acknowledge it.
+- Hedges quotes Kotter noting that "if people have no opinions, no objections, and no emotions, it usually means they don't care."
+- This involves **productive advocacy**. Here, you share what you've thought about but acknowledge that it's from a limited perspective and take genuine interest in others' opinions.
+- We should also practice **productive inquiry**. This is how we engage and present ourselves with others via attentiveness and curiosity.
+- Acknowledge others' criticism to gain a mutual understanding.
+
+### Leverage others' feedback for improvement to achieve your end goal.
+- Honestly, rather than this being _your_ end goal, it should now be _our_ end goal
+
+### Communicate your progress.
+> Research shows that people who ask for advice are seen as more credible, not less
+- "Most people tend to reject ideas out of fear, and particularly fear of the unknown"
+    `
+  },
+
+  {
+    title: "What Goes Wrong by Jessica Livingston",
+    url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
+    dateAdded: "2025-11-28",
+    category: "startups",
+    medium: "essay",
+    tags: ["entrepreneurship", "career", "lessons", "failure", "startups"],
+    tldr: "🚀 Livingston provides a recount of reasons why startups fail from her experience of founding YC",
+    thoughts: "I love how she backs up her points with incredibly successful companies at their earliest stages.",
+    notes: `
+> Determination is really two separate things: resilience and drive. Resilience keeps you from being pushed backwards. Drive moves you forwards.
+
+> What you don't realize until you start a startup is how much external validation you've gotten for the conservative choices you've made in the past.
+
+Livingston describes the various ways that people will quit on their ideas after seven years of YC:
+
+1. **Sheer variety of problems that will happen _technically_ with a startup**.
+2. **Cofounder disputes**. 
+   - It's a red flag when you find yourself worrying whether your cofounder is trustworthy or whether he/she works hard enough or is competent.
+3. **Investors**. 
+   - Investors tend to have a herd mentality. They like you if other investors like you.
+   - Investors will also drag their feet. There's no downside for them to delay whereas delay will kill you.
+4. **Distractions**.
+   > There are really only three things you should focus on: building things, talking to users, and exercising
+5. **HR Acquisitions**.
+6. **Making Something People Don't Want**.
+   - Talk to users and adjust your idea accordingly
+
+> Just remember that no extreme ever lasts (good or bad). Don't let yourself get immobilized by sadness when things go wrong. Just keep putting one foot in front of the other and know it will get better.
+`
+  },
+
+  {
+     title: "A Critical Essay On the Art of Performance",
+      url: "https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d",
+      dateAdded: "2025-11-30",
+      category: "creativity",
+      medium: "essay",
+      tags: ["improv", "growth", 'creativity'],
+      tldr: "🎭 de Jong explores the richness of improv from the actors and the audience perspective.",
+      thoughts: "I truly love the depth in which this essay describes improvisers and the ways in which audiences can extract away the hard work used to make scenes natural and believable.",
+      notes: `
+
+I just really like this quote.
+> I aim to uphold no single definition of art, as I deem it counterintuitive to label something as visceral as performance art with the limitations of written language.
+As with many ideas that we attempt to quantify, these ideas merely get lost in translation. Gunnar de Jong doesn't attempt to provide an overarching definition of art, allowing the reader to decipher it themselves.
+
+During his improv class, he works on a variety of études.
+
+Gunnar de Jong definition of étude:
+> étude _(noun)_: open-ended rehearsed improvisations
+
+For further clarification, here is the online definition of étude as it pertains to improv:
+> étude _(noun)_: structured exercise designed to develop specific skills, like living in the moment, chasing a goal, or using a specific technique, which are then applied to spontaneous scenes.
+
+The role of improv / action is "to build the imaginary circumstances and making them *sensually real*", as described by de Jong.
+
+---
+
+Here are the two main life lessons that Gunnar de Jong extracts:
+
+**1. An actor's obligation is to _deliver behavior_**
+It's not merely just the words and actions used, but also understanding the character at a much deeper level to embody it. I really love this quote that the author used from Mike Leigh:
+> **People have talked about my characters as a collection of tics, but that’s reductive. The voice doesn’t exist by itself in a vacuum.** It is how some people talk, specifically people from certain places in the Thames Estuary. But so many different things on so many different levels are organically on the go that you can’t quite put your finger on what it actually is that provokes your reaction. A fundamental misunderstanding about my work — or certainly a reductive view of it — is that by collaborating with an actor I arrive at what I could otherwise have arrived at if I’d sat in a room and written a script and then cast the actor. That somehow it’s just another way of arriving at the same goal. But this is fundamentally not the case. The philosophy of the thing is to create characters who are like people actually are, with all the attendant complexities.
+
+**2. Notion of _going towards the harder choice_**
+
+> Characters going towards the harder choices make the scene more engaging and thus better written, and because it attracts more enticing behavior, it also manifests better acting.
+
+---
+The paradoxical nature of acting and improvising.
+> One of the main realizations I had over the course of this work was that when improvisations are done well, they feel well-written, and when text-work is acted well, it feels improvised. This submersion between both worlds isn’t surprising. In both, the aim is to fool the audience, essentially, into believing something that’s not actually happening.
+
+Just another quote that I really loved about his distinction between great improvisers and actors
+> Improvisation also helps you to develop a sense of the “first time,” one of the _sine qua nons_ of acting. An audience should not sense that it is witnessing an entertainment which has been very carefully rehearsed for its delectation and applause, but rather that it is seeing something that is transpiring at that very second for the first time. That quality of the first time, unfortunately, is very rare among actors. It requires knowing what you’re doing, plus the ability to forget it and then to find it again when you get on stage. The truly great actors have that gift.’
+`
+  }
+
+
+  /*
+  {
+    title: "Pick Three Things. Now Do Them Well",
+    url: "https://www.scotthyoung.com/blog/2014/10/17/pick-just-three/",
+    dateAdded: "2025-11-14",
+    category: "essay",
+    medium: "digital",
+    tldr: "🎯 Limit your focus to three main projects at a time to maximize effectiveness and avoid burnout.",
+    thoughts: "",
+    tags: ['productivity', 'focus', 'time-management'],
+    notes: ``
+  },
+
+  {
+    title: "Tackle the Hard Stuff First",
+    url: "https://www.codingvc.com/p/tackle-the-hard-stuff-first",
+    dateAdded: "2025-11-14",
+  },
+  */
+
+
+
+];
+
+export default essayData;

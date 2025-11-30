@@ -11,7 +11,6 @@ const commandFiles = {
   welcome: () => import("./essays/welcome.md"),
   help: () => import("./essays/welcome.md"),
   about: () => import("./essays/about.md"),
-  improvwisdom: () => import("./essays/improv-wisdom.md"),
   play: () => import("./essays/play.md"),
   celebration: () => import("./essays/celebration.md"),
   // Hidden / interactive commands
@@ -19,6 +18,9 @@ const commandFiles = {
   //behindthescenes: () => import("./essays/behindthescenes.md"),
   //"404game": () => import("./essays/404game.md"),
   //asciiart: () => import("./essays/asciiart.md"),
+  // Books / Essays
+  improvwisdom: () => import("./essays/improv-wisdom.md"),
+  artperformance: () => import("./essays/artperformance.md"),
 };
 
 export default function Taps103Page() {
@@ -184,7 +186,7 @@ export default function Taps103Page() {
           <div>
             <h1 className="taps-title" style={{ color: theme.colors.text }}>TAPS 103</h1>
             <p className="taps-subtitle" style={{ color: theme.colors.muted || theme.colors.textSecondary }}>
-              Reflections on my improv class.
+              reflections on my improv class.
             </p>
           </div>
         </div>
