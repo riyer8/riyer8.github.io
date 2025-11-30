@@ -439,6 +439,10 @@ This essay allows us to increase frequency with more painful work, expanding bey
 
 > Embrace the wobble. Insecurity is normal. Count on it. – pg. 83
 
+### 8. Stay on Course
+
+> There is meaning in everything we do, even small tasks - pg. 88
+
 ### 9. Wake Up to the Gifts
 > I walked into a brand-new movie of my life, one in which I wasn’t the star, but one of many players… To see my story from the perspective of the others gave it new meaning. – pg. 92
 

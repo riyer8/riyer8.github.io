@@ -23,6 +23,7 @@ const BookshelfPage = () => {
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeMedium, setActiveMedium] = useState(null);
   const [sortKey, setSortKey] = useState('title');
+  const [sortDirection, setSortDirection] = useState('asc');
   const [showFavorites, setShowFavorites] = useState(false);
   
   const categories = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.category).filter(Boolean))), []);
@@ -44,10 +45,19 @@ const BookshelfPage = () => {
     }).sort((a,b) => {
       const A = (a[sortKey] || '').toString().toLowerCase();
       const B = (b[sortKey] || '').toString().toLowerCase();
-      return A.localeCompare(B);
+      const comparison = A.localeCompare(B);
+      return sortDirection === 'asc' ? comparison : -comparison;
     });
-  }, [search, activeCategory, activeMedium, sortKey, showFavorites]);
+  }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites]);
 
+  const handleHeaderSort = (key) => {
+    if (sortKey === key) {
+      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+    } else {
+      setSortKey(key);
+      setSortDirection('asc');
+    }
+  };
 
   const [selectedItem, setSelectedItem] = useState(null);
   const [notesOpen, setNotesOpen] = useState(true);
@@ -67,7 +77,9 @@ const BookshelfPage = () => {
     padding: '0.75rem 1rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.textSecondary,
-    fontSize: '0.95rem'
+    fontSize: '0.95rem',
+    cursor: 'pointer',
+    userSelect: 'none'
   };
 
   const tdStyle = {
@@ -168,14 +180,15 @@ const BookshelfPage = () => {
           </div>
         </div>
 
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1rem', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
+          {/* Category and Medium filters */}
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-            <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}` }}>All</button>
+            <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>All</button>
             {categories.map(c => (
-              <button key={c} onClick={() => { setActiveCategory(c); setActiveMedium(null); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}` }}>{c}</button>
+              <button key={c} onClick={() => { setActiveCategory(c); setActiveMedium(null); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
             ))}
             {mediums.map(m => (
-              <button key={m} onClick={() => { setActiveMedium(m); setActiveCategory(null); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}` }}>{m}</button>
+              <button key={m} onClick={() => { setActiveMedium(m); setActiveCategory(null); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
             ))}
             <button
               onClick={() => setShowFavorites(f => !f)}
@@ -192,16 +205,13 @@ const BookshelfPage = () => {
             </button>
           </div>
 
+          {/* Search, Filter, and Sort */}
           <div
             style={{
-              marginLeft: 'auto',
-              minWidth: 260,
-              position: 'relative',
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              flex: 1,
-              maxWidth: '100%'
+              flexWrap: 'wrap'
             }}
           >
           <input
@@ -211,8 +221,7 @@ const BookshelfPage = () => {
             onChange={(e) => setSearch(e.target.value)}
             style={{
               flex: 1,
-              minWidth: 120,
-              maxWidth: '100%',
+              minWidth: 200,
               padding: '0.6rem 0.75rem',
               borderRadius: 8,
               border: `1px solid ${theme.colors.border}`,
@@ -224,39 +233,39 @@ const BookshelfPage = () => {
 
           <div style={{ display: 'flex', gap: '0.5rem' }}>
               <div style={{ position: 'relative' }}>
-                <button onClick={() => { setFilterOpen(o => !o); setSortOpen(false); }} aria-expanded={false} style={{ padding: '0.45rem 0.6rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', cursor: 'pointer' }}>⚲ Filter</button>
+                <button onClick={() => { setFilterOpen(o => !o); setSortOpen(false); }} aria-expanded={filterOpen} style={{ padding: '0.45rem 0.6rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff', color: theme.colors.text, cursor: 'pointer' }}>⚲ Filter</button>
                 {typeof filterOpen !== 'undefined' && filterOpen ? (
                   <div style={{ position: 'absolute', right: 0, top: 'calc(100% + 0.5rem)', width: 300, background: theme.colors.cardBackground, border: `1px solid ${theme.colors.border}`, borderRadius: 8, padding: '0.75rem', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 2250 }}>
                     <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
                       <div style={{ fontWeight: 700, color: theme.colors.text }}>Category</div>
                       {(categories || []).map(c => (
-                        <button key={c} onClick={() => { setActiveCategory(c); setFilterOpen(false); }} style={{ padding: '0.35rem 0.5rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text }}>{c}</button>
+                        <button key={c} onClick={() => { setActiveCategory(c); setFilterOpen(false); }} style={{ padding: '0.35rem 0.5rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, cursor: 'pointer' }}>{c}</button>
                       ))}
                     </div>
                     <div style={{ marginTop: '0.5rem' }}>
                       <div style={{ fontWeight: 700, color: theme.colors.text, marginBottom: '0.5rem' }}>Medium</div>
                       <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                         {(mediums || []).map(m => (
-                          <button key={m} onClick={() => { setActiveMedium(m); setFilterOpen(false); }} style={{ padding: '0.35rem 0.5rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text }}>{m}</button>
+                          <button key={m} onClick={() => { setActiveMedium(m); setFilterOpen(false); }} style={{ padding: '0.35rem 0.5rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, cursor: 'pointer' }}>{m}</button>
                         ))}
                       </div>
                     </div>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.75rem' }}>
-                      <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setFilterOpen(false); }} style={{ padding: '0.4rem 0.6rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: 'transparent' }}>Clear</button>
-                      <button onClick={() => setFilterOpen(false)} style={{ padding: '0.4rem 0.6rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: theme.colors.accent, color: '#fff' }}>Close</button>
+                      <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setFilterOpen(false); }} style={{ padding: '0.4rem 0.6rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: 'transparent', color: theme.colors.text, cursor: 'pointer' }}>Clear</button>
+                      <button onClick={() => setFilterOpen(false)} style={{ padding: '0.4rem 0.6rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: theme.colors.accent, color: '#fff', cursor: 'pointer' }}>Close</button>
                     </div>
                   </div>
                 ) : null}
               </div>
 
               <div style={{ position: 'relative' }}>
-                <button onClick={() => { setSortOpen(o => !o); setFilterOpen(false); }} style={{ padding: '0.45rem 0.6rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', cursor: 'pointer' }}>⇅ Sort</button>
+                <button onClick={() => { setSortOpen(o => !o); setFilterOpen(false); }} style={{ padding: '0.45rem 0.6rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff', color: theme.colors.text, cursor: 'pointer' }}>⇅ Sort</button>
                 {typeof sortOpen !== 'undefined' && sortOpen ? (
                   <div style={{ position: 'absolute', right: 0, top: 'calc(100% + 0.5rem)', width: 220, background: theme.colors.cardBackground, border: `1px solid ${theme.colors.border}`, borderRadius: 8, padding: '0.75rem', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 2250 }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}><input type="radio" name="sort" checked={sortKey === 'title'} onChange={() => { setSortKey('title'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Title</span></label>
-                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}><input type="radio" name="sort" checked={sortKey === 'category'} onChange={() => { setSortKey('category'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Category</span></label>
-                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}><input type="radio" name="sort" checked={sortKey === 'medium'} onChange={() => { setSortKey('medium'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Medium</span></label>
+                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'title'} onChange={() => { setSortKey('title'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Title</span></label>
+                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'category'} onChange={() => { setSortKey('category'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Category</span></label>
+                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'medium'} onChange={() => { setSortKey('medium'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Medium</span></label>
                     </div>
                   </div>
                 ) : null}
@@ -269,9 +278,36 @@ const BookshelfPage = () => {
           <table style={tableStyle}>
             <thead>
               <tr>
-                <th style={thStyle}>Title</th>
-                <th style={thStyle}>Category</th>
-                <th style={thStyle}>Medium</th>
+                <th style={thStyle} onClick={() => handleHeaderSort('title')}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    Title
+                    {sortKey === 'title' && (
+                      <span style={{ fontSize: '0.8rem' }}>
+                        {sortDirection === 'asc' ? '↑' : '↓'}
+                      </span>
+                    )}
+                  </div>
+                </th>
+                <th style={thStyle} onClick={() => handleHeaderSort('category')}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    Category
+                    {sortKey === 'category' && (
+                      <span style={{ fontSize: '0.8rem' }}>
+                        {sortDirection === 'asc' ? '↑' : '↓'}
+                      </span>
+                    )}
+                  </div>
+                </th>
+                <th style={thStyle} onClick={() => handleHeaderSort('medium')}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    Medium
+                    {sortKey === 'medium' && (
+                      <span style={{ fontSize: '0.8rem' }}>
+                        {sortDirection === 'asc' ? '↑' : '↓'}
+                      </span>
+                    )}
+                  </div>
+                </th>
                 <th style={thStyle}>Tags</th>
               </tr>
             </thead>

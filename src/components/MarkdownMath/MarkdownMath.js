@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useTheme } from '../ThemeContext/ThemeContext'; // import your theme context
 
 // Inject KaTeX CSS + JS
 const injectKatex = () => {
@@ -75,18 +76,6 @@ const renderMarkdownWithKatexPlaceholders = (text) => {
     html = html.split(p.id).join(span);
   });
 
-  // Sanitize: allow images, links, math
-  if (typeof window !== 'undefined' && window.DOMPurify) {
-    html = window.DOMPurify.sanitize(html, {
-      ADD_ATTR: [
-        'data-katex-display',
-        'data-katex-inline',
-        'src', 'alt', 'title', 'width', 'height', 'style', 'target'
-      ],
-      ALLOWED_URI_REGEXP: /^(?:http|https|data):/i
-    });
-  }
-
   return html;
 };
 
@@ -106,6 +95,7 @@ const applyKatexToNode = (node) => {
 };
 
 const MarkdownMath = ({ text }) => {
+  const { theme } = useTheme(); // use your theme
   const rootRef = useRef(null);
   const [ready, setReady] = useState(false);
   const [html, setHtml] = useState('');
@@ -131,22 +121,42 @@ const MarkdownMath = ({ text }) => {
     if (!ready) return;
 
     const parsed = renderMarkdownWithKatexPlaceholders(text);
-    setHtml(parsed);
+    let sanitized = parsed;
 
-    // Apply KaTeX after HTML is inserted
+    if (typeof window !== 'undefined' && window.DOMPurify) {
+      sanitized = window.DOMPurify.sanitize(parsed, {
+        ADD_TAGS: ['iframe', 'video', 'source'],
+        ADD_ATTR: [
+          'data-katex-display',
+          'data-katex-inline',
+          'src', 'alt', 'title', 'width', 'height', 'style',
+          'frameborder', 'allow', 'allowfullscreen', 'controls', 'type'
+        ],
+        ALLOWED_URI_REGEXP: /^(?:http|https|data):/i
+      });
+    }
+
+    setHtml(sanitized);
+
     const t = setTimeout(() => {
       if (rootRef.current) applyKatexToNode(rootRef.current);
     }, 200);
     return () => clearTimeout(t);
   }, [text, ready]);
 
+  // Styles dynamically respect theme
   const styles = `
-    #markdown-math-root { box-sizing: border-box; width: 100%; }
+    #markdown-math-root { box-sizing: border-box; width: 100%; color: ${theme.colors.text}; }
     #markdown-math-root p, #markdown-math-root li, #markdown-math-root h1, #markdown-math-root h2, #markdown-math-root h3, #markdown-math-root h4, #markdown-math-root h5, #markdown-math-root span { word-break: break-word; overflow-wrap: anywhere; white-space: normal; }
     #markdown-math-root pre, #markdown-math-root code { max-width: 100%; overflow-x: auto; white-space: pre-wrap; word-break: break-word; background: rgba(0,0,0,0.03); padding: 6px 8px; border-radius: 6px; }
     #markdown-math-root img, #markdown-math-root table { max-width: 100%; height: auto; }
-    #markdown-math-root blockquote { white-space: normal; word-break: break-word; border-left: 3px solid rgba(0,0,0,0.08); margin-left: 0; padding-left: 12px; color: inherit; background: transparent; }
+    #markdown-math-root blockquote { 
+      white-space: normal; word-break: break-word; border-left: 3px solid ${theme.isDarkMode ? '#888' : 'rgba(0,0,0,0.08)'}; 
+      margin-left: 0; padding-left: 12px; color: ${theme.colors.text}; background: transparent;
+    }
     #markdown-math-root .katex { max-width: 100%; overflow-wrap: anywhere; word-break: break-word; }
+    #markdown-math-root a { color: ${theme.colors.accent}; text-decoration: underline; }
+    #markdown-math-root iframe, #markdown-math-root video { max-width: 100%; height: auto; display: block; margin: 1em 0; }
   `;
 
   return (
