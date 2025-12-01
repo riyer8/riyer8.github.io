@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkriyer8_github_io=self.webpackChunkriyer8_github_io||[]).push([[790],{790:(i,e,a)=>{i.exports=a.p+"static/media/improvthinking.a405a86ea6710276dfa2.md"}}]);

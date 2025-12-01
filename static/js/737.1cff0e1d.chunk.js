@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkriyer8_github_io=self.webpackChunkriyer8_github_io||[]).push([[737],{737:(e,i,s)=>{e.exports=s.p+"static/media/play.7d78e7eca12b397920f6.md"}}]);

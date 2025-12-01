@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkriyer8_github_io=self.webpackChunkriyer8_github_io||[]).push([[716],{716:(e,a,i)=>{e.exports=i.p+"static/media/memory.32a90b100a6729a0aa36.md"}}]);
