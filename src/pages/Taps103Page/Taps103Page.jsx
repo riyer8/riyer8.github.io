@@ -11,16 +11,20 @@ const commandFiles = {
   welcome: () => import("./essays/welcome.md"),
   help: () => import("./essays/welcome.md"),
   about: () => import("./essays/about.md"),
+
+  // commands
   play: () => import("./essays/play.md"),
+  obvious: () => import("./essays/obvious.md"),
+  partnership: () => import("./essays/partnership.md"),
   celebration: () => import("./essays/celebration.md"),
+  memory: () => import("./essays/memory.md"),
+  space: () => import("./essays/space.md"),
   // Hidden / interactive commands
   yeslets: () => import("./scripts/yeslets.jsx"),
-  //behindthescenes: () => import("./essays/behindthescenes.md"),
-  //"404game": () => import("./essays/404game.md"),
-  //asciiart: () => import("./essays/asciiart.md"),
   // Books / Essays
-  improvwisdom: () => import("./essays/improv-wisdom.md"),
+  improvwisdom: () => import("./essays/improvwisdom.md"),
   artperformance: () => import("./essays/artperformance.md"),
+  improvthinking: () => import("./essays/improvthinking.md"),
 };
 
 export default function Taps103Page() {

@@ -318,6 +318,25 @@ const bookData = [
     
     `
   },
+
+  {
+    title: "Here’s how to live: Create. (From The Book \"How to Live\")",
+    url: "https://sive.rs/htl23",
+    dateAdded: "2025-11-30",
+    category: "creativity",
+    medium: "book",
+    favorite: true,
+    tags: ["career", "creativity"],
+    tldr: "The best way to live is to create. Don't leave this world with ideas that could have been something out there.",
+    thoughts: "Oh wow. Definitely something I'm coming back to later.",
+    notes: ` 
+> The most valuable real estate in the world is the graveyard. \n There lie millions of half-written books, ideas never launched, and talents never developed. \n Most people die with everything still inside of them. \n **The way to live is to create.** \n **Die empty.**
+
+> It’s better to create something bad than nothing at all. \n You can improve something bad. \n You can’t improve nothing.
+
+> When you’re gone, your work shows who you were. \n Not your intentions. \n Not what you took in. \n Only what you put out.
+    `
+  }
   
 ];
 
