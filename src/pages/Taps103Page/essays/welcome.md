@@ -1,28 +1,33 @@
-# Welcome to my TAPS 103 Reflections :)
+# Welcome to my TAPS 103 Reflections 🎭
 
-Here are some high-level commands you may find useful:
+Below is a guide to help you explore the ideas, themes, and inspirations from TAPS 103, Beginner's Improv, at Stanford.
 
-- **welcome / help**: Shows these Instructions ✅
-- **about**: Artist's Statement ✅
+### General Commands 🧭
 
-Here are some specific commands:
+Use these anytime you need to navigate:
 
-- **play**: Embracing play 🟡 need to add explanations of activities
-- **obvious**: It's ok to be obvious
-- **partnership**: Make your partner look good
-- **status**: Interactions Between Status
-- **space**: Taking up Space & Body Language
-- **celebration**: Embracing Failures 🟡 need to add explanations of activities
-- **memory**: Scenes are Made from the Path Behind You 🟡 need to add explanations of activities
+- **welcome / help**: Shows these Instructions
+- **about**: Reflections and Motivations
 
-Here are some literature review:
+### Core Reflection Commands 🌟
 
-- **improvwisdom**: A Reflection on _Improv Wisdom_ 🟡 need to further expand on quotes
-- **impro**: A Reflection on _Impro_
-- **artperformance**: A Reflection on _A Critical Essay On the Art of Performance as guided by work on Improvisation_ [_(link)_](https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d) ✅
+Dive into specific concepts we explored in class:
 
-_You may find some hidden ones that work too! I've attended a full suite in the written documentation of this project_
+- **play**: Play Without Permission 🎈
+- **obvious**: It's Ok to Be Obvious ✨
+- **partnership**: Make Your Partner Look Good 🤝
+- **space**: Space Objects 🪐
+- **celebration**: Celebration of the Failures 🎉
+- **memory**: The Path is Already Made Created 🧩
 
-Hidden things for right now:
+### Literature Review 📚
 
-- **yeslets** 🟡 add more activities
+Reflections inspired by texts and essays:
+
+- **improvwisdom**: A Reflection on _Improv Wisdom_
+- **artperformance**: A Reflection on _A Critical Essay On the Art of Performance as guided by work on Improvisation_ [_(link)_](https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d)
+- **improvthinking**: A Reflection on _How Improv Thinking Helped Me Get Out of My Head and Into the Moment_ [_(link)_](https://medium.com/better-humans/how-improv-thinking-helped-me-get-out-of-my-head-and-into-the-moment-a2bff6401548)
+
+### Easter Eggs 🥚✨
+
+You may encounter a couple of hidden commands along the way. They are just touches to invite spontaneity and play. :)

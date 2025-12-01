@@ -250,15 +250,15 @@ Livingston describes the various ways that people will quit on their ideas after
   },
 
   {
-     title: "A Critical Essay On the Art of Performance",
-      url: "https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d",
-      dateAdded: "2025-11-30",
-      category: "creativity",
-      medium: "essay",
-      tags: ["improv", "growth", 'creativity'],
-      tldr: "🎭 de Jong explores the richness of improv from the actors and the audience perspective.",
-      thoughts: "I truly love the depth in which this essay describes improvisers and the ways in which audiences can extract away the hard work used to make scenes natural and believable.",
-      notes: `
+    title: "A Critical Essay On the Art of Performance",
+    url: "https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d",
+    dateAdded: "2025-11-30",
+    category: "creativity",
+    medium: "essay",
+    tags: ["improv", "growth", 'creativity'],
+    tldr: "🎭 de Jong explores the richness of improv from the actors and the audience perspective.",
+    thoughts: "I truly love the depth in which this essay describes improvisers and the ways in which audiences can extract away the hard work used to make scenes natural and believable.",
+    notes: `
 
 I just really like this quote.
 > I aim to uphold no single definition of art, as I deem it counterintuitive to label something as visceral as performance art with the limitations of written language.
@@ -293,6 +293,101 @@ The paradoxical nature of acting and improvising.
 Just another quote that I really loved about his distinction between great improvisers and actors
 > Improvisation also helps you to develop a sense of the “first time,” one of the _sine qua nons_ of acting. An audience should not sense that it is witnessing an entertainment which has been very carefully rehearsed for its delectation and applause, but rather that it is seeing something that is transpiring at that very second for the first time. That quality of the first time, unfortunately, is very rare among actors. It requires knowing what you’re doing, plus the ability to forget it and then to find it again when you get on stage. The truly great actors have that gift.’
 `
+  },
+
+  {
+    title: "Experts and Elites Play Fundamentally Different Games",
+    url: "https://www.robkhenderson.com/p/experts-and-elites-play-fundamentally",
+    dateAdded: "2025-11-30",
+    category: "psychology",
+    medium: "essay",
+    favorite: true,
+    tags: ["status", "sociology", "expertise", "elites", "incentives"],
+    tldr: "⚖️ The divide between experts (technically backed) and elites (socially backed)",
+    thoughts: "Really fascinating account of status and the tradeoffs. Definitely something I will be thinking about.",
+    notes: `
+
+As a broad statement, Henderson introduces the archetypes below.
+> In most societies, people fall into one of three roles: the masses, the experts, and the elites.
+
+**Experts are those who _know things_.** This can be seen by their credentials, technical precision, method of argument. _They care about being right_.
+
+**Elite are ones who are judged not on technical knowledge but rather _wealth, looks, taste, social fluency, etc._** They often talk to other elites which don't necessarily need to be from the same field but rather with the same sense of status.
+
+Experts and elites are on two ends of a spectrum. 
+
+In a way, elites can _overrule_ expert opinion, especially with issues that can rally society or have emotional weight.
+A lot of elites were also experts first, starting from real academic that backed their promotions to higher up positions. Elites acute sense for framing and audience allows them to lead the conversation.
+
+Both of these archetypes serve different functions. Henderson actually sums this up quite well
+> Expert talk is for getting to the truth. Elite talk is for getting things to move... There is mutual envy: experts want reach, elites want credibility.
+
+> Cynicism, flirtation, taboo subjects, and uncomfortable truths are all tolerated more easily when they come from elites. Particularly if the delivery is polished. The same behavior that would get a lower-status person punished is often excused, or even admired, when it comes from higher up.
+    `
+  },
+
+  {
+    title: "How Improv Thinking Helped Me Get Out of My Head and Into the Moment",
+    url: "https://medium.com/better-humans/how-improv-thinking-helped-me-get-out-of-my-head-and-into-the-moment-a2bff6401548",
+    dateAdded: "2025-11-30",
+    category: "creativity",
+    medium: "essay",
+    tags: ["improv", "growth", 'creativity'],
+    tldr: "🎭 Improv can improv your day-to-day life with more patience and reflection.",
+    notes: `
+> When people shifted their focus and tapped into a childlike sense of curiosity, their anxiety decreased and their creativity increased.
+
+Drinko explains one of the core concepts in improv: the theory of "Yes, And". With the principle of "Yes, And", we collaborate with our partner to make a faithful attempt at the reality that we jointly bring to the table. With this principle, we garner a level of trust with our partner that we won't get sabatoged in the moment, allowing creativity to take over.
+
+Drinko describes the 12 lessons you can learn from improv:
+
+**Lesson 1: Mindfulness**
+
+- The brain has a limited amount of space. Be mindful of the present. Where are you right now? What is around you? It helps reduce the overthinking.
+
+**Lesson 2: Calming Down**
+
+- That actually leads really nicely into the next idea of calming down. Slow down and breathe.
+
+**Lesson 3: Find the Game**
+
+- Pay attention to special, hidden patterns that can allow you to break away from regular patterns and have fun.
+
+**Lesson 4: Being More Positive**
+
+- When you slip into negativity, find the light within it. Not everything can be positive, but you can notice (and limit) the unnecessary negative.
+
+**Lesson 5: Stop Being Judgmental**
+
+- Don't cloud your brain with judgmental thoughts. Pretend you are a detective trying to understand the world.
+- Being genuinely interested allows trust to grow.
+
+**Lesson 6: Treating Others Like Geniuses**
+
+- Find the strengths in others.
+
+**Lesson 7: You Aren’t Special**
+
+- We, more or less, think alike. As Drinko describes, "an extension of treating people like geniuses is to stop thinking like your wants and needs are any more or less important than anyone else’s."
+
+**Lesson 8: Listen**
+
+- Pause for three counts when someone talks. You don't need to dominate every conversation.
+
+**Lesson 9 & 10: Yes, And**
+
+- Be mindful when you say no and when it might make more sense to say yes.
+
+**Lesson 11: Embrace Mistakes**
+
+- Improv would be pointless without mistakes and we can learn to twist them to our benefit.
+- This doesn't mean we should justify all of our mistakes but rather don't let our mistakes stop us.
+
+**Lesson 12: Make Big Choices**
+
+- Improv reward sthose who go big or go home. Just do the damn thing.
+
+    `
   }
 
 

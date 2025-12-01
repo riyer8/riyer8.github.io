@@ -31,6 +31,12 @@ const BookshelfPage = () => {
   const categories = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.category).filter(Boolean))), []);
   const mediums = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.medium).filter(Boolean))), []);
 
+  const archiveCount = useMemo(
+    () => bookshelfData.filter(item => item.archives).length,
+    []
+  );
+
+
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
 
@@ -227,18 +233,24 @@ const BookshelfPage = () => {
               }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
             ))}
            <button
-              onClick={() => setShowArchives(a => !a)}
-              style={{
-                padding: '0.45rem 0.75rem',
-                borderRadius: 8,
-                background: showArchives ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
-                color: showArchives ? '#fff' : theme.colors.text,
-                border: `1px solid ${theme.colors.border}`,
-                cursor: 'pointer'
-              }}
-            >
-              archives
-            </button>
+            onClick={() => setShowArchives(a => !a)}
+            style={{
+              padding: '0.45rem 0.75rem',
+              borderRadius: 8,
+              background: showArchives ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
+              color: showArchives ? '#fff' : theme.colors.text,
+              border: `1px solid ${theme.colors.border}`,
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '0.25rem'
+            }}
+          >
+            archives
+            <span style={{ color: theme.colors.textSecondary, fontStyle: 'italic', fontWeight: 400 }}>
+              {archiveCount}
+            </span>
+          </button>
 
           </div>
 

@@ -1,10 +1,12 @@
-# 🎭 Review: A Critical Essay On the Art of Performance
+# Review: A Critical Essay On the Art of Performance 🎭
 
-**TL;DR:** 🎭 de Jong explores the richness of improv from the actors and the audience perspective.
+**TL;DR:** de Jong explores the richness of improv from the actors and the audience perspective.
 
 **Thoughts:** I truly love the depth in which this essay describes improvisers and the ways in which audiences can extract away the hard work used to make scenes natural and believable.
 
 **[View Blog Post](https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d)**
+
+---
 
 I just really like this quote.
 
@@ -17,11 +19,11 @@ Gunnar de Jong definition of étude:
 
 > étude _(noun)_: open-ended rehearsed improvisations
 
-For further clarification, here is the online definition of étude as it pertains to improv:
+For comparison, here is a broader defintion as it appears in improv literature:
 
 > étude _(noun)_: structured exercise designed to develop specific skills, like living in the moment, chasing a goal, or using a specific technique, which are then applied to spontaneous scenes.
 
-The role of improv / action is "to build the imaginary circumstances and making them _sensually real_", as described by de Jong.
+The role of improv / action is "to build the imaginary circumstances and make them _sensually real_", as described by de Jong.
 
 ---
 
@@ -40,8 +42,10 @@ It's not merely just the words and actions used, but also understanding the char
 
 The paradoxical nature of acting and improvising.
 
-> One of the main realizations I had over the course of this work was that when improvisations are done well, they feel well-written, and when text-work is acted well, it feels improvised. This submersion between both worlds isn’t surprising. In both, the aim is to fool the audience, essentially, into believing something that’s not actually happening.
+> When improvisations are done well, they feel well-written, and when text-work is acted well, it feels improvised. This submersion between both worlds isn’t surprising. In both, the aim is to fool the audience, essentially, into believing something that’s not actually happening.
 
-Just another quote that I really loved about his distinction between great improvisers and actors
+The tension between structure and spontaneity is where performances come to life. Both cases have the same goal: draw the audience into something that isn't truly happening but evicts emotion.
+
+One final quote I loved:
 
 > Improvisation also helps you to develop a sense of the “first time,” one of the _sine qua nons_ of acting. An audience should not sense that it is witnessing an entertainment which has been very carefully rehearsed for its delectation and applause, but rather that it is seeing something that is transpiring at that very second for the first time. That quality of the first time, unfortunately, is very rare among actors. It requires knowing what you’re doing, plus the ability to forget it and then to find it again when you get on stage. The truly great actors have that gift.’

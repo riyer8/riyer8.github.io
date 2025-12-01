@@ -1,15 +1,19 @@
-## Reflections and Motivations
+## Reflections and Motivations ✨
 
-#### A mini reflection on TAPS 103
+### A Mini Reflection on TAPS 103 🎭
 
-I remember the first time I entered into TAPS 103. I was truly worried about the first class; I was so afraid I'd have to be in the spotlight and improv right away. On the surface, it seemed so natural. "Everyone can improv", I was told. Yet, as an introvert, I'm insanely aware of my own perspection. I overthink and overanalyze every move I make. I confinded in a fellow student on our common worry and introversion.
+I remember the very first time I walked into TAPS 103. In fact, even before that, I was truly worried about the first class; I was so afraid I'd have to be in the spotlight and expected to improvise right away. On the surface, improv seemed so effortless. _"Everyone can improv"_, I was told. Even a child can do it naturally _(and, honestly, that's possibly still true)_.
 
-#### Why a terminal format?
+But as an introvert, I'm hyper-aware of my own perspective. I overthink. I overanalyze. I rehearse moments before they happen; I contemplate after they occurred.
 
-Yet, still, I didn't realize how much of my daily life was spent ensuring I chose my words carefully, planning ahead, making sure I was the best I could be. The terminal interface for my final project (as opposed to how nerdy it is) is one of the lowest abstractions that us CS majors can have. It's one that allows me to rediscover.
+### Why a Terminal Format? 💻
 
-There is no "nice" interface on a terminal (though I try to make some of it more legible for ease of access). You just type -> see the output -> discover.
+The terminal interface for my final project (beyond it being very nerdy) was intentional. The terminal is one of the lowest abstractions that we CS majors can encounter. It's often raw, unstyled. Usually, there is no "nice" interface _(though, here, I try to make it readable!)_.
 
-#### How the commands act like improv "offers"
+This roughness embraces the idea of improv for me. It's messy and it's imperfect, but it's fundamental. Our life is like a series of improv. While it is at the core of our existence, it is still _nice_ to know the rules and ideas that allow us to do it well (or, at least, type the right commands).
 
-In improv, we learn to pick up any offers - however small they may be. This project treats each command as an offer too! You don't see the entire system but rather only if you decide to take ahold of the offer - when you try something! There are possibly hidden pages, secrets, and wandering tha tallows for exploration instead of reading an essay linearly. It's unpredictable and alive :)
+### How the Commands Act Like Improv "Offers" 🎁
+
+In improv, we learn to accept and build on offers - however small they may be. This project treats each command as an offer too! You don't see the entire system but rather only if you decide to take a hold of the offer - when you try to type something!
+
+There are also hidden pages, secrets, and wandering that allows for exploration instead of reading an essay linearly. It's unpredictable and alive, just like improv :)
