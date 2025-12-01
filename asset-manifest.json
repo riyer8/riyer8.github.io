@@ -1,30 +1,36 @@
 {
   "files": {
     "main.css": "/static/css/main.3afd58d4.css",
-    "main.js": "/static/js/main.63eaa742.js",
+    "main.js": "/static/js/main.d7f9169d.js",
     "static/js/703.1ea48986.chunk.js": "/static/js/703.1ea48986.chunk.js",
     "static/js/278.34d9c6ff.chunk.js": "/static/js/278.34d9c6ff.chunk.js",
     "static/js/737.14632729.chunk.js": "/static/js/737.14632729.chunk.js",
     "static/js/375.c9f5f556.chunk.js": "/static/js/375.c9f5f556.chunk.js",
+    "static/js/716.7aa1df93.chunk.js": "/static/js/716.7aa1df93.chunk.js",
+    "static/js/758.67d37a1f.chunk.js": "/static/js/758.67d37a1f.chunk.js",
+    "static/js/153.f8436335.chunk.js": "/static/js/153.f8436335.chunk.js",
     "static/js/335.15a5fe57.chunk.js": "/static/js/335.15a5fe57.chunk.js",
-    "static/js/864.24bec43d.chunk.js": "/static/js/864.24bec43d.chunk.js",
+    "static/js/621.7c53cecf.chunk.js": "/static/js/621.7c53cecf.chunk.js",
     "static/js/374.be950de8.chunk.js": "/static/js/374.be950de8.chunk.js",
     "static/media/photo2.png": "/static/media/photo2.8b2fa0b5eb10b02445bb.png",
     "static/media/photo1.png": "/static/media/photo1.abc614f286739e1abd11.png",
     "static/media/photo3.JPG": "/static/media/photo3.e5518201c4cbd2aaa06b.JPG",
     "static/media/artperformance.md": "/static/media/artperformance.4e4db0edc2b886763b06.md",
-    "static/media/improv-wisdom.md": "/static/media/improv-wisdom.0a122b800b69c0d36aab.md",
+    "static/media/improvwisdom.md": "/static/media/improvwisdom.0a122b800b69c0d36aab.md",
     "static/media/about.md": "/static/media/about.6b90daedb086fc2975f4.md",
     "static/media/welcome.md": "/static/media/welcome.80d659054e1203799079.md",
     "static/media/celebration.md": "/static/media/celebration.9b9f617cf32088cf1f2b.md",
     "static/media/play.md": "/static/media/play.3544f94e2c28558e7423.md",
+    "static/media/memory.md": "/static/media/memory.d386a2cb2a98ee1cbd67.md",
     "index.html": "/index.html",
+    "static/media/space.md": "/static/media/space.547afa657d05bc5dab48.md",
+    "static/media/obvious.md": "/static/media/obvious.b530c40fb887c8a6302a.md",
     "main.3afd58d4.css.map": "/static/css/main.3afd58d4.css.map",
-    "main.63eaa742.js.map": "/static/js/main.63eaa742.js.map",
+    "main.d7f9169d.js.map": "/static/js/main.d7f9169d.js.map",
     "335.15a5fe57.chunk.js.map": "/static/js/335.15a5fe57.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3afd58d4.css",
-    "static/js/main.63eaa742.js"
+    "static/js/main.d7f9169d.js"
   ]
 }
