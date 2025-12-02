@@ -4,17 +4,7 @@ import SidebarContent from './SidebarContent';
 
 const MobileSidebar = ({ isOpen, onClose }) => {
     const { theme } = useTheme();
-    const [currentActivityIndex, setCurrentActivityIndex] = React.useState(0);
-    const [isTransitioning, setIsTransitioning] = React.useState(false);
-
-    const handleActivityClick = () => {
-        setIsTransitioning(true);
-        setTimeout(() => {
-            setCurrentActivityIndex((prevIndex) => (prevIndex + 1) % currentActivities.length);
-            setIsTransitioning(false);
-        }, 200);
-    };
-
+    
     // Sidebar slide-in and overlay styles
     const overlayStyle = {
         position: 'fixed',
@@ -49,6 +39,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
         borderBottomRightRadius: '18px',
         boxSizing: 'border-box',
         backgroundImage: theme.colors.mobileMenuBg || undefined,
+        fontFamily: theme.fonts?.base || 'sans-serif',
     };
 
     const closeBtnStyle = {

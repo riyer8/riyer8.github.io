@@ -2,10 +2,11 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
-import { Sidebar, MainContent } from "./pages/HomePage"
+import { Sidebar, MainContent } from "./pages/HomePage";
 import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
-import WritingsPage from "./pages/WritingPage/WritingsPage";
+// import WritingsPage from "./pages/WritingPage/WritingsPage";
 import Taps103Page from "./pages/Taps103Page/Taps103Page";
+import AboutPage from "./pages/AboutPage/AboutPage";
 
 const App = () => {
   const containerStyle = {
@@ -26,8 +27,13 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <PixelatedBackground theme="whoami" />
+      {/* Background lives once at the app root */}
+      <PixelatedBackground />
+
+      {/* UI controls */}
       <ThemeToggle />
+
+      {/* Routes */}
       <Routes>
         <Route
           path="/"
@@ -38,9 +44,10 @@ const App = () => {
             </div>
           }
         />
-        <Route path="/bookshelf" element={<BookshelfPage />} />
-        {/*<Route path="/writings" element={<WritingsPage />} />*/}
+        <Route path="/recent-reads" element={<BookshelfPage />} />
+        {/* <Route path="/writings" element={<WritingsPage />} /> */}
         <Route path="/taps-103" element={<Taps103Page />} />
+        <Route path="/ramya" element={<AboutPage />} />
       </Routes>
     </ThemeProvider>
   );

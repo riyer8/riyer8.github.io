@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import profilePhoto from '../../assets/photo3.JPG';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
@@ -36,6 +36,9 @@ const BookshelfPage = () => {
     []
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -195,7 +198,7 @@ const BookshelfPage = () => {
             <img src={profilePhoto} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
           </div>
           <div style={{ flex: 1 }}>
-            <h1 style={{ margin: 0, color: theme.colors.text }}>Bookshelf</h1>
+            <h1 style={{ margin: 0, color: theme.colors.text }}>Recent Reads</h1>
             <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary }}>knowledge i've been consuming.</p>
           </div>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -366,7 +369,13 @@ const BookshelfPage = () => {
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <button onClick={() => setSelectedItem(row)} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
-                        {row.favorite ? <FaStar color={ theme.isDarkMode ? '#FFD700' : '#000'} /> : ''} 
+                        {row.favorite ? (
+                          <FaStar
+                            color={theme.isDarkMode ? '#FFD700' : '#000'}
+                            size={16}
+                            style={{ flexShrink: 0 }}
+                          />
+                        ) : null}
                         {row.title}
                         {row.archives && (
                           <span style={{ fontSize: '0.75rem', color: theme.colors.textSecondary, fontStyle: 'italic' }}>(archived)</span>
