@@ -47,6 +47,10 @@ export const ThemeProvider = ({ children }) => {
             mobileMenuBg: isDarkMode
                 ? 'linear-gradient(to right, rgba(26,26,26,0.95), rgba(26,26,26,0.85))'
                 : 'linear-gradient(135deg, #fff 80%, #f7eaff 100%)'
+        },
+        fonts: {
+            base: '"Inter", sans-serif', // ✅ Add your base font here
+            heading: '"Inter", sans-serif', // optional separate heading font
         }
     };
 

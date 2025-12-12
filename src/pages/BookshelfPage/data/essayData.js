@@ -3,7 +3,7 @@ const essayData = [
     title: "Principles",
     url: "https://nabeelqu.substack.com/p/principles",
     dateAdded: "2025-10-11",
-    category: "self-improvement",
+    category: "advice",
     favorite: true,
     medium: "essay",
     tldr: "🔖 Collection of personal principles from Nabeel Qureshi. Honestly can't write a complete TLDR about this based on its density.",
@@ -26,7 +26,7 @@ const essayData = [
     title: "What to do with your life",
     url: "https://www.julian.com/blog/life-planning",
     dateAdded: "2025-10-17",
-    category: "self-improvement",
+    category: "advice",
     medium: "essay",
     tldr: "🧭 Develop a framework to evaluate your values throughout your life.",
     thoughts: "I've been thinking a lot about what I want out of life and this essay was a quick read into Julian's approach.",
@@ -53,7 +53,7 @@ He also frames the idea of **regret minimization**
     title: "🌻 tryhard",
     url: "https://jasmi.news/p/tryhard",
     dateAdded: "2025-10-17",
-    category: "self-improvement",
+    category: "advice",
     medium: "essay",
     favorite: true,
     tldr: "🌻 A simple, reflective piece on the fruits of trying hard. Why not give it all you got?",
@@ -158,7 +158,7 @@ The biases and preferences that we have actually help us when it comes to deciph
     title: "Frequency Reduces Difficulty",
     url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
     dateAdded: "2025-11-24",
-    category: "self-improvement",
+    category: "advice",
     medium: "essay",
     tags: ['habit', 'exposure', 'learning', 'practice', 'productivity'],
     tldr: "🔁 Doing painful tasks more frequently dramatically reduces the difficulty.",
@@ -301,7 +301,6 @@ Just another quote that I really loved about his distinction between great impro
     dateAdded: "2025-11-30",
     category: "psychology",
     medium: "essay",
-    favorite: true,
     tags: ["status", "sociology", "expertise", "elites", "incentives"],
     tldr: "⚖️ The divide between experts (technically backed) and elites (socially backed)",
     thoughts: "Really fascinating account of status and the tradeoffs. Definitely something I will be thinking about.",
@@ -388,16 +387,131 @@ Drinko describes the 12 lessons you can learn from improv:
 - Improv reward sthose who go big or go home. Just do the damn thing.
 
     `
-  }
+  },
+
+  {
+    title: "Why You Procrastinate (It Has Nothing to Do With Self-Control)",
+    url: "https://www.nytimes.com/2019/03/25/smarter-living/why-you-procrastinate-it-has-nothing-to-do-with-self-control.html",
+    dateAdded: "2025-12-01",
+    category: "psychology",
+    medium: "essay",
+    archives: true,
+    tags: ["improv", "growth", 'creativity'],
+    notes: `
+> Procrastination is an emotion regulation problem, not a time management problem
+
+> Dr. Hershfield’s research has shown that, on a neural level, we perceive our “future selves” more like strangers than as parts of ourselves. When we procrastinate, parts of our brains actually think that the tasks we’re putting off — and the accompanying negative feelings that await us on the other side — are somebody else’s problem.
+
+How can we get down to the root cause of procrastination? Here are a couple of options mentioned in the article:
+1. One option is to **forgive yourself** in the moments you procrastinate... They concluded that self-forgiveness supported productivity by allowing “the individual to move past their maladaptive behavior and focus on the upcoming examination without the burden of past acts.”
+
+2. Another tactic is the related practice of **self-compassion**, which is treating ourselves with kindness and understanding in the face of our mistakes and failures.
+
+3. **Cultivate curiosity:** If you’re feeling tempted to procrastinate, bring your attention to the sensations arising in your mind and body. 
+
+4. **Consider the next action:** This is different than the age-old advice to break up a task you’re tempted to avoid into bite-sized chunks.
+
+5. **Make your temptations more inconvenient.**
+
+`
+  },
+
+  {
+    title: "How To Be Successful",
+    url: "https://blog.samaltman.com/how-to-be-successful",
+    dateAdded: "2025-12-07",
+    favorite: true,
+    category: "advice",
+    medium: "essay",
+    tags: ["advice", "success", 'startups'],
+    notes: `
+### 1. Compound Yourself
+
+> It’s important to move towards a career that has a compounding effect—most careers progress fairly linearly.
+
+> Your rate of learning should always be high. As your career progresses, each unit of work you do should generate more and more results.
+
+> I am willing to take as much time as needed between projects to find my next thing. But I always want it to be a project that, **if successful, will make the rest of my career look like a footnote.**
+
+It's like what Atomic Habits describes - growing 1% every day is better than nothing at all. This compounding effect will provide even higher level-ups in life. I didn't really equate it to my career as directly so seeing his take on career was fascinating.
+
+### 2. Have almost too much self-belief
+
+> Most highly successful people have been really right about the future at least once at a time when people thought they were wrong.
+
+Almost be awarely dilusional about youself and your skills. Remember to not overhaul this with being egoist.
+
+### 3. Learn to think independently
+
+> One of the most powerful lessons to learn is that you can figure out what to do in situations that seem to have no solution. The more times you do this, the more you will believe it. Grit comes from learning you can get back up after you get knocked down.
+
+Nothing in standard day-to-day life prepares you for this.
+
+### 4. Get good at "sales"
+
+> Be able to convince other people of what you believe.
+
+> My other big sales tip is to show up in person whenever it’s important. When I was first starting out, I was always willing to get on a plane. It was frequently unnecessary, but three times it led to career-making turning points for me that otherwise would have gone the other way.
+
+### 5. Make it easy to take risks
+
+> Most people overestimate risk and underestimate reward.
+
+> Keeping your life cheap and flexible for as long as you can is a powerful way to do this, but obviously comes with tradeoffs.
+
+### 6. Focus
+
+> Focus is a force multiplier on work.
+
+### 7. Work Hard
+
+> You can get to about the 90th percentile in your field by working either smart or hard, which is still a great accomplishment. But getting to the 99th percentile requires both—you will be competing with other very talented people who will have great ideas and be willing to work a lot.
+
+> One more thought about working hard: do it at the beginning of your career. Hard work compounds like interest, and the earlier you do it, the more time you have for the benefits to pay off.
+
+### 8. Be Bold
+
+> I believe that it’s easier to do a hard startup than an easy startup. People want to be part of something exciting and feel that their work matters.
+
+### 9. Be willful
+
+> Ask for what you want. You usually won’t get it, and often the rejection will be painful. But when this works, it works surprisingly well.
+
+> To be willful, you have to be optimistic. I have never met a very successful pessimistic person.
+
+### 10. Be hard to compete with
+
+> If you’re doing the same thing everyone else is doing, you will not be hard to compete with.
+
+### 11. Build a network
+
+> Be overly generous with sharing the upside; it will come back to you 10x. Also, learn how to evaluate what people are great at, and put them in those roles.
+
+> A particularly valuable part of building a network is to get good at discovering undiscovered talent. Quickly spotting intelligence, drive, and creativity gets much easier with practice. The easiest way to learn is just to meet a lot of people, and keep track of who goes on to impress you and who doesn’t. Remember that you are mostly looking for rate of improvement, and don’t overvalue experience or current accomplishment.
+
+> I try to always ask myself when I meet someone new “is this person a force of nature?” It’s a pretty good heuristic for finding people who are likely to accomplish great things.
+
+### 12. You get rich by owning things
+
+> Time only scales linearly. The best way to make things that increase rapidly in value is by making things people want at scale.
+
+### 13. Be internally driven
+
+> they do what they do to impress themselves and because they feel compelled to make something happen in the world.
+
+> This is why the question of a person’s motivation is so important. It’s the first thing I try to understand about someone. The right motivations are hard to define a set of rules for, but you know it when you see it.
 
 
-  /*
+    `
+  },
+
   {
     title: "Pick Three Things. Now Do Them Well",
     url: "https://www.scotthyoung.com/blog/2014/10/17/pick-just-three/",
     dateAdded: "2025-11-14",
-    category: "essay",
-    medium: "digital",
+    category: "advice",
+    archives: true,
+    medium: "essay",
     tldr: "🎯 Limit your focus to three main projects at a time to maximize effectiveness and avoid burnout.",
     thoughts: "",
     tags: ['productivity', 'focus', 'time-management'],
@@ -406,10 +520,13 @@ Drinko describes the 12 lessons you can learn from improv:
 
   {
     title: "Tackle the Hard Stuff First",
+    category: "advice",
+    archives: true,
+    medium: "essay",
     url: "https://www.codingvc.com/p/tackle-the-hard-stuff-first",
     dateAdded: "2025-11-14",
   },
-  */
+  
 
 
 

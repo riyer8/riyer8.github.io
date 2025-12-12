@@ -69,6 +69,7 @@ const SidebarContent = ({ compact = false }) => {
                 justifyContent: 'center',
                 width: '100%',
                 textAlign: 'center',
+                fontFamily: theme.fonts?.base || 'sans-serif'
             }}
         >
             <ProfilePhoto />

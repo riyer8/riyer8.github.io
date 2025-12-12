@@ -70,22 +70,19 @@ const BookshelfSection = () => {
   };
 
   const handleNavigateFavorites = () => {
-    navigate('/bookshelf');
+    navigate('/recent-reads');
   };
 
   return (
     <div style={sectionStyle}>
-      {/* Bookshelf heading */}
-      <h2 style={titleStyle} onClick={() => navigate('/bookshelf')}>
-        Bookshelf
+      <h2 style={titleStyle} onClick={() => navigate('/recent-reads')}>
+        Recent Reads
       </h2>
 
-      {/* Recent Reads label */}
       <div style={{ fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.75rem', color: theme.colors.textSecondary, textAlign: 'left' }}>
-        Recent Favorites from my Bookshelf
+        Favorites from my Recent Reads
       </div>
 
-      {/* Table */}
       <div style={{ overflowX: 'auto' }}>
         <table style={tableStyle}>
           <thead>
@@ -121,9 +118,8 @@ const BookshelfSection = () => {
         </table>
       </div>
 
-      {/* Check all reads link */}
       <div 
-        onClick={() => navigate('/bookshelf')}
+        onClick={() => navigate('/recent-reads')}
         style={{
           marginTop: '1rem',
           fontWeight: 600,
