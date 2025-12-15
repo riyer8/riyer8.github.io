@@ -165,7 +165,7 @@ const Footer = () => {
                         onMouseEnter={(e) => hoverIn(e, true)}
                         onMouseLeave={(e) => hoverOut(e, true)}
                     >
-                        Get in touch 💌
+                        Email me 💌
                         <FaExternalLinkAlt style={iconStyle} />
                     </button>
 

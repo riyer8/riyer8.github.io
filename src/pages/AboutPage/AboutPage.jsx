@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ThemeToggle } from '../../components';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import PixelatedBackground from '../../components/Background/PixelatedBackground';
+import NotesSection from '../Principles/NotesSection';
 
 const AboutPage = () => {
   const { theme } = useTheme();
@@ -46,7 +47,7 @@ const AboutPage = () => {
 
   const containerStyle = {
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     minHeight: '100vh',
     width: '100%',
     color: theme.colors.text,
@@ -58,16 +59,16 @@ const AboutPage = () => {
     padding: getResponsiveSize('1rem', '2rem 4rem', '3rem 6rem 3rem 3rem'),
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     minHeight: '100vh',
     boxSizing: 'border-box',
-    };
+  };
 
   const sectionStyle = {
     maxWidth: getResponsiveSize('100%', '700px', '800px'),
     width: '100%',
     textAlign: 'center',
+    marginTop: '2rem',
   };
 
   const headingStyle = {
@@ -78,35 +79,55 @@ const AboutPage = () => {
     lineHeight: 1.2,
   };
 
+  const homeButtonStyle = {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.5rem',
+    padding: '0.6rem 1rem',
+    borderRadius: 8,
+    background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : theme.colors.accent,
+    color: theme.isDarkMode ? theme.colors.text : '#fff',
+    border: `1px solid ${theme.colors.border}`,
+    cursor: 'pointer',
+    textDecoration: 'none',
+    marginBottom: '1rem',
+  };
+
   return (
     <>
       <ThemeToggle />
-
-      {/* Pixelated Background */}
       <PixelatedBackground />
 
       <div style={containerStyle}>
-
         <div style={contentStyle}>
 
-        {/* Centered Section */}
-        <div
+          {/* Back to Home button left-aligned */}
+          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+            <a href="/" style={{ textDecoration: 'none' }}>
+              <button style={homeButtonStyle}>← Home</button>
+            </a>
+          </div>
+
+          {/* Centered main section */}
+          <div
             style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flex: 1, // take remaining space
-            width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flex: 1,
+              width: '100%',
             }}
-        >
+          >
             <div style={sectionStyle}>
               <h1 style={headingStyle}>Hi, I'm Ramya.</h1>
-              <text>This page is currently in progress ✨ </text>
+              <p>This page is currently in progress ✨ </p>
             </div>
+
+            <NotesSection />
+          </div>
         </div>
-        </div>
-        </div>
+      </div>
     </>
   );
 };
