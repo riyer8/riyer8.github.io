@@ -18,18 +18,33 @@ const ThemeToggle = () => {
         alignItems: 'center',
         justifyContent: 'center',
         cursor: 'pointer',
-        fontSize: '1.2rem',
         color: theme.colors.text,
         backdropFilter: 'blur(10px)',
-        transition: 'all 0.3s ease',
+        transition: 'box-shadow 0.25s ease, background 0.25s ease',
         zIndex: 1001,
-        boxShadow: theme.isDarkMode 
-            ? '0 4px 15px rgba(0, 0, 0, 0.3)' 
-            : '0 4px 15px rgba(0, 0, 0, 0.1)'
+        boxShadow: theme.isDarkMode
+            ? '0 4px 14px rgba(0, 0, 0, 0.3)'
+            : '0 4px 14px rgba(0, 0, 0, 0.12)',
+        padding: 0
     };
 
-    const iconStyle = {
-        transition: 'transform 0.3s ease'
+    const iconWrapperStyle = {
+        width: '20px',
+        height: '20px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        transition: 'transform 0.25s ease',
+        transform: 'scale(1)',
+    };
+
+    const sunStyle = {
+        fontSize: '1.25rem',      // slightly larger
+        transform: 'translateY(1px)', // optical centering
+    };
+
+    const moonStyle = {
+        fontSize: '1.15rem',
     };
 
     return (
@@ -37,22 +52,20 @@ const ThemeToggle = () => {
             style={buttonStyle}
             onClick={toggleTheme}
             onMouseEnter={(e) => {
-                e.target.style.transform = 'scale(1.1)';
-                e.target.style.boxShadow = theme.isDarkMode 
-                    ? '0 6px 20px rgba(0, 0, 0, 0.4)' 
-                    : '0 6px 20px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.querySelector('.icon-wrapper').style.transform = 'scale(1.15)';
             }}
             onMouseLeave={(e) => {
-                e.target.style.transform = 'scale(1)';
-                e.target.style.boxShadow = theme.isDarkMode 
-                    ? '0 4px 15px rgba(0, 0, 0, 0.3)' 
-                    : '0 4px 15px rgba(0, 0, 0, 0.1)';
+                e.currentTarget.querySelector('.icon-wrapper').style.transform = 'scale(1)';
             }}
             title={theme.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             aria-label={theme.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
         >
-            <div style={iconStyle}>
-                {theme.isDarkMode ? <FaSun /> : <FaMoon />}
+            <div className="icon-wrapper" style={iconWrapperStyle}>
+                {theme.isDarkMode ? (
+                    <FaSun style={sunStyle} />
+                ) : (
+                    <FaMoon style={moonStyle} />
+                )}
             </div>
         </button>
     );

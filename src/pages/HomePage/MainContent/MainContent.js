@@ -1,11 +1,12 @@
-import React, { useState, useEffect, use } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeToggle } from '../../../components';
-import StatusWidget from '../StatusWidget/StatusWidget'
+import StatusWidget from '../StatusWidget/StatusWidget';
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
 import QuoteWidget from '../QuoteWidget';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaBars } from 'react-icons/fa';
+import Footer from '../../Footer';
 
 const MainContent = () => {
     const { theme } = useTheme();
@@ -15,7 +16,7 @@ const MainContent = () => {
         isMobile: window.innerWidth <= 768,
         isTablet: window.innerWidth > 768 && window.innerWidth <= 1024,
         isDesktop: window.innerWidth > 1024,
-        shouldCollapseSidebar: window.innerWidth <= 900
+        shouldCollapseSidebar: window.innerWidth <= 900,
     });
 
     useEffect(() => {
@@ -26,7 +27,7 @@ const MainContent = () => {
                 isMobile: width <= 768,
                 isTablet: width > 768 && width <= 1024,
                 isDesktop: width > 1024,
-                shouldCollapseSidebar: width <= 900
+                shouldCollapseSidebar: width <= 900,
             });
         };
 
@@ -48,35 +49,40 @@ const MainContent = () => {
     const openMobileSidebar = () => setIsMobileSidebarOpen(true);
     const closeMobileSidebar = () => setIsMobileSidebarOpen(false);
 
-    const getResponsiveSize = (mobileSize, tabletSize, desktopSize) => {
-        if (screenSize.shouldCollapseSidebar) return mobileSize;
-        if (screenSize.isTablet) return tabletSize;
-        return desktopSize;
+    /* =======================
+       Layout Styles
+    ======================== */
+
+    const pageLayoutStyle = {
+        display: 'flex',
+        minHeight: '100vh',
+        width: '100%',
     };
 
-    const contentStyle = {
+    const mainColumnStyle = {
         flex: 1,
-        padding: getResponsiveSize('1rem', '2rem 4rem', '3rem 6rem 3rem 3rem'),
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-start',
-        minHeight: '100vh',
-        position: 'relative',
-        transition: 'none',
-        maxWidth: '100%',
-        boxSizing: 'border-box'
+    };
+
+    const centeredContentStyle = {
+        width: '100%',
+        maxWidth: '900px',
+        padding: shouldCollapseSidebar ? '1.25rem' : '3rem',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        textAlign: 'center',
+        boxSizing: 'border-box',
     };
 
     const mobileHeaderStyle = {
         display: shouldCollapseSidebar ? 'flex' : 'none',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        padding: '2rem 2rem 1.5rem 2rem',
-        borderBottom: `1px solid ${theme.colors.border}`,
-        marginBottom: '2rem',
+        padding: '1.5rem 0 2rem',
         width: '100%',
-        transition: 'none',
         boxSizing: 'border-box',
     };
 
@@ -87,64 +93,87 @@ const MainContent = () => {
         background: 'none',
         border: 'none',
         padding: '0.5rem',
-        marginRight: '0.5rem',
-        transition: 'none',
+        transition: 'transform 0.2s ease',
     };
 
-    const brandStyle = {
-        fontSize: '1.2rem',
-        fontWeight: 600,
-        color: theme.colors.accent,
-        marginLeft: '0.5rem'
-    };
-
-    const sectionStyle = { 
-        maxWidth: getResponsiveSize('100%', '700px', '800px'),
+    const sectionStyle = {
         width: '100%',
+        maxWidth: '800px',
+        marginBottom: '2.5rem',
         textAlign: 'center',
-        transition: 'none',
-        boxSizing: 'border-box'
     };
 
     const headingStyle = {
-        fontSize: getResponsiveSize('1.8rem', '2.2rem', '2.5rem'),
+        fontSize: shouldCollapseSidebar ? '1.9rem' : '2.5rem',
         fontWeight: 600,
         color: theme.colors.text,
-        marginBottom: '1.5rem',
+        marginBottom: '1.6rem',
         lineHeight: 1.2,
-        transition: 'none'
+    };
+
+    /* Center text inside buttons for BookshelfSection */
+    const bookshelfButtonWrapperStyle = {
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '1rem',
+        alignItems: 'center',
+        width: '100%',
+    };
+
+    const bookshelfButtonStyle = {
+        width: '100%',
+        maxWidth: '300px',
+        textAlign: 'center',
+        padding: '0.8rem 1.2rem',
+        borderRadius: '8px',
+        border: `1px solid ${theme.colors.border}`,
+        background: theme.colors.cardBackground,
+        color: theme.colors.text,
+        fontWeight: 500,
+        cursor: 'pointer',
+        transition: 'all 0.2s ease',
     };
 
     return (
         <>
             <ThemeToggle />
 
-            <div style={contentStyle}>
-                <div style={mobileHeaderStyle}>
-                    <button
-                        style={hamburgerStyle}
-                        onClick={openMobileSidebar}
-                        onMouseEnter={e => e.target.style.transform = 'scale(1.1)'}
-                        onMouseLeave={e => e.target.style.transform = 'scale(1)'}
-                        aria-label="Open sidebar"
-                    >
-                        <FaBars />
-                    </button>
+            <div style={pageLayoutStyle}>
+                {/* MAIN COLUMN */}
+                <div style={mainColumnStyle}>
+                    {/* CENTERED CONTENT */}
+                    <div style={centeredContentStyle}>
+                        <div style={mobileHeaderStyle}>
+                            <button
+                                style={hamburgerStyle}
+                                onClick={openMobileSidebar}
+                                aria-label="Open sidebar"
+                            >
+                                <FaBars />
+                            </button>
+                        </div>
+
+                        <div style={sectionStyle}>
+                            <h2 style={headingStyle}>Welcome to my mind!</h2>
+                            <StatusWidget />
+                            <QuoteWidget />
+                        </div>
+
+                        <BookshelfSection screenSize={screenSize} buttonWrapperStyle={bookshelfButtonWrapperStyle} buttonStyle={bookshelfButtonStyle} />
+                    </div>
+
+                    {/* FULL-WIDTH FOOTER */}
+                    <Footer />
                 </div>
 
-                <div style={sectionStyle}>
-                    <h2 style={headingStyle}>
-                        Welcome to my mind!
-                    </h2>
-                    <StatusWidget />
-                    <QuoteWidget />
-                </div>
-                <BookshelfSection screenSize={screenSize} />
+                {/* SIDEBAR OVERLAY (mobile only) */}
+                {shouldCollapseSidebar && (
+                    <MobileSidebar
+                        isOpen={isMobileSidebarOpen}
+                        onClose={closeMobileSidebar}
+                    />
+                )}
             </div>
-
-            {shouldCollapseSidebar && (
-                <MobileSidebar isOpen={isMobileSidebarOpen} onClose={closeMobileSidebar} />
-            )}
         </>
     );
 };

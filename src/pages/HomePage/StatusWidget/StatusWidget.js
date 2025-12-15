@@ -11,7 +11,7 @@ const currentActivities = [
     "thinking about consumer products 🛍️",
     "hiking at the Stanford Dish 🌳",
     "writing blog posts ✍️",
-    "going to the gym and trying new workouts 🏋️‍♀️",
+    "going to the gym and trying new workouts 🥊",
     "connecting founders and VCs through SWITE (swite.org) 🤝",
     "exploring the city of San Francisco 🌉",
     "experimenting with side hacks 💡",
