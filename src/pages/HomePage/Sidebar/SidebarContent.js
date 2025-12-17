@@ -7,6 +7,7 @@ const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
     const taglineRef = useRef(null);
     const [useShortHistory, setUseShortHistory] = useState(false);
+    const [isHoveringName, setIsHoveringName] = useState(false);
 
     useEffect(() => {
         const el = taglineRef.current;
@@ -23,10 +24,13 @@ const SidebarContent = ({ compact = false }) => {
     const nameStyle = {
         fontSize: compact ? '2rem' : '2rem',
         fontWeight: 700,
-        color: theme.colors.text,
+        color: isHoveringName ? undefined : theme.colors.text,
         marginBottom: '0.5rem',
         marginTop: compact ? '1rem' : undefined,
         textAlign: 'center',
+        cursor: 'pointer',
+        animation: isHoveringName ? 'blueGreenText 2s linear infinite alternate' : 'none',
+        transition: 'color 1s ease',
     };
 
     const taglineStyle = {
@@ -61,41 +65,66 @@ const SidebarContent = ({ compact = false }) => {
     };
 
     return (
-        <div
-            style={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: '100%',
-                textAlign: 'center',
-                fontFamily: theme.fonts?.base || 'sans-serif'
-            }}
-        >
-            <ProfilePhoto />
+        <>
+            {/* Inject keyframes */}
+            <style>
+                {`
+                @keyframes blueGreenText {
+                    0% {
+                        color: #0055ffff;
+                    }
+                    100% {
+                        color: #14815eff;
+                    }
+                }
+                `}
+            </style>
 
-            <h1 style={nameStyle}>Ramya Iyer</h1>
+            <div
+                style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    width: '100%',
+                    textAlign: 'center',
+                    fontFamily: theme.fonts?.base || 'sans-serif'
+                }}
+            >
+                <ProfilePhoto />
 
-            <div style={taglineStyle} ref={taglineRef}>
-                CS (AI) • Math • {useShortHistory ? "History" : "History Minor"}
+                <h1
+                    style={nameStyle}
+                    onMouseEnter={() => setIsHoveringName(true)}
+                    onMouseLeave={() => setIsHoveringName(false)}
+                    onClick={() => {
+                        window.location.href = '/ramya';
+                    }}
+                >
+                    Ramya Iyer
+                </h1>
+
+                <div style={taglineStyle} ref={taglineRef}>
+                    CS (AI) • Math • {useShortHistory ? "History" : "History Minor"}
+                </div>
+
+                <a href="mailto:ramya1@stanford.edu" style={emailStyle}>
+                    ramya1@stanford.edu
+                </a>
+
+                <div style={socialLinksStyle}>
+                    <a href="https://github.com/riyer8" style={socialLinkStyle}>
+                        <FaGithub />
+                    </a>
+                    <a href="https://www.linkedin.com/in/ramya-i/" style={socialLinkStyle}>
+                        <FaLinkedinIn />
+                    </a>
+                    <a href="mailto:ramya1@stanford.edu" style={socialLinkStyle}>
+                        <FaEnvelope />
+                    </a>
+                </div>
             </div>
-
-            <a href="mailto:ramya1@stanford.edu" style={emailStyle}>
-                ramya1@stanford.edu
-            </a>
-
-            <div style={socialLinksStyle}>
-                <a href="https://github.com/riyer8" style={socialLinkStyle}>
-                    <FaGithub />
-                </a>
-                <a href="https://www.linkedin.com/in/ramya-i/" style={socialLinkStyle}>
-                    <FaLinkedinIn />
-                </a>
-                <a href="mailto:ramya1@stanford.edu" style={socialLinkStyle}>
-                    <FaEnvelope />
-                </a>
-            </div>
-        </div>
+        </>
     );
 };
 

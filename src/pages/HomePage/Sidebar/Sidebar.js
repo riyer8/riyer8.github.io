@@ -33,14 +33,6 @@ const Sidebar = () => {
         boxShadow: theme.isDarkMode && shouldCollapseSidebar ? 'inset 0 0 0 1px rgba(255,255,255,0.02)' : undefined
     };
 
-    const overlayStyle = {
-        position: 'absolute',
-        inset: 0,
-        background: theme.colors.overlay,
-        zIndex: -1,
-        pointerEvents: 'none'
-    };
-
     return (
         <div className="sidebar" style={sidebarStyle}>
             <SidebarContent compact={false} />

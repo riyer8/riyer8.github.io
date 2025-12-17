@@ -10,6 +10,7 @@ const archiveData = [
     tags: [],
     archives: true,
     tldr: "It's ok if your first draft is shitty",
+    thoughts: "If you find this in my archives, know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",
     notes: `
 > The first draft is the child's draft, where you let it all pour out and then let it romp all over the place, knowing that no one is going to see it and that you can shape it later. You just let this childlike part of you channel whatever voices and visions come through and onto the page.
     

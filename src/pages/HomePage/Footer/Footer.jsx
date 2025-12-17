@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useTheme } from '../../components/ThemeContext/ThemeContext';
+import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaArrowRight, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Footer = () => {

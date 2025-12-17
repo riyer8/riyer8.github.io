@@ -517,16 +517,37 @@ Nothing in standard day-to-day life prepares you for this.
     tags: ['productivity', 'focus', 'time-management'],
     notes: ``
   },
-
-  {
-    title: "Tackle the Hard Stuff First",
-    category: "advice",
-    archives: true,
-    medium: "essay",
-    url: "https://www.codingvc.com/p/tackle-the-hard-stuff-first",
-    dateAdded: "2025-11-14",
-  },
   
+  {
+    title: "Cultivating a state of mind where new ideas are born",
+    url: "https://www.henrikkarlsson.xyz/p/good-ideas",
+    dateAdded: "2025-12-16",
+    category: "advice",
+    medium: "essay",
+    tldr: "Solitude is where new ideas are born.",
+    thoughts: "Kind reminder on providing your mind the space and activities to create new ideas",
+    tags: ['self-belief', 'solitude', 'learning', 'creativity'],
+    notes: `
+
+Being alone is powerful. 
+
+As Sam Altman is quoted in the essay, the idea of "coworking" locations for startup founders is counterproductive. Early startup ideas don't seen good and people care more about the opinions of others before they even get to a stage of formalizing an idea.
+    
+Being alone with the idea can allow you to deeply think and comb through the idea without external factors.
+
+> Mathematics has been *flattened*: people only learn how to do the mechanical work of hammering out proofs, they do not know how to enter the dreamlike states where truly original mathematics arises.
+
+*I just really like that quote*
+
+> being exceptionally talented and trained was, in the long run, not enough to do groundbreaking work because *they lacked the capacity to go beyond the context they had been raised in.*
+
+The ancedote of Grothendieck shows that while he was behind his peers in math during his formative years, he spent time alone wiring his brain to think deeper, often discovering proofs and theorems that were already known to the world. While many would have seen this to be a waste of time, this later helped him develop ideas of his own.
+
+> One thing that sets these intensely creative individuals apart, as far as I can tell, is that when sitting with their thoughts they are uncommonly willing to linger in confusion. **To be curious about that which confuses. Not too rapidly seeking the safety of knowing or the safety of a legible question.**
+
+This is probably even more relevant with the rise of search engines and LLMs that could quickly ease our confusion and produce answers without allow us to wire our brain and linger in the confusion.
+    `
+  },
 
 
 

@@ -336,7 +336,26 @@ const bookData = [
 
 > When you’re gone, your work shows who you were. \n Not your intentions. \n Not what you took in. \n Only what you put out.
     `
-  }
+  },
+
+  {
+    title: "Talk to Strangers: The Yes Theory Story",
+    url: "https://www.goodreads.com/book/show/198220896-talk-to-strangers",
+    dateAdded: "2025-12-16",
+    category: "advice",
+    medium: "book",
+    tldr: "Saying yes to strangers can truly change your life.",
+    thoughts: "More a true memoir than a self-improvement book (and I prefer it that way).",
+    tags: ['self-belief', 'learning', 'creativity'],
+    notes: `
+One of the reasons why I loved this book is the beginning of it seemed almost relatable. (Granted, by the end of the book, his life experiences are wildly different than anyone - even he - can imagine at 23).
+> I was a disciple of the #hustle culture, committed to success at all costs, convinced that with enough willpower, anything was possible. All I had to do was *grind*, and it would work out.
+
+> Self-belief. That was it. Thomas had it. That fairy dust. The ability to convince the universe to change its mind.
+
+> All this to say: not every success story needs to start with a cosmic, altruistic yes moment. Being rejected, overlooked, or ignored can serve as the greatest fuel for take-off.
+    `
+  },
   
 ];
 
