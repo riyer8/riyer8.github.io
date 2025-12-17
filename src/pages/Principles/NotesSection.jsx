@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import NoteBox from './NoteBox';
-import notesGeneral from './data/personal.txt';
-import notesWork from './data/products.txt';
+import notesPersonal from './data/personal.txt';
+import notesProduct from './data/products.txt';
+import notesAdmire from './data/admire.txt';
 
 const NOTES_CONFIG = [
-  { file: notesGeneral, title: 'personal', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
-  { file: notesWork, title: 'products', colorLight: '#f0f8ff', colorDark: '#2b2f3b' },
+  { file: notesPersonal, title: 'personal', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
+  { file: notesProduct, title: 'products', colorLight: '#f0f8ff', colorDark: '#2b2f3b' },
+  { file: notesAdmire, title: 'people i admire', colorLight: '#fff5f5ff', colorDark: '#3f2b2b' },
 ];
 
 const NotesSection = () => {

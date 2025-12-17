@@ -6,7 +6,7 @@ import BookshelfSection from './BookshelfSection';
 import QuoteWidget from '../QuoteWidget';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaBars } from 'react-icons/fa';
-import Footer from '../../Footer';
+import Footer from '../Footer/Footer';
 
 const MainContent = () => {
     const { theme } = useTheme();
