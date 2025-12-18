@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeToggle } from '../../../components';
+import { BirthdayToggle } from '../../../components';
 import StatusWidget from '../StatusWidget/StatusWidget';
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
@@ -137,6 +138,7 @@ const MainContent = () => {
     return (
         <>
             <ThemeToggle />
+            <BirthdayToggle />
 
             <div style={pageLayoutStyle}>
                 {/* MAIN COLUMN */}
