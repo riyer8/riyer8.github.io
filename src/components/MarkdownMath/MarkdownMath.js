@@ -35,6 +35,27 @@ const injectMarkedAndSanitizer = () => {
   }
 };
 
+const preprocessFigures = (text) => {
+  if (!text) return text;
+
+  // :::figure blocks
+  return text.replace(
+    /:::figure\s+([\s\S]*?)\s+:::/g,
+    (_, content) => {
+      const lines = content.trim().split('\n');
+      const imageLine = lines.shift();
+      const caption = lines.join('\n').trim();
+
+      return `
+<figure class="md-figure">
+  ${imageLine}
+  ${caption ? `<figcaption>${caption}</figcaption>` : ''}
+</figure>
+`;
+    }
+  );
+};
+
 // Render markdown -> HTML while preserving math
 const renderMarkdownWithKatexPlaceholders = (text) => {
   if (!text) return '';
@@ -120,12 +141,14 @@ const MarkdownMath = ({ text }) => {
   useEffect(() => {
     if (!ready) return;
 
-    const parsed = renderMarkdownWithKatexPlaceholders(text);
+    const parsed = renderMarkdownWithKatexPlaceholders(
+      preprocessFigures(text)
+    );
     let sanitized = parsed;
 
     if (typeof window !== 'undefined' && window.DOMPurify) {
       sanitized = window.DOMPurify.sanitize(parsed, {
-        ADD_TAGS: ['iframe', 'video', 'source'],
+        ADD_TAGS: ['iframe', 'video', 'source', 'figure', 'figcaption'],
         ADD_ATTR: [
           'data-katex-display',
           'data-katex-inline',
@@ -157,6 +180,26 @@ const MarkdownMath = ({ text }) => {
     #markdown-math-root .katex { max-width: 100%; overflow-wrap: anywhere; word-break: break-word; }
     #markdown-math-root a { color: ${theme.colors.accent}; text-decoration: underline; }
     #markdown-math-root iframe, #markdown-math-root video { max-width: 100%; height: auto; display: block; margin: 1em 0; }
+    #markdown-math-root figure.md-figure {
+      margin: 1.5em auto;
+      text-align: center;
+      max-width: 100%;
+    }
+
+    #markdown-math-root figure.md-figure img {
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    #markdown-math-root figure.md-figure figcaption {
+      margin-top: 0.5em;
+      font-size: 0.85em;
+      opacity: 0.75;
+      line-height: 1.4;
+    }
   `;
 
   return (
