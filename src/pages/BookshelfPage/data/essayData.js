@@ -50,12 +50,11 @@ He also frames the idea of **regret minimization**
   },
 
   {
-    title: "🌻 tryhard",
+    title: "tryhard",
     url: "https://jasmi.news/p/tryhard",
     dateAdded: "2025-10-17",
     category: "advice",
     medium: "essay",
-    favorite: true,
     tldr: "🌻 A simple, reflective piece on the fruits of trying hard. Why not give it all you got?",
     thoughts: "Contrary to much of what I used to read, this one encourages that trying hard, harder than one expects. Maybe this is the best form of self help.",
     tags: ['motivation', 'growth', 'productivity', 'mindset'],
@@ -78,51 +77,6 @@ Make effort feel intentional. You get to choose the game you play, but you have 
 
 > Ira Glass bit about the taste gap: “It is only by going through a volume of work that you will close that gap, and **your work will be as good as your ambitions**… It’s gonna take awhile. It’s normal to take awhile. You’ve just gotta fight your way through.”
     `
-
-  },
-
-  {
-    title: "A Roadmap to AI Utopia",
-    url: "https://www.khoslaventures.com/posts/a-roadmap-to-ai-utopia",
-    dateAdded:"2025-10-24",
-    category: "AI",
-    medium: "essay",
-    tldr: "🌏 A rather optimistic view on how AI can lead to a prosperous future for all of humanity.",
-    thoughts: "A refreshing and optimistic perspective on AI's potential to improve lives globally. There is a chance that it remains to be too optimistic without real actionable changes to implement said ideas.",
-    tags: ['AI', 'future', 'optimism', 'technology', 'society', 'startups'],
-    notes: `I really enjoyed the parallel the author drew between AI and a steam engine, as obvious as it may seem. It's a compelling way to think about how AI is transforming productivity and expanding human capacity. Khosla is definitely optimistic, which made the piece engaging.
-
-That said, some ideas felt underdeveloped. For instance, the treatment of pessimistic viewpoints was too broad, lacking nuance about societal or economic challenges that AI may bring. Similarly, the mention of a universal basic income (UBI) was interesting, but I would have loved more detail on how it would be implemented and the consequences.
-
-Some quotes stood out:
-> "I estimate that over the next 25 years, AI can perform 80% of the work in 80% of all jobs - whether doctors, salespeople, engineers, or farm workers."
-- Bold and thought-provoking, though perhaps optimistic and reliant on assumptions about AI adoption rates across industries.
-
-> "The current challenge is not a lack of resources, but a limitation in our capacity to find them – a barrier AI is poised to help break."
-- May overestimate AI's ability to overcome systemic or structural limitations.
-`
-  },
-
-  {
-    title: "In the Age of AI, All We Have Left Is Taste",
-    url: "https://miscellaneousgood.substack.com/p/in-the-age-of-ai-all-we-have-left",
-    dateAdded: "2025-11-16",
-    category: "AI",
-    medium: "essay",
-    tldr: "✨ AI taking over taste won't result in personal, intimate connections with other people's personal taste.",
-    thoughts: "As someone who deeply thinks about personalization in the face of AI, this essay was really opening to me. We don't want to OR even need to automate everything. Allow people to have personal connections with others.",
-    tags: ['AI', 'personalization', 'taste', 'consumer-behavior'],
-    notes: ` I really love the contrast between the algorithmic optimization and deeply human texture of taste. The author argues that in a world where AI synthesizes everything we already know we want, the real value comes from the perspectives that we align with.
-
-> AI gives you exactly what you want. But in doing so, you never get what you didn’t know you needed.
-
-This captures the idea that taste isn't just about calculating accuracy; it's about personal discovery.
-
-> Human recommendations, according to that logic, are not comprehensive or unbiased. They favor certain things and overlook others. In doing so, they create meaning. 
-
-The biases and preferences that we have actually help us when it comes to deciphering taste. It signals humanity.
-
-> Creative ideas are best evaluated through the senses not the intellect - Rick Rubin`
 
   },
 
@@ -155,29 +109,6 @@ The biases and preferences that we have actually help us when it comes to deciph
   },
 
   {
-    title: "Frequency Reduces Difficulty",
-    url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
-    dateAdded: "2025-11-24",
-    category: "advice",
-    medium: "essay",
-    tags: ['habit', 'exposure', 'learning', 'practice', 'productivity'],
-    tldr: "🔁 Doing painful tasks more frequently dramatically reduces the difficulty.",
-    thoughts: "Directly aligned with the principle of exposure therapy, do what you don't like the most (within reason).",
-    notes: `The central line **"if it hurts, do it more often"** sounds almost counterintuitive (or obvious if you've seen this idea before), but Fowler integrates it rather well.
-He states that
-> "If we were able to plot pain versus time between integrations, we'd see an exponential curve."
-His argument is essentially exposure therapy for engineering. Painful tasks get exponentially worse the longer you avoid them, but breaking them into smaller, frequent chunks makes them more manageable.
-
-Three main reasons why it is beneficial to essentially do exposure therapy:
-- Tasks, when decomposed, are easier to tackle.
-- Feedback loops; the more often you do something, the faster you learn (like reinforcement learning). Look for every opportunity to add feedback loops.
-- Practice. The more often you do it, the better you get at it. Every iteration makes you familiar with the patterns.
-
-This essay allows us to increase frequency with more painful work, expanding beyond just engineering.
-    `
-  },
-
-  {
     title: "What Goes Wrong by Jessica Livingston",
     url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
     dateAdded: "2025-11-28",
@@ -185,7 +116,7 @@ This essay allows us to increase frequency with more painful work, expanding bey
     medium: "essay",
     tags: ["entrepreneurship", "career", "lessons", "failure", "startups"],
     tldr: "🚀 Livingston provides a recount of reasons why startups fail from her experience of founding YC",
-    thoughts: "I love how she backs up her points with incredibly successful companies at their earliest stages.",
+    thoughts: "It's easy to live in the glamour of startup success stories, but this is really grounding on the (many) ways that things can do wrong and why they go wrong before you realize you're on to something.",
     notes: `
 > Determination is really two separate things: resilience and drive. Resilience keeps you from being pushed backwards. Drive moves you forwards.
 
@@ -206,52 +137,6 @@ Livingston describes the various ways that people will quit on their ideas after
    - Talk to users and adjust your idea accordingly
 
 > Just remember that no extreme ever lasts (good or bad). Don't let yourself get immobilized by sadness when things go wrong. Just keep putting one foot in front of the other and know it will get better.
-`
-  },
-
-  {
-    title: "A Critical Essay On the Art of Performance",
-    url: "https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d",
-    dateAdded: "2025-11-30",
-    category: "creativity",
-    medium: "essay",
-    tags: ["improv", "growth", 'creativity'],
-    tldr: "🎭 de Jong explores the richness of improv from the actors and the audience perspective.",
-    thoughts: "I truly love the depth in which this essay describes improvisers and the ways in which audiences can extract away the hard work used to make scenes natural and believable.",
-    notes: `
-
-I just really like this quote.
-> I aim to uphold no single definition of art, as I deem it counterintuitive to label something as visceral as performance art with the limitations of written language.
-As with many ideas that we attempt to quantify, these ideas merely get lost in translation. Gunnar de Jong doesn't attempt to provide an overarching definition of art, allowing the reader to decipher it themselves.
-
-During his improv class, he works on a variety of études.
-
-Gunnar de Jong definition of étude:
-> étude _(noun)_: open-ended rehearsed improvisations
-
-For further clarification, here is the online definition of étude as it pertains to improv:
-> étude _(noun)_: structured exercise designed to develop specific skills, like living in the moment, chasing a goal, or using a specific technique, which are then applied to spontaneous scenes.
-
-The role of improv / action is "to build the imaginary circumstances and making them *sensually real*", as described by de Jong.
-
----
-
-Here are the two main life lessons that Gunnar de Jong extracts:
-
-**1. An actor's obligation is to _deliver behavior_**
-It's not merely just the words and actions used, but also understanding the character at a much deeper level to embody it. I really love this quote that the author used from Mike Leigh:
-> **People have talked about my characters as a collection of tics, but that’s reductive. The voice doesn’t exist by itself in a vacuum.** It is how some people talk, specifically people from certain places in the Thames Estuary. But so many different things on so many different levels are organically on the go that you can’t quite put your finger on what it actually is that provokes your reaction. A fundamental misunderstanding about my work — or certainly a reductive view of it — is that by collaborating with an actor I arrive at what I could otherwise have arrived at if I’d sat in a room and written a script and then cast the actor. That somehow it’s just another way of arriving at the same goal. But this is fundamentally not the case. The philosophy of the thing is to create characters who are like people actually are, with all the attendant complexities.
-
-**2. Notion of _going towards the harder choice_**
-
-> Characters going towards the harder choices make the scene more engaging and thus better written, and because it attracts more enticing behavior, it also manifests better acting.
-
----
-The paradoxical nature of acting and improvising.
-> One of the main realizations I had over the course of this work was that when improvisations are done well, they feel well-written, and when text-work is acted well, it feels improvised. This submersion between both worlds isn’t surprising. In both, the aim is to fool the audience, essentially, into believing something that’s not actually happening.
-
-Just another quote that I really loved about his distinction between great improvisers and actors
-> Improvisation also helps you to develop a sense of the “first time,” one of the _sine qua nons_ of acting. An audience should not sense that it is witnessing an entertainment which has been very carefully rehearsed for its delectation and applause, but rather that it is seeing something that is transpiring at that very second for the first time. That quality of the first time, unfortunately, is very rare among actors. It requires knowing what you’re doing, plus the ability to forget it and then to find it again when you get on stage. The truly great actors have that gift.’
 `
   },
 
@@ -283,97 +168,6 @@ Both of these archetypes serve different functions. Henderson actually sums this
 
 > Cynicism, flirtation, taboo subjects, and uncomfortable truths are all tolerated more easily when they come from elites. Particularly if the delivery is polished. The same behavior that would get a lower-status person punished is often excused, or even admired, when it comes from higher up.
     `
-  },
-
-  {
-    title: "How Improv Thinking Helped Me Get Out of My Head and Into the Moment",
-    url: "https://medium.com/better-humans/how-improv-thinking-helped-me-get-out-of-my-head-and-into-the-moment-a2bff6401548",
-    dateAdded: "2025-11-30",
-    category: "creativity",
-    medium: "essay",
-    tags: ["improv", "growth", 'creativity'],
-    tldr: "🎭 Improv can improve your day-to-day life with more patience and reflection.",
-    notes: `
-> When people shifted their focus and tapped into a childlike sense of curiosity, their anxiety decreased and their creativity increased.
-
-Drinko explains one of the core concepts in improv: the theory of "Yes, And". With the principle of "Yes, And", we collaborate with our partner to make a faithful attempt at the reality that we jointly bring to the table. With this principle, we garner a level of trust with our partner that we won't get sabotaged in the moment, allowing creativity to take over.
-
-Drinko describes the 12 lessons you can learn from improv:
-
-**Lesson 1: Mindfulness**
-
-- The brain has a limited amount of space. Be mindful of the present. Where are you right now? What is around you? It helps reduce the overthinking.
-
-**Lesson 2: Calming Down**
-
-- That actually leads really nicely into the next idea of calming down. Slow down and breathe.
-
-**Lesson 3: Find the Game**
-
-- Pay attention to special, hidden patterns that can allow you to break away from regular patterns and have fun.
-
-**Lesson 4: Being More Positive**
-
-- When you slip into negativity, find the light within it. Not everything can be positive, but you can notice (and limit) the unnecessary negative.
-
-**Lesson 5: Stop Being Judgmental**
-
-- Don't cloud your brain with judgmental thoughts. Pretend you are a detective trying to understand the world.
-- Being genuinely interested allows trust to grow.
-
-**Lesson 6: Treating Others Like Geniuses**
-
-- Find the strengths in others.
-
-**Lesson 7: You Aren’t Special**
-
-- We, more or less, think alike. As Drinko describes, "an extension of treating people like geniuses is to stop thinking like your wants and needs are any more or less important than anyone else’s."
-
-**Lesson 8: Listen**
-
-- Pause for three counts when someone talks. You don't need to dominate every conversation.
-
-**Lesson 9 & 10: Yes, And**
-
-- Be mindful when you say no and when it might make more sense to say yes.
-
-**Lesson 11: Embrace Mistakes**
-
-- Improv would be pointless without mistakes and we can learn to twist them to our benefit.
-- This doesn't mean we should justify all of our mistakes but rather don't let our mistakes stop us.
-
-**Lesson 12: Make Big Choices**
-
-- Improv rewards those who go big or go home. Just do the damn thing.
-
-    `
-  },
-
-  {
-    title: "Why You Procrastinate (It Has Nothing to Do With Self-Control)",
-    url: "https://www.nytimes.com/2019/03/25/smarter-living/why-you-procrastinate-it-has-nothing-to-do-with-self-control.html",
-    dateAdded: "2025-12-01",
-    category: "psychology",
-    medium: "essay",
-    archives: true,
-    tags: ["improv", "growth", 'creativity'],
-    notes: `
-> Procrastination is an emotion regulation problem, not a time management problem
-
-> Dr. Hershfield’s research has shown that, on a neural level, we perceive our “future selves” more like strangers than as parts of ourselves. When we procrastinate, parts of our brains actually think that the tasks we’re putting off — and the accompanying negative feelings that await us on the other side — are somebody else’s problem.
-
-How can we get down to the root cause of procrastination? Here are a couple of options mentioned in the article:
-1. One option is to **forgive yourself** in the moments you procrastinate... They concluded that self-forgiveness supported productivity by allowing “the individual to move past their maladaptive behavior and focus on the upcoming examination without the burden of past acts.”
-
-2. Another tactic is the related practice of **self-compassion**, which is treating ourselves with kindness and understanding in the face of our mistakes and failures.
-
-3. **Cultivate curiosity:** If you’re feeling tempted to procrastinate, bring your attention to the sensations arising in your mind and body. 
-
-4. **Consider the next action:** This is different than the age-old advice to break up a task you’re tempted to avoid into bite-sized chunks.
-
-5. **Make your temptations more inconvenient.**
-
-`
   },
 
   {
@@ -460,22 +254,7 @@ Nothing in standard day-to-day life prepares you for this.
 > they do what they do to impress themselves and because they feel compelled to make something happen in the world.
 
 > This is why the question of a person’s motivation is so important. It’s the first thing I try to understand about someone. The right motivations are hard to define a set of rules for, but you know it when you see it.
-
-
     `
-  },
-
-  {
-    title: "Pick Three Things. Now Do Them Well",
-    url: "https://www.scotthyoung.com/blog/2014/10/17/pick-just-three/",
-    dateAdded: "2025-11-14",
-    category: "advice",
-    archives: true,
-    medium: "essay",
-    tldr: "🎯 Limit your focus to three main projects at a time to maximize effectiveness and avoid burnout.",
-    thoughts: "",
-    tags: ['productivity', 'focus', 'time-management'],
-    notes: ``
   },
   
   {
@@ -509,6 +288,123 @@ This is probably even more relevant with the rise of search engines and LLMs tha
     `
   },
 
+  {
+    title: "home for the holidays",
+    url: "https://internetprincess.substack.com/p/home-for-the-holidays",
+    dateAdded: "2025-12-21",
+    category: "personal",
+    medium: "essay",
+    favorite: true,
+    thoughts: "I feel rather deeply exposed for how rich and deep the writing and reflections are. Highly recommend this read.",
+    tags: ['personal', 'grief'],
+    notes: `
+Quotes and sentences that I really liked:
+> Ontario in the winter is a province in greyscale. It’s the kind of grey that takes something from you; you are less of yourself for being surrounded by it. **There are stretches of the road that make you colourblind.**
+
+> Sometimes an apology means *I wish this wasn’t happening to you*, and sometimes an apology means *I’m sorry I did this to you.*
+
+On grief and depression:
+> Grief obliterates time: it strips it of meaning, destroys its constancy, renders it useless as a measure of anything that matters. 
+
+> In the car ride home from the train station, my father says he’s sorry that I was born with a brain that wants to hurt me. I remind myself: sometimes an apology means *I wish this wasn’t happening to you*, and sometimes an apology means *I’m sorry I did this to you*. This time, I can’t tell exactly which one he’s trying to say.
+
+> I’m still unsure if I can accept the idea of grief as a final form of love, but I understand intimately, now, its fundamental truth: horror and pain and loss do not exist in opposition to love, but as affirmation of it. All this terror because of all this beauty. All this just to have something worthwhile to ruin. 
+`
+  },
+
+  {
+    title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
+    url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
+    dateAdded: "2025-12-22",
+    category: "AI",
+    medium: "essay",
+    tldr: "How does taste fit into the world of LLMs and AI? How can LLMs learn taste (and should they)?",
+    thoughts: "In a way, we want LLMs to be objectively correct. But what if we spin it around so that LLMs can learn our subjective preferences and have their own taste that influences their answers?",
+    tags: ['taste', 'LLMs', 'personalization', 'consumer-behavior'],
+    notes: `
+:::figure
+![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/taste.png)
+This is the image that can be found in the article, describing the methods of taste in different POVs.
+:::
+
+Like many consumer-related things (e.g. fashion, interests, music, etc.) taste is constantly evolving - there's never a perfect fit. Are there methods that we can employ to follow that trend? Are there patterns among these trends to develop a more dynamic taste algorithm?
+
+> This is what makes computational taste so fascinating: it forces us to ask whether machines can model something that is designed to change.
+
+> It means taste is no longer just something people express, it’s something models optimize for.
+
+We can build LLMs that have taste: this can be via reward modeling from signals that humans provide along with explicit preference data through LoRe (Low-Rank Reward Modeling).
+
+This can also lead to "Taste-as-a-Service APIs" that power personalized feeds across industries.
+
+As mentioned in the article, models like TAPO (Textual Aesthetics Preference Optimization) and G-Eval are pioneering ways to train LLMs on human-labeled taste preferences.
+
+This means not *just* understanding what the person is replying but how they are replying to determine their taste / judgement embedding.
+
+This may also include understanding how **your friends** taste fingerprint is evolving and training models to predict how your taste may evolve, critical data for businesses.
+
+> Emerging methods like LoRe show how to solve this: by modeling individual preferences as combinations of shared basis functions, you can personalize LLMs to each user’s taste with just a handful of examples. This sidesteps the need for full fine-tuning and avoids hardcoding users into static categories.
+    `
+  },
+
+  {
+    title: "🟡 How To Do Great Work",
+    url: "https://paulgraham.com/greatwork.html",
+    dateAdded: "2025-12-26",
+    category: "advice",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "long essay but filled with fruits.",
+    tags: ['great-work', 'ambition'],
+    notes: `
+> The work you choose needs to have three qualities: it has to be something you have a natural aptitude for, that you have a deep interest in, and that offers scope to do great work.
+
+> The way to figure out what to work on is by working. If you're not sure what to work on, guess. But pick something and get going. You'll probably guess wrong some of the time, but that's fine. It's good to know about multiple things; some of the biggest discoveries come from noticing connections between different fields.
+
+> Knowledge expands fractally, and from a distance its edges look smooth, but once you learn enough to get close to one, they turn out to be full of gaps.
+
+> Boldly chase outlier ideas
+
+> The three most powerful motives are curiosity, delight, and the desire to do something impressive. Sometimes they converge, and that combination is the most powerful of all.
+
+> "Cast a wide net". Try lots of things, meet lots of people, read lots of books, ask lots of questions.
+
+> Don't worry about this; it's the nature of work, not a flaw in your character. Work has a sort of activation energy, both per day and per project. It's usually a mistake to lie to yourself if you want to do great work, but this is one of the rare cases where it isn't. When I'm reluctant to start work in the morning, I often trick myself by saying "I'll just read over what I've got so far." Five minutes later I've found something that seems mistaken or incomplete, and I'm off.
+
+> Don't divide your attention evenly between many topics though, or you'll spread yourself too thin. You want to distribute it according to something more like a power law. Be professionally curious about a few topics and idly curious about many more.
+
+> But always preserve excitingness.
+
+> Ambition comes in two forms, one that precedes interest in the subject and one that grows out of it. 
+
+> This is one case where the young have an advantage. They're more optimistic, and even though one of the sources of their optimism is ignorance, in this case ignorance can sometimes beat knowledge.
+    
+> It simplifies things. In some ways it's easier to try to be the best than to try merely to be good.
+
+> Originality in choosing problems seems to matter even more than originality in solving them. That's what distinguishes the people who discover whole new fields. So what might seem to be merely the initial step — deciding what to work on — is in a sense the key to the whole game.
+
+> Doing great work is a depth-first search whose root node is the desire to. So "If at first you don't succeed, try, try again" isn't quite right. It should be: If at first you don't succeed, either try again, or backtrack and then try again. Corollary: Never abandon the root node.
+
+> It's ok to want to impress other people, but choose the right people. The opinion of people you respect is signal.
+
+> Competition can be an effective motivator, but don't let it choose the problem for you; don't let yourself get drawn into chasing something just because others are. In fact, don't let competitors make you do anything much more specific than work harder.
+    `
+  },
+
+  {
+    title: "Staring into the abyss as a core life skill",
+    url: "https://www.benkuhn.net/abyss/",
+    dateAdded: "2025-12-28",
+    category: "advice",
+    medium: "essay",
+    tldr: "Staring into the abyss allows clarity for complex issues in life; many people don't do it because it's uncomfortable to confront the past (especially if they are decisions that you now regret).",
+    thoughts: "A corollary idea to embracing 'boredom' and thinking critically about your choices. It's ok to go back on choices you once believed were good.",
+    tags: ['boredom'],
+    notes: `
+> Staring into the abyss means thinking reasonably about things that are uncomfortable to contemplate, like arguments against your religious beliefs, or in favor of breaking up with your partner. It’s common to procrastinate on thinking hard about these things because it might require you to acknowledge that you were very wrong about something in the past, and perhaps wasted a bunch of time based on that (e.g. dating the wrong person or praying to the wrong god).
+    `
+  },
 
 
 ];

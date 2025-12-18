@@ -4,6 +4,7 @@ const bookData = [
     url: 'https://www.goodreads.com/book/show/40591677-keep-going',
     dateAdded: '2023-08-25',
     category: 'advice',
+    archives: true,
     medium: 'book',
     tldr: '☀️ Build routines, protect your solitude, focus on the work (not the identity). Keep some things just for joy.',
     thoughts: "I honestly still think about this book often and specifically that not everything you love has to be monetized or turned into a side hustle.",
@@ -76,6 +77,7 @@ const bookData = [
     url: 'https://www.goodreads.com/book/show/49994260-limitless',
     dateAdded: '2023-11-25',
     category: 'advice',
+    archives: true,
     medium: 'book',
     tldr: '🧠 Upgrade your mindset (what you believe), motivation (why you act), and methods (how you learn).',
     thoughts: "Lots of mental models about learning faster. Jim Kwik has such a rich background and story that makes his advice so deep.",
@@ -154,6 +156,7 @@ const bookData = [
     dateAdded: "2025-11-28",
     category: "creativity",
     medium: "book",
+    archives: true,
     tags: ["improv", "growth", 'creativity'],
     tldr: "🎭 The art of improv is already within you; you just have to show up!",
     thoughts: "A true insightful look at improv from someone highly respected in the field (and from Stanford Improv!).",
@@ -233,6 +236,7 @@ const bookData = [
     url: "https://www.goodreads.com/book/show/35957157-thinking-in-bets",
     dateAdded: "2025-11-28",
     category: "psychology",
+    archives: true,
     medium: "book",
     tags: ["decisions", "uncertainty", "poker", "probabilities"],
     tldr: "🎲 Life is better modeled as a poker game, where this is much uncertainty about what is coming next.",
@@ -320,11 +324,11 @@ const bookData = [
   },
 
   {
-    title: "Here’s how to live: Create. (From The Book \"How to Live\")",
+    title: "🟡 Here’s how to live: Create.",
     url: "https://sive.rs/htl23",
     dateAdded: "2025-11-30",
     category: "creativity",
-    medium: "book",
+    medium: "essay",
     favorite: true,
     tags: ["career", "creativity"],
     tldr: "The best way to live is to create. Don't leave this world with ideas that could have been something out there.",
@@ -355,6 +359,126 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
 
 > All this to say: not every success story needs to start with a cosmic, altruistic yes moment. Being rejected, overlooked, or ignored can serve as the greatest fuel for take-off.
     `
+  },
+
+  {
+    title: "Spy The Lie",
+    url: "https://www.goodreads.com/book/show/13167156-spy-the-lie",
+    dateAdded: "2025-12-29",
+    category: "psychology",
+    medium: "book",
+    tldr: "ex-CIA officers provide a handbook on how to detect deception.",
+    thoughts: "While it provides good frameworks, I found that it was mostly a handbook rather than detailed frameworks.",
+    tags: ['psychology', 'deception'],
+    notes: `
+> In order to determine whether a person is being untruthful, we need to look and listen for the first deceptive behavior to occur within the first five seconds after the stimulus is delivered.
+> 
+
+> At any given moment in time, as human beings we tend to be either be visually dominant or auditory dominant — we’re either more aware of and processing what we’re seeing, or more aware of and processing what we’re hearing. The problem with that goes back to what we said about communication being both verbal and nonverbal in nature, which means that deceptive behavior can come in either or both forms
+> 
+
+> The trick is to train our brains to go into what we call “L-squared mode” - we have to tell it to *look* and *listen* simultaneously.
+> 
+
+This in fact is quite difficult for the brain to do and after a while, it will default to one or the other. It’s important to train it to process both especially within the first five seconds of delivering the stimulus (a question) and perceiving the answer
+
+> The idea here is that if you want to know if someone is lying, you need to ignore truthful behavior so that it’s no processed.
+> 
+
+Often times, people will provide “truthful statements” to suppress answering the directed question since they don’t want to put themselves in an uncomfortable spot.
+
+> All the lies that have ever been told or ever will be told fall into three categories, or strategies: lies of commission, lies of omission, and lies of influence.
+> 
+
+The oath that is used when a witness is sworn to testify covers all three forms of these lies.
+
+> “… to tell the truth…” covers lies of commission
+”… the whole truth…” covers lies of omission
+”…and nothing but the truth…” covers lies of influence
+>
+    `
+  },
+
+  {
+    title: "Who Moved My Cheese?",
+    url: "https://www.goodreads.com/book/show/4894.Who_Moved_My_Cheese_",
+    dateAdded: "2025-12-20",
+    category: "career",
+    medium: "book",
+    tldr: "🧀 Change is inevitable; adapt quickly and enjoy it!",
+    thoughts: "A really quick read, but a good reminder that change is constant and we should continue to anticipate and adapt.",
+    tags: ['change'],
+    notes: `
+There are four main characters in the story:
+- Two mice: Sniff and Scurry
+    - Sniff: able to sniff out change early
+    - Scurry: quick to adapt to change
+- Two littlepeople: Hem and Haw
+    - Hem: resists change due to fear
+    - Haw: learns to adapt in time when he sees changing can lead to something better
+
+The story begins where all four characters live in a maze and find one reliable source of cheese. However, one day, after eating all the cheese, they find that it is gone. The two mice, who have been noticing changes in the quality and quantity of cheese at that station were able to quickly adapt and go back into the maze to find a new source.
+
+**The littlepeople were not able to adapt as quickly.**
+
+They had settled their life around this one source of cheese and were not prepare to leave it. Hem resists change, fueled with anger and denial of why this resource has been depleted and anticipates that it will come back. The comfort of that station overpowers his desire to find a new one.
+
+Haw, on the other hand, also initially resists change, but eventually comes to terms with the depleted resource and goes into the maze to find a new source of cheese. Along the way, he learns many lessons about change, which he writes on the walls of the maze so that Hem can learn from them if he chooses to follow.
+
+The lessons Haw learns are:
+- **Change Happens:** They Keep Moving The Cheese
+- **Anticipate Change:** Get Ready For The Cheese To Move
+- **Monitor Change:** Smell The Cheese Often So You Know When It Is Getting Old
+- **Adapt To Change Quickly:** The Quicker You Let Go Of Old Cheese, The Sooner You Can Enjoy New Cheese
+- **Change:** Move With The Cheese
+- **Enjoy Change!:** Savor The Adventure And Enjoy The Taste Of New Cheese!
+- **Be Ready To Change Quickly And Enjoy It Again & Again:** They Keep Moving The Cheese
+
+Basically, change is coming and the quicker we move and iterate, the faster we can find success.
+    `
+  },
+
+  {
+    title: "🟡 The Mom Test",
+    url: "https://www.goodreads.com/book/show/52283963-the-mom-test",
+    dateAdded: "2025-12-22",
+    category: "startup",
+    medium: "book",
+    tldr: "How to conduct insightful customer interviews for startups.",
+    thoughts: "",
+    tags: ['self-belief', 'learning', 'creativity'],
+    notes: `Useful conversation: the measure of usefulness of an early customer conversation is whether it gives us concrete facts about our customers’ lives and world views
+
+The big mistake is almost always to mention your idea too soon rather than too late
+
+The Mom Test:
+1. Talk about their life instead of your idea
+2. Ask about specifics in the past instead of generics or opinions about the future
+3. Talk less and listen more
+
+Leads to questions that even your mother can’t lie to you about
+
+If they haven’t looked for ways of solving it already, they’re not going to look for (or buy) yours
+
+Entrepreneurs are always drowning in ideas. We have too many ideas, not
+too few. Still, folks adore giving us more
+
+Accidental approval-seeking is what I call “The Pathos Problem.” It
+happens when you expose your ego, leading people to feel they ought to
+protect you by saying nice things.
+
+**Chapter 3: Asking Important Questions**
+
+Every time you talk to someone, you should be asking a question which has
+the potential to completely destroy your currently imagined business.
+
+You should be terrified of at least one of the questions you’re
+asking in every conversation
+
+Prepare a list of the three most important things you want to learn from a given type of person
+
+*to be continued.*
+`
   },
   
 ];

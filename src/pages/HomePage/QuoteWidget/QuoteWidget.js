@@ -7,6 +7,7 @@ function extractQuotesWithMetadata() {
     const quoteRegex = /^>\s*(.+)$/gm;
 
     return bookshelfData.flatMap(entry => {
+        if (entry.archives === true) return [];
         if (!entry.notes) return [];
 
         const matches = [...entry.notes.matchAll(quoteRegex)];
@@ -42,7 +43,6 @@ const QuoteWidget = () => {
     }, []);
 
     const [quoteOfTheDay, setQuoteOfTheDay] = useState(null);
-    const [historyVisible, setHistoryVisible] = useState(false);
     const [quoteHistory, setQuoteHistory] = useState([]);
 
     useEffect(() => {
@@ -135,7 +135,7 @@ const QuoteWidget = () => {
             }}
         >
             <div className="quote-title" style={{ color: theme.colors.text }}>
-                Quote of the Day (from my Recent Reads)
+                Selected Piece of Writing (from my Recent Reads)
             </div>
 
             {quoteOfTheDay && (
@@ -146,7 +146,7 @@ const QuoteWidget = () => {
 
                     <div className="quote-meta-row">
                         <div className="quote-meta" style={{ color: theme.colors.textSecondary }}>
-                            — from <strong>{quoteOfTheDay.title}</strong>
+                            from <strong>{quoteOfTheDay.title}</strong>
                         </div>
 
                         {quoteOfTheDay.url && (

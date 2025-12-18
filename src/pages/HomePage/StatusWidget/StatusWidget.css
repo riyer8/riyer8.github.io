@@ -33,6 +33,7 @@
     justify-content: center;
     gap: 0.5rem;
     font-size: 1rem;
+    line-height: 1.4;
 }
 
 .status-item.centered-text {
@@ -46,6 +47,7 @@
 .status-value {
     cursor: default;
     user-select: none;
+    line-height: 1.4;
 }
 
 .status-cursor {

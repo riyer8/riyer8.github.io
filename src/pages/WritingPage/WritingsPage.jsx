@@ -39,7 +39,6 @@ const WritingsPage = () => {
 
   return (
     <div style={pageContainer}>
-      {/* No subscription form (removed) */}
       <div style={headerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <a href="/" style={{ textDecoration: 'none' }}>

@@ -1,9 +1,6 @@
 .reading-widget {
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(2px);
-  animation: readingBg 10s ease-in-out infinite alternate;
-  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .reading-widget.dark {

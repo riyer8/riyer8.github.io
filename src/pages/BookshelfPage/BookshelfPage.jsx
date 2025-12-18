@@ -3,20 +3,20 @@ import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import profilePhoto from '../../assets/photo3.JPG';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
-
+import { useParams, useNavigate } from 'react-router-dom';
 import bookshelfData from './data/bookshelfData.js';
+import Badge from './Badge';
 
-const Badge = ({ children, theme }) => (
-  <span style={{
-    display: 'inline-block',
-    padding: '0.15rem 0.5rem',
-    marginRight: '0.25rem',
-    background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)',
-    color: theme.colors.text,
-    borderRadius: '6px',
-    fontSize: '0.8rem'
-  }}>{children}</span>
-);
+const titleToSlug = (title) => 
+  encodeURIComponent(
+    title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+  );
 
 const BookshelfPage = () => {
   const { theme } = useTheme();
@@ -39,6 +39,21 @@ const BookshelfPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { slug } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (slug) {
+      const decodedSlug = decodeURIComponent(slug);
+      const item = bookshelfData.find(r => titleToSlug(r.title) === decodedSlug);
+      if (item) {
+        setSelectedItem(item);
+        setNotesOpen(true); // open sidebar
+      }
+    }
+  }, [slug]);
+
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -89,7 +104,11 @@ const BookshelfPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
 
-  const closeDetail = () => setSelectedItem(null);
+  const closeDetail = () => {
+    setSelectedItem(null);
+    window.history.pushState({}, '', '/recent-reads'); // reset URL to root
+  };
+
 
   const tableStyle = {
     width: '100%',
@@ -127,43 +146,6 @@ const BookshelfPage = () => {
     margin: '2rem auto',
     padding: '1rem',
     fontFamily: 'Inter, -apple-system, system-ui, sans-serif'
-  };
-
-  const layoutStyle = {
-    display: 'flex',
-    gap: '1.25rem',
-    alignItems: 'flex-start'
-  };
-
-  const leftSidebarStyle = {
-    width: '320px',
-    minHeight: '60vh',
-    padding: '1.25rem',
-    borderRadius: 8,
-    background: theme.isDarkMode ? theme.colors.cardBackground : 'linear-gradient(180deg, rgba(250,250,245,0.9), rgba(245,245,240,0.9))',
-    border: `1px solid ${theme.colors.border}`,
-    boxSizing: 'border-box'
-  };
-
-  const rightContentStyle = {
-    flex: 1,
-    minHeight: '60vh',
-    padding: '1rem',
-    borderRadius: 8,
-    background: theme.colors.background,
-    boxSizing: 'border-box'
-  };
-
-  // keep simple content style
-  const dynamicRightContentStyle = { ...rightContentStyle };
-
-  const listItemStyle = {
-    display: 'flex',
-    gap: '0.6rem',
-    padding: '0.55rem',
-    alignItems: 'center',
-    borderRadius: 6,
-    cursor: 'pointer'
   };
 
   return (
@@ -368,13 +350,15 @@ const BookshelfPage = () => {
                 <tr key={i} style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <button onClick={() => setSelectedItem(row)} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <button
+                        onClick={() => {
+                          setSelectedItem(row);
+                          navigate(`/recent-reads/${titleToSlug(row.title)}`);
+                        }}
+                        style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                      >
                         {row.favorite ? (
-                          <FaStar
-                            color={theme.isDarkMode ? '#FFD700' : '#000'}
-                            size={16}
-                            style={{ flexShrink: 0 }}
-                          />
+                          <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} size={16} style={{ flexShrink: 0 }} />
                         ) : null}
                         {row.title}
                         {row.archives && (
@@ -389,9 +373,42 @@ const BookshelfPage = () => {
                     </div>
                   </td>
 
-                  <td style={tdStyle}><button onClick={() => setActiveCategory(prev => prev === row.category ? null : row.category)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.category}</button></td>
-                  <td style={tdStyle}><button onClick={() => setActiveMedium(prev => prev === row.medium ? null : row.medium)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.medium}</button></td>
-                  <td style={tdStyle}>{(row.tags || []).map((t, idx) => <Badge key={idx} theme={theme}>{t}</Badge>)}</td>
+                  <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
+                    <button
+                      onClick={() => setActiveCategory(prev => prev === row.category ? null : row.category)}
+                      style={{
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: 6,
+                        cursor: 'pointer',
+                        border: `1px solid ${theme.colors.border}`,
+                        background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
+                        color: theme.colors.text,
+                        transition: 'background 140ms ease, color 140ms ease',
+                        whiteSpace: 'nowrap', // prevent button text wrapping
+                      }}
+                    >
+                      {row.category}
+                    </button>
+                  </td>
+
+                  <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
+                    <button
+                      onClick={() => setActiveMedium(prev => prev === row.medium ? null : row.medium)}
+                      style={{
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: 6,
+                        cursor: 'pointer',
+                        border: `1px solid ${theme.colors.border}`,
+                        background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
+                        color: theme.colors.text,
+                        transition: 'background 140ms ease, color 140ms ease',
+                        whiteSpace: 'nowrap', // prevent button text wrapping
+                      }}
+                    >
+                      {row.medium}
+                    </button>
+                  </td>
+                  <td style={tdStyle}> {(row.tags || []).slice().sort((a, b) => a.localeCompare(b)).map((t, idx) => (<Badge key={idx} theme={theme}>{t}</Badge>))} </td>
                 </tr>
               ))}
             </tbody>

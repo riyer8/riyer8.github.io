@@ -1,46 +1,79 @@
 import React from 'react';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import SidebarContent from './SidebarContent';
+import { useEffect } from 'react';
 
 const MobileSidebar = ({ isOpen, onClose }) => {
     const { theme } = useTheme();
     
-    // Sidebar slide-in and overlay styles
+    useEffect(() => {
+        if (isOpen) {
+            const scrollY = window.scrollY;
+
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.width = '100%';
+        } else {
+            const scrollY = Math.abs(parseInt(document.body.style.top || '0', 10));
+
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+
+            window.scrollTo(0, scrollY);
+        }
+
+        return () => {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+        };
+    }, [isOpen]);
+
     const overlayStyle = {
         position: 'fixed',
         top: 0,
         left: 0,
         width: '100vw',
         height: '100vh',
-        background: theme.colors.overlay || 'rgba(0,0,0,0.5)',
+        background: theme.isDarkMode
+            ? 'rgba(0,0,0,0.6)'
+            : 'rgba(0,0,0,0.35)',
+        backdropFilter: 'blur(2px)',
         zIndex: 2000,
         opacity: isOpen ? 1 : 0,
         pointerEvents: isOpen ? 'auto' : 'none',
         transition: 'opacity 0.25s ease',
     };
 
+
     const sidebarStyle = {
         position: 'fixed',
         top: 0,
         left: 0,
-        width: '350px',
-        maxWidth: '90vw',
+        width: '80vw',
+        maxWidth: '360px',
         height: '100vh',
-        background: theme.colors.cardBackground || '#fff',
-        boxShadow: theme.isDarkMode ? '2px 0 24px rgba(0,0,0,0.6)' : '2px 0 24px rgba(0,0,0,0.18)',
-        zIndex: 2100,
+
+        background: theme.colors.cardBackground,
+        padding: '5rem 2rem 2rem 2rem',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
-        padding: '2.5rem 2rem 2rem 2rem',
+        justifyContent: 'flex-start',
+
+        borderRight: `1px solid ${theme.colors.border}`,
+        boxShadow: theme.isDarkMode
+            ? 'inset 0 0 0 1px rgba(255,255,255,0.02)'
+            : 'none',
+
         transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
         transition: 'transform 0.35s cubic-bezier(.77,.2,.05,1)',
-        borderTopRightRadius: '18px',
-        borderBottomRightRadius: '18px',
+
+        zIndex: 2100,
         boxSizing: 'border-box',
-        backgroundImage: theme.colors.mobileMenuBg || undefined,
         fontFamily: theme.fonts?.base || 'sans-serif',
     };
+
 
     const closeBtnStyle = {
         position: 'absolute',
@@ -55,52 +88,21 @@ const MobileSidebar = ({ isOpen, onClose }) => {
         transition: 'color 0.2s',
     };
 
-    const nameStyle = {
-        fontSize: '2rem',
-        fontWeight: 700,
-        color: theme.colors.text,
-        marginBottom: '0.5rem',
-        marginTop: '1rem',
-        textAlign: 'center',
-    };
-
-    const taglineStyle = {
-        fontSize: '1rem',
-        color: theme.colors.textSecondary,
-        lineHeight: 1.5,
-        marginBottom: '0.5rem',
-        textAlign: 'center',
-    };
-
-    const emailStyle = {
-        color: theme.colors.accent,
-        textDecoration: 'none',
-        fontSize: '0.95rem',
-        marginBottom: '1.2rem',
-        display: 'inline-block',
-        textAlign: 'center',
-    };
-
-    const socialLinksStyle = {
-        marginTop: '0.5rem',
-        display: 'flex',
-        gap: '1.2rem',
-        justifyContent: 'center',
-    };
-
-    const socialLinkStyle = {
-        color: theme.colors.textSecondary,
-        fontSize: '1.4rem',
-        textDecoration: 'none',
-        transition: 'color 0.3s ease',
-    };
-
     return (
         <>
             <div style={overlayStyle} onClick={onClose} />
             <aside style={sidebarStyle}>
-                <button style={closeBtnStyle} onClick={onClose} title="Close sidebar">×</button>
-                <SidebarContent compact={true} />
+                <button
+                    style={closeBtnStyle}
+                    onClick={onClose}
+                    title="Close sidebar"
+                >
+                    ×
+                </button>
+
+                <div style={{ marginTop: '0' }}>
+                    <SidebarContent compact />
+                </div>
             </aside>
         </>
     );
