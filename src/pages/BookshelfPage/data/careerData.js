@@ -19,7 +19,7 @@ Scott goes on to describe that guidance is a synonym for feedback, but often fee
 
 Below is a diagram showing where *radical candor* lies.
 :::figure
-![Radical Candor](/assets/bookshelfImages/radical_candor.png)
+![Radical Candor](https://riyer8.github.io/assets/bookshelfImages/radical_candor.png)
 This is a graph where the vertical axis is "caring personally" and the horizontal axis is "challenging directly". In the upper right-hand quadrant, that is where radical candor lies.
 :::
 

@@ -38,8 +38,8 @@ const injectMarkedAndSanitizer = () => {
 const preprocessFigures = (text) => {
   if (!text) return text;
 
-  // :::figure blocks
-  return text.replace(
+  // Handle explicit :::figure blocks first (keep existing functionality)
+  text = text.replace(
     /:::figure\s+([\s\S]*?)\s+:::/g,
     (_, content) => {
       const lines = content.trim().split('\n');
@@ -54,7 +54,23 @@ const preprocessFigures = (text) => {
 `;
     }
   );
+
+  // Automatically convert any image + following text line into a figure
+  text = text.replace(
+    /!\[([^\]]*)\]\(([^)]+)\)\s*\n([^\n]+)/g,
+    (_, alt, src, caption) => {
+      return `
+<figure class="md-figure">
+  <img src="${src}" alt="${alt}" />
+  <figcaption>${caption.trim()}</figcaption>
+</figure>
+`;
+    }
+  );
+
+  return text;
 };
+
 
 // Render markdown -> HTML while preserving math
 const renderMarkdownWithKatexPlaceholders = (text) => {
@@ -155,7 +171,7 @@ const MarkdownMath = ({ text }) => {
           'src', 'alt', 'title', 'width', 'height', 'style',
           'frameborder', 'allow', 'allowfullscreen', 'controls', 'type'
         ],
-        ALLOWED_URI_REGEXP: /^(?:http|https|data):/i
+        ALLOWED_URI_REGEXP: /^(?:http|https|data|\/)/i
       });
     }
 
