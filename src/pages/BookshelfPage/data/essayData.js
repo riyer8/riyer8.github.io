@@ -90,7 +90,7 @@ Make effort feel intentional. You get to choose the game you play, but you have 
     tldr: "🌏 A rather optimistic view on how AI can lead to a prosperous future for all of humanity.",
     thoughts: "A refreshing and optimistic perspective on AI's potential to improve lives globally. There is a chance that it remains to be too optimistic without real actionable changes to implement said ideas.",
     tags: ['AI', 'future', 'optimism', 'technology', 'society', 'startups'],
-    notes: `I really enjoyed the parallel the author drew between AI and a stream engine, as evident as it seems. It's a compelling way to think about how AI is transforming productivity and expanding human capacity. Khosla is definitely optimistic, which made the piece engaging.
+    notes: `I really enjoyed the parallel the author drew between AI and a steam engine, as obvious as it may seem. It's a compelling way to think about how AI is transforming productivity and expanding human capacity. Khosla is definitely optimistic, which made the piece engaging.
 
 That said, some ideas felt underdeveloped. For instance, the treatment of pessimistic viewpoints was too broad, lacking nuance about societal or economic challenges that AI may bring. Similarly, the mention of a universal basic income (UBI) was interesting, but I would have loved more detail on how it would be implemented and the consequences.
 
@@ -174,46 +174,6 @@ Three main reasons why it is beneficial to essentially do exposure therapy:
 - Practice. The more often you do it, the better you get at it. Every iteration makes you familiar with the patterns.
 
 This essay allows us to increase frequency with more painful work, expanding beyond just engineering.
-    `
-  },
-
-  {
-    title: "How To Get Real Buy-In For Your Idea",
-    url: "https://www.forbes.com/sites/work-in-progress/2015/03/16/how-to-get-real-buy-in-for-your-idea/",
-    dateAdded: "2025-11-28",
-    category: "career",
-    medium: "essay",
-    tags: ["career", "growth", 'influence', 'leadership'],
-    tldr: "🤝 Getting real buy-in for an idea requires influence and co-creation.",
-    thoughts: "Such an interesting take on actually getting people to believe in your idea - career or even earlier stages.",
-    notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article is written in 2015, almost a decade old (is it still relevant? I'd personally assume so).
-
-At a high level, here are some of the introductory quotes that provide insight into how to get buy-in:
-
-> Most of the work in companies is done through influence rather than hierarchy due to corporate team-based structures, requiring professionals to have considerable skill at getting support for their ideas.
-
-> Buy-in is critical to making any large organizational change happen. Unless you win support from your ideas, from people at all levels of your organization, big change never seem to take hold or have the impact you want. - John Kotter, _Buy-In_
-
-> Real buy-in involves at least some element of co-creation. It invites discussion, debate, and allows everyone to feel even more vested in the outcome.
-
-Hedges provides a model to get true buy:
-
-### Formula a coherent idea or vision - but keep it in draft form.
-- Lay out the idea clearly, but don't make it seem finalized (otherwise others won't feel a part of the solution). 
-- Convey the current concerns that you have (aka why haven't you solved it yourself? why are you seeking buy-in?).
-
-### Expose the idea to outside criticism - and acknowledge it.
-- Hedges quotes Kotter noting that "if people have no opinions, no objections, and no emotions, it usually means they don't care."
-- This involves **productive advocacy**. Here, you share what you've thought about but acknowledge that it's from a limited perspective and take genuine interest in others' opinions.
-- We should also practice **productive inquiry**. This is how we engage and present ourselves with others via attentiveness and curiosity.
-- Acknowledge others' criticism to gain a mutual understanding.
-
-### Leverage others' feedback for improvement to achieve your end goal.
-- Honestly, rather than this being _your_ end goal, it should now be _our_ end goal
-
-### Communicate your progress.
-> Research shows that people who ask for advice are seen as more credible, not less
-- "Most people tend to reject ideas out of fear, and particularly fear of the unknown"
     `
   },
 
@@ -311,12 +271,12 @@ As a broad statement, Henderson introduces the archetypes below.
 
 **Experts are those who _know things_.** This can be seen by their credentials, technical precision, method of argument. _They care about being right_.
 
-**Elite are ones who are judged not on technical knowledge but rather _wealth, looks, taste, social fluency, etc._** They often talk to other elites which don't necessarily need to be from the same field but rather with the same sense of status.
+**Elites are those who are judged not on technical knowledge but rather _wealth, looks, taste, social fluency, etc._** They often talk to other elites which don't necessarily need to be from the same field but rather with the same sense of status.
 
 Experts and elites are on two ends of a spectrum. 
 
 In a way, elites can _overrule_ expert opinion, especially with issues that can rally society or have emotional weight.
-A lot of elites were also experts first, starting from real academic that backed their promotions to higher up positions. Elites acute sense for framing and audience allows them to lead the conversation.
+A lot of elites were also experts first, starting from academics that backed their promotions to higher up positions. Elites' acute sense for framing and audience allows them to lead the conversation.
 
 Both of these archetypes serve different functions. Henderson actually sums this up quite well
 > Expert talk is for getting to the truth. Elite talk is for getting things to move... There is mutual envy: experts want reach, elites want credibility.
@@ -332,11 +292,11 @@ Both of these archetypes serve different functions. Henderson actually sums this
     category: "creativity",
     medium: "essay",
     tags: ["improv", "growth", 'creativity'],
-    tldr: "🎭 Improv can improv your day-to-day life with more patience and reflection.",
+    tldr: "🎭 Improv can improve your day-to-day life with more patience and reflection.",
     notes: `
 > When people shifted their focus and tapped into a childlike sense of curiosity, their anxiety decreased and their creativity increased.
 
-Drinko explains one of the core concepts in improv: the theory of "Yes, And". With the principle of "Yes, And", we collaborate with our partner to make a faithful attempt at the reality that we jointly bring to the table. With this principle, we garner a level of trust with our partner that we won't get sabatoged in the moment, allowing creativity to take over.
+Drinko explains one of the core concepts in improv: the theory of "Yes, And". With the principle of "Yes, And", we collaborate with our partner to make a faithful attempt at the reality that we jointly bring to the table. With this principle, we garner a level of trust with our partner that we won't get sabotaged in the moment, allowing creativity to take over.
 
 Drinko describes the 12 lessons you can learn from improv:
 
@@ -384,7 +344,7 @@ Drinko describes the 12 lessons you can learn from improv:
 
 **Lesson 12: Make Big Choices**
 
-- Improv reward sthose who go big or go home. Just do the damn thing.
+- Improv rewards those who go big or go home. Just do the damn thing.
 
     `
   },
@@ -439,7 +399,7 @@ It's like what Atomic Habits describes - growing 1% every day is better than not
 
 > Most highly successful people have been really right about the future at least once at a time when people thought they were wrong.
 
-Almost be awarely dilusional about youself and your skills. Remember to not overhaul this with being egoist.
+Almost be awarely delusional about yourself and your skills. Remember to not overhaul this with being egoist.
 
 ### 3. Learn to think independently
 
@@ -525,13 +485,13 @@ Nothing in standard day-to-day life prepares you for this.
     category: "advice",
     medium: "essay",
     tldr: "Solitude is where new ideas are born.",
-    thoughts: "Kind reminder on providing your mind the space and activities to create new ideas",
+    thoughts: "A kind reminder to provide your mind the space and activities to create new ideas",
     tags: ['self-belief', 'solitude', 'learning', 'creativity'],
     notes: `
 
 Being alone is powerful. 
 
-As Sam Altman is quoted in the essay, the idea of "coworking" locations for startup founders is counterproductive. Early startup ideas don't seen good and people care more about the opinions of others before they even get to a stage of formalizing an idea.
+As Sam Altman is quoted in the essay, the idea of "coworking" locations for startup founders is counterproductive. Early startup ideas don't seem good and people care more about the opinions of others before they even get to a stage of formalizing an idea.
     
 Being alone with the idea can allow you to deeply think and comb through the idea without external factors.
 
@@ -541,11 +501,11 @@ Being alone with the idea can allow you to deeply think and comb through the ide
 
 > being exceptionally talented and trained was, in the long run, not enough to do groundbreaking work because *they lacked the capacity to go beyond the context they had been raised in.*
 
-The ancedote of Grothendieck shows that while he was behind his peers in math during his formative years, he spent time alone wiring his brain to think deeper, often discovering proofs and theorems that were already known to the world. While many would have seen this to be a waste of time, this later helped him develop ideas of his own.
+The anecdote of Grothendieck shows that while he was behind his peers in math during his formative years, he spent time alone wiring his brain to think deeper, often discovering proofs and theorems that were already known to the world. While many would have seen this to be a waste of time, this later helped him develop ideas of his own.
 
 > One thing that sets these intensely creative individuals apart, as far as I can tell, is that when sitting with their thoughts they are uncommonly willing to linger in confusion. **To be curious about that which confuses. Not too rapidly seeking the safety of knowing or the safety of a legible question.**
 
-This is probably even more relevant with the rise of search engines and LLMs that could quickly ease our confusion and produce answers without allow us to wire our brain and linger in the confusion.
+This is probably even more relevant with the rise of search engines and LLMs that could quickly ease our confusion and produce answers without allowing us to wire our brain and linger in the confusion.
     `
   },
 
