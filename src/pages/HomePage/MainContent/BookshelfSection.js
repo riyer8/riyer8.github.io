@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaStar } from 'react-icons/fa';
 import bookshelfData from '../../../pages/BookshelfPage/data/bookshelfData';
@@ -19,9 +19,26 @@ const Pill = ({ children, theme }) => (
   </span>
 );
 
+const titleToSlug = (title) => 
+  encodeURIComponent(
+    title
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
+      .trim()
+      .replace(/\s+/g, '-')
+  );
+
 const BookshelfSection = () => {
   const { theme } = useTheme();
   const navigate = useNavigate();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => setMounted(true), 50); // slight delay to trigger transition
+    return () => clearTimeout(timeout);
+  }, []);
 
   const topFavorites = useMemo(() => 
     bookshelfData
@@ -35,7 +52,10 @@ const BookshelfSection = () => {
     width: '100%',
     margin: '2rem auto',
     padding: '1rem',
-    boxSizing: 'border-box'
+    boxSizing: 'border-box',
+    opacity: mounted ? 1 : 0,
+    transform: mounted ? 'translateY(0)' : 'translateY(15px)',
+    transition: 'opacity 400ms ease, transform 400ms ease'
   };
 
   const titleStyle = {
@@ -66,11 +86,8 @@ const BookshelfSection = () => {
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.text,
     fontSize: '0.95rem',
-    verticalAlign: 'middle'
-  };
-
-  const handleNavigateFavorites = () => {
-    navigate('/recent-reads');
+    verticalAlign: 'middle',
+    textAlign: 'left'
   };
 
   return (
@@ -98,7 +115,7 @@ const BookshelfSection = () => {
                   style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
                   onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
-                  onClick={handleNavigateFavorites}
+                  onClick={() => navigate(`/recent-reads/${titleToSlug(row.title)}`)}
               >
                 <td style={tdStyle}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>

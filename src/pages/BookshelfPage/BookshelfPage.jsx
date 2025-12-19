@@ -3,6 +3,7 @@ import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import profilePhoto from '../../assets/photo3.JPG';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
+import { useParams, useNavigate } from 'react-router-dom';
 
 import bookshelfData from './data/bookshelfData.js';
 
@@ -17,6 +18,17 @@ const Badge = ({ children, theme }) => (
     fontSize: '0.8rem'
   }}>{children}</span>
 );
+
+const titleToSlug = (title) => 
+  encodeURIComponent(
+    title
+      .toLowerCase()
+      .normalize("NFD")             // decompose accented letters
+      .replace(/[\u0300-\u036f]/g, '') // remove diacritics
+      .replace(/[^a-z0-9\s-]/g, '')    // remove all non-alphanumeric characters except spaces and dashes
+      .trim()
+      .replace(/\s+/g, '-')            // replace spaces with dashes
+  );
 
 const BookshelfPage = () => {
   const { theme } = useTheme();
@@ -39,6 +51,21 @@ const BookshelfPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const { slug } = useParams();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (slug) {
+      const decodedSlug = decodeURIComponent(slug);
+      const item = bookshelfData.find(r => titleToSlug(r.title) === decodedSlug);
+      if (item) {
+        setSelectedItem(item);
+        setNotesOpen(true); // open sidebar
+      }
+    }
+  }, [slug]);
+
 
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -89,7 +116,11 @@ const BookshelfPage = () => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
 
-  const closeDetail = () => setSelectedItem(null);
+  const closeDetail = () => {
+    setSelectedItem(null);
+    window.history.pushState({}, '', '/recent-reads'); // reset URL to root
+  };
+
 
   const tableStyle = {
     width: '100%',
@@ -368,13 +399,15 @@ const BookshelfPage = () => {
                 <tr key={i} style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <button onClick={() => setSelectedItem(row)} style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                      <button
+                        onClick={() => {
+                          setSelectedItem(row);
+                          navigate(`/recent-reads/${titleToSlug(row.title)}`);
+                        }}
+                        style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                      >
                         {row.favorite ? (
-                          <FaStar
-                            color={theme.isDarkMode ? '#FFD700' : '#000'}
-                            size={16}
-                            style={{ flexShrink: 0 }}
-                          />
+                          <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} size={16} style={{ flexShrink: 0 }} />
                         ) : null}
                         {row.title}
                         {row.archives && (

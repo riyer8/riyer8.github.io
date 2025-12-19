@@ -146,7 +146,7 @@ const QuoteWidget = () => {
 
                     <div className="quote-meta-row">
                         <div className="quote-meta" style={{ color: theme.colors.textSecondary }}>
-                            — from <strong>{quoteOfTheDay.title}</strong>
+                            from <strong>{quoteOfTheDay.title}</strong>
                         </div>
 
                         {quoteOfTheDay.url && (

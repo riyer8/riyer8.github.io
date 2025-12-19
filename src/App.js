@@ -27,13 +27,8 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      {/* Background lives once at the app root */}
       <PixelatedBackground />
-
-      {/* UI controls */}
       <ThemeToggle />
-
-      {/* Routes */}
       <Routes>
         <Route
           path="/"
@@ -45,7 +40,7 @@ const App = () => {
           }
         />
         <Route path="/recent-reads" element={<BookshelfPage />} />
-        {/* <Route path="/writings" element={<WritingsPage />} /> */}
+        <Route path="/recent-reads/:slug" element={<BookshelfPage />} />
         <Route path="/taps-103" element={<Taps103Page />} />
         <Route path="/ramya" element={<AboutPage />} />
       </Routes>

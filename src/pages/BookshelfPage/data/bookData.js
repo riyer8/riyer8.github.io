@@ -320,7 +320,7 @@ const bookData = [
   },
 
   {
-    title: "Here’s how to live: Create. (From The Book \"How to Live\")",
+    title: "Here’s how to live: Create.",
     url: "https://sive.rs/htl23",
     dateAdded: "2025-11-30",
     category: "creativity",
