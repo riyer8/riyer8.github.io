@@ -6,11 +6,6 @@ import { useTheme } from '../ThemeContext/ThemeContext';
 const BirthdayToggle = () => {
   const { theme } = useTheme();
 
-    useEffect(() => {
-        fireConfetti();
-    }, []);
-
-
   const fireConfetti = () => {
     confetti({ particleCount: 120, spread: 70, origin: { y: 0.2 },
     });
@@ -46,7 +41,7 @@ const BirthdayToggle = () => {
     <button
       style={buttonStyle}
       onClick={fireConfetti}
-      title="It's my birthday today! 🎉"
+      title="It's my birthday week! 🎉"
       aria-label="Celebrate"
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'scale(1.1)';

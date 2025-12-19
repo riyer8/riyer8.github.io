@@ -20,7 +20,7 @@ const Footer = () => {
 
     const footerStyle = {
         width: '100%',
-        marginTop: '6rem',
+        marginTop: '3rem',
         padding: '5rem 1.5rem 4.5rem',
         borderTop: `1px solid ${theme.colors.border}`,
         display: 'flex',

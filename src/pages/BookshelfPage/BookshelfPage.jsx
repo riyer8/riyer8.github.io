@@ -4,30 +4,18 @@ import profilePhoto from '../../assets/photo3.JPG';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
 import { useParams, useNavigate } from 'react-router-dom';
-
 import bookshelfData from './data/bookshelfData.js';
-
-const Badge = ({ children, theme }) => (
-  <span style={{
-    display: 'inline-block',
-    padding: '0.15rem 0.5rem',
-    marginRight: '0.25rem',
-    background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)',
-    color: theme.colors.text,
-    borderRadius: '6px',
-    fontSize: '0.8rem'
-  }}>{children}</span>
-);
+import Badge from './Badge';
 
 const titleToSlug = (title) => 
   encodeURIComponent(
     title
       .toLowerCase()
-      .normalize("NFD")             // decompose accented letters
-      .replace(/[\u0300-\u036f]/g, '') // remove diacritics
-      .replace(/[^a-z0-9\s-]/g, '')    // remove all non-alphanumeric characters except spaces and dashes
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9\s-]/g, '')
       .trim()
-      .replace(/\s+/g, '-')            // replace spaces with dashes
+      .replace(/\s+/g, '-')
   );
 
 const BookshelfPage = () => {
@@ -158,43 +146,6 @@ const BookshelfPage = () => {
     margin: '2rem auto',
     padding: '1rem',
     fontFamily: 'Inter, -apple-system, system-ui, sans-serif'
-  };
-
-  const layoutStyle = {
-    display: 'flex',
-    gap: '1.25rem',
-    alignItems: 'flex-start'
-  };
-
-  const leftSidebarStyle = {
-    width: '320px',
-    minHeight: '60vh',
-    padding: '1.25rem',
-    borderRadius: 8,
-    background: theme.isDarkMode ? theme.colors.cardBackground : 'linear-gradient(180deg, rgba(250,250,245,0.9), rgba(245,245,240,0.9))',
-    border: `1px solid ${theme.colors.border}`,
-    boxSizing: 'border-box'
-  };
-
-  const rightContentStyle = {
-    flex: 1,
-    minHeight: '60vh',
-    padding: '1rem',
-    borderRadius: 8,
-    background: theme.colors.background,
-    boxSizing: 'border-box'
-  };
-
-  // keep simple content style
-  const dynamicRightContentStyle = { ...rightContentStyle };
-
-  const listItemStyle = {
-    display: 'flex',
-    gap: '0.6rem',
-    padding: '0.55rem',
-    alignItems: 'center',
-    borderRadius: 6,
-    cursor: 'pointer'
   };
 
   return (

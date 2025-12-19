@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
-import { PixelatedBackground, ThemeToggle } from "./components";
+import { PixelatedBackground, ThemeToggle, BirthdayToggle } from "./components";
 import { Sidebar, MainContent } from "./pages/HomePage";
 import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
 // import WritingsPage from "./pages/WritingPage/WritingsPage";
@@ -29,6 +29,7 @@ const App = () => {
     <ThemeProvider>
       <PixelatedBackground />
       <ThemeToggle />
+      <BirthdayToggle />
       <Routes>
         <Route
           path="/"

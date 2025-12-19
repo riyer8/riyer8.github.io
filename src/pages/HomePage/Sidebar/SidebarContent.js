@@ -100,7 +100,7 @@ const SidebarContent = ({ compact = false }) => {
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
-                    justifyContent: 'center',
+                    justifyContent: compact ? 'flex-start' : 'center',
                     width: '100%',
                     textAlign: 'center',
                     fontFamily: theme.fonts?.base || 'sans-serif',

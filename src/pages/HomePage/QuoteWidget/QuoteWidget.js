@@ -42,7 +42,6 @@ const QuoteWidget = () => {
     }, []);
 
     const [quoteOfTheDay, setQuoteOfTheDay] = useState(null);
-    const [historyVisible, setHistoryVisible] = useState(false);
     const [quoteHistory, setQuoteHistory] = useState([]);
 
     useEffect(() => {

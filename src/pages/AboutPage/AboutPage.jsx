@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeToggle } from '../../components';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import PixelatedBackground from '../../components/Background/PixelatedBackground';
 import NotesSection from '../Principles/NotesSection';
@@ -95,7 +94,6 @@ const AboutPage = () => {
 
   return (
     <>
-      <ThemeToggle />
       <PixelatedBackground />
 
       <div style={containerStyle}>
