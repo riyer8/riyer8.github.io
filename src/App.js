@@ -1,12 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
-import { PixelatedBackground, ThemeToggle, BirthdayToggle } from "./components";
+import { PixelatedBackground, ThemeToggle } from "./components";
 import { Sidebar, MainContent } from "./pages/HomePage";
 import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
 // import WritingsPage from "./pages/WritingPage/WritingsPage";
 import Taps103Page from "./pages/Taps103Page/Taps103Page";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import SeasonalToggleManager from "./randomfeatures/Toggles/ToggleManager";
 
 const App = () => {
   const containerStyle = {
@@ -29,7 +30,7 @@ const App = () => {
     <ThemeProvider>
       <PixelatedBackground />
       <ThemeToggle />
-      <BirthdayToggle />
+      <SeasonalToggleManager />
       <Routes>
         <Route
           path="/"

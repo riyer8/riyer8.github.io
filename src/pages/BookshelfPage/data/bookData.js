@@ -356,6 +356,45 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
 > All this to say: not every success story needs to start with a cosmic, altruistic yes moment. Being rejected, overlooked, or ignored can serve as the greatest fuel for take-off.
     `
   },
+
+  {
+    title: "Who Moved My Cheese?",
+    url: "https://www.goodreads.com/book/show/4894.Who_Moved_My_Cheese_",
+    dateAdded: "2025-12-20",
+    category: "career",
+    medium: "book",
+    tldr: "🧀 Change is inevitable; adapt quickly and enjoy it!",
+    thoughts: "A really quick read, but a good reminder that change is constant and we should continue to anticipate and adapt.",
+    tags: ['change'],
+    notes: `
+There are four main characters in the story:
+- Two mice: Sniff and Scurry
+    - Sniff: able to sniff out change early
+    - Scurry: quick to adapt to change
+- Two littlepeople: Hem and Haw
+    - Hem: resists change due to fear
+    - Haw: learns to adapt in time when he sees changing can lead to something better
+
+The story begins where all four characters live in a maze and find one reliable source of cheese. However, one day, after eating all the cheese, they find that it is gone. The two mice, who have been noticing changes in the quality and quantity of cheese at that station were able to quickly adapt and go back into the maze to find a new source.
+
+**The littlepeople were not able to adapt as quickly.**
+
+They had settled their life around this one source of cheese and were not prepare to leave it. Hem resists change, fueled with anger and denial of why this resource has been depleted and anticipates that it will come back. The comfort of that station overpowers his desire to find a new one.
+
+Haw, on the other hand, also initially resists change, but eventually comes to terms with the depleted resource and goes into the maze to find a new source of cheese. Along the way, he learns many lessons about change, which he writes on the walls of the maze so that Hem can learn from them if he chooses to follow.
+
+The lessons Haw learns are:
+- **Change Happens:** They Keep Moving The Cheese
+- **Anticipate Change:** Get Ready For The Cheese To Move
+- **Monitor Change:** Smell The Cheese Often So You Know When It Is Getting Old
+- **Adapt To Change Quickly:** The Quicker You Let Go Of Old Cheese, The Sooner You Can Enjoy New Cheese
+- **Change:** Move With The Cheese
+- **Enjoy Change!:** Savor The Adventure And Enjoy The Taste Of New Cheese!
+- **Be Ready To Change Quickly And Enjoy It Again & Again:** They Keep Moving The Cheese
+
+Basically, change is coming and the quicker we move and iterate, the faster we can find success.
+    `
+  },
   
 ];
 
