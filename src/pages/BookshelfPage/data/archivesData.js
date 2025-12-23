@@ -7,7 +7,7 @@ const archiveData = [
     dateAdded: "2025-11-30",
     category: "advice",
     medium: "essay",
-    tags: [],
+    tags: ['writing', 'creativity', 'drafting'],
     archives: true,
     tldr: "It's okay if your first draft is shitty",
     thoughts: "If you find this in my archives, know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",

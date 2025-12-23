@@ -7,6 +7,7 @@ function extractQuotesWithMetadata() {
     const quoteRegex = /^>\s*(.+)$/gm;
 
     return bookshelfData.flatMap(entry => {
+        if (entry.archives === true) return [];
         if (!entry.notes) return [];
 
         const matches = [...entry.notes.matchAll(quoteRegex)];

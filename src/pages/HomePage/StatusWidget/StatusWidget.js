@@ -63,17 +63,6 @@ const StatusWidget = () => {
         return () => clearTimeout(timeout);
     }, [displayText, isDeleting, isPaused, fullText]);
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIsPaused(false);
-            setIsDeleting(false);
-            setDisplayText("");
-            setCurrentIndex(i => (i + 1) % currentActivities.length);
-        }, 15000);
-
-        return () => clearInterval(interval);
-    }, []);
-
     return (
         <div
             className={`status-widget ${theme.isDarkMode ? 'dark' : 'light'}`}

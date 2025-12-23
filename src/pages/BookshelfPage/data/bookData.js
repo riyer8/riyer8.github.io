@@ -76,6 +76,7 @@ const bookData = [
     url: 'https://www.goodreads.com/book/show/49994260-limitless',
     dateAdded: '2023-11-25',
     category: 'advice',
+    archives: true,
     medium: 'book',
     tldr: '🧠 Upgrade your mindset (what you believe), motivation (why you act), and methods (how you learn).',
     thoughts: "Lots of mental models about learning faster. Jim Kwik has such a rich background and story that makes his advice so deep.",
@@ -394,6 +395,49 @@ The lessons Haw learns are:
 
 Basically, change is coming and the quicker we move and iterate, the faster we can find success.
     `
+  },
+
+  {
+    title: "The Mom Test",
+    url: "https://www.goodreads.com/book/show/52283963-the-mom-test",
+    dateAdded: "2025-12-22",
+    category: "startup",
+    medium: "book",
+    tldr: "",
+    thoughts: "",
+    tags: ['self-belief', 'learning', 'creativity'],
+    notes: `Useful conversation: the measure of usefulness of an early customer conversation is whether it gives us concrete facts about our customers’ lives and world views
+
+The big mistake is almost always to mention your idea too soon rather than too late
+
+The Mom Test:
+1. Talk about their life instead of your idea
+2. Ask about specifics in the past instead of generics or opinions about the future
+3. Talk less and listen more
+
+Leads to questions that even your mother can’t lie to you about
+
+If they haven’t looked for ways of solving it already, they’re not going to look for (or buy) yours
+
+Entrepreneurs are always drowning in ideas. We have too many ideas, not
+too few. Still, folks adore giving us more
+
+Accidental approval-seeking is what I call “The Pathos Problem.” It
+happens when you expose your ego, leading people to feel they ought to
+protect you by saying nice things.
+
+**Chapter 3: Asking Important Questions**
+
+Every time you talk to someone, you should be asking a question which has
+the potential to completely destroy your currently imagined business.
+
+You should be terrified of at least one of the questions you’re
+asking in every conversation
+
+Prepare a list of the three most important things you want to learn from a given type of person
+
+*to be continued.*
+`
   },
   
 ];

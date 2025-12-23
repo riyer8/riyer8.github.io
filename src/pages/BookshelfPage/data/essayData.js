@@ -400,6 +400,86 @@ The anecdote of Grothendieck shows that while he was behind his peers in math du
 This is probably even more relevant with the rise of search engines and LLMs that could quickly ease our confusion and produce answers without allowing us to wire our brain and linger in the confusion.
     `
   },
+
+  {
+    title: "home for the holidays",
+    url: "https://internetprincess.substack.com/p/home-for-the-holidays",
+    dateAdded: "2025-12-21",
+    category: "personal",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "I feel rather illy exposed for how relatable this is.",
+    tags: ['personal', 'grief'],
+    notes: `
+> Ontario in the winter is a province in greyscale. It’s the kind of grey that takes something from you; you are less of yourself for being surrounded by it. There are stretches of the road that make you colourblind
+
+> Grief obliterates time: it strips it of meaning, destroys its constancy, renders it useless as a measure of anything that matters. 
+
+> I wonder, crying at him from across the floor of our friend’s co-op, if the end of our relationship forced him to change, or if he was changing the whole time and I was just too near to notice it.
+
+> Sometimes an apology means *I wish this wasn’t happening to you*, and sometimes an apology means *I’m sorry I did this to you.*
+
+> In the car ride home from the train station, my father says he’s sorry that I was born with a brain that wants to hurt me. I remind myself: sometimes an apology means *I wish this wasn’t happening to you*, and sometimes an apology means *I’m sorry I did this to you*. This time, I can’t tell exactly which one he’s trying to say.
+
+> I’m still unsure if I can accept the idea of grief as a final form of love, but I understand intimately, now, its fundamental truth: horror and pain and loss do not exist in opposition to love, but as affirmation of it. All this terror because of all this beauty. All this just to have something worthwhile to ruin. 
+`
+  },
+
+  {
+    title: "Take Aim, Even Badly",
+    url: "https://www.youtube.com/watch?v=ZwGDnSWmqhM",
+    dateAdded: "2025-12-21",
+    category: "advice",
+    medium: "video",
+    tldr: "Embody the first draft of yourself.",
+    thoughts: "",
+    tags: ['be-a-fool'],
+    notes: `
+> You can iterate and fix the bad first draft. That's the most valuable thing. And so that's what you need. **You need a bad first draft of yourself.**
+
+> You're a fool when you start something new. And so if you're not willing to be a fool, then you'll never start anything new. **The willingness to be a fool is the precursor to transformation.**
+
+> If you stand still, then you're moving backwards. Because everything is moving forward. **Do not stay in one place.**
+`
+  },
+
+  {
+    title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
+    url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
+    dateAdded: "2025-12-22",
+    category: "AI",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['taste', 'LLMs', 'personalization', 'consumer-behavior'],
+    notes: `
+:::figure
+![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/taste.png)
+This is the image that can be found in the article, describing the methods of taste in different POVs.
+:::
+
+Like many consumer-related things (e.g. fashion, interests, music, etc.) taste is constantly evolving - there's never a perfect fit. Are there methods that we can employ to follow that trend? Are there patterns among these trends to develop a more dynamic taste algorithm?
+
+> This is what makes computational taste so fascinating: it forces us to ask whether machines can model something that is designed to change.
+
+> It means taste is no longer just something people express, it’s something models optimize for.
+
+We can build LLMs that have taste: this can be via reward modeling from signals that humans provide along with explicit preference data through LoRe (Low-Rank Reward Modeling).
+
+This can also lead to "Taste-as-a-Service APIs" that power personalized feeds across industries.
+
+As mentioned in the article, models like TAPO (Textual Aesthetics Preference Optimization) and G-Eval are pioneering ways to train LLMs on human-labeled taste preferences.
+
+This means not *just* understanding what the person is replying but how they are replying to determine their taste / judgement embedding.
+
+This may also include understanding how **your friends** taste fingerprint is evolving and training models to predict how your taste may evolve, critical data for businesses.
+
+> Emerging methods like LoRe show how to solve this: by modeling individual preferences as combinations of shared basis functions, you can personalize LLMs to each user’s taste with just a handful of examples. This sidesteps the need for full fine-tuning and avoids hardcoding users into static categories.
+    `
+  },
+
+
 ];
 
 export default essayData;
