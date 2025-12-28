@@ -373,8 +373,41 @@ const BookshelfPage = () => {
                     </div>
                   </td>
 
-                  <td style={tdStyle}><button onClick={() => setActiveCategory(prev => prev === row.category ? null : row.category)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.category}</button></td>
-                  <td style={tdStyle}><button onClick={() => setActiveMedium(prev => prev === row.medium ? null : row.medium)} style={{ padding: '0.25rem 0.5rem', borderRadius: 6, cursor: 'pointer', border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff', color: theme.colors.text, transition: 'background 140ms ease, color 140ms ease' }} onMouseEnter={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.06)'} onMouseLeave={e => e.currentTarget.style.background = theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'}>{row.medium}</button></td>
+                  <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
+                    <button
+                      onClick={() => setActiveCategory(prev => prev === row.category ? null : row.category)}
+                      style={{
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: 6,
+                        cursor: 'pointer',
+                        border: `1px solid ${theme.colors.border}`,
+                        background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
+                        color: theme.colors.text,
+                        transition: 'background 140ms ease, color 140ms ease',
+                        whiteSpace: 'nowrap', // prevent button text wrapping
+                      }}
+                    >
+                      {row.category}
+                    </button>
+                  </td>
+
+                  <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
+                    <button
+                      onClick={() => setActiveMedium(prev => prev === row.medium ? null : row.medium)}
+                      style={{
+                        padding: '0.25rem 0.5rem',
+                        borderRadius: 6,
+                        cursor: 'pointer',
+                        border: `1px solid ${theme.colors.border}`,
+                        background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
+                        color: theme.colors.text,
+                        transition: 'background 140ms ease, color 140ms ease',
+                        whiteSpace: 'nowrap', // prevent button text wrapping
+                      }}
+                    >
+                      {row.medium}
+                    </button>
+                  </td>
                   <td style={tdStyle}> {(row.tags || []).slice().sort((a, b) => a.localeCompare(b)).map((t, idx) => (<Badge key={idx} theme={theme}>{t}</Badge>))} </td>
                 </tr>
               ))}

@@ -4,6 +4,7 @@ const bookData = [
     url: 'https://www.goodreads.com/book/show/40591677-keep-going',
     dateAdded: '2023-08-25',
     category: 'advice',
+    archives: true,
     medium: 'book',
     tldr: '☀️ Build routines, protect your solitude, focus on the work (not the identity). Keep some things just for joy.',
     thoughts: "I honestly still think about this book often and specifically that not everything you love has to be monetized or turned into a side hustle.",
@@ -155,6 +156,7 @@ const bookData = [
     dateAdded: "2025-11-28",
     category: "creativity",
     medium: "book",
+    archives: true,
     tags: ["improv", "growth", 'creativity'],
     tldr: "🎭 The art of improv is already within you; you just have to show up!",
     thoughts: "A true insightful look at improv from someone highly respected in the field (and from Stanford Improv!).",
@@ -234,6 +236,7 @@ const bookData = [
     url: "https://www.goodreads.com/book/show/35957157-thinking-in-bets",
     dateAdded: "2025-11-28",
     category: "psychology",
+    archives: true,
     medium: "book",
     tags: ["decisions", "uncertainty", "poker", "probabilities"],
     tldr: "🎲 Life is better modeled as a poker game, where this is much uncertainty about what is coming next.",
@@ -321,11 +324,11 @@ const bookData = [
   },
 
   {
-    title: "Here’s how to live: Create.",
+    title: "🟡 Here’s how to live: Create.",
     url: "https://sive.rs/htl23",
     dateAdded: "2025-11-30",
     category: "creativity",
-    medium: "book",
+    medium: "essay",
     favorite: true,
     tags: ["career", "creativity"],
     tldr: "The best way to live is to create. Don't leave this world with ideas that could have been something out there.",
@@ -398,12 +401,12 @@ Basically, change is coming and the quicker we move and iterate, the faster we c
   },
 
   {
-    title: "The Mom Test",
+    title: "🟡 The Mom Test",
     url: "https://www.goodreads.com/book/show/52283963-the-mom-test",
     dateAdded: "2025-12-22",
     category: "startup",
     medium: "book",
-    tldr: "",
+    tldr: "How to conduct insightful customer interviews for startups.",
     thoughts: "",
     tags: ['self-belief', 'learning', 'creativity'],
     notes: `Useful conversation: the measure of usefulness of an early customer conversation is whether it gives us concrete facts about our customers’ lives and world views
