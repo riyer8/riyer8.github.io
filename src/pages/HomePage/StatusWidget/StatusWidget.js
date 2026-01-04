@@ -3,18 +3,15 @@ import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import './StatusWidget.css';
 
 const currentActivities = [
-    "building AI agents 🤖",
-    "researching about PCOS 🧬",
-    "planning my senior courses 🎓",
+    "building AI for consumers 💡",
+    "graduating soon 🎓",
     "creating this website 💻",
-    "reading a book at a SF cafe ☕️",
-    "thinking about consumer products 🛍️",
+    "reading a book at a cafe ☕️",
     "hiking at the Stanford Dish 🌳",
-    "writing blog posts ✍️",
+    "writing ✍️",
     "going to the gym and trying new workouts 🥊",
     "connecting founders and VCs through SWITE (swite.org) 🤝",
-    "exploring the city of San Francisco 🌉",
-    "experimenting with side hacks 💡",
+    "exploring San Francisco 🌉",
 ];
 
 const StatusWidget = () => {

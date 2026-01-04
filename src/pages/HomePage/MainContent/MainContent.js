@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import StatusWidget from '../StatusWidget/StatusWidget';
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
-import QuoteWidget from '../QuoteWidget';
+import QuoteWidget from '../QuoteWidget/QuoteWidget';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaBars } from 'react-icons/fa';
 import Footer from '../Footer/Footer';

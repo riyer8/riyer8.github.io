@@ -8,7 +8,6 @@ import notesAdmire from './data/admire.txt';
 const NOTES_CONFIG = [
   { file: notesPersonal, title: 'personal', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
   { file: notesProduct, title: 'products', colorLight: '#f0f8ff', colorDark: '#2b2f3b' },
-  { file: notesAdmire, title: 'people i admire', colorLight: '#fff5f5ff', colorDark: '#3f2b2b' },
 ];
 
 const NotesSection = () => {
@@ -39,7 +38,7 @@ const NotesSection = () => {
           color: theme.colors.text,
         }}
       >
-        notes to myself
+        Notes
       </h2>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
