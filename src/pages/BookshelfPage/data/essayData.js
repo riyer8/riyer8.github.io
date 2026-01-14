@@ -476,8 +476,7 @@ Majority of the brain function goes to maintenance, and allocates resources for 
 This is quite different to many other animals whose brain doesn't take up as much energy, setting humans distinctively apart.
     `
   }
-
-
+  
 ];
 
 export default essayData;

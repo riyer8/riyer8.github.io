@@ -4,10 +4,10 @@ import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
 import { Sidebar, MainContent } from "./pages/HomePage";
 import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
+import Year2026Page from "./pages/2026Page/Year2026Page"
 // import WritingsPage from "./pages/WritingPage/WritingsPage";
-import Taps103Page from "./pages/Taps103Page/Taps103Page";
 import AboutPage from "./pages/AboutPage/AboutPage";
-import SeasonalToggleManager from "./randomfeatures/Toggles/ToggleManager";
+import SeasonalToggleManager from "./randomfeatures/page-toggles/Toggles/ToggleManager";
 
 const App = () => {
   const containerStyle = {
@@ -43,8 +43,8 @@ const App = () => {
         />
         <Route path="/recent-reads" element={<BookshelfPage />} />
         <Route path="/recent-reads/:slug" element={<BookshelfPage />} />
-        <Route path="/taps-103" element={<Taps103Page />} />
         <Route path="/ramya" element={<AboutPage />} />
+        <Route path="/2026" element={<Year2026Page />} />
       </Routes>
     </ThemeProvider>
   );

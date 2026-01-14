@@ -1,7 +1,7 @@
 import React from 'react';
 import confetti from 'canvas-confetti';
 import { FaGhost } from 'react-icons/fa';
-import { useTheme } from '../../components/ThemeContext/ThemeContext';
+import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { useSeasonalVisibility } from '../hooks/useSeasonalVisibility';
 
 // 👻 Ghost-shaped confetti

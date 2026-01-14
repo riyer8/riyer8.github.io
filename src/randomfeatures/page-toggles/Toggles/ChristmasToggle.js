@@ -1,23 +1,22 @@
 import React from 'react';
 import confetti from 'canvas-confetti';
-import { FaDog } from 'react-icons/fa';
-import { useTheme } from '../../components/ThemeContext/ThemeContext';
+import { FaTree } from 'react-icons/fa';
+import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { useSeasonalVisibility } from '../hooks/useSeasonalVisibility';
 
-// 🐾 Paw-print confetti
-const pawShape = confetti.shapeFromText({ text: '🐾', scalar: 2 });
+// 🎄 Tree-shaped confetti
+const treeShape = confetti.shapeFromText({ text: '🎄', scalar: 2 });
 
-export const isDogDayVisible = () => {
-  return useSeasonalVisibility({ month: 7, day: 26, exact: true });
+export const isChristmasVisible = () => {
+  return useSeasonalVisibility({ month: 11, day: 25, exact: true });
 };
 
-const DogDayToggle = ({ rightOffset = 4.5 }) => {
+const ChristmasToggle = ({ rightOffset = 4.5 }) => {
   const { theme } = useTheme();
 
-  // 🐶 National Dog Day — exact date
   const isVisible = useSeasonalVisibility({
-    month: 7, // August (0-based)
-    day: 26,
+    month: 11, // December (0-based)
+    day: 25,
     exact: true,
   });
 
@@ -25,12 +24,12 @@ const DogDayToggle = ({ rightOffset = 4.5 }) => {
 
   const fireConfetti = () => {
     const baseConfig = {
-      particleCount: 45,
+      particleCount: 50,
       spread: 70,
       startVelocity: 30,
-      shapes: [pawShape],
+      shapes: [treeShape],
       scalar: 1.2,
-      colors: ['#8b5e3c', '#c68642', '#f5deb3'],
+      colors: ['#00a86b', '#ffd700', '#ff0000'],
     };
 
     confetti({ ...baseConfig, origin: { y: 0.25 } });
@@ -51,7 +50,7 @@ const DogDayToggle = ({ rightOffset = 4.5 }) => {
     alignItems: 'center',
     justifyContent: 'center',
     cursor: 'pointer',
-    color: '#8b5e3c',
+    color: '#00a86b',
     backdropFilter: 'blur(10px)',
     transition: 'box-shadow 0.25s ease, transform 0.25s ease',
     zIndex: 1001,
@@ -65,14 +64,14 @@ const DogDayToggle = ({ rightOffset = 4.5 }) => {
     <button
       style={buttonStyle}
       onClick={fireConfetti}
-      title="Happy National Dog Day 🐶"
-      aria-label="Celebrate National Dog Day"
+      title="Merry Christmas 🎄"
+      aria-label="Celebrate Christmas"
       onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
       onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
     >
-      <FaDog style={{ fontSize: '1.25rem' }} />
+      <FaTree style={{ fontSize: '1.2rem' }} />
     </button>
   );
 };
 
-export default DogDayToggle;
+export default ChristmasToggle;
