@@ -150,7 +150,6 @@ Livingston describes the various ways that people will quit on their ideas after
     tldr: "⚖️ The divide between experts (technically backed) and elites (socially backed)",
     thoughts: "Really fascinating account of status and the tradeoffs. Definitely something I will be thinking about.",
     notes: `
-
 As a broad statement, Henderson introduces the archetypes below.
 > In most societies, people fall into one of three roles: the masses, the experts, and the elites.
 
@@ -405,6 +404,78 @@ This may also include understanding how **your friends** taste fingerprint is ev
 > Staring into the abyss means thinking reasonably about things that are uncomfortable to contemplate, like arguments against your religious beliefs, or in favor of breaking up with your partner. It’s common to procrastinate on thinking hard about these things because it might require you to acknowledge that you were very wrong about something in the past, and perhaps wasted a bunch of time based on that (e.g. dating the wrong person or praying to the wrong god).
     `
   },
+
+  {
+    title: "LLM Daydreaming",
+    url: "https://gwern.net/ai-daydreaming",
+    dateAdded: "2026-01-09",
+    category: "AI",
+    medium: "essay",
+    tldr: "Why haven't LLM comes up with new discoveries dispite having so much information? The fixed knowledge of NN provide little room for growth; Gwern proposes 'day-dreaming loops' to create unique connections among ideas.",
+    thoughts: "",
+    favorite: true,
+    tags: ['AI', 'LLM', 'new-ideas'],
+    notes: `
+> Despite impressive capabilities, large language models have yet to produce a genuine breakthrough. The puzzle is why. A reason may be that they lack some fundamental aspects of human thought: they are frozen, unable to learn from experience, and they have no “default mode” for background processing, a source of spontaneous human insight.
+
+I remember vividly that I was once asked "what can LLM not do that humans can?". It's naive right? This is probably one of the things I didn't think of, but it exposes so many of the blindsides that we aren't aware about with LLMs.
+
+For one, humans have **continual learning**. Yes, while LLMs are getting new user queries, they are trapped in their knowledge and it's hard to move the needle much farther from its current knowledge.
+
+But I think the main insight comes from the fact that humans have **continual thinking** -- whether that's while sleeping, walking, daydreaming, working, etc.
+
+Gwern outlines possible ways to combat this phenomenon, trying to promote more unqiue connections among ideas: 
+
+> **Day-dreaming loop (DDL):** a background process that continuously samples pairs of concepts from memory. A generator model explores non-obvious links between them, and a critic model filters the results for genuinely valuable ideas. These discoveries are fed back into the system’s memory, creating a compounding feedback loop where new ideas themselves become seeds for future combinations.
+
+It's obvious (and he notes) that it isn't difficult to implement this. Just toss two of the concepts into a system and then find nonobvious connections between the two -> it's just expensive.
+    `
+  },
+
+  {
+    title: "The Most Valuable Commodity in the World is Friction",
+    url: "https://kyla.substack.com/p/the-most-valuable-commodity-in-the",
+    dateAdded: "2026-01-09",
+    category: "science",
+    medium: "essay",
+    tldr: "Friction can be seen in three different worlds: digital, physical, and curated. In each of these worlds, the experience is different.",
+    thoughts: "Love the breakdown of how friction is seen in these various circumstances.",
+    tags: ['thinking', 'boredom', 'new-ideas'],
+    notes: `
+Friction: *effort* required to move through systems
+
+Kyla draws a distinction between three types of friction:
+    
+| Category | Digital World | Physical World | Curated World |
+|---|---|---|---|
+| **Friction** | None | Lots | Paid to Remove |
+| **Effort** | Irrelevant | Everywhere | Stylized |
+
+> This is the economic story: **friction has become a class experience**.
+    `
+  },
+
+  {
+    title: "How Much Energy Does It Take To Think?",
+    url: "https://www.quantamagazine.org/how-much-energy-does-it-take-to-think-20250604/",
+    dateAdded: "2026-01-14",
+    category: "science",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['energy', 'brain', 'psychology'],
+    notes: `
+This article is about analyzing how our brain's energy process for various goals.
+
+> Effortful, goal-directed tasks use only 5% more energy than restful brain activity. In other words, we use our brain just a small fraction more when engaging in focused cognition than when the engine is idling.
+
+Majority of the brain function goes to maintenance, and allocates resources for conscious and subconscious demands.
+
+> At roughly 2% of body weight, the organ gorges on 20% of our body’s energetic resources.
+
+This is quite different to many other animals whose brain doesn't take up as much energy, setting humans distinctively apart.
+    `
+  }
 
 
 ];
