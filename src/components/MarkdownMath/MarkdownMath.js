@@ -216,6 +216,46 @@ const MarkdownMath = ({ text }) => {
       opacity: 0.75;
       line-height: 1.4;
     }
+
+        /* ------------------ */
+    /* Markdown tables    */
+    /* ------------------ */
+
+    #markdown-math-root table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.25em 0;
+      font-size: 0.95em;
+      border-radius: 8px;
+      overflow: hidden;
+      background: ${theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'};
+    }
+
+    #markdown-math-root th {
+      padding: 10px 12px;
+      text-align: left;
+      font-weight: 600;
+      background: ${theme.isDarkMode ? 'rgba(255,255,255,0.06)' : '#f6f6f6'};
+      border: 1px solid ${theme.isDarkMode ? 'rgba(255,255,255,0.15)' : '#ddd'};
+    }
+
+    #markdown-math-root td {
+      padding: 10px 12px;
+      border: 1px solid ${theme.isDarkMode ? 'rgba(255,255,255,0.12)' : '#e0e0e0'};
+      vertical-align: top;
+    }
+
+    #markdown-math-root tbody tr:nth-child(even) {
+      background: ${theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fafafa'};
+    }
+
+    /* Mobile-safe horizontal scroll */
+    #markdown-math-root table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
   `;
 
   return (
