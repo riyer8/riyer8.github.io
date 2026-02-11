@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkriyer8_github_io=self.webpackChunkriyer8_github_io||[]).push([[374],{374:(e,i,r)=>{e.exports=r.p+"static/media/artperformance.84b771b08c70055c4362.md"}}]);

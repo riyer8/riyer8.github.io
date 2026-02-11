@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkriyer8_github_io=self.webpackChunkriyer8_github_io||[]).push([[621],{621:(e,i,s)=>{e.exports=s.p+"static/media/improvwisdom.9f3f250ee07058e2bc6d.md"}}]);

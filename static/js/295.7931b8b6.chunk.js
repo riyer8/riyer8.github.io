@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkriyer8_github_io=self.webpackChunkriyer8_github_io||[]).push([[295],{295:(e,a,i)=>{e.exports=i.p+"static/media/partnership.7e87aa88ca6e07abfd1a.md"}}]);
