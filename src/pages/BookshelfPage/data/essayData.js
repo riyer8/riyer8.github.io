@@ -475,7 +475,63 @@ Majority of the brain function goes to maintenance, and allocates resources for 
 
 This is quite different to many other animals whose brain doesn't take up as much energy, setting humans distinctively apart.
     `
-  }
+  },
+
+  {
+    title: "On Taste",
+    url: "https://claremontreviewofbooks.com/on-taste/",
+    dateAdded: "2026-01-20",
+    category: "psychology",
+    medium: "essay",
+    tldr: "Essay on taste and how it influences our judgements, specifically in art.",
+    thoughts: "",
+    tags: ['taste', 'psychology', 'art'],
+    notes: `
+
+> Taste is the faculty by which we make judgments about art. 
+
+The idea of taste itself has been paradoxical within itself. The quote below shows the contrast between the personal desire but alos conformation with society.
+> The very notion of taste contains within itself two ideas in constant tension. First, **taste is always personal:** a judgment, but one’s own judgment. The idea derives from our physical sense of taste... And yet, however much we have a right to our own likes and dislikes, **such judgments are often measured against a standard**... These two principles—the autonomy of the individual taste and the existence of some broader principle of excellence—are perpetually at odds. 
+
+People fall into three different groups when it comes to taste:
+* **The Sensitive:** Those who see what it is without being told
+* **The Teachable:** Those who see it when you tell them
+* **The Dull:** Those who can’t see it whatever you do.
+
+*The author, Thomas Kaminski, says that this is not a matter of intellect.*
+
+> Art is not a part of the natural world; it is a human contrivance, and to appreciate it we must undergo some form of acculturation.
+
+> All responses to art, Hume’s essay argues, are fundamentally personal, but not all are equally valid. Some people are more sensitive to beauty than others. Some, better at recognizing what makes a work artful, possess sounder judgment. In Hume’s view, the man of taste possessed both sensibility and sense.
+
+Impressionists had two qualities working in their favor: the paintings themselves were visually appealing, and the new aesthetic was easy to assimilate. 
+`
+  },
+
+  {
+    title: "🟡 On the importance of staring directly into the sun",
+    url: "https://www.experimental-history.com/p/on-the-importance-of-staring-directly",
+    dateAdded: "2026-01-20",
+    category: "advice",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['psychology'],
+    notes: `
+    
+### Illusion of Explanatory Depth
+> Psychologists have a name for this tendency to think we understand things better than we do: the “illusion of explanatory depth.”
+   
+> That's why we need the illusion of explanatory depth: most things have to feel like they make sense, even if they don't, so that we can get on with the business of living.
+
+> Okay, so an illusion of explanatory depth is extremely important to staying alive. It does, unfortunately, have a downside: it fools you into thinking the universe isn't full of mysteries.
+
+### Other Ideas
+One of the quotes that I really liked, as a mathlete, was "But math, perhaps more so than any other intellectual pursuit, emits very strongly what we might call ignorance signals, signs that there's something you don't know."
+    
+    
+    `
+  },
   
 ];
 

@@ -50,10 +50,17 @@ const Year2026Page = () => {
   const [books] = useState([
     { title: 'The Seven Husbands of Evelyn Hugo', finishedOn: 'January 4' },
     { title: "The Princess of Cleves", finishedOn: 'January 12'},
-    { title: "The E-Myth Revisited"}
+    { title: "Manon Lescaut", finishedOn: "January 20"},
+    { title: "None Of This Is True", finishedOn: "February 11"}
   ]);
 
   const sortedBooks = [...books].reverse();
+
+  const [places] = useState([
+    // Future place entries can go here
+  ]);
+
+
 
 
   /* -------------------- Calendar logic (2026) -------------------- */
@@ -161,7 +168,7 @@ const Year2026Page = () => {
         <div style={contentStyle}>
           <div style={sectionStyle}>
             <h1 style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              ✨ 2026
+              Year in Review: 2026
             </h1>
 
             {/* ---------- Top row (expandable cards) ---------- */}
@@ -221,8 +228,6 @@ const Year2026Page = () => {
               </div>
 
               {/* Placeholder cards */}
-              <div style={cardStyle}>Goals</div>
-              <div style={cardStyle}>Fun Stuff</div>
             </div>
 
             {/* ---------- Calendar ---------- */}

@@ -89,18 +89,20 @@ The article is short and sweet. Feedback is an important tool in professional ca
 Sticking to what you feel are not debatable while assuming their motivations *are*.
 
 The following are examples of crossing the net, where you are assuming the other person's intentions, things that are debatable.
-> **Crossing the net:**
-> - Stating your interpretations as facts: *“You just don’t care anymore.”*
-> - Stating their intentions: *“You’re trying to get on my nerves.”*
-> - Stating their feelings: *“You’re frustrated about this project.”*
-> - Stating their observations: *“You obviously realize you’re the only one leaving before 8pm.”*
+
+**Crossing the net:**
+- Stating your interpretations as facts: *“You just don’t care anymore.”*
+- Stating their intentions: *“You’re trying to get on my nerves.”*
+- Stating their feelings: *“You’re frustrated about this project.”*
+- Stating their observations: *“You obviously realize you’re the only one leaving before 8pm.”*
 
 The following are examples of staying on your side of the net, where they are about your feelings.
-> **Staying on your side of the net:**
-> - Stating your thoughts as thoughts (not facts): *“I’ve noticed you’ve been coming in later and leaving earlier, and it makes me wonder if you’re less engaged.”*
-> - Expressing your own feelings: *“I’m frustrated that you’ve been coming in later and leaving earlier, and worried about your level of engagement.”*
-> - Stating your intentions: *“I’d like to make sure you’re fully engaged.”*
-> - Directly stating your observations: *“I’ve noticed that you used to come in at 9:00am and leave at 8:00pm, and lately you’ve been coming in at 10:00am and leaving at 7:00pm.”*
+
+**Staying on your side of the net:**
+- Stating your thoughts as thoughts (not facts): *“I’ve noticed you’ve been coming in later and leaving earlier, and it makes me wonder if you’re less engaged.”*
+- Expressing your own feelings: *“I’m frustrated that you’ve been coming in later and leaving earlier, and worried about your level of engagement.”*
+- Stating your intentions: *“I’d like to make sure you’re fully engaged.”*
+- Directly stating your observations: *“I’ve noticed that you used to come in at 9:00am and leave at 8:00pm, and lately you’ve been coming in at 10:00am and leaving at 7:00pm.”*
     `
   },
 
