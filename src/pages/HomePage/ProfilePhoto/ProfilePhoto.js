@@ -3,9 +3,11 @@ import React, { useState, useEffect } from 'react';
 import photo1 from '../../../assets/photo1.png';
 import photo2 from '../../../assets/photo2.png';
 import photo3 from '../../../assets/photo3.JPG';
+import photo4 from '../../../assets/photo4.png';
+import photo5 from '../../../assets/photo5.png';
 
 const ProfilePhoto = () => {
-    const photos = [photo3, photo1, photo2];
+    const photos = [photo4, photo3, photo1, photo2, photo5];
 
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
