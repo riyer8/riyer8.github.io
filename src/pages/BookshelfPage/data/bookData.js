@@ -324,7 +324,7 @@ const bookData = [
   },
 
   {
-    title: "🟡 Here’s how to live: Create.",
+    title: "Here's how to live: Create.",
     url: "https://sive.rs/htl23",
     dateAdded: "2025-11-30",
     category: "creativity",
@@ -334,6 +334,7 @@ const bookData = [
     tldr: "The best way to live is to create. Don't leave this world with ideas that could have been something out there.",
     thoughts: "Oh wow. Definitely something I'm coming back to later.",
     notes: ` 
+Some of my favorite quotes from this chapter of a much larger book:
 > The most valuable real estate in the world is the graveyard. \n There lie millions of half-written books, ideas never launched, and talents never developed. \n Most people die with everything still inside of them. \n **The way to live is to create.** \n **Die empty.**
 
 > It’s better to create something bad than nothing at all. \n You can improve something bad. \n You can’t improve nothing.
@@ -372,30 +373,26 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
     tags: ['psychology', 'deception'],
     notes: `
 > In order to determine whether a person is being untruthful, we need to look and listen for the first deceptive behavior to occur within the first five seconds after the stimulus is delivered.
-> 
 
 > At any given moment in time, as human beings we tend to be either be visually dominant or auditory dominant — we’re either more aware of and processing what we’re seeing, or more aware of and processing what we’re hearing. The problem with that goes back to what we said about communication being both verbal and nonverbal in nature, which means that deceptive behavior can come in either or both forms
-> 
 
 > The trick is to train our brains to go into what we call “L-squared mode” - we have to tell it to *look* and *listen* simultaneously.
-> 
 
 This in fact is quite difficult for the brain to do and after a while, it will default to one or the other. It’s important to train it to process both especially within the first five seconds of delivering the stimulus (a question) and perceiving the answer
 
-> The idea here is that if you want to know if someone is lying, you need to ignore truthful behavior so that it’s no processed.
-> 
+**The idea here is that if you want to know if someone is lying, you need to ignore truthful behavior so that it’s no processed.**
 
 Often times, people will provide “truthful statements” to suppress answering the directed question since they don’t want to put themselves in an uncomfortable spot.
 
-> All the lies that have ever been told or ever will be told fall into three categories, or strategies: lies of commission, lies of omission, and lies of influence.
-> 
+**All the lies that have ever been told or ever will be told fall into three categories, or strategies: lies of commission, lies of omission, and lies of influence.**
+
 
 The oath that is used when a witness is sworn to testify covers all three forms of these lies.
 
-> “… to tell the truth…” covers lies of commission
-”… the whole truth…” covers lies of omission
-”…and nothing but the truth…” covers lies of influence
->
+- “… to tell the truth…” covers lies of commission
+- ”… the whole truth…” covers lies of omission
+- ”…and nothing but the truth…” covers lies of influence
+
     `
   },
 
@@ -444,6 +441,7 @@ Basically, change is coming and the quicker we move and iterate, the faster we c
     dateAdded: "2025-12-22",
     category: "startup",
     medium: "book",
+    archives: true,
     tldr: "How to conduct insightful customer interviews for startups.",
     thoughts: "",
     tags: ['self-belief', 'learning', 'creativity'],

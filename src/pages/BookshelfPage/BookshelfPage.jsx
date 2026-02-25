@@ -1,6 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
-import profilePhoto from '../../assets/photo3.JPG';
+import profilePhoto from '../../assets/photo1.png';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
 import { useParams, useNavigate } from 'react-router-dom';

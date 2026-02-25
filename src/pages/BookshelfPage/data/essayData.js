@@ -10,15 +10,15 @@ const essayData = [
     thoughts: "Incredible advice on personal principles, something I've been thinking about ever since I took ENGR 148 @ Stanford.",
     tags: ['decision-making', 'principles', 'philosophy'],
     notes:` Some of my favorite principles:
-> 9\\. The world is a museum of passion projects.
-> 21\\. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
-> 23\\. Doing things is energizing, wasting time is depressing. You don’t need that much ‘rest’.
-> 31\\. Figure out what creates enduring value.
-> 34\\. “Aim for Chartres” (Christopher Alexander) - when doing something, aim to be the best there ever was at it. This compensates for your natural bias, which is to do something mediocre. You have to really aim to be as good as the greats.
-> 35\\. Send more cold emails. People respond! Assume everyone’s your friend.
-> 51\\. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful.
-> 53\\. Think in writing. Write Google Docs, scrawl in notebooks. This extends working memory arbitrarily and allows your thoughts to compound on each other.
-> 57\\. Scrolling and reading too much drowns out your inner voice.
+9. The world is a museum of passion projects.
+21. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
+23. Doing things is energizing, wasting time is depressing. You don’t need that much ‘rest’.
+31. Figure out what creates enduring value.
+34. “Aim for Chartres” (Christopher Alexander) - when doing something, aim to be the best there ever was at it. This compensates for your natural bias, which is to do something mediocre. You have to really aim to be as good as the greats.
+35. Send more cold emails. People respond! Assume everyone’s your friend.
+51. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful.
+53. Think in writing. Write Google Docs, scrawl in notebooks. This extends working memory arbitrarily and allows your thoughts to compound on each other.
+57. Scrolling and reading too much drowns out your inner voice.
     `
   },
 
@@ -164,9 +164,7 @@ A lot of elites were also experts first, starting from academics that backed the
 
 Both of these archetypes serve different functions. Henderson actually sums this up quite well
 > Expert talk is for getting to the truth. Elite talk is for getting things to move... There is mutual envy: experts want reach, elites want credibility.
-
-> Cynicism, flirtation, taboo subjects, and uncomfortable truths are all tolerated more easily when they come from elites. Particularly if the delivery is polished. The same behavior that would get a lower-status person punished is often excused, or even admired, when it comes from higher up.
-    `
+`
   },
 
   {
@@ -347,7 +345,7 @@ This may also include understanding how **your friends** taste fingerprint is ev
   },
 
   {
-    title: "🟡 How To Do Great Work",
+    title: "How To Do Great Work",
     url: "https://paulgraham.com/greatwork.html",
     dateAdded: "2025-12-26",
     category: "advice",
@@ -357,38 +355,46 @@ This may also include understanding how **your friends** taste fingerprint is ev
     thoughts: "long essay but filled with fruits.",
     tags: ['great-work', 'ambition'],
     notes: `
-> The work you choose needs to have three qualities: it has to be something you have a natural aptitude for, that you have a deep interest in, and that offers scope to do great work.
+### What is the type of work that you should be focusing on?
+> The work you choose needs to have three qualities: it has to be something you have a **natural aptitude for**, that you have a **deep interest in**, and that offers **scope to do great work.**
 
-> The way to figure out what to work on is by working. If you're not sure what to work on, guess. But pick something and get going. You'll probably guess wrong some of the time, but that's fine. It's good to know about multiple things; some of the biggest discoveries come from noticing connections between different fields.
+---
+### How to do great work?
 
-> Knowledge expands fractally, and from a distance its edges look smooth, but once you learn enough to get close to one, they turn out to be full of gaps.
-
-> Boldly chase outlier ideas
-
-> The three most powerful motives are curiosity, delight, and the desire to do something impressive. Sometimes they converge, and that combination is the most powerful of all.
+Stay in action. Learn about a bunch of different things.
+> The way to figure out what to work on is by working. If you're not sure what to work on, guess. But pick something and get going. You'll probably guess wrong some of the time, but that's fine. **It's good to know about multiple things; some of the biggest discoveries come from noticing connections between different fields.**
 
 > "Cast a wide net". Try lots of things, meet lots of people, read lots of books, ask lots of questions.
 
-> Don't worry about this; it's the nature of work, not a flaw in your character. Work has a sort of activation energy, both per day and per project. It's usually a mistake to lie to yourself if you want to do great work, but this is one of the rare cases where it isn't. When I'm reluctant to start work in the morning, I often trick myself by saying "I'll just read over what I've got so far." Five minutes later I've found something that seems mistaken or incomplete, and I'm off.
-
-> Don't divide your attention evenly between many topics though, or you'll spread yourself too thin. You want to distribute it according to something more like a power law. Be professionally curious about a few topics and idly curious about many more.
-
-> But always preserve excitingness.
-
-> Ambition comes in two forms, one that precedes interest in the subject and one that grows out of it. 
-
-> This is one case where the young have an advantage. They're more optimistic, and even though one of the sources of their optimism is ignorance, in this case ignorance can sometimes beat knowledge.
-    
-> It simplifies things. In some ways it's easier to try to be the best than to try merely to be good.
+Along with the above of exploring different things, that doesn't mean that different things are equal.
+> Don't divide your attention evenly between many topics though, or you'll spread yourself too thin. **You want to distribute it according to something more like a power law. Be professionally curious about a few topics and idly curious about many more.**
 
 > Originality in choosing problems seems to matter even more than originality in solving them. That's what distinguishes the people who discover whole new fields. So what might seem to be merely the initial step — deciding what to work on — is in a sense the key to the whole game.
 
-> Doing great work is a depth-first search whose root node is the desire to. So "If at first you don't succeed, try, try again" isn't quite right. It should be: If at first you don't succeed, either try again, or backtrack and then try again. Corollary: Never abandon the root node.
+> Doing great work is a depth-first search whose **root node is the desire to.** So "If at first you don't succeed, try, try again" isn't quite right. It should be: If at first you don't succeed, either try again, or backtrack and then try again. Corollary: Never abandon the root node.
 
-> It's ok to want to impress other people, but choose the right people. The opinion of people you respect is signal.
+---
+### How to approach great work?
 
-> Competition can be an effective motivator, but don't let it choose the problem for you; don't let yourself get drawn into chasing something just because others are. In fact, don't let competitors make you do anything much more specific than work harder.
-    `
+> In some ways it's easier to **try to be the best than to try merely to be good.**
+
+> Competition can be an effective motivator, but don't let it choose the problem for you; don't let yourself get drawn into chasing something just because others are. **In fact, don't let competitors make you do anything much more specific than work harder.**
+    
+> Boldly chase outlier ideas
+
+> Ambition comes in two forms, one that precedes interest in the subject and one that grows out of it. 
+
+It's not a defect in your character that it may be hard to get started. People have different activation energies, BUT there is always A activation energy required. Never back down.
+> Don't worry about this... Work has a sort of activation energy, both per day and per project. It's usually a mistake to lie to yourself if you want to do great work, but this is one of the rare cases where it isn't. When I'm reluctant to start work in the morning, I often trick myself by saying "I'll just read over what I've got so far." Five minutes later I've found something that seems mistaken or incomplete, and I'm off.
+
+> This is one case where the young have an advantage. They're more optimistic, and even though one of the sources of their optimism is ignorance, in this case ignorance can sometimes beat knowledge.
+
+---
+### Miscellaneous quotes that are loved.
+> Knowledge expands fractally, and from a distance its edges look smooth, but once you learn enough to get close to one, they turn out to be full of gaps.
+
+> The three most powerful motives are **curiosity, delight, and the desire to do something impressive**. Sometimes they converge, and that combination is the most powerful of all. **But always preserve excitingness.**
+`
   },
 
   {
@@ -471,7 +477,7 @@ This article is about analyzing how our brain's energy process for various goals
 
 Majority of the brain function goes to maintenance, and allocates resources for conscious and subconscious demands.
 
-> At roughly 2% of body weight, the organ gorges on 20% of our body’s energetic resources.
+**At roughly 2% of body weight, the organ gorges on 20% of our body’s energetic resources.**
 
 This is quite different to many other animals whose brain doesn't take up as much energy, setting humans distinctively apart.
     `
@@ -509,30 +515,102 @@ Impressionists had two qualities working in their favor: the paintings themselve
   },
 
   {
-    title: "🟡 On the importance of staring directly into the sun",
+    title: "On the importance of staring directly into the sun",
     url: "https://www.experimental-history.com/p/on-the-importance-of-staring-directly",
-    dateAdded: "2026-01-20",
+    dateAdded: "2026-02-24",
+    category: "advice",
+    archives: true,
+    medium: "essay",
+    tldr: "We actually know much less than we think we do. But maybe thsi is what helps us survive.",
+    thoughts: "Fascinating article to expose the mysteries we have. There aren't many actionable takeaways. Maybe that is the point.",
+    tags: ['psychology'],
+    notes: `
+    
+Illusion of Explanatory Depth
+> Psychologists have a name for this tendency to think we understand things better than we do: the “illusion of explanatory depth.”
+   
+> That's why we need the illusion of explanatory depth: most things have to feel like they make sense, even if they don't, so that we can get on with the business of living.
+
+> **Okay, so an illusion of explanatory depth is extremely important to staying alive. It does, unfortunately, have a downside: it fools you into thinking the universe isn't full of mysteries.**
+
+> **Psychology** is the domain with the deepest illusion of explanatory depth.
+
+### Other Ideas
+One of the quotes that I really liked, as a mathlete, was "But math, perhaps more so than any other intellectual pursuit, emits very strongly what we might call *ignorance signals*, signs that there's something you don't know."
+    `
+  },
+
+  {
+    title: "Nostalgia as a Trap: Why We Romanticize the Past",
+    url: "https://mindfulgrowth100.substack.com/p/nostalgia-as-a-trap-why-we-romanticize",
+    dateAdded: "2026-02-17",
     category: "advice",
     medium: "essay",
     tldr: "",
     thoughts: "",
     tags: ['psychology'],
     notes: `
-    
-### Illusion of Explanatory Depth
-> Psychologists have a name for this tendency to think we understand things better than we do: the “illusion of explanatory depth.”
-   
-> That's why we need the illusion of explanatory depth: most things have to feel like they make sense, even if they don't, so that we can get on with the business of living.
+I've been looking for essays and opinions about rosy retrospection and how our brains rewire what we imagine to be our truthful past. This essay was just written so wonderfully that I thought it deserves to be further shared and referenced back to.
 
-> Okay, so an illusion of explanatory depth is extremely important to staying alive. It does, unfortunately, have a downside: it fools you into thinking the universe isn't full of mysteries.
+> In these moments, the present feels like a thin, pale imitation of the past.
 
-### Other Ideas
-One of the quotes that I really liked, as a mathlete, was "But math, perhaps more so than any other intellectual pursuit, emits very strongly what we might call ignorance signals, signs that there's something you don't know."
+> Our brains are hardwired for survival, and the nervous system often views the “known” past as safer than the “unknown” present or future.
     
-    
+> Marcus Aurelius reminded us that the past is “dead and indifferent.” **When we romanticize it, we are essentially trying to breathe life into a ghost.**
+
+> Nostalgia is a beautiful part of the human experience, a reminder that we have loved and lived deeply. But it is meant to be a landmark, not a home. You cannot build a life in a museum; the air is too still and the light is too artificial. Your life is happening right now, in the messy, unpolished, and breathtakingly vibrant present.
     `
   },
+
+  {
+    title: "Watch This When I Die",
+    url: "https://www.youtube.com/watch?v=iRB-C5TgGec&list=RDiRB-C5TgGec",
+    dateAdded: "2026-02-24",
+    category: "inspiration",
+    favorite: true,
+    medium: "video",
+    tldr: "",
+    thoughts: "Truly one of my favorite videos.",
+    tags: ['advice'],
+    notes: `
+Below is the full transcript of the video, bolded with some of my favorite lines. But every line is so beautiful. You have to watch it for yourself.
+
+:::quote
+To whom it may concern,
+
+It’s been a challenge writing this one. What I am seeking to describe can never be fully captured in words.
+
+Still, is there anything more human than to wonder, to reach out, to seek to understand?
+
+The way I see it, we begin life close to God, to the universe and to all things. Which is of course, 3 ways to say the same thing. And there are many more. The Sufi’s call it The Beloved. Jewish mystics refer to it as Ein Sof, meaning no end, no limit.
+
+**I believe there is a great connectedness to this world we find ourselves in and of, and yet, slowly, we grow up and fall for the idea that we’re all separate and isolated. I’ve fallen for this idea.** The grand illusion is that we think we’re finding our way by building up our identities, our accomplishments, our empires, but really **we grow blind to what we are and where we come from.**
+
+> I want to see clearly. I want to see beyond this illusion. I want to wake up. I need to remember that I’m not separate from the world around me. I can see that the things that I cling to, the things I want to own, own me. They blind me. I must surrender to all that I am terrified by. Freedom comes from letting go. That’s is. It sounds simple, because it is simple. Even so, I’m coming to realize that letting go of everything that I know about myself is perhaps the most terrifying thing I can seek to do.
+
+Still, I find myself doing what I can to peel away the layers. Tearing off my armor, every last one of the walls must come down. It will take me a while, but eventually, I will go home. Maybe when I can see clearly, I’ll see that I am already home.
+
+> **I have to remind myself that in the moments that I feel lost, I’m not actually lost, that’s just a thought. I can’t get lost if truly I am made of the same stuff as the stars above me and the dirt beneath me.**
+
+**Nothing real can be lost.**
+
+I’ve come to learn that beyond every fear is a new discovery I will make about myself. **I let the things that scare me be my sign posts, telling me where I must go next.** What a gift, to be able to keep learning about myself.
+
+**And so I find myself in conversation with fear.** It is not a conversation to be had with the mind, but with the heart. If fear is the tunnel, than my heart is the torch, the lantern, illuminating just enough for me to take my next steps. 
+
+When I am acting with my heart, I can say to fear: “Hello my dear friend, I see you. My mind tells me to hate you, to destroy but my heart tells me to be curious about you, to move towards you. I want to get to know you better because you teach me so much about me.”
+
+Living this way is a simple recipe for a very rich life. I must say, I highly recommend it.
+
+The heart doesn’t think, it isn’t strategic. It just experiences. All that counts is that I don’t protect my heart, because the heart is not for protecting.
+
+> **So knock me down and break my heart a thousand times and give me a full serving of everything that comes with being human and I’ll thank you every single time because at least I am alive and feeling and learning. Learning to take off the armor. I am on my way back home.**
+
+:::
+    `
+  }
   
+
 ];
 
 export default essayData;

@@ -8,9 +8,8 @@ const archiveData = [
     category: "advice",
     medium: "essay",
     tags: ['writing', 'creativity', 'drafting'],
-    archives: true,
     tldr: "It's okay if your first draft is shitty",
-    thoughts: "If you find this in my archives, know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",
+    thoughts: "Know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",
     notes: `
 > The first draft is the child's draft, where you let it all pour out and then let it romp all over the place, knowing that no one is going to see it and that you can shape it later. You just let this childlike part of you channel whatever voices and visions come through and onto the page.
     
@@ -73,9 +72,8 @@ The biases and preferences that we have actually help us when it comes to deciph
     dateAdded: "2025-11-24",
     category: "advice",
     medium: "essay",
-    archives: true,
     tags: ['habit', 'exposure', 'learning', 'practice', 'productivity'],
-    tldr: "🔁 Doing painful tasks more frequently dramatically reduces the difficulty.",
+    tldr: "Doing painful tasks more frequently dramatically reduces the difficulty.",
     thoughts: "Directly aligned with the principle of exposure therapy, do what you don't like the most (within reason).",
     notes: `The central line **"if it hurts, do it more often"** sounds almost counterintuitive (or obvious if you've seen this idea before), but Fowler integrates it rather well.
 He states that
