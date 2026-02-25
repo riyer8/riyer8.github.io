@@ -3,14 +3,12 @@ import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import './StatusWidget.css';
 
 const currentActivities = [
-    "building AI for consumers 💡",
+    "thinking about AI x human connection tradeoff 💡",
     "graduating soon 🎓",
-    "creating this website 💻",
-    "reading a book at a cafe ☕️",
-    "hiking at the Stanford Dish 🌳",
+    "reading \"Lessons in Chemistry\" at a cafe ☕️",
     "writing ✍️",
-    "going to the gym and trying new workouts 🥊",
-    "connecting founders and VCs through SWITE (swite.org) 🤝",
+    "gyming 🥊",
+    "talking to cool people 🤝",
     "exploring San Francisco 🌉",
 ];
 

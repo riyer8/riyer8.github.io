@@ -71,6 +71,21 @@ const preprocessFigures = (text) => {
   return text;
 };
 
+const preprocessCustomQuoteBlocks = (text) => {
+  if (!text) return text;
+
+  return text.replace(
+    /:::quote\s+([\s\S]*?)\s+:::/g,
+    (_, content) => {
+      return `
+<blockquote class="custom-quote">
+  ${content.trim()}
+</blockquote>
+`;
+    }
+  );
+};
+
 
 // Render markdown -> HTML while preserving math
 const renderMarkdownWithKatexPlaceholders = (text) => {
@@ -158,7 +173,9 @@ const MarkdownMath = ({ text }) => {
     if (!ready) return;
 
     const parsed = renderMarkdownWithKatexPlaceholders(
-      preprocessFigures(text)
+      preprocessCustomQuoteBlocks(
+        preprocessFigures(text)
+      )
     );
     let sanitized = parsed;
 
@@ -192,6 +209,14 @@ const MarkdownMath = ({ text }) => {
     #markdown-math-root blockquote { 
       white-space: normal; word-break: break-word; border-left: 3px solid ${theme.isDarkMode ? '#888' : 'rgba(0,0,0,0.08)'}; 
       margin-left: 0; padding-left: 12px; color: ${theme.colors.text}; background: transparent;
+    }
+    #markdown-math-root blockquote.custom-quote {
+      border-left: 4px solid ${theme.colors.accent};
+      background: ${theme.isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)'};
+      padding: 12px 16px;
+      margin: 1em 0;
+      border-radius: 8px;
+      font-style: italic;
     }
     #markdown-math-root .katex { max-width: 100%; overflow-wrap: anywhere; word-break: break-word; }
     #markdown-math-root a { color: ${theme.colors.accent}; text-decoration: underline; }
