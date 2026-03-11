@@ -422,6 +422,9 @@ It's not a defect in your character that it may be hard to get started. People h
     favorite: true,
     tags: ['AI', 'LLM', 'new-ideas'],
     notes: `
+2/25/2026 Update: It's evident that the idea of continual learning is not new. However, there is still fruit in the idea of daydreaming. Possibly, how can we extract the most out of a static dataset (rather than inputting new information) via daydreaming. Currently doing research on it.
+
+---
 > Despite impressive capabilities, large language models have yet to produce a genuine breakthrough. The puzzle is why. A reason may be that they lack some fundamental aspects of human thought: they are frozen, unable to learn from experience, and they have no “default mode” for background processing, a source of spontaneous human insight.
 
 I remember vividly that I was once asked "what can LLM not do that humans can?". It's naive right? This is probably one of the things I didn't think of, but it exposes so many of the blindsides that we aren't aware about with LLMs.
@@ -607,6 +610,24 @@ The heart doesn’t think, it isn’t strategic. It just experiences. All that c
 > **So knock me down and break my heart a thousand times and give me a full serving of everything that comes with being human and I’ll thank you every single time because at least I am alive and feeling and learning. Learning to take off the armor. I am on my way back home.**
 
 :::
+    `
+  },
+
+  {
+    title: "How Long Have I Got Left?",
+    url: "https://www.nytimes.com/2014/01/25/opinion/sunday/how-long-have-i-got-left.html",
+    dateAdded: "2026-03-03",
+    category: "life",
+    favorite: true,
+    medium: "essay",
+    tldr: "",
+    thoughts: "In honor of me starting to read \"When Breathe Becomes Air\", doing a deep dive into Paul Kalanithi and his writing is the truest gift. Making me feel nostoalgic about Stanford and life.",
+    tags: ['life', 'growth'],
+    notes: `
+I've just started to read *When Breathe Becomes Air* (just started meaning I'm 70 pages in) and nothing makes me feel more heartwarmed than the fact that he went to Stanford. I naively didn't know that before I picked up the book. Reading his experiences makes me long for life even more. He talked about this essay in his Prologue and I knew I wanted to read it soon.
+
+A rather sad but beautiful essay of his reflection.
+> Before my cancer was diagnosed, I knew that someday I would die, but I didn’t know when. After the diagnosis, I knew that someday I would die, but I didn’t know when. **But now I knew it acutely. The problem wasn’t really a scientific one. The fact of death is unsettling. Yet there is no other way to live.**
     `
   }
   

@@ -3,11 +3,14 @@ import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import NoteBox from './NoteBox';
 import notesPersonal from './data/personal.txt';
 import notesProduct from './data/products.txt';
+import notesAriana from './data/ariana.txt';
 import notesAdmire from './data/admire.txt';
 
 const NOTES_CONFIG = [
-  { file: notesPersonal, title: 'personal', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
-  { file: notesProduct, title: 'products', colorLight: '#f0f8ff', colorDark: '#2b2f3b' },
+  { file: notesPersonal, title: 'personal principles.', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
+  { file: notesAriana, title: 'ariana grande lyrics.', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
+  { file: notesProduct, title: 'products principles.', colorLight: '#f0f8ff', colorDark: '#2b2f3b' },
+
 ];
 
 const NotesSection = () => {

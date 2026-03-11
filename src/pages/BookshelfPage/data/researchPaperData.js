@@ -81,6 +81,22 @@ This is the image that can be found in the article, displaying the architecture 
     `
   },
 
+  {
+    title: "On the Dangers of Stochastic Parrots:Can Language Models Be Too Big?",
+    url: "https://dl.acm.org/doi/epdf/10.1145/3442188.3445922",
+    dateAdded: "2026-03-04",
+    category: "science",
+    medium: "research paper",
+    tags: ['large-language-models'],
+    tldr: "",
+    notes: `
+
+**Main Idea:**
+- This paper addresses "how large is too large?" for large language models. Models have been getting bigger but how do we weigh this complexity amongst other features like curated datasets, financial costs, etc.
+    
+TO COMPLETE
+    `
+  },
 
 ];
 
