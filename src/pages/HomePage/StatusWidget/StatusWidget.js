@@ -3,9 +3,10 @@ import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import './StatusWidget.css';
 
 const currentActivities = [
-    "thinking about AI x human connection tradeoff 💡",
+    "researching LLM (and human) daydreaming 🌈",
+    "thinking about the AI x human connection tradeoff 💡",
     "graduating soon 🎓",
-    "reading \"Lessons in Chemistry\" at a cafe ☕️",
+    "reading \"When Breathe Becomes Air\" at a cafe ☕️",
     "writing ✍️",
     "gyming 🥊",
     "talking to cool people 🤝",

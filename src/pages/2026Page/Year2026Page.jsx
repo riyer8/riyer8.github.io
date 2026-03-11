@@ -51,7 +51,8 @@ const Year2026Page = () => {
     { title: 'The Seven Husbands of Evelyn Hugo', finishedOn: 'January 4' },
     { title: "The Princess of Cleves", finishedOn: 'January 12'},
     { title: "Manon Lescaut", finishedOn: "January 20"},
-    { title: "None Of This Is True", finishedOn: "February 11"}
+    { title: "None Of This Is True", finishedOn: "February 11"},
+    { title: "Lessons in Chemistry", finishedOn: "February 28"},
   ]);
 
   const sortedBooks = [...books].reverse();

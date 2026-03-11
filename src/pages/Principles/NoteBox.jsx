@@ -17,7 +17,7 @@ const NoteBox = ({ text, bgColorLight, bgColorDark, categoryTitle, theme }) => {
       {text}
       {hover && (
         <div className="note-tooltip">
-          {categoryTitle} principles.
+          {categoryTitle}
         </div>
       )}
     </div>
