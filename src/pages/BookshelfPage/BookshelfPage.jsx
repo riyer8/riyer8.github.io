@@ -181,7 +181,7 @@ const BookshelfPage = () => {
           </div>
           <div style={{ flex: 1 }}>
             <h1 style={{ margin: 0, color: theme.colors.text }}>Recent Reads</h1>
-            <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary }}>knowledge i've been consuming.</p>
+            <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary }}>every time i am not reading, i think about reading.</p>
           </div>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
           </div>

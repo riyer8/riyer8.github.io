@@ -44,7 +44,7 @@ As a side note, Scott also writes an extension to this, describing the gender dy
     tags: ["career", "growth", 'influence', 'leadership'],
     tldr: "🤝 Getting real buy-in for an idea requires influence and co-creation.",
     thoughts: "Such an interesting take on getting people to believe in your idea — in your career or even earlier stages.",
-    notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article is written in 2015, almost a decade old (is it still relevant? I'd personally assume so).
+    notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article was written in 2015, almost a decade old (is it still relevant? I'd personally assume so).
 
 At a high level, here are some of the introductory quotes that provide insight into how to get buy-in:
 

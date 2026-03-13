@@ -58,7 +58,7 @@ He also frames the idea of **regret minimization**
     tldr: "🌻 A simple, reflective piece on the fruits of trying hard. Why not give it all you got?",
     thoughts: "Contrary to much of what I used to read, this one encourages that trying hard, harder than one expects. Maybe this is the best form of self help.",
     tags: ['motivation', 'growth', 'productivity', 'mindset'],
-    notes: ` Contrary to the usual anti-hustle discourse, this essay reminds me that sometimes that best thing you can do for yourself is just try harder, longer, and more consistently than feels reasonable. Showing up because you care and effort is the human aspect of it.
+    notes: `Contrary to the usual anti-hustle discourse, this essay reminds me that sometimes the best thing you can do for yourself is just try harder, longer, and more consistently than feels reasonable. Showing up because you care and effort is the human aspect of it.
 Ambition is reframed: don't set goals so you are able to *easily* hit them, but rather one that is exhilarating to play.
 > The ones who succeed are often simply the ones who try harder than everybody else. 
 
@@ -628,6 +628,28 @@ I've just started to read *When Breathe Becomes Air* (just started meaning I'm 7
 
 A rather sad but beautiful essay of his reflection.
 > Before my cancer was diagnosed, I knew that someday I would die, but I didn’t know when. After the diagnosis, I knew that someday I would die, but I didn’t know when. **But now I knew it acutely. The problem wasn’t really a scientific one. The fact of death is unsettling. Yet there is no other way to live.**
+    `
+  },
+
+  {
+    title: "This is Water",
+    url: "https://fs.blog/david-foster-wallace-this-is-water/",
+    dateAdded: "2026-03-13",
+    category: "life",
+    medium: "essay",
+    tldr: "The real power of an education is truly not learning how to think, but learning how to choose what to think about.",
+    thoughts: "",
+    tags: ['life', 'growth'],
+    notes: `
+> But I’m going to posit to you that the liberal arts cliché turns out not to be insulting at all, because the really significant education in thinking that we’re supposed to get in a place like this isn’t really about the capacity to think, but **rather about the choice of what to think about.**
+
+> The point here is that I think this is one part of what teaching me how to think is really supposed to mean. To be just a little less arrogant. To have just a little critical awareness about myself and my certainties. Because a huge percentage of the stuff that I tend to be automatically certain of is, it turns out, totally wrong and deluded.
+
+> This is not a matter of virtue. It’s a matter of my choosing to do the work of somehow altering or getting free of my natural, hard-wired default setting which is to be deeply and literally self-centered and to see and interpret everything through this lens of self. 
+
+> **learning how to think really means learning how to exercise some control over how and what you think.**  It means being conscious and aware enough to choose what you pay attention to and to choose how you construct meaning from experience.
+
+> **It will actually be within your power to experience a crowded, hot, slow, consumer-hell type situation as not only meaningful, but sacred, on fire with the same force that made the stars: love, fellowship, the mystical oneness of all things deep down.**
     `
   }
   

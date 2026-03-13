@@ -6,7 +6,7 @@ const currentActivities = [
     "researching LLM (and human) daydreaming 🌈",
     "thinking about the AI x human connection tradeoff 💡",
     "graduating soon 🎓",
-    "reading \"When Breathe Becomes Air\" at a cafe ☕️",
+    "reading \"Dopamine Nation\" at a cafe ☕️",
     "writing ✍️",
     "gyming 🥊",
     "talking to cool people 🤝",
