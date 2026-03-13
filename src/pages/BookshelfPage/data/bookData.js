@@ -414,11 +414,11 @@ There are four main characters in the story:
     - Hem: resists change due to fear
     - Haw: learns to adapt in time when he sees changing can lead to something better
 
-The story begins where all four characters live in a maze and find one reliable source of cheese. However, one day, after eating all the cheese, they find that it is gone. The two mice, who have been noticing changes in the quality and quantity of cheese at that station were able to quickly adapt and go back into the maze to find a new source.
+The story begins where all four characters live in a maze and find one reliable source of cheese. However, one day, after eating all the cheese, they find that it is gone. The two mice, who have been noticing changes in the quality and quantity of cheese at that station, were able to quickly adapt and go back into the maze to find a new source.
 
 **The littlepeople were not able to adapt as quickly.**
 
-They had settled their life around this one source of cheese and were not prepare to leave it. Hem resists change, fueled with anger and denial of why this resource has been depleted and anticipates that it will come back. The comfort of that station overpowers his desire to find a new one.
+They had settled their life around this one source of cheese and were not prepared to leave it. Hem resists change, fueled with anger and denial of why this resource has been depleted and anticipates that it will come back. The comfort of that station overpowers his desire to find a new one.
 
 Haw, on the other hand, also initially resists change, but eventually comes to terms with the depleted resource and goes into the maze to find a new source of cheese. Along the way, he learns many lessons about change, which he writes on the walls of the maze so that Hem can learn from them if he chooses to follow.
 
@@ -476,6 +476,63 @@ asking in every conversation
 Prepare a list of the three most important things you want to learn from a given type of person
 
 *to be continued.*
+`
+  },
+
+  {
+    title: "When Breath Becomes Air",
+    url: "https://www.goodreads.com/book/show/25614898-when-breath-becomes-air",
+    dateAdded: "2026-03-11",
+    category: "advice",
+    tags: ['philosophy', 'morality', 'stanford'],
+    medium: "book",
+    favorite: true,
+    tldr: "",
+    thoughts: "Truly has to be one of my favorite books I've ever read in my life. Apart from the fact that Kalanithi went to Stanford, his writing is so beautiful and reflective.",
+    notes: `
+> I was pursuing medicine to bear witness to the twinned mysteries of death, its experiential and biological manifestations: at once deeply personal and utterly impersonal. (pg. 53)
+
+> I still had a lot of practical medicine to learn, but would knowledge alone be enough, with life and death hanging in the balance? Surely intelligence wasn't enough; moral clarity was needed as well. Somehow, I had to believe, I would gain not only knowledge but wisdom, too. After all, when I had walked into the hospital just one day before, birth and death had been merely abstract concepts... Maybe life *is* merely an "instant", too brief to consider. (pg. 66)
+
+Kalanithi on not just being a doctor, but being a neurosurgeon:
+> At those critical junctures, the question is not simply whether to live or die but what kind of life is worth living... Because the brain mediates our experience of the world, any neurosurgical problem forces a patient and family, ideally with a doctor as a guide, to answer this question: What makes life meaningful enough to go on living? (pg. 71)
+
+On the realities of being a neurosurgeon:
+> In the midst of this endless barrage of head injuries, I began to suspect that being so close to the fiery light of such moments only blinded me to their nature, like trying to learn astronomy by staring directly at the sun. I was not yet *with* patients in their pivotal moments, I was merely *at* those pivotal moments. (pg. 81)
+
+> Technical excellence was not enough. As a resident, my highest ideal was not saving lives - everyone dies eventually - but guiding a patient or family to an understanding of death or illness. When a patient comes in with a fatal head bleed, the first conversation with a neurosurgeon may forever color how the family remembers the death, from a peaceful letting go to an open sore of regret. (pg. 86)
+
+> One of the early meanings of *patient*, after all, is "one who endures hardship without complaint." (pg. 96)
+
+> Openness to human relationality does not mean revealing grand truths from the apse; it means meeting patients where they are, in the narthex or nave, and bringing them as far as you can. (pg. 96)
+
+One of my favorite quotes from the book:
+> The pain of failure had led me to understand that technical excellence was a *moral* requirement. Good intentions were not enough, not when so much depended on my skill,when the difference between tragedy and triumph was defined by one or two millimeters. (pg. 105)
+
+> What kind of life exists without language? (pg. 109)
+
+> You can't ever reach perfection, but you can believe in an asymptote toward which you are ceaselessly striving. (pg. 115)
+
+> Severe illness wasn't life-altering, it was life-shattering. It felt less like an epiphany - a piercing burst of light, illuminating What Really Matters - and more like someone had just firebombed the path forward. (pg 120)
+
+About being told that he's accomplished so much:
+> My life had been building potential, potential that would now go unrealized. I had planned to do so much, and I had come so close... My carefully planned and hard-won future no longer existed. Death, so familiar to me in my work, was now paying a personal visit. (pg. 120-121)
+
+> I began to realize that coming in such close connection with my own morality had changed both nothing and everything. (pg. 131)
+
+> If the weight of mortality does not grow lighter, does it at least get more familiar? (pg. 138)
+
+> "Don't you think saying goodbye to your child will make your death *more* painful?" \n "Wouldn't it be great if it did?" I said. Lucy and I both felt that life wasn't about avoiding suffering. (pg. 143)
+
+> the easiest death wasn't necessarily the best. (pg. 144)
+
+> That's not to say that if you believe in meaning, you must also believe in God. It is to say, though, that if you believe that science provides no basis for God, then you are almost obligated to conclude that science provides no basis for meaning and, therefore life itself doesn't have any. In other words, existential claims have no weight; all knowledge is scientific knowledge. (pg. 169)
+
+> Between these core passions and scientific theory,there will always be a gap. No system of thought can contain the fullness of human experience. (pg. 170)
+
+> If time dilates when one moves at high speeds, does it contract when one moves barely at all? It must: the days have shortened considerably. (pg. 197)
+
+> life was lived in the first twenty years and the remainder was just reflection. (pg. 198)
 `
   },
   

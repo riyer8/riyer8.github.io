@@ -119,7 +119,7 @@ const AboutPage = () => {
           >
             <div style={sectionStyle}>
               <h1 style={headingStyle}>Hi, I'm Ramya.</h1>
-              <p>I've always found it unrealistic to try to define who I am in a few sentences. It flattens me into something so static, it'd probably anyways be updated every other day. So if you'd truly want to know me, let's chat! Email me at ramya1@stanford.edu (I pride myself on replying to <i>exciting</i> emails) rather quickly. </p>
+              <p>I've always found it unrealistic to try to define who I am in a few sentences. It'd probably anyways be updated every other day. So if you want to know me, let's chat! Email me at ramya1@stanford.edu (I pride myself on replying to <i>exciting</i> emails) rather quickly. </p>
               <p><i>Even this will probably be updated soon ✨</i> </p>
             </div>
 
