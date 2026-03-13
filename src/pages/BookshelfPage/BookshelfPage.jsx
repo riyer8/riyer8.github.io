@@ -23,8 +23,8 @@ const BookshelfPage = () => {
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeMedium, setActiveMedium] = useState(null);
-  const [sortKey, setSortKey] = useState('title');
-  const [sortDirection, setSortDirection] = useState('asc');
+  const [sortKey, setSortKey] = useState('dateAdded');
+  const [sortDirection, setSortDirection] = useState('desc');
   const [showFavorites, setShowFavorites] = useState(false);
   const [showArchives, setShowArchives] = useState(false);
   
@@ -82,9 +82,18 @@ const BookshelfPage = () => {
         return true;
       })
       .sort((a, b) => {
-        const A = (a[sortKey] || '').toString().toLowerCase();
-        const B = (b[sortKey] || '').toString().toLowerCase();
-        const comparison = A.localeCompare(B);
+        let comparison = 0;
+
+        if (sortKey === 'dateAdded') {
+          const dateA = a.dateAdded ? new Date(a.dateAdded) : new Date(0);
+          const dateB = b.dateAdded ? new Date(b.dateAdded) : new Date(0);
+          comparison = dateA - dateB;
+        } else {
+          const A = (a[sortKey] || '').toString().toLowerCase();
+          const B = (b[sortKey] || '').toString().toLowerCase();
+          comparison = A.localeCompare(B);
+        }
+
         return sortDirection === 'asc' ? comparison : -comparison;
       });
   }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites, showArchives]);
@@ -92,7 +101,15 @@ const BookshelfPage = () => {
 
   const handleHeaderSort = (key) => {
     if (sortKey === key) {
-      setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
+      if (sortDirection === 'asc') {
+        setSortDirection('desc');
+      } else if (sortDirection === 'desc') {
+        // Cycle back to default sort (most recent dateAdded first)
+        setSortKey('dateAdded');
+        setSortDirection('desc');
+      } else {
+        setSortDirection('asc');
+      }
     } else {
       setSortKey(key);
       setSortDirection('asc');
@@ -297,6 +314,7 @@ const BookshelfPage = () => {
                 {typeof sortOpen !== 'undefined' && sortOpen ? (
                   <div style={{ position: 'absolute', right: 0, top: 'calc(100% + 0.5rem)', width: 220, background: theme.colors.cardBackground, border: `1px solid ${theme.colors.border}`, borderRadius: 8, padding: '0.75rem', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 2250 }}>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
+                        <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'dateAdded'} onChange={() => { setSortKey('dateAdded'); setSortDirection('desc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Date added</span></label>
                       <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'title'} onChange={() => { setSortKey('title'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Title</span></label>
                       <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'category'} onChange={() => { setSortKey('category'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Category</span></label>
                       <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'medium'} onChange={() => { setSortKey('medium'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Medium</span></label>
