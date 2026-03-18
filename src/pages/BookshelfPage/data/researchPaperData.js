@@ -2,7 +2,7 @@
 
 const researchPaperData = [
   {
-    title: "Neural Adaptive Video Streaming with Pensieve",
+    title: "Neural Adaptive Video Streaming with Pensieve (2017)",
     url: "https://dl.acm.org/doi/10.1145/3098822.3098843",
     dateAdded: "2025-12-22",
     category: "science",
@@ -42,7 +42,7 @@ This is the image that can be found in the article, displaying the architecture 
   },
 
   {
-    title: "A Buffer-Based Approach to Rate Adaptation: Evidence from a Large Video Streaming Service",
+    title: "A Buffer-Based Approach to Rate Adaptation: Evidence from a Large Video Streaming Service (2014)",
     url: "https://yuba.stanford.edu/~nickm/papers/sigcomm2014-video.pdf",
     dateAdded: "2025-12-27",
     category: "science",
@@ -82,19 +82,45 @@ This is the image that can be found in the article, displaying the architecture 
   },
 
   {
-    title: "On the Dangers of Stochastic Parrots: Can Language Models Be Too Big?",
-    url: "https://dl.acm.org/doi/epdf/10.1145/3442188.3445922",
-    dateAdded: "2026-03-04",
+    title: "Language Models as Knowledge Bases? (2019)",
+    url: "",
+    dateAdded: "2026-03-16",
     category: "science",
     medium: "research paper",
     tags: ['large-language-models'],
     tldr: "",
     notes: `
 
-**Main Idea:**
-- This paper addresses "how large is too large?" for large language models. Models have been getting bigger but how do we weigh this complexity amongst other features like curated datasets, financial costs, etc.
-    
-TO COMPLETE
+Landmark Paper. First to prove that AI models like BERT secretly store a massive database of facts via its weights. This changed AI history (before the rise of daily LLM use) to a digital brain that knows everything.
+
+Main Exploration: How much relational knowledge do they store? How does this diﬀer for diﬀerent types of knowledge such as facts about entities, common sense, and general question answering? How does their performance without fine-tuning compare to symbolic knowledge bases automatically extracted from text?
+
+:::quote
+We introduce the LAMA (LAnguage Model Analysis) probe, consisting of a set of knowledge sources, each comprised of a set of facts.
+:::
+Here, LAMA consists of a massive set of "fill-in-the-blank" (cloze) questions from high-quality sources. Here, LAMA would have to fill in the "masked" section, such as "Dante was born in [MASK]" without being allowed to search.
+
+---
+
+Causal/Autoregressive (GPT style): Models only look *backwards* to predict the next word at the end of the sentence.
+
+Cloze/Bi-directional (BERT style): Models look at words before and after blank to get an understanding of context and relational facts.
+
+---
+
+Undirectional (Casual): Models used a "masked future". While they learn, they are "blindfolded" to everything that comes after the current word.
+
+Bidirectional (Cloze): models have "full visibility". They can see the whole sentence at once and makes them better at understanding the relationship between words.
+
+---
+
+This paper showed that
+- No "schema" required: As opposed to traditional databses, BERT is able to learn facts and not need a rigid structure on the inference side to answer back.
+- "Lower bound" argument: Their results are likely a lower bound. BERT probably knows even more than the results of this paper determine.
+- Hard vs. Easy Knowledge: BERT is great at common knowledge but not specialized knowledge.
+
+*Note that because this paper was in 2019, some information may have been improved upon in more recent research.*
+
     `
   },
 
