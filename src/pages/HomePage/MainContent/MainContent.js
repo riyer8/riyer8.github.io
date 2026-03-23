@@ -151,7 +151,6 @@ const MainContent = () => {
                         </div>
 
                         <div style={sectionStyle}>
-                            <h2 style={headingStyle}>Welcome to my mind!</h2>
                             <StatusWidget />
                             <QuoteWidget />
                         </div>

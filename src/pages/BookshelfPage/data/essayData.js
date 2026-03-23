@@ -651,6 +651,66 @@ A rather sad but beautiful essay of his reflection.
 
 > **It will actually be within your power to experience a crowded, hot, slow, consumer-hell type situation as not only meaningful, but sacred, on fire with the same force that made the stars: love, fellowship, the mystical oneness of all things deep down.**
     `
+  },
+
+  {
+    title: "How to engineer luck",
+    url: "https://essays.highagency.com/p/how-could-you-double-your-luck-in",
+    dateAdded: "2026-03-23",
+    category: "career",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['life', 'growth'],
+    notes: `
+:::quote
+I find it useful to distinguish between luck-luck and skill-luck. Luck-luck is pure randomness, like being born in the right country. Skill-luck is when you help engineer luck, like moving cities to the place that has the best opportunity potential for you.
+:::
+
+12 ways to expose more luck in your life:
+1. **Make unscheduled phone calls:** Basically, call your people more. Not scheduled, just for the joy of helping people figure things out.
+2. **Avoid boring people:** Both avoid people who bore you & avoid being a boring person in the room.
+3. **Poker mindset > roulette mindset:** It's better to play a game of roulette thinking it's poker than play poker thinking it's roulette.
+4. **Luck razor:** Pick luck that will be better long-term.
+5. **Proactively make introductions:** Take the 30-secs to introduce two people that MUTUALLY will like to get to know each other.
+6. **Avoid fan relationships:** Don't leech.
+7. **Get more curious with age.**
+8. **Delete the scoreboard:** "Give aggressively, give early, give without permission"
+9. **Reverse prison advice:** (I think this actually contradicts a little bit of 6 to some degree.) 
+10. **Work on your introduction**
+11. **Track luck inputs:** Luck lags. It may not be realized until much later in life. 
+12. **Get good at advertising**
+13. **Dish out baker's dozen:** Surprise generosity creates loyalty. Give people the 12+1. 
+`
+  },
+
+  {
+    title: "why some conversations rearrange your brain",
+    url: "https://velvetnoise.substack.com/p/why-some-conversations-rearrange",
+    dateAdded: "2026-03-23",
+    category: "life",
+    medium: "essay",
+    tldr: "",
+    favorite: true,
+    thoughts: "So many psychological concepts connected with conversations. I love humans.",
+    tags: ['life', 'conversations', 'friends'],
+    notes: `
+I personally really enjoyed the psychological breakdown with the thoughts on conversation and friendship. Some of my favorite quotes below:
+> There’s a saying that “actions speak louder than words.” But words are actions. They land and rearrange. They build scaffolding for thought and memory. They shape what becomes *sayable*, and in turn, what becomes *thinkable*. It’s why a well-placed phrase can rewire your inner architecture. A question can unlock a forgotten room. A conversation can leave behind an invisible structure that you keep returning to.
+
+> Language *sculpts* thought. Every conversation subtly alters the brain’s architecture. Every sentence is a small act of rewiring.
+
+The pattern of falling back into our old ways:
+> Sociologist Charles Horton Cooley once said, *“I am not who I think I am. I am not who you think I am. I am who I think you think I am.”*
+
+This part was intriguing. The closest ones to us can shallow us into a box that feels comfortable. Not out of spite but just truly becuase that's how they know us. How can we constantly allow ourselves to watch someone evolve without hindering it?
+:::quote
+Strangely, it’s often those closest to us that we stop being curious about. We fall into rhythms. He’s the anxious one. She’s the advice-giver. They’re the funny one. Roles we play so often we forget they’re roles. Even our dearest friends become frozen in familiarity, with their updates unnoticed and their edges dulled by memory. We stop noticing the slow tectonic shifts of their inner world. We relate to the last version of them we remember, not to the self still unfolding in real time.
+:::
+
+
+    
+    `
   }
   
 

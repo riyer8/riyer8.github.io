@@ -83,7 +83,7 @@ This is the image that can be found in the article, displaying the architecture 
 
   {
     title: "Language Models as Knowledge Bases? (2019)",
-    url: "",
+    url: "https://arxiv.org/abs/1909.01066",
     dateAdded: "2026-03-16",
     category: "science",
     medium: "research paper",

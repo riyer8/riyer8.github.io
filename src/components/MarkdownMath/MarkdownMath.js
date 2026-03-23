@@ -206,17 +206,20 @@ const MarkdownMath = ({ text }) => {
     #markdown-math-root p, #markdown-math-root li, #markdown-math-root h1, #markdown-math-root h2, #markdown-math-root h3, #markdown-math-root h4, #markdown-math-root h5, #markdown-math-root span { word-break: break-word; overflow-wrap: anywhere; white-space: normal; }
     #markdown-math-root pre, #markdown-math-root code { max-width: 100%; overflow-x: auto; white-space: pre-wrap; word-break: break-word; background: rgba(0,0,0,0.03); padding: 6px 8px; border-radius: 6px; }
     #markdown-math-root img, #markdown-math-root table { max-width: 100%; height: auto; }
-    #markdown-math-root blockquote { 
-      white-space: normal; word-break: break-word; border-left: 3px solid ${theme.isDarkMode ? '#888' : 'rgba(0,0,0,0.08)'}; 
-      margin-left: 0; padding-left: 12px; color: ${theme.colors.text}; background: transparent;
-    }
-    #markdown-math-root blockquote.custom-quote {
+    #markdown-math-root blockquote,
+    #markdown-math-root .custom-quote { 
+      white-space: normal; 
+      word-break: break-word; 
       border-left: 4px solid ${theme.colors.accent};
-      background: ${theme.isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.04)'};
-      padding: 12px 16px;
-      margin: 1em 0;
+      background: ${theme.isDarkMode ? 'rgba(28, 27, 27, 0.05)' : 'rgba(0,0,0,0.04)'};
+      padding: 10px 12px;
+      margin: 0.5em 0;
       border-radius: 8px;
-      font-style: italic;
+      color: ${theme.colors.text};
+    }
+    #markdown-math-root blockquote p,
+    #markdown-math-root .custom-quote p {
+      margin: 0;
     }
     #markdown-math-root .katex { max-width: 100%; overflow-wrap: anywhere; word-break: break-word; }
     #markdown-math-root a { color: ${theme.colors.accent}; text-decoration: underline; }
