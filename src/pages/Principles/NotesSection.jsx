@@ -41,7 +41,7 @@ const NotesSection = () => {
           color: theme.colors.text,
         }}
       >
-        Notes
+        A Messy Collection of Life Advice
       </h2>
 
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
