@@ -27,9 +27,25 @@ const BookshelfPage = () => {
   const [sortDirection, setSortDirection] = useState('desc');
   const [showFavorites, setShowFavorites] = useState(false);
   const [showArchives, setShowArchives] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 50;
   
   const categories = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.category).filter(Boolean))), []);
   const mediums = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.medium).filter(Boolean))), []);
+
+  // Calculate top 3 most popular categories
+  const topCategories = useMemo(() => {
+    const categoryCounts = {};
+    bookshelfData.forEach(item => {
+      if (item.category) {
+        categoryCounts[item.category] = (categoryCounts[item.category] || 0) + 1;
+      }
+    });
+    return Object.entries(categoryCounts)
+      .sort(([,a], [,b]) => b - a)
+      .slice(0, 3)
+      .map(([category]) => category);
+  }, []);
 
   const archiveCount = useMemo(
     () => bookshelfData.filter(item => item.archives).length,
@@ -98,6 +114,20 @@ const BookshelfPage = () => {
       });
   }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites, showArchives]);
 
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites, showArchives]);
+
+  // Calculate paginated data
+  const paginatedData = useMemo(() => {
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const endIndex = startIndex + itemsPerPage;
+    return filtered.slice(startIndex, endIndex);
+  }, [filtered, currentPage, itemsPerPage]);
+
+  const totalPages = Math.ceil(filtered.length / itemsPerPage);
+
 
   const handleHeaderSort = (key) => {
     if (sortKey === key) {
@@ -120,6 +150,7 @@ const BookshelfPage = () => {
   const [notesOpen, setNotesOpen] = useState(true);
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
+  const [categoriesExpanded, setCategoriesExpanded] = useState(false);
 
   const closeDetail = () => {
     setSelectedItem(null);
@@ -130,7 +161,10 @@ const BookshelfPage = () => {
   const tableStyle = {
     width: '100%',
     borderCollapse: 'collapse',
-    fontFamily: 'Inter, -apple-system, system-ui, sans-serif'
+    fontFamily: 'Inter, -apple-system, system-ui, sans-serif',
+    border: `1px solid ${theme.colors.border}`,
+    borderRadius: '8px',
+    overflow: 'hidden'
   };
 
   const thStyle = {
@@ -222,37 +256,79 @@ const BookshelfPage = () => {
             >
             <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> favorites
             </button>
-            {categories.map(c => (
-              <button key={c} onClick={() => {
-                setActiveCategory(prev => prev === c ? null : c);
-                setActiveMedium(null);
-              }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
-            ))}
-            {mediums.map(m => (
-              <button key={m} onClick={() => {
-                setActiveMedium(prev => prev === m ? null : m);
-                setActiveCategory(null);
-              }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
-            ))}
-           <button
-            onClick={() => setShowArchives(a => !a)}
-            style={{
-              padding: '0.45rem 0.75rem',
-              borderRadius: 8,
-              background: showArchives ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
-              color: showArchives ? '#fff' : theme.colors.text,
-              border: `1px solid ${theme.colors.border}`,
-              cursor: 'pointer',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '0.25rem'
-            }}
-          >
-            archives
-            <span style={{ color: theme.colors.textSecondary, fontStyle: 'italic', fontWeight: 400 }}>
-              {archiveCount}
-            </span>
-          </button>
+            {categoriesExpanded 
+              ? categories.map(c => (
+                  <button key={c} onClick={() => {
+                    setActiveCategory(prev => prev === c ? null : c);
+                    setActiveMedium(null);
+                  }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
+                ))
+              : topCategories.map(c => (
+                  <button key={c} onClick={() => {
+                    setActiveCategory(prev => prev === c ? null : c);
+                    setActiveMedium(null);
+                  }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
+                ))
+            }
+            {!categoriesExpanded && categories.length > 3 && (
+              <button 
+                onClick={() => setCategoriesExpanded(true)}
+                style={{ 
+                  padding: '0.45rem 0.75rem', 
+                  borderRadius: 8, 
+                  background: 'transparent', 
+                  color: theme.colors.textSecondary, 
+                  border: `1px solid ${theme.colors.border}`, 
+                  cursor: 'pointer',
+                  fontSize: '0.9rem'
+                }}
+              >
+                more tags
+              </button>
+            )}
+            {categoriesExpanded && (
+              <>
+                {mediums.map(m => (
+                  <button key={m} onClick={() => {
+                    setActiveMedium(prev => prev === m ? null : m);
+                    setActiveCategory(null);
+                  }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
+                ))}
+                <button
+                  onClick={() => setShowArchives(a => !a)}
+                  style={{
+                    padding: '0.45rem 0.75rem',
+                    borderRadius: 8,
+                    background: showArchives ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
+                    color: showArchives ? '#fff' : theme.colors.text,
+                    border: `1px solid ${theme.colors.border}`,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.25rem'
+                  }}
+                >
+                  archives
+                  <span style={{ color: theme.colors.textSecondary, fontStyle: 'italic', fontWeight: 400 }}>
+                    {archiveCount}
+                  </span>
+                </button>
+                <button 
+                  onClick={() => setCategoriesExpanded(false)}
+                  style={{ 
+                    padding: '0.45rem 0.75rem', 
+                    borderRadius: 8, 
+                    background: 'transparent', 
+                    color: theme.colors.textSecondary, 
+                    border: `1px solid ${theme.colors.border}`, 
+                    cursor: 'pointer',
+                    fontSize: '0.9rem'
+                  }}
+                >
+                  less tags
+                </button>
+              </>
+            )}
 
           </div>
 
@@ -326,6 +402,11 @@ const BookshelfPage = () => {
           </div>
         </div>
 
+        {/* Total entries count */}
+        <div style={{ marginLeft:'0.5rem', marginBottom: '0.2rem', color: theme.colors.textSecondary, fontSize: '0.7rem' }}>
+          {filtered.length} {filtered.length === 1 ? 'entry' : 'entries'}
+        </div>
+
         <div style={{ overflowX: 'auto' }}>
           <table style={tableStyle}>
             <thead>
@@ -364,12 +445,22 @@ const BookshelfPage = () => {
               </tr>
             </thead>
             <tbody>
-              {filtered.map((row, i) => (
-                <tr key={i} style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }} onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'} onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}>
+              {paginatedData.map((row, i) => (
+                <tr 
+                  key={i} 
+                  style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }} 
+                  onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'} 
+                  onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                  onClick={() => {
+                    setSelectedItem(row);
+                    navigate(`/recent-reads/${titleToSlug(row.title)}`);
+                  }}
+                >
                   <td style={tdStyle}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <button
-                        onClick={() => {
+                        onClick={(e) => {
+                          e.stopPropagation();
                           setSelectedItem(row);
                           navigate(`/recent-reads/${titleToSlug(row.title)}`);
                         }}
@@ -384,7 +475,13 @@ const BookshelfPage = () => {
                         )}
                       </button>
                       {row.url && (
-                        <a href={row.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}>
+                        <a 
+                          href={row.url} 
+                          target="_blank" 
+                          rel="noreferrer" 
+                          style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}
+                          onClick={(e) => e.stopPropagation()}
+                        >
                           ↗
                         </a>
                       )}
@@ -393,7 +490,10 @@ const BookshelfPage = () => {
 
                   <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
                     <button
-                      onClick={() => setActiveCategory(prev => prev === row.category ? null : row.category)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveCategory(prev => prev === row.category ? null : row.category);
+                      }}
                       style={{
                         padding: '0.25rem 0.5rem',
                         borderRadius: 6,
@@ -411,7 +511,10 @@ const BookshelfPage = () => {
 
                   <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
                     <button
-                      onClick={() => setActiveMedium(prev => prev === row.medium ? null : row.medium)}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setActiveMedium(prev => prev === row.medium ? null : row.medium);
+                      }}
                       style={{
                         padding: '0.25rem 0.5rem',
                         borderRadius: 6,
@@ -426,12 +529,107 @@ const BookshelfPage = () => {
                       {row.medium}
                     </button>
                   </td>
-                  <td style={tdStyle}> {(row.tags || []).slice().sort((a, b) => a.localeCompare(b)).map((t, idx) => (<Badge key={idx} theme={theme}>{t}</Badge>))} </td>
+                  <td style={tdStyle}>
+                    {(() => {
+                      const sortedTags = (row.tags || []).slice().sort((a, b) => a.localeCompare(b));
+                      const displayTags = sortedTags.slice(0, 2);
+                      const remainingCount = sortedTags.length - 2;
+
+                      return (
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
+                          {displayTags.map((t, idx) => (
+                            <Badge key={idx} theme={theme}>{t}</Badge>
+                          ))}
+                          {remainingCount > 0 && (
+                            <span style={{
+                              fontSize: '0.8rem',
+                              color: theme.colors.textSecondary,
+                              fontWeight: 500
+                            }}>
+                              +{remainingCount}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })()}
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
+
+        {/* Pagination controls */}
+        {totalPages > 1 && (
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', marginBottom: '1rem' }}>
+            <button
+              onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+              disabled={currentPage === 1}
+              style={{
+                padding: '0.5rem 0.75rem',
+                borderRadius: 6,
+                border: `1px solid ${theme.colors.border}`,
+                background: currentPage === 1 ? (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#f5f5f5') : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
+                color: currentPage === 1 ? theme.colors.textSecondary : theme.colors.text,
+                cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+                fontSize: '0.9rem'
+              }}
+            >
+              ← Previous
+            </button>
+
+            <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+              {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                let pageNum;
+                if (totalPages <= 5) {
+                  pageNum = i + 1;
+                } else if (currentPage <= 3) {
+                  pageNum = i + 1;
+                } else if (currentPage >= totalPages - 2) {
+                  pageNum = totalPages - 4 + i;
+                } else {
+                  pageNum = currentPage - 2 + i;
+                }
+
+                return (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    style={{
+                      padding: '0.5rem 0.75rem',
+                      borderRadius: 6,
+                      border: `1px solid ${theme.colors.border}`,
+                      background: currentPage === pageNum ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
+                      color: currentPage === pageNum ? '#fff' : theme.colors.text,
+                      cursor: 'pointer',
+                      fontSize: '0.9rem',
+                      minWidth: '2.5rem'
+                    }}
+                  >
+                    {pageNum}
+                  </button>
+                );
+              })}
+            </div>
+
+            <button
+              onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+              disabled={currentPage === totalPages}
+              style={{
+                padding: '0.5rem 0.75rem',
+                borderRadius: 6,
+                border: `1px solid ${theme.colors.border}`,
+                background: currentPage === totalPages ? (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#f5f5f5') : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
+                color: currentPage === totalPages ? theme.colors.textSecondary : theme.colors.text,
+                cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+                fontSize: '0.9rem'
+              }}
+            >
+              Next →
+            </button>
+          </div>
+        )}
+
         <div style={{
           paddingTop: '1rem',
           borderTop: `1px solid ${theme.colors.border}`,
