@@ -84,7 +84,7 @@ Make effort feel intentional. You get to choose the game you play, but you have 
     title: "Don't Read History for Lessons",
     url: "https://commoncog.com/dont-read-history-for-lessons/",
     dateAdded: "2025-11-19",
-    category: "history",
+    category: "psychology",
     medium: "essay",
     favorite: true,
     tldr: "🕰️ Just extracting lessons from history diminishes its purpose. History is context dependent that can help build mental models for future decisions.",
@@ -112,7 +112,7 @@ Make effort feel intentional. You get to choose the game you play, but you have 
     title: "What Goes Wrong by Jessica Livingston",
     url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
     dateAdded: "2025-11-28",
-    category: "startups",
+    category: "career",
     medium: "essay",
     tags: ["entrepreneurship", "career", "lessons", "failure", "startups"],
     tldr: "🚀 Livingston provides a recount of reasons why startups fail from her experience of founding YC",
@@ -289,7 +289,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
     title: "home for the holidays",
     url: "https://internetprincess.substack.com/p/home-for-the-holidays",
     dateAdded: "2025-12-21",
-    category: "personal",
+    category: "life",
     medium: "essay",
     favorite: true,
     thoughts: "I feel rather deeply exposed for how rich and deep the writing and reflections are. Highly recommend this read.",
@@ -313,7 +313,7 @@ On grief and depression:
     title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
     url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
     dateAdded: "2025-12-22",
-    category: "AI",
+    category: "science",
     medium: "essay",
     tldr: "How does taste fit into the world of LLMs and AI? How can LLMs learn taste (and should they)?",
     thoughts: "In a way, we want LLMs to be objectively correct. But what if we spin it around so that LLMs can learn our subjective preferences and have their own taste that influences their answers?",
@@ -415,7 +415,7 @@ It's not a defect in your character that it may be hard to get started. People h
     title: "LLM Daydreaming",
     url: "https://gwern.net/ai-daydreaming",
     dateAdded: "2026-01-09",
-    category: "AI",
+    category: "science",
     medium: "essay",
     tldr: "Why haven't LLM comes up with new discoveries dispite having so much information? The fixed knowledge of NN provide little room for growth; Gwern proposes 'day-dreaming loops' to create unique connections among ideas.",
     thoughts: "",
@@ -496,7 +496,6 @@ This is quite different to many other animals whose brain doesn't take up as muc
     thoughts: "",
     tags: ['taste', 'psychology', 'art'],
     notes: `
-
 > Taste is the faculty by which we make judgments about art. 
 
 The idea of taste itself has been paradoxical within itself. The quote below shows the contrast between the personal desire but alos conformation with society.
@@ -547,7 +546,7 @@ One of the quotes that I really liked, as a mathlete, was "But math, perhaps mor
     title: "Nostalgia as a Trap: Why We Romanticize the Past",
     url: "https://mindfulgrowth100.substack.com/p/nostalgia-as-a-trap-why-we-romanticize",
     dateAdded: "2026-02-17",
-    category: "advice",
+    category: "science",
     medium: "essay",
     tldr: "",
     thoughts: "",
@@ -569,7 +568,7 @@ I've been looking for essays and opinions about rosy retrospection and how our b
     title: "Watch This When I Die",
     url: "https://www.youtube.com/watch?v=iRB-C5TgGec&list=RDiRB-C5TgGec",
     dateAdded: "2026-02-24",
-    category: "inspiration",
+    category: "life",
     favorite: true,
     medium: "video",
     tldr: "",
@@ -608,7 +607,6 @@ Living this way is a simple recipe for a very rich life. I must say, I highly re
 The heart doesn’t think, it isn’t strategic. It just experiences. All that counts is that I don’t protect my heart, because the heart is not for protecting.
 
 > **So knock me down and break my heart a thousand times and give me a full serving of everything that comes with being human and I’ll thank you every single time because at least I am alive and feeling and learning. Learning to take off the armor. I am on my way back home.**
-
 :::
     `
   },
@@ -693,7 +691,7 @@ I find it useful to distinguish between luck-luck and skill-luck. Luck-luck is p
     tldr: "",
     favorite: true,
     thoughts: "So many psychological concepts connected with conversations. I love humans.",
-    tags: ['life', 'conversations', 'friends'],
+    tags: ['life', 'conversations', 'friends', 'psychology'],
     notes: `
 I personally really enjoyed the psychological breakdown with the thoughts on conversation and friendship. Some of my favorite quotes below:
 > There’s a saying that “actions speak louder than words.” But words are actions. They land and rearrange. They build scaffolding for thought and memory. They shape what becomes *sayable*, and in turn, what becomes *thinkable*. It’s why a well-placed phrase can rewire your inner architecture. A question can unlock a forgotten room. A conversation can leave behind an invisible structure that you keep returning to.
@@ -707,12 +705,26 @@ This part was intriguing. The closest ones to us can shallow us into a box that 
 :::quote
 Strangely, it’s often those closest to us that we stop being curious about. We fall into rhythms. He’s the anxious one. She’s the advice-giver. They’re the funny one. Roles we play so often we forget they’re roles. Even our dearest friends become frozen in familiarity, with their updates unnoticed and their edges dulled by memory. We stop noticing the slow tectonic shifts of their inner world. We relate to the last version of them we remember, not to the self still unfolding in real time.
 :::
-
-
-    
     `
-  }
-  
+  },
+
+  {
+    title: "who are you when nobody’s watching?",
+    url: "https://medium.com/@lynwrites_/who-are-you-when-nobodys-watching-cfddcd4a48f4",
+    dateAdded: "2026-03-23",
+    category: "life",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['self-love'],
+    notes: `
+> Because I was a people pleaser. I would do anything: bend, shrink, break myself — just so they would like me. Just so I could fit the shape they wanted. I told myself it was only temporary, just a mask I’d take off when I felt safe enough. *But the years passed. And somewhere along the way, I forgot how my real face looks.* I’m not even sure it’s there anymore. The mask didn’t just cover me; it replaced me.
+
+> Solitude has its shadows. It makes my flaws stand out — the envy, the pettiness, the selfish thoughts I never voice. But it also reveals the quiet good in me — the kindness that asks for no applause.
+
+> Stop waiting for the world to validate you. Stop performing for a crowd that isn’t watching. Let yourself laugh too loud. Wear what you like. Speak the truth, even if your voice shakes. Choose yourself, even if no one else does. Live for yourself. Because at the end of it all, when the curtain falls and the seats are empty — it’s just you. So live for yourself. **You only have you.** 
+    `
+  },
 
 ];
 
