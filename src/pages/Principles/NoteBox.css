@@ -1,31 +1,32 @@
 .note-box {
   position: relative;
+  box-sizing: border-box;
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 
-  padding: 1rem;
+  flex: 1 1 var(--note-min, 10.75rem);
+  min-width: var(--note-min, 10.75rem);
+  max-width: var(--note-max, 15.625rem);
+  min-height: 5.5rem;
+  padding: 1.05rem 1.2rem;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  transition: transform 0.2s;
   border: 2px solid transparent;
-
-  width: 180px;
-  min-height: 100px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-
-@media (min-width: 600px) { .note-box { width: 220px; } }
-@media (min-width: 1024px) { .note-box { width: 250px; } }
 
 /* Rainbow border pseudo-element */
 .note-box::after {
   content: '';
   position: absolute;
-  inset: -2px; /* slightly outside the box for “hover over” effect */
+  inset: -2px;
   border-radius: inherit;
   padding: 2px;
   background: linear-gradient(270deg, #ffb3ba, #ffdfba, #ffffba, #baffc9, #bae1ff);
@@ -34,9 +35,9 @@
   transition: opacity 0.3s, filter 0.3s;
   z-index: -1;
   animation: rainbow-pastel 8s ease infinite;
+  pointer-events: none;
 }
 
-/* Dark mode: make border softer */
 .note-box.dark-mode::after {
   filter: brightness(0.6);
 }
@@ -45,8 +46,11 @@
   opacity: 1;
 }
 
-.note-box:hover {
-  transform: scale(1.05);
+.note-box:hover,
+.note-box:focus-within {
+  z-index: 2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
 }
 
 @keyframes rainbow-pastel {
@@ -57,17 +61,17 @@
 
 .note-tooltip {
   position: absolute;
-  bottom: 110%;
+  bottom: calc(100% + 0.45rem);
   left: 50%;
   transform: translateX(-50%);
   padding: 0.35rem 0.6rem;
   font-size: 0.75rem;
   font-weight: 500;
   color: #fff;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0, 0, 0, 0.75);
   border-radius: 6px;
   white-space: nowrap;
   pointer-events: none;
-  z-index: 10;
+  z-index: 3;
   opacity: 0.95;
 }

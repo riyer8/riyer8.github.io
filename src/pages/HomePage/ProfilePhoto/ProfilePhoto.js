@@ -4,9 +4,10 @@ import photo1 from '../../../assets/photo1.png';
 import photo2 from '../../../assets/photo2.png';
 import photo3 from '../../../assets/photo3.png';
 import photo4 from '../../../assets/photo4.jpeg';
+import photo5 from '../../../assets/photo5.jpeg';
 
 const ProfilePhoto = () => {
-    const photos = [photo1, photo2, photo3, photo4];
+    const photos = [photo1, photo2, photo5, photo3, photo4];
 
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);

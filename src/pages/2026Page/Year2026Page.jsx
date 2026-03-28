@@ -53,7 +53,8 @@ const Year2026Page = () => {
     { title: "Manon Lescaut", finishedOn: "January 20"},
     { title: "None Of This Is True", finishedOn: "February 11"},
     { title: "Lessons in Chemistry", finishedOn: "February 28"},
-    { title: "When Breathe Becomes Air", finishedOn: "March 11"}
+    { title: "When Breathe Becomes Air", finishedOn: "March 11"},
+    { title: "Ghachar Ghochar", finishedOn: "March 26"}
   ]);
 
   const sortedBooks = [...books].reverse();

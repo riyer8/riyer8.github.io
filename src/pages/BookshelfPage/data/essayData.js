@@ -1,56 +1,105 @@
 const essayData = [
   {
     title: "Principles",
-    url: "https://nabeelqu.substack.com/p/principles",
-    dateAdded: "2025-10-11",
+    author: "Nabeel Qureshi",
+    url: "https://nabeelqu.co/principles",
+    dateAdded: "2026-04-11",
     category: "advice",
     favorite: true,
     medium: "essay",
-    tldr: "🔖 Collection of personal principles from Nabeel Qureshi. Honestly can't write a complete TLDR about this based on its density.",
-    thoughts: "Incredible advice on personal principles, something I've been thinking about ever since I took ENGR 148 @ Stanford.",
-    tags: ['decision-making', 'principles', 'philosophy'],
-    notes:` Some of my favorite principles:
+    thoughts: "A piece I continue to come back to - but also one that encourages me to think about my own principles. I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford but in a more informal way.",
+    tags: ['principles', 'life', 'advice'],
+    notes: `
+Originally read in 10/11/2025, but each reread provides a new state of principles to focus on at this moment. Here are some of the new ones six months later :)
+
+:::quote
+4. Environment matters a lot; move to where you flourish maximally. Put yourself in environments where you have to perform to your utmost; if you can get by being average, you probably will.
+:::
+This is probably one that I've thought heavily about over the past year as I go into post-grad life. What environment do I want to be in? How can I maximize my growth - this being through jobs and also other life activities? Maybe this also relates to a much broader extensial crisis of who do I want to be? Maybe that in and of itself is not the right question to ask just yet.
+
+:::quote
 9. The world is a museum of passion projects.
-21. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
-23. Doing things is energizing, wasting time is depressing. You don’t need that much ‘rest’.
-31. Figure out what creates enduring value.
-34. “Aim for Chartres” (Christopher Alexander) - when doing something, aim to be the best there ever was at it. This compensates for your natural bias, which is to do something mediocre. You have to really aim to be as good as the greats.
-35. Send more cold emails. People respond! Assume everyone’s your friend.
-51. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful.
-53. Think in writing. Write Google Docs, scrawl in notebooks. This extends working memory arbitrarily and allows your thoughts to compound on each other.
+:::
+Still one of my favorite principles. Originally from [here](https://x.com/collision/status/1529452415346302976). The idea that humans have made, and continue to make, so many things of our world means that any one of us can too.
+
+:::quote
+13. Pay attention to your production/consumption balance. If you’re only consuming and not producing, fix that.
+:::
+:::quote
+14. You don’t do anyone any favors by lurking, put yourself out there!
+:::
+:::quote
+51. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful. (Podcasts, Atlantic articles, pop science books, anything that’s a bit too digestible is more “entertainment” than real learning).
+:::
+:::quote
 57. Scrolling and reading too much drowns out your inner voice.
+:::
+All of these revolving around the same theme. And yet probably the hardest ones for me to conquer. I've never been good at [having original thoughts](https://feifeiwrites.substack.com/p/you-share-other-peoples-thoughts) so consuming and lurking seem to be a safeguard.
+
+:::quote
+21. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
+:::
+I probably am. This also relates to 13 and 14.
+
+:::quote
+25. Form opinions on things and then find the strongest critique of those opinions. Repeat.
+:::
+Similar to having original thoughts. Learning to think critically of the things that people say is a skill that can be learned. One that I've been trying to practice too.
+
+:::quote
+35. Send more cold emails. People respond! Assume everyone’s your friend.
+:::
+I really love this one, but it seems naturally hard. Especially when surrounded by great privelege of being around some of the smartest people every day, it feels like you need to have a value to give back. But maybe this principle contradicts that and tells you that you really don't need to have something in return but just insight and thoughtfulness.
+
+:::quote
+49. Figure out what gives you new ideas, and make sure you incorporate that into your routine. For me this is talking to people, tweeting, writing in my notebook, long conversations with friends (especially late night or while walking). For other people this is showering, baths, long walks, runs, etc. Make sure you “harvest” these ideas too, i.e. write them down somewhere so they don’t get lost.
+:::
+I remember I saw a rather similar idea when watching a podcast with Sara Blakely where she said that she gets her best ideas when driving around aimlessly. For me, finding more ways to have empty time to "think" has been a recent privelege - yet making that productive is another type of challenge.
+
+:::quote
+61. Luck isn’t a constant, it increases with surface area: be in the right places, have lots of conversations, put yourself out there, ask for what you want and be optimistic and positive. 
+:::
+Instead your surface area and luck follows. Similar to a ton of his other principles where writing more, emailing more, avoiding lurking, all of these lead to getting your thoughts out there.
     `
   },
 
   {
     title: "What to do with your life",
+    author: "Julian Shapiro",
     url: "https://www.julian.com/blog/life-planning",
-    dateAdded: "2025-10-17",
+    dateAdded: "2026-04-11",
     category: "advice",
     medium: "essay",
-    tldr: "🧭 Develop a framework to evaluate your values throughout your life.",
-    thoughts: "I've been thinking a lot about what I want out of life and this essay was a quick read into Julian's approach.",
+    tldr: "A framework to evaluate the values of your life.",
+    thoughts: "",
     tags: ['advice', 'career', 'purpose', 'life-planning'],
-    notes: ` The main values described are:
+    notes: `
+Originally read on 10/17/2025. Revising to add more thoughts and notes.
 
-- Knowledge - Do you become more knowledgeable and skilled from it?
-- Adventure - Do you accrue novel, memorable experiences?
-- Fame - Do you build an audience you can later leverage?
-- Power - Do you acquire resources and connections?
-- Money - Do you increase your financial wealth?
-- Exercising Talent - Do you leverage your skill and creativity?
-- Human Connection - Do you bond with others?
+> Without self-reflection, we ride the momentum of whatever we're already doing and whatever we stumble across. That's dangerous, because it stops us from self-reflecting on how we've changed and whether we should be doing something new.
+Familiarity is a crisis. This is one that I theorize has come from a hyperload of dopamine levels that crave short-term gratification.
 
-Shapiro frames these seven values as a lens for evaluating whether your decisions align with the kind of life that you want to build.
+These are the main values in Shapiro's essay that he evaluates to determine if he should pursue a new project or not:
 
-He also frames the idea of **regret minimization**
+:::quote
+- **Knowledge**: Do you become more knowledgeable and skilled from it?
+- **Adventure**: Do you accrue novel, memorable experiences?
+- **Fame**: Do you build an audience you can later leverage?
+- **Power**: Do you acquire resources and connections?
+- **Money**: Do you increase your financial wealth?
+- **Exercising Talent**: Do you leverage your skill and creativity?
+- **Human Connection**: Do you bond with others?
+:::
 
-> What choices can you make today that minimize the regret you'll feel as an 80-year-old looking back on your life? When you minimize future regret, you sleep well knowing you're maximizing fulfillment.
+The idea of **regret minimization**:
+
+> *What choices can you make today that minimize the regret you'll feel as an 80-year-old looking back on your life? When you minimize future regret, you sleep well knowing you're maximizing fulfillment.*
 `
   },
 
   {
     title: "tryhard",
+    author: "Jasmine Sun",
     url: "https://jasmi.news/p/tryhard",
     dateAdded: "2025-10-17",
     category: "advice",
@@ -82,6 +131,7 @@ Make effort feel intentional. You get to choose the game you play, but you have 
 
   {
     title: "Don't Read History for Lessons",
+    author: "Cedric Chin",
     url: "https://commoncog.com/dont-read-history-for-lessons/",
     dateAdded: "2025-11-19",
     category: "psychology",
@@ -109,7 +159,8 @@ Make effort feel intentional. You get to choose the game you play, but you have 
   },
 
   {
-    title: "What Goes Wrong by Jessica Livingston",
+    title: "What Goes Wrong",
+    author: "Jessica Livingston",
     url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
     dateAdded: "2025-11-28",
     category: "career",
@@ -142,6 +193,8 @@ Livingston describes the various ways that people will quit on their ideas after
 
   {
     title: "Experts and Elites Play Fundamentally Different Games",
+    author: "Rob Henderson",
+    archives: true,
     url: "https://www.robkhenderson.com/p/experts-and-elites-play-fundamentally",
     dateAdded: "2025-11-30",
     category: "psychology",
@@ -169,6 +222,7 @@ Both of these archetypes serve different functions. Henderson actually sums this
 
   {
     title: "How To Be Successful",
+    author: "Sam Altman",
     url: "https://blog.samaltman.com/how-to-be-successful",
     dateAdded: "2025-12-07",
     favorite: true,
@@ -253,9 +307,10 @@ Nothing in standard day-to-day life prepares you for this.
 > This is why the question of a person’s motivation is so important. It’s the first thing I try to understand about someone. The right motivations are hard to define a set of rules for, but you know it when you see it.
     `
   },
-  
+
   {
     title: "Cultivating a state of mind where new ideas are born",
+    author: "Henrik & Johanna Karlsson",
     url: "https://www.henrikkarlsson.xyz/p/good-ideas",
     dateAdded: "2025-12-16",
     category: "advice",
@@ -271,11 +326,11 @@ As Sam Altman is quoted in the essay, the idea of "coworking" locations for star
     
 Being alone with the idea can allow you to deeply think and comb through the idea without external factors.
 
+As a mathlete, I really love this quote. I think about the privilege of learning math in the unique way of competitions. Maybe that makes it easier to think deeply about problems when neuroplasticity was on my mind.
+
 > Mathematics has been *flattened*: people only learn how to do the mechanical work of hammering out proofs, they do not know how to enter the dreamlike states where truly original mathematics arises.
 
-*I just really like that quote*
-
-> being exceptionally talented and trained was, in the long run, not enough to do groundbreaking work because *they lacked the capacity to go beyond the context they had been raised in.*
+> Being exceptionally talented and trained was, in the long run, not enough to do groundbreaking work because *they lacked the capacity to go beyond the context they had been raised in.*
 
 The anecdote of Grothendieck shows that while he was behind his peers in math during his formative years, he spent time alone wiring his brain to think deeper, often discovering proofs and theorems that were already known to the world. While many would have seen this to be a waste of time, this later helped him develop ideas of his own.
 
@@ -287,6 +342,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
 
   {
     title: "home for the holidays",
+    author: "Rayne Fisher-Quann",
     url: "https://internetprincess.substack.com/p/home-for-the-holidays",
     dateAdded: "2025-12-21",
     category: "life",
@@ -311,6 +367,7 @@ On grief and depression:
 
   {
     title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
+    author: "Amber Atherton",
     url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
     dateAdded: "2025-12-22",
     category: "science",
@@ -346,6 +403,7 @@ This may also include understanding how **your friends** taste fingerprint is ev
 
   {
     title: "How To Do Great Work",
+    author: "Paul Graham",
     url: "https://paulgraham.com/greatwork.html",
     dateAdded: "2025-12-26",
     category: "advice",
@@ -399,6 +457,7 @@ It's not a defect in your character that it may be hard to get started. People h
 
   {
     title: "Staring into the abyss as a core life skill",
+    author: "Ben Kuhn",
     url: "https://www.benkuhn.net/abyss/",
     dateAdded: "2025-12-28",
     category: "advice",
@@ -413,6 +472,7 @@ It's not a defect in your character that it may be hard to get started. People h
 
   {
     title: "LLM Daydreaming",
+    author: "Gwern",
     url: "https://gwern.net/ai-daydreaming",
     dateAdded: "2026-01-09",
     category: "science",
@@ -443,6 +503,7 @@ It's obvious (and he notes) that it isn't difficult to implement this. Just toss
 
   {
     title: "The Most Valuable Commodity in the World is Friction",
+    author: "Kyla Scanlon",
     url: "https://kyla.substack.com/p/the-most-valuable-commodity-in-the",
     dateAdded: "2026-01-09",
     category: "science",
@@ -465,29 +526,8 @@ Kyla draws a distinction between three types of friction:
   },
 
   {
-    title: "How Much Energy Does It Take To Think?",
-    url: "https://www.quantamagazine.org/how-much-energy-does-it-take-to-think-20250604/",
-    dateAdded: "2026-01-14",
-    category: "science",
-    medium: "essay",
-    tldr: "",
-    thoughts: "",
-    tags: ['energy', 'brain', 'psychology'],
-    notes: `
-This article is about analyzing how our brain's energy process for various goals.
-
-> Effortful, goal-directed tasks use only 5% more energy than restful brain activity. In other words, we use our brain just a small fraction more when engaging in focused cognition than when the engine is idling.
-
-Majority of the brain function goes to maintenance, and allocates resources for conscious and subconscious demands.
-
-**At roughly 2% of body weight, the organ gorges on 20% of our body’s energetic resources.**
-
-This is quite different to many other animals whose brain doesn't take up as much energy, setting humans distinctively apart.
-    `
-  },
-
-  {
     title: "On Taste",
+    author: "Thomas Kaminski",
     url: "https://claremontreviewofbooks.com/on-taste/",
     dateAdded: "2026-01-20",
     category: "psychology",
@@ -519,6 +559,7 @@ Impressionists had two qualities working in their favor: the paintings themselve
   {
     title: "On the importance of staring directly into the sun",
     url: "https://www.experimental-history.com/p/on-the-importance-of-staring-directly",
+    author: "Adam Mastroianni",
     dateAdded: "2026-02-24",
     category: "advice",
     archives: true,
@@ -544,6 +585,7 @@ One of the quotes that I really liked, as a mathlete, was "But math, perhaps mor
 
   {
     title: "Nostalgia as a Trap: Why We Romanticize the Past",
+    author: "Mindful Growth",
     url: "https://mindfulgrowth100.substack.com/p/nostalgia-as-a-trap-why-we-romanticize",
     dateAdded: "2026-02-17",
     category: "science",
@@ -566,7 +608,8 @@ I've been looking for essays and opinions about rosy retrospection and how our b
 
   {
     title: "Watch This When I Die",
-    url: "https://www.youtube.com/watch?v=iRB-C5TgGec&list=RDiRB-C5TgGec",
+    author: "Nathaniel Drew",
+    url: "https://www.youtube.com/watch?v=iRB-C5TgGec",
     dateAdded: "2026-02-24",
     category: "life",
     favorite: true,
@@ -613,6 +656,7 @@ The heart doesn’t think, it isn’t strategic. It just experiences. All that c
 
   {
     title: "How Long Have I Got Left?",
+    author: "Paul Kalanithi",
     url: "https://www.nytimes.com/2014/01/25/opinion/sunday/how-long-have-i-got-left.html",
     dateAdded: "2026-03-03",
     category: "life",
@@ -631,6 +675,7 @@ A rather sad but beautiful essay of his reflection.
 
   {
     title: "This is Water",
+    author: "David Foster Wallace",
     url: "https://fs.blog/david-foster-wallace-this-is-water/",
     dateAdded: "2026-03-13",
     category: "life",
@@ -645,7 +690,7 @@ A rather sad but beautiful essay of his reflection.
 
 > This is not a matter of virtue. It’s a matter of my choosing to do the work of somehow altering or getting free of my natural, hard-wired default setting which is to be deeply and literally self-centered and to see and interpret everything through this lens of self. 
 
-> **learning how to think really means learning how to exercise some control over how and what you think.**  It means being conscious and aware enough to choose what you pay attention to and to choose how you construct meaning from experience.
+> **Learning how to think really means learning how to exercise some control over how and what you think.**  It means being conscious and aware enough to choose what you pay attention to and to choose how you construct meaning from experience.
 
 > **It will actually be within your power to experience a crowded, hot, slow, consumer-hell type situation as not only meaningful, but sacred, on fire with the same force that made the stars: love, fellowship, the mystical oneness of all things deep down.**
     `
@@ -653,6 +698,7 @@ A rather sad but beautiful essay of his reflection.
 
   {
     title: "How to engineer luck",
+    author: "George Mack",
     url: "https://essays.highagency.com/p/how-could-you-double-your-luck-in",
     dateAdded: "2026-03-23",
     category: "career",
@@ -684,6 +730,7 @@ I find it useful to distinguish between luck-luck and skill-luck. Luck-luck is p
 
   {
     title: "why some conversations rearrange your brain",
+    author: "Maja",
     url: "https://velvetnoise.substack.com/p/why-some-conversations-rearrange",
     dateAdded: "2026-03-23",
     category: "life",
@@ -710,6 +757,7 @@ Strangely, it’s often those closest to us that we stop being curious about. We
 
   {
     title: "who are you when nobody’s watching?",
+    author: "Letters from Rosie",
     url: "https://medium.com/@lynwrites_/who-are-you-when-nobodys-watching-cfddcd4a48f4",
     dateAdded: "2026-03-23",
     category: "life",
@@ -726,6 +774,339 @@ Strangely, it’s often those closest to us that we stop being curious about. We
     `
   },
 
+  {
+    title: "Everyone Can Tell if You're a Serious Person",
+    author: "Connor Jennings",
+    url: "https://mindmeandering.substack.com/p/everyone-can-tell-if-youre-a-serious",
+    dateAdded: "2026-03-23",
+    category: "life",
+    medium: "essay",
+    tldr: "",
+    favorite: true,
+    thoughts: "",
+    tags: ['life', 'start-now', 'seriousness'],
+    notes: `
+In a weird way, this was exactly the essay I needed at this time. It might be a little bit later to start taking my life seriously, but late is better than never.
+
+---
+
+Every day I grow older, I feel like the gap becomes more and more apparent. It's lines like these that remind me that I still have time and only if I truly want it:
+> At 22, the discrepancy between the people that consistently work hard, and those that don’t is pretty small. Not enough time has passed for the rewards of good decision making to pay off. Now at 29, the returns are compounding, and you can see that some are changing gears, and leaving the rest of the pack behind. These people, are serious people.
+
+> If we started from essentially the same place, why has he squeezed so much more success in the same amount of time? Easy. He was always a serious person, and I only became one when I was like 25. He’s always done the small things that add up. He shows up on time. He fulfills his commitments even if he doesn’t feel like it. He doesn’t waste his time getting involved in petty squabbles. He says what he means, and solves his problems instead of wallowing in them. He’s dependable, and knows that if he wants something, he has to go out and get it instead of waiting for the world to give it to him. He keeps a cool head in times of stress and makes prudent decisions. He’s not humourless (far from it), but he takes his life seriously - and you can tell that he does by just being around him for 5 minutes.
+
+> I regret not taking my life seriously sooner.
+    `
+  },
+
+  {
+    title: "There's a place for everyone",
+    author: "Adam Mastroianni",
+    url: "https://www.experimental-history.com/p/theres-a-place-for-everyone",
+    dateAdded: "2026-03-26",
+    category: "life",
+    medium: "essay",
+    tldr: "Everyone belongs in some niche - no one is redundant in this world.",
+    thoughts: "An essay that reminded me of 'lift others while you climb'. Everyone has a niche. We fail society if we don't help ourselves, and others, find our niche.",
+    tags: ['life', 'growth', 'friends'],
+    notes: `
+Some of my favorite quotes.
+:::quote
+Someone once asked me, “What’s something you believe in, despite not having any evidence for it?”
+
+Without thinking, I said **“There’s a place for everyone.”** As in: every person has a purpose, *nobody* is superfluous or redundant.
+:::
+
+> When people fail to find their niche, and when we fail to help them find it, we don’t just suffer from their absence. **We also suffer from their presence in the wrong place.** People often end up doing awful things because they never figured out what else to do.
+
+:::quote
+That’s why “where do I fit in?” is not a private question, like the password to your bank account or the color of your underwear. We all have a stake in you finding your place, because we’re all better off when you like your life. Well-slotted people make good neighbors, bosses, partners, and parents. 
+:::
+    `
+  },
+
+  {
+    title: "everything is a win when the goal is to experience",
+    url: "https://yearlyblues.substack.com/p/everything-is-a-win-when-the-goal",
+    author: "Sentimental Being",
+    dateAdded: "2026-03-28",
+    category: "life",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "took a deeper breathe after reading this one.",
+    tags: ['life', 'growth'],
+    notes: `
+> i kept thinking about that line: *everything is a win when the goal is to experience* and how for the first time it didn’t feel like something pretty or philosophical, it felt practical. like instructions. like a way to survive being human without constantly grading yourself.
+
+>  **consciousness itself might be the rarest thing in the universe.** that out of all the silent rocks and distant stars and cold, empty space, **the fact that we get to feel anything at all is statistically ridiculous.** and i keep thinking about that. how absurdly lucky it is that i get to taste oranges and miss people and cry over songs and fall asleep on buses and feel my throat tighten when someone says my name softly. how insane that i get to experience longing, which hurts so much but also proves there’s something in me capable of reaching. and instead of treating that like a miracle, i’ve been treating it like homework. everything is a win when the goal is to experience.
+
+<3
+> if the goal is to experience, then heartbreak isn’t humiliation, it’s proof that i loved with my whole chest. then confusion isn’t weakness, it’s curiosity refusing to die. then even boredom has a texture, a temperature, a shape. nothing is meaningless because everything passes through me and leaves some tiny residue behind. like dust. like pollen. like memory. and i think that’s enough. maybe a life doesn’t have to be impressive to be complete. maybe it just has to be felt. deeply. honestly. without constantly turning away.
+
+:::quote
+if i really think about it, the days that “failed” me, the awkward ones, the lonely ones, the ones where nothing went according to plan. yeah. those are the days that made me softer. more porous. more capable of understanding other people’s pain. the nights i cried over someone who didn’t choose me taught me how deep my capacity to love actually goes. the afternoons i spent doing absolutely nothing taught me how to sit with myself without panicking. even boredom has shaped me. even confusion has shaped me. it’s all been material. clay. something the universe pressed its thumbs into to make the exact shape of me.
+
+so what would it mean to stop fighting that. to stop trying to turn my life into something neat and impressive and instead let it be textured and human and slightly messy.
+:::
+
+> if the goal is to experience, then there is no such thing as a wasted day.
+    `
+  },
+
+  {
+    title: "If you have multiple interests, do not waste the next 2-3 years",
+    url: "https://letters.thedankoe.com/p/if-you-have-multiple-interests-do",
+    author: "Dan Koe",
+    dateAdded: "2026-04-01",
+    category: "career",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['interest', 'growth', 'career'],
+    notes: `
+:::quote
+We don’t live in the Industrial Age anymore. Specializing in one skill is almost certain death.
+:::
+
+:::quote
+If pure specialization makes people stupid and dependent, what makes an individual smart and sovereign?
+
+Three ingredients: **Self-education, self-interest, self-sufficiency.**
+- Self-interest motivates self-education.
+- Self-education enables self-sufficiency.
+- Self-sufficiency clarifies self-interest.
+:::
+    
+:::quote
+The ultimate moat, or the final competitive edge worth paying for, in my opinion, is an opinion.
+
+A perspective that only you can see, because the uniqueness of your life experience created it. That may just be the last thing anyone else can replicate.
+:::
+
+:::figure
+![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/dan_koe_business.png)
+How to convert your own interests into a business. Image found in the original article.
+::: 
+    `
+  },
+
+  {
+    title: "I make good money. Why do I still feel like this?",
+    url: "https://yourbrainonmoney.substack.com/p/i-make-good-money-why-do-i-still",
+    author: "Hanna Horvath",
+    dateAdded: "2026-04-06",
+    category: "career",
+    medium: "essay",
+    tldr: "",
+    thoughts: "Very well-articulated and data-backed opinion.",
+    tags: ['money', 'economy', 'capitalism', 'psychology'],
+    notes: `
+A really fascinating article about understanding the structural changes of capitalism and the economy - and how that affects our personal responsibility when it comes to money.
+
+K-shaped economy: divergent recovery where different parts of the economy grow or decline at separate rates, creating a widening divide between wealthy (upper arm) and lower-income individuals (lower arm).
+:::quote
+The top of the K (asset owners, high earners, people who bought homes before 2020) mostly recovered and then some. The bottom of the K (wage workers, renters, people without generational wealth) fell further behind.
+:::
+
+This, in turn, also affects the type of audience that capitalism caters towards.
+:::quote
+Under a capitalistic model, companies tend to innovate where the money is — more sales at higher margins means more value for shareholders. So when wealth concentrates at the top, that’s where the products and services follow.
+:::
+
+Connecting the point-of-view of consumers to the economy, companies are now designing for two types of individuals: premium and budget.
+
+Horvath argues that this results in the "missing middle". In this way, economies aren't catering to this "missing middle", resulting in those going out of their comfort zone to purchase luxuries that they may not be able to neatly afford.
+
+:::quote
+Some people are experiencing real, material deprivation — the basics are genuinely slipping away. But a lot of people — and I think this includes much of this newsletter’s audience — have money. They just aren’t affording the life they thought they would have by now.
+
+And the distance between those two experiences — and the way both groups misdirect their frustration — reshapes how we think and behave with money. 
+:::
+
+:::quote
+And because we have a culture built on individualism and meritocracy, when we can’t afford the stuff, or we miss the milestone, we’re more likely to blame ourselves than to critique the system. The ethos of personal responsibility runs so deep that structural failure gets internalized as personal failure.
+:::
+
+The association of the middle class with personal responsibility and individualism provides an even deeper understanding of economies and how they cater.
+
+:::quote
+“Middle class” has become a psychological container that absorbs all of this anxiety — the gap between self-concept and lived experience. The feeling is dissonance
+:::
+
+:::quote
+That extraction language matters. This group isn’t just dealing with “prices going up.” They’re dealing with an entire consumer economy that’s been redesigned around making the base tier uncomfortable enough to push you toward a premium tier you can’t afford.
+:::
+
+This results in an **elite overproduction**: societies produce more people who expect elite positions than positions exist. This discrepancy between elite status association and increased concentration of upper class ICPs *further* emphasizes the increasing issue of resistance.
+
+:::quote
+The credentials of elite status — the graduate degree, the knowledge-work title, the coastal zip code — have proliferated, while the economic substance has concentrated into a smaller and smaller group at the very top.
+:::
+
+I'm sure this can be related to a **near-miss effect**, creating a sense of "almost winning" but never quite there. The idea that you may be so close to actually getting a big break into the upper *upper* class.
+
+:::quote
+The top 20% accounts for 59% of all consumer spending. But within that top 20%, the real divide is between people who earn and people who own.
+:::
+
+Further, wealth is concentrated at the top 1%, specifically those who own a majority of the assets that drive the world's economy.
+
+**disillusionomics**: Gen Z's approach to an economy where traditional paths to stability (homeownership, affordable education, and career longevity) are largely unattainable.
+
+---
+
+Understanding the **precarity** that is yours:
+- material precarity: state of existence lacking economic stability, secure employment, and consistent access to necessary resources.
+- positional precarity: insecurity, anxiety, vulnerability individuals experience due to unstable employment - a more psychological approach.
+    `
+  },
+
+  {
+    title: "learn to belong to yourself without feeling the need to be with others",
+    url: "https://goranshbharal.substack.com/p/learn-to-belong-to-yourself-without",
+    author: "Gor",
+    dateAdded: "2026-04-10",
+    category: "life",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "Thought about archiving this because its different than most of the other essays I have here - but I think I loved it too much.",
+    tags: ['life', 'self-love', 'friends', 'growth'],
+    notes: `
+Some of my favorite quotes, but the entire essay is a gem.
+:::quote
+when someone leaves, what hurts is rarely just their absence. what hurts is what their absence exposes. the empty space inside you that had been filled by their presence.
+:::
+
+:::quote
+that is why learning how to belong to yourself matters more than we admit.
+
+you should love people fully...
+
+but love cannot be the only structure holding your life together.
+:::
+
+:::quote
+there is a dangerous idea that wanting people deeply means needing them desperately. that is not true. desperation comes from emptiness, not depth.
+:::
+
+:::quote
+people will come. people will go. some will stay longer than you expect. some will leave sooner than you’re ready for. none of this needs to destroy you. build a life that can hold change. build a life that welcomes love without depending on it for survival. learn how to belong to yourself. everything else becomes lighter when you do.
+:::
+
+As a sidenote, I think this article could be a sequel to [this essay](https://medium.com/@lynwrites_/who-are-you-when-nobodys-watching-cfddcd4a48f4). 
+    `
+  },
+
+  {
+    title: "There is so much love in trying",
+    url: "https://carinas.substack.com/p/there-is-so-much-love-in-trying",
+    author: "Carina",
+    dateAdded: "2026-04-10",
+    category: "life",
+    favorite: true,
+    medium: "essay",
+    tldr: "Trying is the greatest form of love.",
+    thoughts: "",
+    tags: ['love', 'trying'],
+    notes: `
+As a sidenote, one of my favorite quotes I used to always tell my roommate was "who would I be if I didn't try?". Who would I be if I didn't try for the many, *many* programs + jobs + clubs + everything else in the world that I applied to? Even with a subpar application, who would I be if I didn't try? This essay provides a similar thought, much more eloquently than I could have ever imagined.
+
+I'm afraid I may have copied majority of the first part of the essay onto these notes.
+
+:::quote
+The same goes for getting to know someone. Not only are you learning the facts of their life, but also how to best treat them: What do they need when they’re sad? What should you absolutely not mention when they’re angry? Do they want a hug or space? A cup of tea or chocolate milk?
+
+So you try.
+
+And perhaps you get it right the first time around, but chances are the colours end up a bit muddier than you wanted, and that thing you said sounded better in your head. Wanting to get it right, and continuously working to get it right, is an act of devotion. But the essence of care isn’t found in the right answer.
+
+...
+
+It’s found in the willingness to put ego aside and accept the fact that you come up short sometimes. To look bad or awkward because you care.
+:::
+
+:::quote
+Not picking up the paint brush, not making a fool of yourself, not ruining the friendship, not walking out the door would be the easy options, meaning trying is very much on purpose. It’s an active decision, over and over again: What are you willing to do for this person/passion? How much effort will you put in? What inconvenience do you choose to take on?
+
+You always have a choice; you can always give up. But you can also always gather the information you got and try something else next time. Because you want there to be a next time.
+:::
+
+:::quote
+There is much to be said about why it needs fixing in the first place, but at the end of the day, every piece of effort, every good intention, every science paper, every desire to right a wrong is a love letter.
+:::
+
+In fashion, maybe a precursor to this article can be [this one](https://the25reset.substack.com/p/ive-protected-my-peace-so-much-ive). Where protecting your peace has dulled your sparkle, trying can bring it back to life.
+    `
+  },
+
+  {
+    title: "how can you be behind in life when your life is only yours",
+    url: "https://goranshbharal.substack.com/p/how-can-you-be-behind-in-life-when",
+    author: "Gor",
+    dateAdded: "2026-04-12",
+    category: "life",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "",
+    tags: ['life', 'comparison', 'career'],
+    notes: `
+:::quote
+but how can you be behind in life when your life is only yours. there is no shared clock, no single sequence you were meant to follow.
+
+what you are comparing yourself to is a collection of lives shaped by different circumstances, different choices, different timing.
+:::
+
+Everything that I need to hear (internalizing is seemingly harder).
+
+:::quote
+come back to yourself. ask what you want, what you need, what actually feels true to you. you will never be behind in your own life when you stop measuring it against people who were never meant to define it. the moment you let go of that comparison, your life stops feeling like something you are chasing and starts feeling like something you are living.
+:::
+    `
+  },
+
+  {
+    title: "Sometimes the reason you can’t find people you resonate with is because you misread the ones you meet",
+    url: "https://www.henrikkarlsson.xyz/p/friends-missed",
+    author: "Henrik Karlsson",
+    dateAdded: "2026-04-17",
+    category: "life",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['friends', 'life', 'psychology'],
+    notes: `
+The three categories of friendships:
+1. **Pleasure** (personal, self-centered). Someone who makes you laugh, or makes you feel desirable.
+2. **Utility** (tradeoff). You're friends because it is useful.
+3. **Virtue** (character-driven). Enjoy each others company even if they are / aren't fun or useful.
+
+:::quote
+That is a friendship of virtue.
+
+And in a long enough perspective, it is the only thing that matters in a relationship. Pleasure will come and go, as will utility.
+:::
+
+:::quote
+If someone seems boring to you, or a bad fit, it might be that you don’t know how to prompt them, that you haven’t seen them react to the context that brings out their full being. You probably don’t know how much beauty lies hidden in the people around you.
+:::
+    `
+  },
+
+  /*{
+    title: "",
+    url: "",
+    author: "",
+    dateAdded: "",
+    category: "",
+    medium: "",
+    tldr: "",
+    thoughts: "",
+    tags: [''],
+    notes: ``
+  },*/
 ];
 
 export default essayData;

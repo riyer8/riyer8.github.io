@@ -3,6 +3,7 @@
 const archiveData = [
   {
     title: "Shitty First Drafts",
+    author: "Anne Lamott",
     url: "https://wrd.as.uky.edu/sites/default/files/1-Shitty%20First%20Drafts.pdf",
     dateAdded: "2025-11-30",
     category: "advice",
@@ -20,33 +21,11 @@ const archiveData = [
   },
 
   {
-    title: "A Roadmap to AI Utopia",
-    url: "https://www.khoslaventures.com/posts/a-roadmap-to-ai-utopia",
-    dateAdded:"2025-10-24",
-    category: "AI",
-    medium: "essay",
-    archives: true,
-    tldr: "🌏 A rather optimistic view on how AI can lead to a prosperous future for all of humanity.",
-    thoughts: "A refreshing and optimistic perspective on AI's potential to improve lives globally. There is a chance that it remains to be too optimistic without real actionable changes to implement said ideas.",
-    tags: ['AI', 'future', 'optimism', 'technology', 'society', 'startups'],
-    notes: `I really enjoyed the parallel the author drew between AI and a steam engine, as obvious as it may seem. It's a compelling way to think about how AI is transforming productivity and expanding human capacity. Khosla is definitely optimistic, which made the piece engaging.
-
-That said, some ideas felt underdeveloped. For instance, the treatment of pessimistic viewpoints was too broad, lacking nuance about societal or economic challenges that AI may bring. Similarly, the mention of a universal basic income (UBI) was interesting, but I would have loved more detail on how it would be implemented and the consequences.
-
-Some quotes stood out:
-> "I estimate that over the next 25 years, AI can perform 80% of the work in 80% of all jobs - whether doctors, salespeople, engineers, or farm workers."
-- Bold and thought-provoking, though perhaps optimistic and reliant on assumptions about AI adoption rates across industries.
-
-> "The current challenge is not a lack of resources, but a limitation in our capacity to find them – a barrier AI is poised to help break."
-- May overestimate AI's ability to overcome systemic or structural limitations.
-`
-  },
-
-  {
     title: "In the Age of AI, All We Have Left Is Taste",
+    author: "Uma Chalik",
     url: "https://miscellaneousgood.substack.com/p/in-the-age-of-ai-all-we-have-left",
     dateAdded: "2025-11-16",
-    category: "AI",
+    category: "science",
     medium: "essay",
     archives: true,
     tldr: "✨ AI taking over taste won't result in personal, intimate connections with other people's personal taste.",
@@ -68,6 +47,7 @@ The biases and preferences that we have actually help us when it comes to deciph
 
   {
     title: "Frequency Reduces Difficulty",
+    author: "Martin Fowler",
     url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
     dateAdded: "2025-11-24",
     category: "advice",
@@ -91,6 +71,7 @@ This essay allows us to increase frequency with more painful work, expanding bey
 
   {
     title: "Why You Procrastinate (It Has Nothing to Do With Self-Control)",
+    author: "Charlotte Lieberman",
     url: "https://www.nytimes.com/2019/03/25/smarter-living/why-you-procrastinate-it-has-nothing-to-do-with-self-control.html",
     dateAdded: "2025-12-01",
     category: "psychology",
@@ -117,27 +98,20 @@ How can we get down to the root cause of procrastination? Here are a couple of o
 
   {
     title: "A Critical Essay On the Art of Performance",
+    author: "Gunnar de Jong",
     url: "https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d",
     dateAdded: "2025-11-30",
     category: "creativity",
     medium: "essay",
     archives: true,
     tags: ["improv", "growth", 'creativity'],
-    tldr: "🎭 de Jong explores the richness of improv from the actors and the audience perspective.",
+    tldr: "de Jong explores the richness of improv from the actors and the audience perspective.",
     thoughts: "I truly love the depth in which this essay describes improvisers and the ways in which audiences can extract away the hard work used to make scenes natural and believable.",
     notes: `
 
 I just really like this quote.
 > I aim to uphold no single definition of art, as I deem it counterintuitive to label something as visceral as performance art with the limitations of written language.
 As with many ideas that we attempt to quantify, these ideas merely get lost in translation. Gunnar de Jong doesn't attempt to provide an overarching definition of art, allowing the reader to decipher it themselves.
-
-During his improv class, he works on a variety of études.
-
-Gunnar de Jong definition of étude:
-> étude _(noun)_: open-ended rehearsed improvisations
-
-For further clarification, here is the online definition of étude as it pertains to improv:
-> étude _(noun)_: structured exercise designed to develop specific skills, like living in the moment, chasing a goal, or using a specific technique, which are then applied to spontaneous scenes.
 
 The role of improv / action is "to build the imaginary circumstances and making them *sensually real*", as described by de Jong.
 
@@ -163,71 +137,8 @@ Just another quote that I really loved about his distinction between great impro
   },
 
   {
-    title: "How Improv Thinking Helped Me Get Out of My Head and Into the Moment",
-    url: "https://medium.com/better-humans/how-improv-thinking-helped-me-get-out-of-my-head-and-into-the-moment-a2bff6401548",
-    dateAdded: "2025-11-30",
-    category: "creativity",
-    medium: "essay",
-    archives: true,
-    tags: ["improv", "growth", 'creativity'],
-    tldr: "🎭 Improv can improve your day-to-day life with more patience and reflection.",
-    notes: `
-> When people shifted their focus and tapped into a childlike sense of curiosity, their anxiety decreased and their creativity increased.
-
-Drinko explains one of the core concepts in improv: the theory of "Yes, And". With the principle of "Yes, And", we collaborate with our partner to make a faithful attempt at the reality that we jointly bring to the table. With this principle, we garner a level of trust with our partner that we won't get sabotaged in the moment, allowing creativity to take over.
-
-Drinko describes the 12 lessons you can learn from improv:
-
-**Lesson 1: Mindfulness**
-
-- The brain has a limited amount of space. Be mindful of the present. Where are you right now? What is around you? It helps reduce the overthinking.
-
-**Lesson 2: Calming Down**
-
-- That actually leads really nicely into the next idea of calming down. Slow down and breathe.
-
-**Lesson 3: Find the Game**
-
-- Pay attention to special, hidden patterns that can allow you to break away from regular patterns and have fun.
-
-**Lesson 4: Being More Positive**
-
-- When you slip into negativity, find the light within it. Not everything can be positive, but you can notice (and limit) the unnecessary negative.
-
-**Lesson 5: Stop Being Judgmental**
-
-- Don't cloud your brain with judgmental thoughts. Pretend you are a detective trying to understand the world.
-- Being genuinely interested allows trust to grow.
-
-**Lesson 6: Treating Others Like Geniuses**
-
-- Find the strengths in others.
-
-**Lesson 7: You Aren’t Special**
-
-- We, more or less, think alike. As Drinko describes, "an extension of treating people like geniuses is to stop thinking like your wants and needs are any more or less important than anyone else’s."
-
-**Lesson 8: Listen**
-
-- Pause for three counts when someone talks. You don't need to dominate every conversation.
-
-**Lesson 9 & 10: Yes, And**
-
-- Be mindful when you say no and when it might make more sense to say yes.
-
-**Lesson 11: Embrace Mistakes**
-
-- Improv would be pointless without mistakes and we can learn to twist them to our benefit.
-- This doesn't mean we should justify all of our mistakes but rather don't let our mistakes stop us.
-
-**Lesson 12: Make Big Choices**
-
-- Improv rewards those who go big or go home. Just do the damn thing.
-    `
-  },
-
-  {
     title: "Take Aim, Even Badly",
+    author: "Jordan B Peterson",
     url: "https://www.youtube.com/watch?v=ZwGDnSWmqhM",
     dateAdded: "2025-12-21",
     category: "advice",
@@ -244,6 +155,28 @@ A few of my favorite quotes:
 
 > If you stand still, then you're moving backwards. Because everything is moving forward. **Do not stay in one place.**
 `
+  },
+
+  {
+    title: "to the people who overanalyze everything",
+    author: "sania and gor",
+    url: "https://chemicalhearts.substack.com/p/to-the-people-who-overanalyze-everything",
+    dateAdded: "2026-03-23",
+    category: "life",
+    medium: "essay",
+    archives: true,
+    tldr: "",
+    thoughts: "",
+    tags: ['life', 'overanalysis'],
+    notes: `
+the ending:
+:::quote
+let this be your permission slip — to care, to question, to breathe. to rest, even if the reply hasn’t come. to stop decoding every silence like it’s a threat. to believe, maybe for the first time, that some people won’t leave just because you let them see you.
+
+let yourself be messy. let yourself be known. that might be the bravest, most honest thing you ever do.   
+:::
+    
+    `
   },
 
 ];

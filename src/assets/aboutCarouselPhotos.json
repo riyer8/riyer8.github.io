@@ -1,0 +1,29 @@
+{
+  "photos": [
+    {
+      "file": "photo1.png",
+      "alt": "Ramya Iyer",
+      "caption": "an unserious stanford main quad photo."
+    },
+    {
+      "file": "photo2.png",
+      "alt": "Ramya Iyer",
+      "caption": "at tahoe 2026!!"
+    },
+    {
+      "file": "photo5.jpeg",
+      "alt": "Ramya Iyer",
+      "caption": "bay to breakers 2026!!!"
+    },
+    {
+      "file": "photo3.png",
+      "alt": "Ramya Iyer",
+      "caption": "at the tafoni sandstone."
+    },
+    {
+      "file": "photo4.jpeg",
+      "alt": "Ramya Iyer",
+      "caption": "archery for the first time in a longgg time."
+    }
+  ]
+}

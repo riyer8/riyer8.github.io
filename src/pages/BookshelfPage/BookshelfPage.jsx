@@ -6,17 +6,10 @@ import { FaStar } from 'react-icons/fa';
 import { useParams, useNavigate } from 'react-router-dom';
 import bookshelfData from './data/bookshelfData.js';
 import Badge from './Badge';
+import QuoteWidget from './QuoteWidget/QuoteWidget';
+import { titleToSlug } from './bookshelfUtils';
 
-const titleToSlug = (title) => 
-  encodeURIComponent(
-    title
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9\s-]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-  );
+export { titleToSlug };
 
 const BookshelfPage = () => {
   const { theme } = useTheme();
@@ -182,7 +175,8 @@ const BookshelfPage = () => {
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.text,
     fontSize: '0.95rem',
-    verticalAlign: 'middle'
+    verticalAlign: 'middle',
+    minWidth: 0
   };
 
   const headerStyle = {
@@ -237,6 +231,8 @@ const BookshelfPage = () => {
           <div style={{ display: 'flex', gap: '0.5rem' }}>
           </div>
         </div>
+
+        <QuoteWidget />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
           
@@ -357,48 +353,6 @@ const BookshelfPage = () => {
               boxSizing: 'border-box'
             }}
           />
-
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-              <div style={{ position: 'relative' }}>
-                <button onClick={() => { setFilterOpen(o => !o); setSortOpen(false); }} aria-expanded={filterOpen} style={{ padding: '0.45rem 0.6rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff', color: theme.colors.text, cursor: 'pointer' }}>⚲ Filter</button>
-                {typeof filterOpen !== 'undefined' && filterOpen ? (
-                  <div style={{ position: 'absolute', right: 0, top: 'calc(100% + 0.5rem)', width: 300, background: theme.colors.cardBackground, border: `1px solid ${theme.colors.border}`, borderRadius: 8, padding: '0.75rem', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 2250 }}>
-                    <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
-                      <div style={{ fontWeight: 700, color: theme.colors.text }}>Category</div>
-                      {(categories || []).map(c => (
-                        <button key={c} onClick={() => { setActiveCategory(c); setFilterOpen(false); }} style={{ padding: '0.35rem 0.5rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, cursor: 'pointer' }}>{c}</button>
-                      ))}
-                    </div>
-                    <div style={{ marginTop: '0.5rem' }}>
-                      <div style={{ fontWeight: 700, color: theme.colors.text, marginBottom: '0.5rem' }}>Medium</div>
-                      <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
-                        {(mediums || []).map(m => (
-                          <button key={m} onClick={() => { setActiveMedium(m); setFilterOpen(false); }} style={{ padding: '0.35rem 0.5rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, cursor: 'pointer' }}>{m}</button>
-                        ))}
-                      </div>
-                    </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: '0.75rem' }}>
-                      <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setFilterOpen(false); }} style={{ padding: '0.4rem 0.6rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: 'transparent', color: theme.colors.text, cursor: 'pointer' }}>Clear</button>
-                      <button onClick={() => setFilterOpen(false)} style={{ padding: '0.4rem 0.6rem', borderRadius: 6, border: `1px solid ${theme.colors.border}`, background: theme.colors.accent, color: '#fff', cursor: 'pointer' }}>Close</button>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-
-              <div style={{ position: 'relative' }}>
-                <button onClick={() => { setSortOpen(o => !o); setFilterOpen(false); }} style={{ padding: '0.45rem 0.6rem', borderRadius: 8, border: `1px solid ${theme.colors.border}`, background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff', color: theme.colors.text, cursor: 'pointer' }}>⇅ Sort</button>
-                {typeof sortOpen !== 'undefined' && sortOpen ? (
-                  <div style={{ position: 'absolute', right: 0, top: 'calc(100% + 0.5rem)', width: 220, background: theme.colors.cardBackground, border: `1px solid ${theme.colors.border}`, borderRadius: 8, padding: '0.75rem', boxShadow: '0 8px 24px rgba(0,0,0,0.12)', zIndex: 2250 }}>
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.45rem' }}>
-                        <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'dateAdded'} onChange={() => { setSortKey('dateAdded'); setSortDirection('desc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Date added</span></label>
-                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'title'} onChange={() => { setSortKey('title'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Title</span></label>
-                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'category'} onChange={() => { setSortKey('category'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Category</span></label>
-                      <label style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', color: theme.colors.text, cursor: 'pointer' }}><input type="radio" name="sort" checked={sortKey === 'medium'} onChange={() => { setSortKey('medium'); setSortDirection('asc'); setSortOpen(false); }} /> <span style={{ marginLeft: 6 }}>Medium</span></label>
-                    </div>
-                  </div>
-                ) : null}
-              </div>
-            </div>
           </div>
         </div>
 
@@ -411,7 +365,11 @@ const BookshelfPage = () => {
           <table style={tableStyle}>
             <thead>
               <tr>
-                <th style={thStyle} onClick={() => handleHeaderSort('title')}>
+                <th style={{ 
+                    ...thStyle, 
+                    width: '50%',
+                    maxWidth: '0px'
+                  }}  onClick={() => handleHeaderSort('title')}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Title
                     {sortKey === 'title' && (
@@ -456,7 +414,11 @@ const BookshelfPage = () => {
                     navigate(`/recent-reads/${titleToSlug(row.title)}`);
                   }}
                 >
-                  <td style={tdStyle}>
+                  <td style={{ 
+                      ...tdStyle, 
+                      maxWidth: 0,
+                      width: '50%'
+                    }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                       <button
                         onClick={(e) => {
@@ -464,27 +426,54 @@ const BookshelfPage = () => {
                           setSelectedItem(row);
                           navigate(`/recent-reads/${titleToSlug(row.title)}`);
                         }}
-                        style={{ all: 'unset', cursor: 'pointer', color: theme.colors.accent, fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.25rem' }}
+                        style={{
+                          all: 'unset',
+                          cursor: 'pointer',
+                          color: theme.colors.accent,
+                          fontWeight: 600,
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '0.4rem',
+                          minWidth: 0,
+                          width: '100%'
+                        }}
                       >
-                        {row.favorite ? (
-                          <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} size={16} style={{ flexShrink: 0 }} />
-                        ) : null}
-                        {row.title}
                         {row.archives && (
-                          <span style={{ fontSize: '0.75rem', color: theme.colors.textSecondary, fontStyle: 'italic' }}>(archived)</span>
+                          <span
+                            style={{
+                              flexShrink: 0,
+                              fontSize: '0.75rem',
+                              color: theme.colors.textSecondary,
+                              fontStyle: 'italic'
+                            }}
+                          >
+                            (archived)
+                          </span>
                         )}
-                      </button>
-                      {row.url && (
-                        <a 
-                          href={row.url} 
-                          target="_blank" 
-                          rel="noreferrer" 
-                          style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}
-                          onClick={(e) => e.stopPropagation()}
+
+                        {row.favorite && (
+                          <FaStar
+                            color={theme.isDarkMode ? '#FFD700' : '#000'}
+                            size={16}
+                            style={{ flexShrink: 0 }}
+                          />
+                        )}
+
+                        <span
+                          style={{
+                            flex: 1,
+                            minWidth: 0,
+                            overflow: 'hidden',
+                            textOverflow: 'ellipsis',
+                            whiteSpace: 'nowrap'
+                          }}
+                          title={`${row.title}${row.author ? ` | ${row.author}` : ''}`}
                         >
-                          ↗
-                        </a>
-                      )}
+                          {row.title}
+                          {row.author && ` | ${row.author}`}
+                        </span>
+
+                      </button>
                     </div>
                   </td>
 
@@ -725,6 +714,8 @@ const BookshelfPage = () => {
               </div>
               <div style={{ fontSize: '0.9rem' }}>{selectedItem.dateAdded}</div>
             </div>
+
+            <QuoteWidget variant="compact" contextTitle={selectedItem.title} />
 
             {selectedItem.tldr && (
               <div>

@@ -1,5 +1,5 @@
-# Ramya's Website
+# ramya iyer
 
 https://riyer8.github.io/
 
-Building a website whenever I get time :D
+my personal website <3
