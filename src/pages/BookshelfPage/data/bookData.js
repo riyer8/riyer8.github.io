@@ -1,13 +1,13 @@
 const bookData = [
   {
     title: "Keep Going",
+    author: "Austin Kleon",
     url: 'https://www.goodreads.com/book/show/40591677-keep-going',
     dateAdded: '2023-08-25',
     category: 'advice',
     archives: true,
     medium: 'book',
-    tldr: '☀️ Build routines, protect your solitude, focus on the work (not the identity). Keep some things just for joy.',
-    thoughts: "I honestly still think about this book often and specifically that not everything you love has to be monetized or turned into a side hustle.",
+    thoughts: "One of the main takeaways that I remember from this book is that not everything you love has to be monetized. It takes away the love of it.",
     tags: ['growth', 'motivation', 'mindset'],
     notes: `Below are some quotes that I really liked from the book.
 ### I Wrote This Book Because I Needed To Read It
@@ -74,12 +74,12 @@ const bookData = [
 
   {
     title: "Limitless",
+    author: "Jim Kwik",
     url: 'https://www.goodreads.com/book/show/49994260-limitless',
     dateAdded: '2023-11-25',
     category: 'advice',
     archives: true,
     medium: 'book',
-    tldr: '🧠 Upgrade your mindset (what you believe), motivation (why you act), and methods (how you learn).',
     thoughts: "Lots of mental models about learning faster. Jim Kwik has such a rich background and story that makes his advice so deep.",
     tags: ['learning', 'brain', 'productivity', 'habits'],
     notes: ` This one is a long one, but here are some selected quotes I liked.
@@ -152,14 +152,15 @@ const bookData = [
 
   {
     title: "Improv Wisdom",
+    author: "Patricia Ryan Madson",
     url: "https://www.goodreads.com/book/show/182052.Improv_Wisdom",
     dateAdded: "2025-11-28",
     category: "creativity",
     medium: "book",
     archives: true,
     tags: ["improv", "growth", 'creativity'],
-    tldr: "🎭 The art of improv is already within you; you just have to show up!",
-    thoughts: "A true insightful look at improv from someone highly respected in the field (and from Stanford Improv!).",
+    tldr: "The art of improv is already within you; you just have to show up!",
+    thoughts: "So insightful about integrating improv into your life from someone highly respected in the field (and from Stanford Improv!).",
     notes: `Below is a laundry list of self-selected quotes from the book that I really liked.
 ## Prologue
 > A good improviser is someone who is awake, not entirely self-focused, and moved by a desire to do something useful and give something back. – pg. 15
@@ -233,6 +234,7 @@ const bookData = [
 
   {
     title: "Thinking In Bets",
+    author: "Annie Duke",
     url: "https://www.goodreads.com/book/show/35957157-thinking-in-bets",
     dateAdded: "2025-11-28",
     category: "psychology",
@@ -326,6 +328,7 @@ const bookData = [
   {
     title: "Here's how to live: Create.",
     url: "https://sive.rs/htl23",
+    author: "Derek Sivers",
     dateAdded: "2025-11-30",
     category: "creativity",
     medium: "essay",
@@ -345,6 +348,7 @@ Some of my favorite quotes from this chapter of a much larger book:
 
   {
     title: "Talk to Strangers: The Yes Theory Story",
+    author: "Matt Dahlia",
     url: "https://www.goodreads.com/book/show/198220896-talk-to-strangers",
     dateAdded: "2025-12-16",
     category: "advice",
@@ -364,6 +368,7 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
 
   {
     title: "Spy The Lie",
+    author: "Philip Houston, Michael Floyd, Susan Carnicero, Don Tennant",
     url: "https://www.goodreads.com/book/show/13167156-spy-the-lie",
     dateAdded: "2025-12-29",
     category: "psychology",
@@ -392,12 +397,12 @@ The oath that is used when a witness is sworn to testify covers all three forms 
 - “… to tell the truth…” covers lies of commission
 - ”… the whole truth…” covers lies of omission
 - ”…and nothing but the truth…” covers lies of influence
-
     `
   },
 
   {
     title: "Who Moved My Cheese?",
+    author: "Spencer Johnson",
     url: "https://www.goodreads.com/book/show/4894.Who_Moved_My_Cheese_",
     dateAdded: "2025-12-20",
     category: "career",
@@ -437,6 +442,7 @@ Basically, change is coming and the quicker we move and iterate, the faster we c
 
   {
     title: "🟡 The Mom Test",
+    author: "Rob Fitzpatrick",
     url: "https://www.goodreads.com/book/show/52283963-the-mom-test",
     dateAdded: "2025-12-22",
     category: "career",
@@ -481,6 +487,7 @@ Prepare a list of the three most important things you want to learn from a given
 
   {
     title: "When Breath Becomes Air",
+    author: "Paul Kalanithi",
     url: "https://www.goodreads.com/book/show/25614898-when-breath-becomes-air",
     dateAdded: "2026-03-11",
     category: "life",

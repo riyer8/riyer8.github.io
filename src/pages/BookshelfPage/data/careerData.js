@@ -37,6 +37,7 @@ As a side note, Scott also writes an extension to this, describing the gender dy
 
    {
     title: "How To Get Real Buy-In For Your Idea",
+    author: "Kristi Hedges",
     url: "https://www.forbes.com/sites/work-in-progress/2015/03/16/how-to-get-real-buy-in-for-your-idea/",
     dateAdded: "2025-11-28",
     category: "career",
@@ -77,6 +78,7 @@ Hedges provides a model to get true buy-in:
 
   {
     title: "Feedback: Staying on your side of the net",
+    author: "Itamar Goldminz",
     url: "https://orghacking.com/feedback-staying-on-your-side-of-the-net-6d14f4b0b170",
     dateAdded: "2025-12-19",
     category: "career",

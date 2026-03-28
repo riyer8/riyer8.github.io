@@ -1,13 +1,14 @@
 const essayData = [
   {
     title: "Principles",
+    author: "Nabeel Qureshi",
     url: "https://nabeelqu.substack.com/p/principles",
     dateAdded: "2025-10-11",
     category: "advice",
     favorite: true,
     medium: "essay",
-    tldr: "🔖 Collection of personal principles from Nabeel Qureshi. Honestly can't write a complete TLDR about this based on its density.",
-    thoughts: "Incredible advice on personal principles, something I've been thinking about ever since I took ENGR 148 @ Stanford.",
+    tldr: "Collection of really thought out principles",
+    thoughts: "He's got such great advice, I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford.",
     tags: ['decision-making', 'principles', 'philosophy'],
     notes:` Some of my favorite principles:
 9. The world is a museum of passion projects.
@@ -24,12 +25,14 @@ const essayData = [
 
   {
     title: "What to do with your life",
+    author: "Julian Shapiro",
     url: "https://www.julian.com/blog/life-planning",
     dateAdded: "2025-10-17",
     category: "advice",
     medium: "essay",
-    tldr: "🧭 Develop a framework to evaluate your values throughout your life.",
-    thoughts: "I've been thinking a lot about what I want out of life and this essay was a quick read into Julian's approach.",
+    archives: true,
+    tldr: "A framework to evaluate the values of your life.",
+    thoughts: "",
     tags: ['advice', 'career', 'purpose', 'life-planning'],
     notes: ` The main values described are:
 
@@ -51,6 +54,7 @@ He also frames the idea of **regret minimization**
 
   {
     title: "tryhard",
+    author: "Jasmine Sun",
     url: "https://jasmi.news/p/tryhard",
     dateAdded: "2025-10-17",
     category: "advice",
@@ -82,6 +86,7 @@ Make effort feel intentional. You get to choose the game you play, but you have 
 
   {
     title: "Don't Read History for Lessons",
+    author: "Cedric Chin",
     url: "https://commoncog.com/dont-read-history-for-lessons/",
     dateAdded: "2025-11-19",
     category: "psychology",
@@ -109,7 +114,8 @@ Make effort feel intentional. You get to choose the game you play, but you have 
   },
 
   {
-    title: "What Goes Wrong by Jessica Livingston",
+    title: "What Goes Wrong",
+    author: "Jessica Livingston",
     url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
     dateAdded: "2025-11-28",
     category: "career",
@@ -142,6 +148,8 @@ Livingston describes the various ways that people will quit on their ideas after
 
   {
     title: "Experts and Elites Play Fundamentally Different Games",
+    author: "Rob Henderson",
+    archives: true,
     url: "https://www.robkhenderson.com/p/experts-and-elites-play-fundamentally",
     dateAdded: "2025-11-30",
     category: "psychology",
@@ -169,6 +177,7 @@ Both of these archetypes serve different functions. Henderson actually sums this
 
   {
     title: "How To Be Successful",
+    author: "Sam Altman",
     url: "https://blog.samaltman.com/how-to-be-successful",
     dateAdded: "2025-12-07",
     favorite: true,
@@ -256,6 +265,7 @@ Nothing in standard day-to-day life prepares you for this.
   
   {
     title: "Cultivating a state of mind where new ideas are born",
+    author: "Henrik & Johanna Karlsson",
     url: "https://www.henrikkarlsson.xyz/p/good-ideas",
     dateAdded: "2025-12-16",
     category: "advice",
@@ -271,11 +281,11 @@ As Sam Altman is quoted in the essay, the idea of "coworking" locations for star
     
 Being alone with the idea can allow you to deeply think and comb through the idea without external factors.
 
+As a mathlete, I really love this quote. I think about the privilege of learning math in the unique way of competitions. Maybe that makes it easier to think deeply about problems when neuroplasticity was on my mind.
+
 > Mathematics has been *flattened*: people only learn how to do the mechanical work of hammering out proofs, they do not know how to enter the dreamlike states where truly original mathematics arises.
 
-*I just really like that quote*
-
-> being exceptionally talented and trained was, in the long run, not enough to do groundbreaking work because *they lacked the capacity to go beyond the context they had been raised in.*
+> Being exceptionally talented and trained was, in the long run, not enough to do groundbreaking work because *they lacked the capacity to go beyond the context they had been raised in.*
 
 The anecdote of Grothendieck shows that while he was behind his peers in math during his formative years, he spent time alone wiring his brain to think deeper, often discovering proofs and theorems that were already known to the world. While many would have seen this to be a waste of time, this later helped him develop ideas of his own.
 
@@ -287,6 +297,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
 
   {
     title: "home for the holidays",
+    author: "Rayne Fisher-Quann",
     url: "https://internetprincess.substack.com/p/home-for-the-holidays",
     dateAdded: "2025-12-21",
     category: "life",
@@ -311,6 +322,7 @@ On grief and depression:
 
   {
     title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
+    author: "Amber Atherton",
     url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
     dateAdded: "2025-12-22",
     category: "science",
@@ -346,6 +358,7 @@ This may also include understanding how **your friends** taste fingerprint is ev
 
   {
     title: "How To Do Great Work",
+    author: "Paul Graham",
     url: "https://paulgraham.com/greatwork.html",
     dateAdded: "2025-12-26",
     category: "advice",
@@ -399,6 +412,7 @@ It's not a defect in your character that it may be hard to get started. People h
 
   {
     title: "Staring into the abyss as a core life skill",
+    author: "Ben Kuhn",
     url: "https://www.benkuhn.net/abyss/",
     dateAdded: "2025-12-28",
     category: "advice",
@@ -413,6 +427,7 @@ It's not a defect in your character that it may be hard to get started. People h
 
   {
     title: "LLM Daydreaming",
+    author: "Gwern",
     url: "https://gwern.net/ai-daydreaming",
     dateAdded: "2026-01-09",
     category: "science",
@@ -443,6 +458,7 @@ It's obvious (and he notes) that it isn't difficult to implement this. Just toss
 
   {
     title: "The Most Valuable Commodity in the World is Friction",
+    author: "Kyla Scanlon",
     url: "https://kyla.substack.com/p/the-most-valuable-commodity-in-the",
     dateAdded: "2026-01-09",
     category: "science",
@@ -465,29 +481,8 @@ Kyla draws a distinction between three types of friction:
   },
 
   {
-    title: "How Much Energy Does It Take To Think?",
-    url: "https://www.quantamagazine.org/how-much-energy-does-it-take-to-think-20250604/",
-    dateAdded: "2026-01-14",
-    category: "science",
-    medium: "essay",
-    tldr: "",
-    thoughts: "",
-    tags: ['energy', 'brain', 'psychology'],
-    notes: `
-This article is about analyzing how our brain's energy process for various goals.
-
-> Effortful, goal-directed tasks use only 5% more energy than restful brain activity. In other words, we use our brain just a small fraction more when engaging in focused cognition than when the engine is idling.
-
-Majority of the brain function goes to maintenance, and allocates resources for conscious and subconscious demands.
-
-**At roughly 2% of body weight, the organ gorges on 20% of our body’s energetic resources.**
-
-This is quite different to many other animals whose brain doesn't take up as much energy, setting humans distinctively apart.
-    `
-  },
-
-  {
     title: "On Taste",
+    author: "Thomas Kaminski",
     url: "https://claremontreviewofbooks.com/on-taste/",
     dateAdded: "2026-01-20",
     category: "psychology",
@@ -519,6 +514,7 @@ Impressionists had two qualities working in their favor: the paintings themselve
   {
     title: "On the importance of staring directly into the sun",
     url: "https://www.experimental-history.com/p/on-the-importance-of-staring-directly",
+    author: "Adam Mastroianni",
     dateAdded: "2026-02-24",
     category: "advice",
     archives: true,
@@ -544,6 +540,7 @@ One of the quotes that I really liked, as a mathlete, was "But math, perhaps mor
 
   {
     title: "Nostalgia as a Trap: Why We Romanticize the Past",
+    author: "Mindful Growth",
     url: "https://mindfulgrowth100.substack.com/p/nostalgia-as-a-trap-why-we-romanticize",
     dateAdded: "2026-02-17",
     category: "science",
@@ -566,7 +563,8 @@ I've been looking for essays and opinions about rosy retrospection and how our b
 
   {
     title: "Watch This When I Die",
-    url: "https://www.youtube.com/watch?v=iRB-C5TgGec&list=RDiRB-C5TgGec",
+    author: "Nathaniel Drew",
+    url: "https://www.youtube.com/watch?v=iRB-C5TgGec",
     dateAdded: "2026-02-24",
     category: "life",
     favorite: true,
@@ -613,6 +611,7 @@ The heart doesn’t think, it isn’t strategic. It just experiences. All that c
 
   {
     title: "How Long Have I Got Left?",
+    author: "Paul Kalanithi",
     url: "https://www.nytimes.com/2014/01/25/opinion/sunday/how-long-have-i-got-left.html",
     dateAdded: "2026-03-03",
     category: "life",
@@ -631,6 +630,7 @@ A rather sad but beautiful essay of his reflection.
 
   {
     title: "This is Water",
+    author: "David Foster Wallace",
     url: "https://fs.blog/david-foster-wallace-this-is-water/",
     dateAdded: "2026-03-13",
     category: "life",
@@ -653,6 +653,7 @@ A rather sad but beautiful essay of his reflection.
 
   {
     title: "How to engineer luck",
+    author: "George Mack",
     url: "https://essays.highagency.com/p/how-could-you-double-your-luck-in",
     dateAdded: "2026-03-23",
     category: "career",
@@ -684,6 +685,7 @@ I find it useful to distinguish between luck-luck and skill-luck. Luck-luck is p
 
   {
     title: "why some conversations rearrange your brain",
+    author: "Maja",
     url: "https://velvetnoise.substack.com/p/why-some-conversations-rearrange",
     dateAdded: "2026-03-23",
     category: "life",
@@ -710,6 +712,7 @@ Strangely, it’s often those closest to us that we stop being curious about. We
 
   {
     title: "who are you when nobody’s watching?",
+    author: "Letters from Rosie",
     url: "https://medium.com/@lynwrites_/who-are-you-when-nobodys-watching-cfddcd4a48f4",
     dateAdded: "2026-03-23",
     category: "life",
@@ -726,6 +729,84 @@ Strangely, it’s often those closest to us that we stop being curious about. We
     `
   },
 
+  {
+    title: "Everyone Can Tell if You're a Serious Person",
+    author: "Connor Jennings",
+    url: "https://mindmeandering.substack.com/p/everyone-can-tell-if-youre-a-serious",
+    dateAdded: "2026-03-23",
+    category: "life",
+    medium: "essay",
+    tldr: "",
+    favorite: true,
+    thoughts: "",
+    tags: ['life', 'start-now', 'seriousness'],
+    notes: `
+In a weird way, this was exactly the essay I needed at this time. It might be a little bit later to start taking my life seriously, but late is better than never.
+
+---
+
+Every day I grow older, I feel like the gap becomes more and more apparent. It's lines like these that remind me that I still have time and only if I truly want it:
+> At 22, the discrepancy between the people that consistently work hard, and those that don’t is pretty small. Not enough time has passed for the rewards of good decision making to pay off. Now at 29, the returns are compounding, and you can see that some are changing gears, and leaving the rest of the pack behind. These people, are serious people.
+
+> If we started from essentially the same place, why has he squeezed so much more success in the same amount of time? Easy. He was always a serious person, and I only became one when I was like 25. He’s always done the small things that add up. He shows up on time. He fulfills his commitments even if he doesn’t feel like it. He doesn’t waste his time getting involved in petty squabbles. He says what he means, and solves his problems instead of wallowing in them. He’s dependable, and knows that if he wants something, he has to go out and get it instead of waiting for the world to give it to him. He keeps a cool head in times of stress and makes prudent decisions. He’s not humourless (far from it), but he takes his life seriously - and you can tell that he does by just being around him for 5 minutes.
+
+> I regret not taking my life seriously sooner.
+    `
+  },
+  {
+    title: "There's a place for everyone",
+    author: "Adam Mastroianni",
+    url: "https://www.experimental-history.com/p/theres-a-place-for-everyone",
+    dateAdded: "2026-03-26",
+    category: "life",
+    medium: "essay",
+    tldr: "Everyone belongs in some niche - no one is redundant in this world.",
+    thoughts: "An essay that reminded me of 'lift others while you climb'. Everyone has a niche. We fail society if we don't help ourselves, and others, find our niche.",
+    tags: ['life', 'growth', 'friends'],
+    notes: `
+Some of my favorite quotes.
+:::quote
+Someone once asked me, “What’s something you believe in, despite not having any evidence for it?”
+
+Without thinking, I said **“There’s a place for everyone.”** As in: every person has a purpose, *nobody* is superfluous or redundant.
+:::
+
+> When people fail to find their niche, and when we fail to help them find it, we don’t just suffer from their absence. **We also suffer from their presence in the wrong place.** People often end up doing awful things because they never figured out what else to do.
+
+:::quote
+That’s why “where do I fit in?” is not a private question, like the password to your bank account or the color of your underwear. We all have a stake in you finding your place, because we’re all better off when you like your life. Well-slotted people make good neighbors, bosses, partners, and parents. 
+:::
+    `
+  },
+  {
+    title: "everything is a win when the goal is to experience",
+    url: "https://yearlyblues.substack.com/p/everything-is-a-win-when-the-goal",
+    dateAdded: "2026-03-28",
+    category: "life",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "took a deeper breathe after reading this one.",
+    tags: ['life', 'growth'],
+    notes: `
+> i kept thinking about that line: *everything is a win when the goal is to experience* and how for the first time it didn’t feel like something pretty or philosophical, it felt practical. like instructions. like a way to survive being human without constantly grading yourself.
+
+>  **consciousness itself might be the rarest thing in the universe.** that out of all the silent rocks and distant stars and cold, empty space, **the fact that we get to feel anything at all is statistically ridiculous.** and i keep thinking about that. how absurdly lucky it is that i get to taste oranges and miss people and cry over songs and fall asleep on buses and feel my throat tighten when someone says my name softly. how insane that i get to experience longing, which hurts so much but also proves there’s something in me capable of reaching. and instead of treating that like a miracle, i’ve been treating it like homework. everything is a win when the goal is to experience.
+
+<3
+> if the goal is to experience, then heartbreak isn’t humiliation, it’s proof that i loved with my whole chest. then confusion isn’t weakness, it’s curiosity refusing to die. then even boredom has a texture, a temperature, a shape. nothing is meaningless because everything passes through me and leaves some tiny residue behind. like dust. like pollen. like memory. and i think that’s enough. maybe a life doesn’t have to be impressive to be complete. maybe it just has to be felt. deeply. honestly. without constantly turning away.
+
+:::quote
+if i really think about it, the days that “failed” me, the awkward ones, the lonely ones, the ones where nothing went according to plan. yeah. those are the days that made me softer. more porous. more capable of understanding other people’s pain. the nights i cried over someone who didn’t choose me taught me how deep my capacity to love actually goes. the afternoons i spent doing absolutely nothing taught me how to sit with myself without panicking. even boredom has shaped me. even confusion has shaped me. it’s all been material. clay. something the universe pressed its thumbs into to make the exact shape of me.
+
+so what would it mean to stop fighting that. to stop trying to turn my life into something neat and impressive and instead let it be textured and human and slightly messy.
+:::
+
+> if the goal is to experience, then there is no such thing as a wasted day.
+
+
+    `
+  }
 ];
 
 export default essayData;

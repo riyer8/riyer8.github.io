@@ -36,7 +36,7 @@ const BookshelfSection = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setMounted(true), 50); // slight delay to trigger transition
+    const timeout = setTimeout(() => setMounted(true), 50);
     return () => clearTimeout(timeout);
   }, []);
 
@@ -105,7 +105,6 @@ const BookshelfSection = () => {
           <thead>
             <tr>
               <th style={thStyle}>Title</th>
-              <th style={thStyle}>Category</th>
               <th style={thStyle}>Tags</th>
             </tr>
           </thead>
@@ -123,12 +122,36 @@ const BookshelfSection = () => {
                     <span style={{ fontWeight: 600, color: theme.colors.accent }}>{row.title}</span>
                   </div>
                 </td>
+
                 <td style={tdStyle}>
-                  <Pill theme={theme}>{row.category}</Pill>
+                  {(() => {
+                    const sortedTags = (row.tags || [])
+                      .slice()
+                      .sort((a, b) => a.localeCompare(b));
+
+                    const displayTags = sortedTags.slice(0, 2);
+                    const remainingCount = sortedTags.length - 2;
+
+                    return (
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
+                        {displayTags.map((t, idx) => (
+                          <Pill key={idx} theme={theme}>{t}</Pill>
+                        ))}
+
+                        {remainingCount > 0 && (
+                          <span style={{
+                            fontSize: '0.8rem',
+                            color: theme.colors.textSecondary,
+                            fontWeight: 500
+                          }}>
+                            +{remainingCount}
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })()}
                 </td>
-                <td style={tdStyle}>
-                  {(row.tags || []).map((t, idx) => <Pill key={idx} theme={theme}>{t}</Pill>)}
-                </td>
+
               </tr>
             ))}
           </tbody>

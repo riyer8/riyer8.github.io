@@ -121,6 +121,33 @@ const AboutPage = () => {
               <h1 style={headingStyle}>Hi, I'm Ramya.</h1>
               <p>I've always found it unrealistic to try to define who I am in a few sentences. It'd probably anyways be updated every other day. So if you want to know me, let's chat! Email me at ramya1@stanford.edu (I pride myself on replying to <i>exciting</i> emails) rather quickly. </p>
               <p><i>Even this will probably be updated soon ✨</i> </p>
+              <p style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+                {[
+                  { label: 'GitHub', href: 'https://github.com/riyer8' },
+                  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ramya-i/' },
+                  { label: 'Twitter', href: 'https://x.com/ramya_iyer1' },
+                  { label: 'Email', href: 'mailto:ramya1@stanford.edu' },
+                  { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en'}
+                ].map(function(item) {
+                  return (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: theme.colors.accent,
+                        textDecoration: 'none',
+                        fontWeight: 500,
+                        borderBottom: '1px solid ' + theme.colors.accent,
+                        paddingBottom: '1px',
+                      }}
+                    >
+                      {item.label}
+                    </a>
+                  );
+                })}
+              </p>
             </div>
 
             <NotesSection />
