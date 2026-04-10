@@ -125,7 +125,7 @@ const AboutPage = () => {
                 {[
                   { label: 'GitHub', href: 'https://github.com/riyer8' },
                   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ramya-i/' },
-                  { label: 'Twitter', href: 'https://x.com/ramya_iyer1' },
+                  { label: 'X', href: 'https://x.com/ramya_iyer1' },
                   { label: 'Email', href: 'mailto:ramya1@stanford.edu' },
                   { label: 'Google Scholar', href: 'https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en'}
                 ].map(function(item) {

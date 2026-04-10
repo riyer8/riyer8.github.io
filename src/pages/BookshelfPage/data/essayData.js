@@ -645,7 +645,7 @@ A rather sad but beautiful essay of his reflection.
 
 > This is not a matter of virtue. It’s a matter of my choosing to do the work of somehow altering or getting free of my natural, hard-wired default setting which is to be deeply and literally self-centered and to see and interpret everything through this lens of self. 
 
-> **learning how to think really means learning how to exercise some control over how and what you think.**  It means being conscious and aware enough to choose what you pay attention to and to choose how you construct meaning from experience.
+> **Learning how to think really means learning how to exercise some control over how and what you think.**  It means being conscious and aware enough to choose what you pay attention to and to choose how you construct meaning from experience.
 
 > **It will actually be within your power to experience a crowded, hot, slow, consumer-hell type situation as not only meaningful, but sacred, on fire with the same force that made the stars: love, fellowship, the mystical oneness of all things deep down.**
     `
@@ -753,6 +753,7 @@ Every day I grow older, I feel like the gap becomes more and more apparent. It's
 > I regret not taking my life seriously sooner.
     `
   },
+
   {
     title: "There's a place for everyone",
     author: "Adam Mastroianni",
@@ -778,9 +779,11 @@ That’s why “where do I fit in?” is not a private question, like the passwo
 :::
     `
   },
+
   {
     title: "everything is a win when the goal is to experience",
     url: "https://yearlyblues.substack.com/p/everything-is-a-win-when-the-goal",
+    author: "Sentimental Being",
     dateAdded: "2026-03-28",
     category: "life",
     medium: "essay",
@@ -803,10 +806,207 @@ so what would it mean to stop fighting that. to stop trying to turn my life into
 :::
 
 > if the goal is to experience, then there is no such thing as a wasted day.
+    `
+  },
 
+  {
+    title: "If you have multiple interests, do not waste the next 2-3 years",
+    url: "https://letters.thedankoe.com/p/if-you-have-multiple-interests-do",
+    author: "Dan Koe",
+    dateAdded: "2026-04-01",
+    category: "career",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['interest', 'growth', 'career'],
+    notes: `
 
+:::quote
+We don’t live in the Industrial Age anymore. Specializing in one skill is almost certain death.
+:::
+
+:::quote
+If pure specialization makes people stupid and dependent, what makes an individual smart and sovereign?
+
+Three ingredients: **Self-education, self-interest, self-sufficiency.**
+- Self-interest motivates self-education.
+- Self-education enables self-sufficiency.
+- Self-sufficiency clarifies self-interest.
+:::
+    
+:::quote
+The ultimate moat, or the final competitive edge worth paying for, in my opinion, is an opinion.
+
+A perspective that only you can see, because the uniqueness of your life experience created it. That may just be the last thing anyone else can replicate.
+:::
+
+:::figure
+![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/dan_koe_business.png)
+How to convert your own interests into a business. Image found in the original article.
+::: 
+    `
+  },
+
+  {
+    title: "I make good money. Why do I still feel like this?",
+    url: "https://yourbrainonmoney.substack.com/p/i-make-good-money-why-do-i-still",
+    author: "Hanna Horvath",
+    dateAdded: "2026-04-06",
+    category: "career",
+    medium: "essay",
+    tldr: "",
+    thoughts: "Very well-articulated and data-backed opinion.",
+    tags: ['money', 'economy', 'capitalism', 'psychology'],
+    notes: `
+A really fascinating article about understanding the structural changes of capitalism and the economy - and how that affects our personal responsibility when it comes to money.
+
+K-shaped economy: divergent recovery where different parts of the economy grow or decline at separate rates, creating a widening divide between wealthy (upper arm) and lower-income individuals (lower arm).
+:::quote
+The top of the K (asset owners, high earners, people who bought homes before 2020) mostly recovered and then some. The bottom of the K (wage workers, renters, people without generational wealth) fell further behind.
+:::
+
+This, in turn, also affects the type of audience that capitalism caters towards.
+:::quote
+Under a capitalistic model, companies tend to innovate where the money is — more sales at higher margins means more value for shareholders. So when wealth concentrates at the top, that’s where the products and services follow.
+:::
+
+Connecting the point-of-view of consumers to the economy, companies are now designing for two types of individuals: premium and budget.
+
+Horvath argues that this results in the "missing middle". In this way, economies aren't catering to this "missing middle", resulting in those going out of their comfort zone to purchase luxuries that they may not be able to neatly afford.
+
+:::quote
+Some people are experiencing real, material deprivation — the basics are genuinely slipping away. But a lot of people — and I think this includes much of this newsletter’s audience — have money. They just aren’t affording the life they thought they would have by now.
+
+And the distance between those two experiences — and the way both groups misdirect their frustration — reshapes how we think and behave with money. 
+:::
+
+:::quote
+And because we have a culture built on individualism and meritocracy, when we can’t afford the stuff, or we miss the milestone, we’re more likely to blame ourselves than to critique the system. The ethos of personal responsibility runs so deep that structural failure gets internalized as personal failure.
+:::
+
+The association of the middle class with personal responsibility and individualism provides an even deeper understanding of economies and how they cater.
+
+:::quote
+“Middle class” has become a psychological container that absorbs all of this anxiety — the gap between self-concept and lived experience. The feeling is dissonance
+:::
+
+:::quote
+That extraction language matters. This group isn’t just dealing with “prices going up.” They’re dealing with an entire consumer economy that’s been redesigned around making the base tier uncomfortable enough to push you toward a premium tier you can’t afford.
+:::
+
+This results in an **elite overproduction**: societies produce more people who expect elite positions than positions exist. This discrepancy between elite status association and increased concentration of upper class ICPs *further* emphasizes the increasing issue of resistance.
+
+:::quote
+The credentials of elite status — the graduate degree, the knowledge-work title, the coastal zip code — have proliferated, while the economic substance has concentrated into a smaller and smaller group at the very top.
+:::
+
+I'm sure this can be related to a **near-miss effect**, creating a sense of "almost winning" but never quite there. The idea that you may be so close to actually getting a big break into the upper *upper* class.
+
+:::quote
+The top 20% accounts for 59% of all consumer spending. But within that top 20%, the real divide is between people who earn and people who own.
+:::
+
+Further, wealth is concentrated at the top 1%, specifically those who own a majority of the assets that drive the world's economy.
+
+**disillusionomics**: Gen Z's approach to an economy where traditional paths to stability (homeownership, affordable education, and career longevity) are largely unattainable.
+
+---
+
+Understanding the **precarity** that is yours:
+- material precarity: state of existence lacking economic stability, secure employment, and consistent access to necessary resources.
+- positional precarity: insecurity, anxiety, vulnerability individuals experience due to unstable employment - a more psychological approach.
+    `
+  },
+
+  {
+    title: "learn to belong to yourself without feeling the need to be with others",
+    url: "https://goranshbharal.substack.com/p/learn-to-belong-to-yourself-without",
+    author: "Gor",
+    dateAdded: "2026-04-10",
+    category: "life",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "Thought about archiving this because its different than most of the other essays I have here - but I think I loved it too much.",
+    tags: ['life', 'self-love', 'friends', 'growth'],
+    notes: `
+Some of my favorite quotes, but the entire essay is a gem.
+:::quote
+when someone leaves, what hurts is rarely just their absence. what hurts is what their absence exposes. the empty space inside you that had been filled by their presence.
+:::
+
+:::quote
+that is why learning how to belong to yourself matters more than we admit.
+
+you should love people fully...
+
+but love cannot be the only structure holding your life together.
+:::
+
+:::quote
+there is a dangerous idea that wanting people deeply means needing them desperately. that is not true. desperation comes from emptiness, not depth.
+:::
+
+:::quote
+people will come. people will go. some will stay longer than you expect. some will leave sooner than you’re ready for. none of this needs to destroy you. build a life that can hold change. build a life that welcomes love without depending on it for survival. learn how to belong to yourself. everything else becomes lighter when you do.
+:::
+
+As a sidenote, I think this article could be a sequel to [this essay](https://medium.com/@lynwrites_/who-are-you-when-nobodys-watching-cfddcd4a48f4). 
+    `
+  },
+
+  {
+    title: "There is so much love in trying",
+    url: "https://carinas.substack.com/p/there-is-so-much-love-in-trying",
+    author: "Carina",
+    dateAdded: "2026-04-10",
+    category: "life",
+    favorite: true,
+    medium: "essay",
+    tldr: "Trying is the greatest form of love.",
+    thoughts: "",
+    tags: ['love', 'trying'],
+    notes: `
+As a sidenote, one of my favorite quotes I used to always tell my roommate was "who would I be if I didn't try?". Who would I be if I didn't try for the many, *many* programs + jobs + clubs + everything else in the world that I applied to? Even with a subpar application, who would I be if I didn't try? This essay provides a similar thought, much more eloquently than I could have ever imagined.
+
+I'm afraid I may have copied majority of the first part of the essay onto these notes.
+
+:::quote
+The same goes for getting to know someone. Not only are you learning the facts of their life, but also how to best treat them: What do they need when they’re sad? What should you absolutely not mention when they’re angry? Do they want a hug or space? A cup of tea or chocolate milk?
+
+So you try.
+
+And perhaps you get it right the first time around, but chances are the colours end up a bit muddier than you wanted, and that thing you said sounded better in your head. Wanting to get it right, and continuously working to get it right, is an act of devotion. But the essence of care isn’t found in the right answer.
+
+...
+
+It’s found in the willingness to put ego aside and accept the fact that you come up short sometimes. To look bad or awkward because you care.
+:::
+
+:::quote
+Not picking up the paint brush, not making a fool of yourself, not ruining the friendship, not walking out the door would be the easy options, meaning trying is very much on purpose. It’s an active decision, over and over again: What are you willing to do for this person/passion? How much effort will you put in? What inconvenience do you choose to take on?
+
+You always have a choice; you can always give up. But you can also always gather the information you got and try something else next time. Because you want there to be a next time.
+:::
+
+:::quote
+There is much to be said about why it needs fixing in the first place, but at the end of the day, every piece of effort, every good intention, every science paper, every desire to right a wrong is a love letter.
+:::
     `
   }
+
+  /*{
+    title: "",
+    url: "",
+    author: "",
+    dateAdded: "",
+    category: "",
+    medium: "",
+    tldr: "",
+    thoughts: "",
+    tags: [''],
+    notes: ``
+  },*/
 ];
 
 export default essayData;

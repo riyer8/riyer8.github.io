@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import './QuoteWidget.css';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import bookshelfData from '../../BookshelfPage/data/bookshelfData';
+import { titleToSlug } from '../../BookshelfPage/BookshelfPage.jsx';
 
 function extractQuotesWithMetadata() {
     const quoteRegex = /^>\s*(.+)$/gm;
@@ -135,7 +136,7 @@ const QuoteWidget = () => {
             }}
         >
             <div className="quote-title" style={{ color: theme.colors.text }}>
-                Selected Piece of Writing (from my Recent Reads)
+                Quote from my Bookshelf
             </div>
 
             {quoteOfTheDay && (
@@ -151,13 +152,11 @@ const QuoteWidget = () => {
 
                         {quoteOfTheDay.url && (
                             <a
-                                href={quoteOfTheDay.url}
-                                target="_blank"
-                                rel="noreferrer"
+                                href={`/recent-reads/${titleToSlug(quoteOfTheDay.title)}`}
                                 className="quote-link"
                                 style={{ color: theme.colors.accent }}
                             >
-                                Visit Source →
+                                Visit Bookshelf →
                             </a>
                         )}
                     </div>

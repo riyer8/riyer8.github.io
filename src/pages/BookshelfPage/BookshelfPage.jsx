@@ -7,7 +7,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import bookshelfData from './data/bookshelfData.js';
 import Badge from './Badge';
 
-const titleToSlug = (title) => 
+export const titleToSlug = (title) => 
   encodeURIComponent(
     title
       .toLowerCase()
