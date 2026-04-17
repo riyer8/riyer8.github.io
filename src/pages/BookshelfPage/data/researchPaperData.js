@@ -120,7 +120,6 @@ This paper showed that
 - Hard vs. Easy Knowledge: BERT is great at common knowledge but not specialized knowledge.
 
 *Note that because this paper was in 2019, some information may have been improved upon in more recent research.*
-
     `
   },
 

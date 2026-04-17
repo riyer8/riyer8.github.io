@@ -77,9 +77,28 @@ const preprocessCustomQuoteBlocks = (text) => {
   return text.replace(
     /:::quote\s+([\s\S]*?)\s+:::/g,
     (_, content) => {
+      let inner = content.trim();
+
+      // 🔥 Prevent ordered list parsing
+      inner = inner.replace(/^(\d+)\.\s+/gm, '$1\\. ');
+
+      // Then parse markdown
+      inner = window.marked.parse(inner);
+
+      // Parse markdown inside the quote block
+      if (typeof window !== 'undefined' && window.marked) {
+        try {
+          inner = window.marked.parse(inner);
+        } catch (e) {
+          inner = inner.replace(/\n/g, '<br/>');
+        }
+      } else {
+        inner = inner.replace(/\n/g, '<br/>');
+      }
+
       return `
 <blockquote class="custom-quote">
-  ${content.trim()}
+  ${inner}
 </blockquote>
 `;
     }

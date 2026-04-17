@@ -2,24 +2,64 @@ const essayData = [
   {
     title: "Principles",
     author: "Nabeel Qureshi",
-    url: "https://nabeelqu.substack.com/p/principles",
-    dateAdded: "2025-10-11",
+    url: "https://nabeelqu.co/principles",
+    dateAdded: "2026-04-11",
     category: "advice",
     favorite: true,
     medium: "essay",
-    tldr: "Collection of really thought out principles",
-    thoughts: "He's got such great advice, I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford.",
-    tags: ['decision-making', 'principles', 'philosophy'],
-    notes:` Some of my favorite principles:
+    thoughts: "A piece I continue to come back to - but also one that encourages me to think about my own principles. I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford but in a more informal way.",
+    tags: ['principles', 'life', 'advice'],
+    notes:`
+Originally read in 10/11/2025, but each reread provides a new state of principles to focus on at this moment. Here are some of the new ones six months later :)
+
+:::quote
+4. Environment matters a lot; move to where you flourish maximally. Put yourself in environments where you have to perform to your utmost; if you can get by being average, you probably will.
+:::
+This is probably one that I've thought heavily about over the past year as I go into post-grad life. What environment do I want to be in? How can I maximize my growth - this being through jobs and also other life activities? Maybe this also relates to a much broader extensial crisis of who do I want to be? Maybe that in and of itself is not the right question to ask just yet.
+
+:::quote
 9. The world is a museum of passion projects.
-21. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
-23. Doing things is energizing, wasting time is depressing. You don’t need that much ‘rest’.
-31. Figure out what creates enduring value.
-34. “Aim for Chartres” (Christopher Alexander) - when doing something, aim to be the best there ever was at it. This compensates for your natural bias, which is to do something mediocre. You have to really aim to be as good as the greats.
-35. Send more cold emails. People respond! Assume everyone’s your friend.
-51. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful.
-53. Think in writing. Write Google Docs, scrawl in notebooks. This extends working memory arbitrarily and allows your thoughts to compound on each other.
+:::
+Still one of my favorite principles. Originally from [here](https://x.com/collision/status/1529452415346302976). The idea that humans have made, and continue to make, so many things of our world means that any one of us can too.
+
+:::quote
+13. Pay attention to your production/consumption balance. If you’re only consuming and not producing, fix that.
+:::
+:::quote
+14. You don’t do anyone any favors by lurking, put yourself out there!
+:::
+:::quote
+51. Be honest about whether something is learning or entertainment. Real learning is extremely hard and effortful. (Podcasts, Atlantic articles, pop science books, anything that’s a bit too digestible is more “entertainment” than real learning).
+:::
+:::quote
 57. Scrolling and reading too much drowns out your inner voice.
+:::
+All of these revolving around the same theme. And yet probably the hardest ones for me to conquer. I've never been good at [having original thoughts](https://feifeiwrites.substack.com/p/you-share-other-peoples-thoughts) so consuming and lurking seem to be a safeguard.
+
+:::quote
+21. You are probably too risk-averse. Write out the worst things that can happen, realize they’re not that bad, then take the leap.
+:::
+I probably am. This also relates to 13 and 14.
+
+:::quote
+25. Form opinions on things and then find the strongest critique of those opinions. Repeat.
+:::
+Similar to having original thoughts. Learning to think critically of the things that people say is a skill that can be learned. One that I've been trying to practice too.
+
+:::quote
+35. Send more cold emails. People respond! Assume everyone’s your friend.
+:::
+I really love this one, but it seems naturally hard. Especially when surrounded by great privelege of being around some of the smartest people every day, it feels like you need to have a value to give back. But maybe this principle contradicts that and tells you that you really don't need to have something in return but just insight and thoughtfulness.
+
+:::quote
+49. Figure out what gives you new ideas, and make sure you incorporate that into your routine. For me this is talking to people, tweeting, writing in my notebook, long conversations with friends (especially late night or while walking). For other people this is showering, baths, long walks, runs, etc. Make sure you “harvest” these ideas too, i.e. write them down somewhere so they don’t get lost.
+:::
+I remember I saw a rather similar idea when watching a podcast with Sara Blakely where she said that she gets her best ideas when driving around aimlessly. For me, finding more ways to have empty time to "think" has been a recent privelege - yet making that productive is another type of challenge.
+
+:::quote
+61. Luck isn’t a constant, it increases with surface area: be in the right places, have lots of conversations, put yourself out there, ask for what you want and be optimistic and positive. 
+:::
+Instead your surface area and luck follows. Similar to a ton of his other principles where writing more, emailing more, avoiding lurking, all of these lead to getting your thoughts out there.
     `
   },
 
@@ -27,28 +67,33 @@ const essayData = [
     title: "What to do with your life",
     author: "Julian Shapiro",
     url: "https://www.julian.com/blog/life-planning",
-    dateAdded: "2025-10-17",
+    dateAdded: "2026-04-11",
     category: "advice",
     medium: "essay",
-    archives: true,
     tldr: "A framework to evaluate the values of your life.",
     thoughts: "",
     tags: ['advice', 'career', 'purpose', 'life-planning'],
-    notes: ` The main values described are:
+    notes: `
+Originally read on 10/17/2025. Revising to add more thoughts and notes.
 
-- Knowledge - Do you become more knowledgeable and skilled from it?
-- Adventure - Do you accrue novel, memorable experiences?
-- Fame - Do you build an audience you can later leverage?
-- Power - Do you acquire resources and connections?
-- Money - Do you increase your financial wealth?
-- Exercising Talent - Do you leverage your skill and creativity?
-- Human Connection - Do you bond with others?
+> Without self-reflection, we ride the momentum of whatever we're already doing and whatever we stumble across. That's dangerous, because it stops us from self-reflecting on how we've changed and whether we should be doing something new.
+Familiarity is a crisis. This is one that I theorize has come from a hyperload of dopamine levels that crave short-term gratification.
 
-Shapiro frames these seven values as a lens for evaluating whether your decisions align with the kind of life that you want to build.
+These are the main values in Shapiro's essay that he evaluates to determine if he should pursue a new project or not:
 
-He also frames the idea of **regret minimization**
+:::quote
+- **Knowledge**: Do you become more knowledgeable and skilled from it?
+- **Adventure**: Do you accrue novel, memorable experiences?
+- **Fame**: Do you build an audience you can later leverage?
+- **Power**: Do you acquire resources and connections?
+- **Money**: Do you increase your financial wealth?
+- **Exercising Talent**: Do you leverage your skill and creativity?
+- **Human Connection**: Do you bond with others?
+:::
 
-> What choices can you make today that minimize the regret you'll feel as an 80-year-old looking back on your life? When you minimize future regret, you sleep well knowing you're maximizing fulfillment.
+The idea of **regret minimization**:
+
+> *What choices can you make today that minimize the regret you'll feel as an 80-year-old looking back on your life? When you minimize future regret, you sleep well knowing you're maximizing fulfillment.*
 `
   },
 
@@ -820,7 +865,6 @@ so what would it mean to stop fighting that. to stop trying to turn my life into
     thoughts: "",
     tags: ['interest', 'growth', 'career'],
     notes: `
-
 :::quote
 We don’t live in the Industrial Age anymore. Specializing in one skill is almost certain death.
 :::
@@ -992,9 +1036,37 @@ You always have a choice; you can always give up. But you can also always gather
 :::quote
 There is much to be said about why it needs fixing in the first place, but at the end of the day, every piece of effort, every good intention, every science paper, every desire to right a wrong is a love letter.
 :::
-    `
-  }
 
+In fashion, maybe a precursor to this article can be [this one](https://the25reset.substack.com/p/ive-protected-my-peace-so-much-ive). Where protecting your peace has dulled your sparkle, trying can bring it back to life.
+    `
+  },
+
+  {
+    title: "how can you be behind in life when your life is only yours",
+    url: "https://goranshbharal.substack.com/p/how-can-you-be-behind-in-life-when",
+    author: "Gor",
+    dateAdded: "2026-04-12",
+    category: "life",
+    medium: "essay",
+    favorite: true,
+    tldr: "",
+    thoughts: "",
+    tags: ['life', 'comparison', 'career'],
+    notes: `
+:::quote
+but how can you be behind in life when your life is only yours. there is no shared clock, no single sequence you were meant to follow.
+
+what you are comparing yourself to is a collection of lives shaped by different circumstances, different choices, different timing.
+:::
+
+Everything that I need to hear (internalizing is seemingly harder).
+
+:::quote
+come back to yourself. ask what you want, what you need, what actually feels true to you. you will never be behind in your own life when you stop measuring it against people who were never meant to define it. the moment you let go of that comparison, your life stops feeling like something you are chasing and starts feeling like something you are living.
+:::
+    `
+  },
+  
   /*{
     title: "",
     url: "",
