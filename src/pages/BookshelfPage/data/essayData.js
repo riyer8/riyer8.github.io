@@ -1066,7 +1066,35 @@ come back to yourself. ask what you want, what you need, what actually feels tru
 :::
     `
   },
-  
+
+  {
+    title: "Sometimes the reason you can’t find people you resonate with is because you misread the ones you meet",
+    url: "https://www.henrikkarlsson.xyz/p/friends-missed",
+    author: "Henrik Karlsson",
+    dateAdded: "2026-04-17",
+    category: "life",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['friends', 'life', 'psychology'],
+    notes: `
+The three categories of friendships:
+1. **Pleasure** (personal, self-centered). Someone who makes you laugh, or makes you feel desirable.
+2. **Utility** (tradeoff). You're friends because it is useful.
+3. **Virtue** (character-driven). Enjoy each others company even if they are / aren't fun or useful.
+
+:::quote
+That is a friendship of virtue.
+
+And in a long enough perspective, it is the only thing that matters in a relationship. Pleasure will come and go, as will utility.
+:::
+
+:::quote
+If someone seems boring to you, or a bad fit, it might be that you don’t know how to prompt them, that you haven’t seen them react to the context that brings out their full being. You probably don’t know how much beauty lies hidden in the people around you.
+:::
+    `
+  },
+
   /*{
     title: "",
     url: "",

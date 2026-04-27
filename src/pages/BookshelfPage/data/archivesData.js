@@ -25,7 +25,7 @@ const archiveData = [
     author: "Uma Chalik",
     url: "https://miscellaneousgood.substack.com/p/in-the-age-of-ai-all-we-have-left",
     dateAdded: "2025-11-16",
-    category: "AI",
+    category: "science",
     medium: "essay",
     archives: true,
     tldr: "✨ AI taking over taste won't result in personal, intimate connections with other people's personal taste.",
