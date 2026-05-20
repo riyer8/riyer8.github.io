@@ -1,0 +1,124 @@
+.about-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-page__content {
+  flex: 1;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: clamp(1rem, 4vw, 2.5rem) clamp(1rem, 5vw, 3rem) 0;
+  box-sizing: border-box;
+}
+
+.about-page__principles {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(1rem, 3vw, 2rem) clamp(2rem, 5vw, 3rem);
+  box-sizing: border-box;
+}
+
+.about-page__home-link {
+  display: inline-flex;
+  margin-bottom: 1.5rem;
+}
+
+.about-page__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.about-page__intro {
+  text-align: left;
+  min-width: 0;
+}
+
+.about-page__title {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.about-page__lead {
+  margin: 0 0 1rem;
+  font-size: clamp(1rem, 2.2vw, 1.08rem);
+  line-height: 1.65;
+  color: var(--about-text);
+}
+
+.about-page__lead em {
+  font-style: italic;
+  color: var(--about-accent);
+}
+
+.about-page__note {
+  margin: 0 0 1.5rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--about-muted);
+  font-style: italic;
+}
+
+.about-page__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.about-page__link {
+  display: inline-block;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--about-accent);
+  border: 1px solid color-mix(in srgb, var(--about-accent) 35%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--about-accent) 8%, transparent);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.about-page__link:hover {
+  background: color-mix(in srgb, var(--about-accent) 16%, transparent);
+  border-color: var(--about-accent);
+}
+
+.about-page__email {
+  color: var(--about-accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.about-page__email:hover {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 720px) {
+  .about-page__hero {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .about-page__intro {
+    text-align: center;
+  }
+
+  .about-page__links {
+    justify-content: center;
+  }
+}
