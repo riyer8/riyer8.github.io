@@ -695,8 +695,6 @@ const BookshelfPage = () => {
 
         {selectedItem ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <QuoteWidget variant="compact" contextTitle={selectedItem.title} />
-
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
               <div style={{ flex: 1 }}>
@@ -716,6 +714,8 @@ const BookshelfPage = () => {
               </div>
               <div style={{ fontSize: '0.9rem' }}>{selectedItem.dateAdded}</div>
             </div>
+
+            <QuoteWidget variant="compact" contextTitle={selectedItem.title} />
 
             {selectedItem.tldr && (
               <div>

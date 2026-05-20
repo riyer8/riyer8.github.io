@@ -7,10 +7,53 @@ import { titleToSlug } from "../bookshelfUtils";
 
 const LOCAL_STORAGE_KEY = "dailyQuote";
 
+function cleanQuote(quote) {
+  return quote
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/\*(.*?)\*/g, "$1")
+    .replace(/_(.*?)_/g, "$1")
+    .replace(/^[“”"''`]+/, "")
+    .replace(/[“”"''`]+$/, "")
+    .trim();
+}
+
+function normalizeQuoteKey(quote) {
+  return cleanQuote(quote)
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .replace(/[“”]/g, '"')
+    .replace(/['']/g, "'");
+}
+
+/** One canonical quote per unique text; drop shorter lines nested inside longer ones. */
+function dedupeQuotes(quotes) {
+  const byKey = new Map();
+
+  for (const item of quotes) {
+    const key = normalizeQuoteKey(item.quote);
+    if (!key) continue;
+    if (!byKey.has(key)) {
+      byKey.set(key, item);
+    }
+  }
+
+  const unique = [...byKey.values()];
+
+  return unique.filter((item, index, list) => {
+    const key = normalizeQuoteKey(item.quote);
+    return !list.some((other, otherIndex) => {
+      if (index === otherIndex) return false;
+      const otherKey = normalizeQuoteKey(other.quote);
+      if (key === otherKey) return false;
+      return otherKey.includes(key) && otherKey.length > key.length;
+    });
+  });
+}
+
 function extractQuotesWithMetadata() {
   const quoteRegex = /^>\s*(.+)$/gm;
 
-  return bookshelfData.flatMap((entry) => {
+  const raw = bookshelfData.flatMap((entry) => {
     if (entry.archives === true) return [];
     if (!entry.notes) return [];
 
@@ -21,13 +64,8 @@ function extractQuotesWithMetadata() {
       title: entry.title,
     }));
   });
-}
 
-function cleanQuote(quote) {
-  return quote
-    .replace(/\*\*(.*?)\*\*/g, "$1")
-    .replace(/\*(.*?)\*/g, "$1")
-    .replace(/_(.*?)_/g, "$1");
+  return dedupeQuotes(raw);
 }
 
 function pickRandom(items) {
@@ -45,7 +83,9 @@ function loadDailyQuote(quotes) {
   }
 
   if (stored?.date === todayStr && stored.quote) {
-    return stored.quote;
+    const key = normalizeQuoteKey(stored.quote.quote);
+    const stillValid = quotes.some((q) => normalizeQuoteKey(q.quote) === key);
+    if (stillValid) return stored.quote;
   }
 
   const todayQuote = pickRandom(quotes);
@@ -64,7 +104,7 @@ function loadDailyQuote(quotes) {
 
 /**
  * @param {'default' | 'compact'} variant
- * @param {string | null} contextTitle — when set (e.g. notes panel open), prefer a quote from that entry
+ * @param {string | null} contextTitle — when set (notes panel), show a quote from that entry only; hidden if none
  */
 const QuoteWidget = ({ variant = "default", contextTitle = null }) => {
   const { theme } = useTheme();
@@ -88,8 +128,11 @@ const QuoteWidget = ({ variant = "default", contextTitle = null }) => {
       if (entryQuotes.length) {
         setDisplayQuote(pickRandom(entryQuotes));
         setIsFromContext(true);
-        return;
+      } else {
+        setDisplayQuote(null);
+        setIsFromContext(false);
       }
+      return;
     }
 
     setDisplayQuote(loadDailyQuote(quotes));
@@ -101,23 +144,20 @@ const QuoteWidget = ({ variant = "default", contextTitle = null }) => {
   }
 
   const slug = titleToSlug(displayQuote.title);
-  const isCompact = variant === "compact";
-  const label = isFromContext
-    ? "from this entry"
-    : "from my notes · today";
+  const label = isFromContext ? "from this entry" : "from my notes · today";
 
   return (
     <aside
       className={`bookshelf-quote bookshelf-quote--${variant}${
         isFromContext ? " bookshelf-quote--context" : ""
-      }`}
+      }${theme.isDarkMode ? " bookshelf-quote--dark" : ""}`}
       style={{
         "--quote-accent": theme.colors.accent,
         "--quote-text": theme.colors.text,
         "--quote-muted": theme.colors.textSecondary,
         "--quote-surface": theme.isDarkMode
-          ? "rgba(255, 255, 255, 0.03)"
-          : "rgba(0, 0, 0, 0.02)",
+          ? "rgba(255, 255, 255, 0.025)"
+          : "rgba(255, 255, 255, 0.45)",
         "--quote-border": theme.colors.border,
       }}
       aria-label="Quote from reading notes"
