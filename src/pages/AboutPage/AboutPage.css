@@ -4,6 +4,8 @@
   min-height: 100vh;
   width: 100%;
   box-sizing: border-box;
+  /* Shrinks continuously as the viewport narrows (vw-heavy), caps on large screens */
+  --about-carousel-max: clamp(8rem, 28vw + 3rem, 18.75rem);
 }
 
 .about-page__content {
@@ -11,15 +13,17 @@
   width: 100%;
   max-width: 960px;
   margin: 0 auto;
-  padding: clamp(1rem, 4vw, 2.5rem) clamp(1rem, 5vw, 3rem) 0;
+  padding: clamp(1rem, 4vw, 2.5rem) clamp(1rem, 5vw, 3rem)
+    clamp(1.25rem, 3.5vw, 2.25rem);
   box-sizing: border-box;
 }
 
 .about-page__principles {
   width: 100%;
-  max-width: 1200px;
+  max-width: 960px;
   margin: 0 auto;
-  padding: 0 clamp(1rem, 3vw, 2rem) clamp(2rem, 5vw, 3rem);
+  padding: clamp(0.5rem, 2vw, 1.25rem) clamp(1rem, 5vw, 3rem)
+    clamp(2rem, 5vw, 3rem);
   box-sizing: border-box;
 }
 
@@ -30,9 +34,10 @@
 
 .about-page__hero {
   display: grid;
-  grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, var(--about-carousel-max)) minmax(0, 1fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  align-items: center;
+  /* Start alignment keeps the text column from jumping when caption line-wrapping changes */
+  align-items: start;
   margin-bottom: clamp(2rem, 5vw, 3.5rem);
 }
 

@@ -1,17 +1,29 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
+import carouselPhotos from "../../assets/aboutCarouselPhotos.json";
 import photo1 from "../../assets/photo1.png";
 import photo2 from "../../assets/photo2.png";
 import photo3 from "../../assets/photo3.png";
 import photo4 from "../../assets/photo4.jpeg";
+import photo5 from "../../assets/photo5.jpeg";
 import "./AboutCarousel.css";
 
-const PHOTOS = [
-  { src: photo1, alt: "Ramya Iyer" },
-  { src: photo2, alt: "Ramya Iyer" },
-  { src: photo3, alt: "Ramya Iyer" },
-  { src: photo4, alt: "Ramya Iyer" },
-];
+/** Must match filenames in src/assets/. Edit captions in aboutCarouselPhotos.json. */
+const SRC_BY_FILENAME = {
+  "photo1.png": photo1,
+  "photo2.png": photo2,
+  "photo3.png": photo3,
+  "photo4.jpeg": photo4,
+  "photo5.jpeg": photo5,
+};
+
+const PHOTOS = carouselPhotos.photos
+  .map((entry) => ({
+    src: SRC_BY_FILENAME[entry.file],
+    alt: typeof entry.alt === "string" && entry.alt.trim() ? entry.alt : "Ramya Iyer",
+    caption: typeof entry.caption === "string" ? entry.caption : "",
+  }))
+  .filter((p) => p.src != null);
 
 const AUTO_ADVANCE_MS = 5500;
 
@@ -78,6 +90,8 @@ const AboutCarousel = () => {
             key={photo.src}
             src={photo.src}
             alt={photo.alt}
+            width={800}
+            height={1000}
             className={`about-carousel__slide${
               i === index ? " about-carousel__slide--active" : ""
             }${isFading && i === index ? " about-carousel__slide--fading" : ""}`}
@@ -103,18 +117,32 @@ const AboutCarousel = () => {
         </button>
       </div>
 
-      <div className="about-carousel__dots" role="tablist" aria-label="Choose photo">
-        {PHOTOS.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            role="tab"
-            aria-selected={i === index}
-            aria-label={`Photo ${i + 1} of ${PHOTOS.length}`}
-            className={`about-carousel__dot${i === index ? " about-carousel__dot--active" : ""}`}
-            onClick={() => goTo(i)}
-          />
-        ))}
+      <div className="about-carousel__meta">
+        <div
+          className="about-carousel__caption-wrap"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {PHOTOS[index].caption ? (
+            <p key={index} className="about-carousel__caption">
+              {PHOTOS[index].caption}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="about-carousel__dots" role="tablist" aria-label="Choose photo">
+          {PHOTOS.map((_, i) => (
+            <button
+              key={i}
+              type="button"
+              role="tab"
+              aria-selected={i === index}
+              aria-label={`Photo ${i + 1} of ${PHOTOS.length}`}
+              className={`about-carousel__dot${i === index ? " about-carousel__dot--active" : ""}`}
+              onClick={() => goTo(i)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

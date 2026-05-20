@@ -63,8 +63,8 @@ const AboutPage = () => {
 
               <p className="about-page__lead">
                 I&apos;ve always found it unrealistic to try to define who I am in a few
-                sentences—it&apos;d probably be updated every other day anyway. If you want
-                to know me, let&apos;s chat! Email me at{" "}
+                sentences. It would probably be updated every other day anyway. If you want
+                to know me, let's chat! Email me at{" "}
                 <a href="mailto:ramya1@stanford.edu" className="about-page__email">
                   ramya1@stanford.edu
                 </a>
