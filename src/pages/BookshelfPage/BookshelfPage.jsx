@@ -6,17 +6,10 @@ import { FaStar } from 'react-icons/fa';
 import { useParams, useNavigate } from 'react-router-dom';
 import bookshelfData from './data/bookshelfData.js';
 import Badge from './Badge';
+import QuoteWidget from './QuoteWidget/QuoteWidget';
+import { titleToSlug } from './bookshelfUtils';
 
-export const titleToSlug = (title) => 
-  encodeURIComponent(
-    title
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9\s-]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-  );
+export { titleToSlug };
 
 const BookshelfPage = () => {
   const { theme } = useTheme();
@@ -238,6 +231,8 @@ const BookshelfPage = () => {
           <div style={{ display: 'flex', gap: '0.5rem' }}>
           </div>
         </div>
+
+        <QuoteWidget />
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
           
@@ -700,6 +695,8 @@ const BookshelfPage = () => {
 
         {selectedItem ? (
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <QuoteWidget variant="compact" contextTitle={selectedItem.title} />
+
             {/* Header */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
               <div style={{ flex: 1 }}>

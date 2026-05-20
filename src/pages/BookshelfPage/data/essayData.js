@@ -9,7 +9,7 @@ const essayData = [
     medium: "essay",
     thoughts: "A piece I continue to come back to - but also one that encourages me to think about my own principles. I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford but in a more informal way.",
     tags: ['principles', 'life', 'advice'],
-    notes:`
+    notes: `
 Originally read in 10/11/2025, but each reread provides a new state of principles to focus on at this moment. Here are some of the new ones six months later :)
 
 :::quote
@@ -307,7 +307,7 @@ Nothing in standard day-to-day life prepares you for this.
 > This is why the question of a person’s motivation is so important. It’s the first thing I try to understand about someone. The right motivations are hard to define a set of rules for, but you know it when you see it.
     `
   },
-  
+
   {
     title: "Cultivating a state of mind where new ideas are born",
     author: "Henrik & Johanna Karlsson",

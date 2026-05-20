@@ -1,0 +1,157 @@
+.home-landing {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity var(--landing-fade-ms) ease;
+}
+
+.home-landing--fading {
+  opacity: 0;
+}
+
+.home-landing__title {
+  font-size: clamp(2.2rem, 6vw, 4.6rem);
+  font-family: "Nunito Sans", "Avenir Next", "Inter", -apple-system, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.015em;
+  color: var(--landing-accent);
+  text-shadow: 0 8px 30px color-mix(in srgb, var(--landing-accent) 21%, transparent);
+  margin: 0;
+  padding: 0 1rem;
+  text-align: center;
+  animation: landing-name-float 2.4s ease-in-out infinite;
+  position: relative;
+  display: inline-block;
+  min-width: 4ch;
+}
+
+.home-landing__full {
+  display: inline-block;
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0);
+  letter-spacing: 0.015em;
+  min-width: 11.5ch;
+  transition: all var(--landing-condense-ms) cubic-bezier(0.2, 0.75, 0.2, 1);
+}
+
+.home-landing__full--condensing {
+  opacity: 0;
+  transform: scale(0.9) translateY(-1px);
+  filter: blur(0.5px);
+  letter-spacing: 0.06em;
+}
+
+.home-landing__condensed {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.8) translateY(2px);
+  letter-spacing: 0.04em;
+  transition: all calc(var(--landing-condense-ms) * 0.85) cubic-bezier(0.18, 0.9, 0.22, 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.home-landing__condensed--visible {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+}
+
+.home-landing__part {
+  display: inline-block;
+  transition: transform var(--landing-condense-ms) cubic-bezier(0.18, 0.9, 0.22, 1);
+}
+
+.home-landing__part--left {
+  transform: translateX(9px);
+}
+
+.home-landing__part--left.home-landing__part--visible {
+  transform: translateX(0);
+  animation: landing-smash-left 520ms cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.home-landing__part--slash {
+  margin: 0 -0.02em;
+  transform: scale(0.7);
+  transition: transform calc(var(--landing-condense-ms) * 0.9) ease;
+}
+
+.home-landing__part--slash.home-landing__part--visible {
+  transform: scale(1);
+  animation:
+    landing-slash-blink 0.95s steps(1) infinite,
+    landing-smash-pop 520ms cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+.home-landing__part--right {
+  transform: translateX(-9px);
+}
+
+.home-landing__part--right.home-landing__part--visible {
+  transform: translateX(0);
+  animation: landing-smash-right 520ms cubic-bezier(0.2, 1, 0.2, 1);
+}
+
+@keyframes landing-smash-left {
+  0% {
+    transform: translateX(12px) scaleX(0.96);
+  }
+  60% {
+    transform: translateX(-2px) scaleX(1.03);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes landing-smash-right {
+  0% {
+    transform: translateX(-12px) scaleX(0.96);
+  }
+  60% {
+    transform: translateX(2px) scaleX(1.03);
+  }
+  100% {
+    transform: translateX(0) scaleX(1);
+  }
+}
+
+@keyframes landing-smash-pop {
+  0% {
+    transform: scale(0.82);
+  }
+  55% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes landing-slash-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes landing-name-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}

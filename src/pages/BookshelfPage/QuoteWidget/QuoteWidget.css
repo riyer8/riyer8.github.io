@@ -1,0 +1,107 @@
+.bookshelf-quote {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 1.25rem;
+  padding: clamp(0.7rem, 2vw, 0.95rem) clamp(0.85rem, 2.5vw, 1.15rem);
+  border-radius: 10px;
+  border: 1px solid var(--quote-border);
+  border-left: 3px solid color-mix(in srgb, var(--quote-accent) 55%, transparent);
+  background: var(--quote-surface);
+}
+
+.bookshelf-quote--compact {
+  margin: 0;
+  padding: 0.65rem 0.75rem 0.7rem 0.85rem;
+  border-radius: 8px;
+}
+
+.bookshelf-quote__label {
+  margin: 0 0 0.4rem;
+  font-size: clamp(0.62rem, 1.8vw, 0.68rem);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--quote-muted);
+  opacity: 0.85;
+}
+
+.bookshelf-quote--compact .bookshelf-quote__label {
+  margin-bottom: 0.3rem;
+  letter-spacing: 0.08em;
+}
+
+.bookshelf-quote__text {
+  margin: 0;
+  padding: 0;
+  border: none;
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  font-size: clamp(0.88rem, 2.2vw, 1rem);
+  line-height: 1.5;
+  font-style: italic;
+  color: var(--quote-text);
+  opacity: 0.92;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.bookshelf-quote--compact .bookshelf-quote__text {
+  font-size: clamp(0.82rem, 2vw, 0.9rem);
+  line-height: 1.45;
+}
+
+.bookshelf-quote__text::before {
+  content: "\201C";
+  margin-right: 0.08em;
+  opacity: 0.5;
+}
+
+.bookshelf-quote__text::after {
+  content: "\201D";
+  margin-left: 0.04em;
+  opacity: 0.5;
+}
+
+.bookshelf-quote__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.3rem 0.65rem;
+  margin-top: 0.5rem;
+}
+
+.bookshelf-quote--compact .bookshelf-quote__footer {
+  margin-top: 0.35rem;
+}
+
+.bookshelf-quote--context .bookshelf-quote__footer {
+  display: none;
+}
+
+.bookshelf-quote__cite {
+  font-size: clamp(0.76rem, 1.8vw, 0.82rem);
+  font-style: normal;
+  color: var(--quote-muted);
+  overflow-wrap: anywhere;
+}
+
+.bookshelf-quote__cite::before {
+  content: "— ";
+  opacity: 0.7;
+}
+
+.bookshelf-quote__link {
+  font-size: clamp(0.72rem, 1.6vw, 0.78rem);
+  font-weight: 500;
+  color: var(--quote-accent);
+  text-decoration: none;
+  opacity: 0.9;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.bookshelf-quote__link:hover {
+  opacity: 1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

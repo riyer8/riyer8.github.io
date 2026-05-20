@@ -4,21 +4,47 @@ import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
 import { Sidebar, MainContent } from "./pages/HomePage";
 import HomeLandingScreen from "./pages/HomePage/HomeLandingScreen";
+import { HOME_INTRO } from "./pages/HomePage/homeIntroTiming";
 import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
-import Year2026Page from "./pages/2026Page/Year2026Page"
+import Year2026Page from "./pages/2026Page/Year2026Page";
 // import WritingsPage from "./pages/WritingPage/WritingsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import SeasonalToggleManager from "./randomfeatures/page-toggles/Toggles/ToggleManager";
 
+const HOME_INTRO_STORAGE_KEY = "homeIntroSeen";
+
 const App = () => {
   const shouldShowLandingOnLoad = React.useMemo(() => {
     if (typeof window === "undefined") return false;
-    const hasSeenIntro = window.sessionStorage.getItem("homeIntroSeen") === "true";
+    const hasSeenIntro =
+      window.sessionStorage.getItem(HOME_INTRO_STORAGE_KEY) === "true";
     return window.location.pathname === "/" && !hasSeenIntro;
   }, []);
 
-  const [showLandingScreen, setShowLandingScreen] = React.useState(shouldShowLandingOnLoad);
-  const [showHomeContent, setShowHomeContent] = React.useState(!shouldShowLandingOnLoad);
+  const [showLandingScreen, setShowLandingScreen] = React.useState(
+    shouldShowLandingOnLoad
+  );
+  const [showHomeContent, setShowHomeContent] = React.useState(
+    !shouldShowLandingOnLoad
+  );
+  const [landingBlocksInteraction, setLandingBlocksInteraction] =
+    React.useState(shouldShowLandingOnLoad);
+
+  React.useEffect(() => {
+    document.body.style.margin = "0";
+    document.body.style.padding = "0";
+    document.body.style.overflowX = "hidden";
+  }, []);
+
+  const handleLandingFadeStart = React.useCallback(() => {
+    setShowHomeContent(true);
+    setLandingBlocksInteraction(false);
+  }, []);
+
+  const handleLandingComplete = React.useCallback(() => {
+    window.sessionStorage.setItem(HOME_INTRO_STORAGE_KEY, "true");
+    setShowLandingScreen(false);
+  }, []);
 
   const containerStyle = {
     position: "relative",
@@ -32,7 +58,7 @@ const App = () => {
 
   const homeFadeInStyle = {
     opacity: showHomeContent ? 1 : 0,
-    transition: "opacity 1000ms ease",
+    transition: `opacity ${HOME_INTRO.contentRevealMs}ms ease`,
   };
 
   const homeRouteWrapperStyle = {
@@ -45,18 +71,8 @@ const App = () => {
     position: "absolute",
     inset: 0,
     zIndex: 2,
+    pointerEvents: landingBlocksInteraction ? "auto" : "none",
   };
-
-  React.useEffect(() => {
-    document.body.style.margin = "0";
-    document.body.style.padding = "0";
-    document.body.style.overflowX = "hidden";
-  }, []);
-
-  const handleLandingComplete = React.useCallback(() => {
-    window.sessionStorage.setItem("homeIntroSeen", "true");
-    setShowLandingScreen(false);
-  }, []);
 
   return (
     <ThemeProvider>
@@ -78,7 +94,7 @@ const App = () => {
               {showLandingScreen && (
                 <div style={landingOverlayStyle}>
                   <HomeLandingScreen
-                    onFadeStart={() => setShowHomeContent(true)}
+                    onFadeStart={handleLandingFadeStart}
                     onComplete={handleLandingComplete}
                   />
                 </div>
