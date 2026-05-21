@@ -6,6 +6,7 @@
   justify-content: center;
   opacity: 1;
   transition: opacity var(--landing-fade-ms) ease;
+  cursor: pointer;
 }
 
 .home-landing--fading {

@@ -29,6 +29,9 @@ const App = () => {
   );
   const [landingBlocksInteraction, setLandingBlocksInteraction] =
     React.useState(shouldShowLandingOnLoad);
+  const [homeContentRevealMs, setHomeContentRevealMs] = React.useState(
+    HOME_INTRO.contentRevealMs
+  );
 
   React.useEffect(() => {
     document.body.style.margin = "0";
@@ -36,9 +39,12 @@ const App = () => {
     document.body.style.overflowX = "hidden";
   }, []);
 
-  const handleLandingFadeStart = React.useCallback(() => {
+  const handleLandingFadeStart = React.useCallback((opts) => {
     setShowHomeContent(true);
     setLandingBlocksInteraction(false);
+    if (opts?.contentRevealMs != null) {
+      setHomeContentRevealMs(opts.contentRevealMs);
+    }
   }, []);
 
   const handleLandingComplete = React.useCallback(() => {
@@ -58,7 +64,7 @@ const App = () => {
 
   const homeFadeInStyle = {
     opacity: showHomeContent ? 1 : 0,
-    transition: `opacity ${HOME_INTRO.contentRevealMs}ms ease`,
+    transition: `opacity ${homeContentRevealMs}ms ease`,
   };
 
   const homeRouteWrapperStyle = {

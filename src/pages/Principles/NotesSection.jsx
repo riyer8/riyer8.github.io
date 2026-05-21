@@ -4,7 +4,7 @@ import NoteBox from './NoteBox';
 import notesPersonal from './data/personal.txt';
 import notesProduct from './data/products.txt';
 import notesAriana from './data/ariana.txt';
-import notesAdmire from './data/admire.txt';
+import './NotesSection.css';
 
 const NOTES_CONFIG = [
   { file: notesPersonal, title: 'personal principles.', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
@@ -31,20 +31,19 @@ const NotesSection = () => {
   }, []);
 
   return (
-    <div style={{ padding: '4rem 2rem', fontFamily: theme.fonts?.base || 'sans-serif' }}>
-      <h2
-        style={{
-          fontSize: '1.5rem',
-          fontWeight: 600,
-          textAlign: 'center',
-          marginBottom: '2rem',
-          color: theme.colors.text,
-        }}
-      >
+    <div
+      className="notes-section"
+      style={{
+        '--notes-font': theme.fonts?.base || 'sans-serif',
+        color: theme.colors.text,
+        fontFamily: theme.fonts?.base || 'sans-serif',
+      }}
+    >
+      <h2 className="notes-section__title" style={{ color: theme.colors.text }}>
         A Messy Collection of Life Advice
       </h2>
 
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', justifyContent: 'center' }}>
+      <div className="notes-section__grid">
         {allNotes.map((item, idx) => (
           <NoteBox
             key={idx}

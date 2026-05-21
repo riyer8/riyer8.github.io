@@ -1,6 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
-import { HOME_INTRO, getHomeIntroFadeStartMs } from "./homeIntroTiming";
+import {
+  HOME_INTRO,
+  HOME_INTRO_SKIP,
+  getCondensedSwapMs,
+  getHomeIntroFadeStartMs,
+} from "./homeIntroTiming";
 import "./HomeLandingScreen.css";
 
 const FULL_TEXT = "ramya iyer.";
@@ -11,15 +16,45 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
   const [isCondensing, setIsCondensing] = useState(false);
   const [showCondensed, setShowCondensed] = useState(false);
   const [isFading, setIsFading] = useState(false);
+  const [activeTimings, setActiveTimings] = useState(HOME_INTRO);
 
-  useEffect(() => {
+  const skipRequestedRef = useRef(false);
+  const isFadingRef = useRef(false);
+  const timersRef = useRef([]);
+
+  const clearTimers = useCallback(() => {
+    timersRef.current.forEach((clearFn) => clearFn());
+    timersRef.current = [];
+  }, []);
+
+  const scheduleTimeout = useCallback((fn, delayMs) => {
+    const id = window.setTimeout(fn, delayMs);
+    timersRef.current.push(() => window.clearTimeout(id));
+    return id;
+  }, []);
+
+  const beginFade = useCallback(
+    (timings) => {
+      if (isFadingRef.current) return;
+      isFadingRef.current = true;
+      setIsFading(true);
+      onFadeStart?.({
+        contentRevealMs: timings.contentRevealMs ?? HOME_INTRO.contentRevealMs,
+      });
+    },
+    [onFadeStart]
+  );
+
+  const runNormalIntro = useCallback(() => {
+    clearTimers();
+    isFadingRef.current = false;
+    setActiveTimings(HOME_INTRO);
+
     let charIndex = 0;
     const typingMs = FULL_TEXT.length * HOME_INTRO.charTypeIntervalMs;
-    const fadeStartMs = getHomeIntroFadeStartMs();
+    const fadeStartMs = getHomeIntroFadeStartMs(HOME_INTRO);
     const condensedSwapMs =
-      typingMs +
-      HOME_INTRO.holdAfterTypeMs +
-      Math.floor(HOME_INTRO.condenseMs * 0.45);
+      typingMs + HOME_INTRO.holdAfterTypeMs + getCondensedSwapMs(HOME_INTRO);
 
     const typingTimer = window.setInterval(() => {
       charIndex += 1;
@@ -28,37 +63,80 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
         window.clearInterval(typingTimer);
       }
     }, HOME_INTRO.charTypeIntervalMs);
+    timersRef.current.push(() => window.clearInterval(typingTimer));
 
-    const condenseTimer = window.setTimeout(() => {
+    scheduleTimeout(() => setIsCondensing(true), typingMs + HOME_INTRO.holdAfterTypeMs);
+    scheduleTimeout(() => setShowCondensed(true), condensedSwapMs);
+    scheduleTimeout(() => beginFade(HOME_INTRO), fadeStartMs);
+    scheduleTimeout(() => onComplete?.(), fadeStartMs + HOME_INTRO.fadeMs);
+  }, [beginFade, clearTimers, onComplete, scheduleTimeout]);
+
+  const finishFadeQuickly = useCallback(() => {
+    clearTimers();
+    const quickFadeMs = 220;
+    setActiveTimings((prev) => ({ ...prev, fadeMs: quickFadeMs }));
+    if (!isFadingRef.current) {
+      beginFade(HOME_INTRO_SKIP);
+    }
+    scheduleTimeout(() => onComplete?.(), quickFadeMs);
+  }, [beginFade, clearTimers, onComplete, scheduleTimeout]);
+
+  useEffect(() => {
+    runNormalIntro();
+    return clearTimers;
+  }, [clearTimers, runNormalIntro]);
+
+  const handleSkip = useCallback(() => {
+    if (skipRequestedRef.current) {
+      if (isFadingRef.current) finishFadeQuickly();
+      return;
+    }
+
+    skipRequestedRef.current = true;
+
+    if (isFadingRef.current) {
+      finishFadeQuickly();
+      return;
+    }
+
+    clearTimers();
+    setActiveTimings(HOME_INTRO_SKIP);
+    setTypedText(FULL_TEXT);
+
+    const { condenseMs, condenseHoldMs, fadeMs } = HOME_INTRO_SKIP;
+    const condensedSwapMs = getCondensedSwapMs(HOME_INTRO_SKIP);
+
+    if (showCondensed) {
+      scheduleTimeout(() => beginFade(HOME_INTRO_SKIP), condenseHoldMs);
+      scheduleTimeout(() => onComplete?.(), condenseHoldMs + fadeMs);
+      return;
+    }
+
+    if (!isCondensing) {
       setIsCondensing(true);
-    }, typingMs + HOME_INTRO.holdAfterTypeMs);
+      scheduleTimeout(() => setShowCondensed(true), condensedSwapMs);
+      scheduleTimeout(() => beginFade(HOME_INTRO_SKIP), condenseMs + condenseHoldMs);
+      scheduleTimeout(() => onComplete?.(), condenseMs + condenseHoldMs + fadeMs);
+      return;
+    }
 
-    const condensedTextTimer = window.setTimeout(() => {
-      setShowCondensed(true);
-    }, condensedSwapMs);
-
-    const fadeTimer = window.setTimeout(() => {
-      setIsFading(true);
-      onFadeStart?.();
-    }, fadeStartMs);
-
-    const finishTimer = window.setTimeout(() => {
-      onComplete?.();
-    }, fadeStartMs + HOME_INTRO.fadeMs);
-
-    return () => {
-      window.clearInterval(typingTimer);
-      window.clearTimeout(condenseTimer);
-      window.clearTimeout(condensedTextTimer);
-      window.clearTimeout(fadeTimer);
-      window.clearTimeout(finishTimer);
-    };
-  }, [onComplete, onFadeStart]);
+    setShowCondensed(true);
+    scheduleTimeout(() => beginFade(HOME_INTRO_SKIP), condenseHoldMs);
+    scheduleTimeout(() => onComplete?.(), condenseHoldMs + fadeMs);
+  }, [
+    beginFade,
+    clearTimers,
+    finishFadeQuickly,
+    isCondensing,
+    onComplete,
+    scheduleTimeout,
+    showCondensed,
+  ]);
 
   const cssVars = {
     "--landing-accent": theme.colors.accent,
-    "--landing-fade-ms": `${HOME_INTRO.fadeMs}ms`,
-    "--landing-condense-ms": `${HOME_INTRO.condenseMs}ms`,
+    "--landing-fade-ms": `${activeTimings.fadeMs}ms`,
+    "--landing-condense-ms": `${activeTimings.condenseMs}ms`,
   };
 
   return (
@@ -67,6 +145,16 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
       style={cssVars}
       aria-label="Landing intro"
       aria-hidden={isFading ? "true" : undefined}
+      onClick={handleSkip}
+      role="button"
+      tabIndex={0}
+      aria-label="Skip intro"
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          handleSkip();
+        }
+      }}
     >
       <h1 className="home-landing__title">
         <span
