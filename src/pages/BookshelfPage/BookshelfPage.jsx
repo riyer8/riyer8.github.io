@@ -1,5 +1,6 @@
 import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
+import BackHomeLink from '../../components/Navigation/BackHomeLink';
 import profilePhoto from '../../assets/photo1.png';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa'; 
@@ -44,10 +45,6 @@ const BookshelfPage = () => {
     () => bookshelfData.filter(item => item.archives).length,
     []
   );
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -147,7 +144,7 @@ const BookshelfPage = () => {
 
   const closeDetail = () => {
     setSelectedItem(null);
-    window.history.pushState({}, '', '/recent-reads'); // reset URL to root
+    navigate('/recent-reads');
   };
 
 
@@ -198,21 +195,7 @@ const BookshelfPage = () => {
       <div style={headerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           
-          <a href="/" style={{ textDecoration: 'none' }}>
-            <button style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                padding: '0.4rem 0.6rem',
-                borderRadius: 8,
-                background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : theme.colors.accent,
-                color: theme.isDarkMode ? theme.colors.text : '#fff',
-                border: `1px solid ${theme.colors.border}`,
-                cursor: 'pointer'
-              }}>
-              ← Home
-            </button>
-          </a>
+          <BackHomeLink />
         </div>
 
         <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>

@@ -1,42 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { useTheme } from '../../components/ThemeContext/ThemeContext';
-import NoteBox from './NoteBox';
-import notesPersonal from './data/personal.txt';
-import notesProduct from './data/products.txt';
-import notesAriana from './data/ariana.txt';
-import './NotesSection.css';
+import React, { useMemo, useState } from "react";
+import { useTheme } from "../../components/ThemeContext/ThemeContext";
+import NoteBox from "./NoteBox";
+import PrincipleModal from "./PrincipleModal";
+import personal from "./data/personal.json";
+import ariana from "./data/ariana.json";
+import products from "./data/products.json";
+import "./NotesSection.css";
 
-const NOTES_CONFIG = [
-  { file: notesPersonal, title: 'personal principles.', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
-  { file: notesAriana, title: 'ariana grande lyrics.', colorLight: '#f5fff3ff', colorDark: '#3c3e3cff' },
-  { file: notesProduct, title: 'products principles.', colorLight: '#f0f8ff', colorDark: '#2b2f3b' },
-
-];
+/** Add or remove category files here — same pattern as the old .txt setup. */
+const NOTES_CONFIG = [personal, ariana, products];
 
 const NotesSection = () => {
   const { theme } = useTheme();
-  const [allNotes, setAllNotes] = useState([]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
-  useEffect(() => {
-    const loadNotes = async () => {
-      const loaded = [];
-      for (let { file, title, colorLight, colorDark } of NOTES_CONFIG) {
-        const text = await fetch(file).then(res => res.text());
-        const notes = text.split('\n').filter(line => line.trim() !== '');
-        notes.forEach(note => loaded.push({ note, title, colorLight, colorDark }));
-      }
-      setAllNotes(loaded);
-    };
-    loadNotes();
+  const allNotes = useMemo(() => {
+    const loaded = [];
+    for (const { title, colorLight, colorDark, principles } of NOTES_CONFIG) {
+      principles.forEach((entry) => {
+        loaded.push({
+          principle: entry.principle,
+          body: entry.body ?? "",
+          source: entry.source,
+          categoryTitle: title,
+          colorLight,
+          colorDark,
+        });
+      });
+    }
+    return loaded;
   }, []);
+
+  const selected = selectedIndex != null ? allNotes[selectedIndex] : null;
+
+  const openAt = (index) => setSelectedIndex(index);
+  const close = () => setSelectedIndex(null);
+  const goPrevious = () => {
+    if (selectedIndex > 0) setSelectedIndex(selectedIndex - 1);
+  };
+  const goNext = () => {
+    if (selectedIndex < allNotes.length - 1) setSelectedIndex(selectedIndex + 1);
+  };
 
   return (
     <div
       className="notes-section"
       style={{
-        '--notes-font': theme.fonts?.base || 'sans-serif',
+        "--notes-font": theme.fonts?.base || "sans-serif",
         color: theme.colors.text,
-        fontFamily: theme.fonts?.base || 'sans-serif',
+        fontFamily: theme.fonts?.base || "sans-serif",
       }}
     >
       <h2 className="notes-section__title" style={{ color: theme.colors.text }}>
@@ -44,17 +56,31 @@ const NotesSection = () => {
       </h2>
 
       <div className="notes-section__grid">
-        {allNotes.map((item, idx) => (
+        {allNotes.map((item, index) => (
           <NoteBox
-            key={idx}
-            text={item.note}
-            categoryTitle={item.title}
+            key={`${item.categoryTitle}-${item.principle}`}
+            text={item.principle}
+            categoryTitle={item.categoryTitle}
             bgColorLight={item.colorLight}
             bgColorDark={item.colorDark}
             theme={theme}
+            isActive={selectedIndex === index}
+            onOpen={() => openAt(index)}
           />
         ))}
       </div>
+
+      <PrincipleModal
+        principle={selected}
+        categoryTitle={selected?.categoryTitle}
+        animationKey={selectedIndex}
+        onClose={close}
+        onPrevious={goPrevious}
+        onNext={goNext}
+        hasPrevious={selectedIndex > 0}
+        hasNext={selectedIndex != null && selectedIndex < allNotes.length - 1}
+        theme={theme}
+      />
     </div>
   );
 };
