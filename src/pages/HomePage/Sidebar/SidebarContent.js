@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import { RiTwitterXLine } from 'react-icons/ri';
@@ -6,6 +7,7 @@ import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 
 const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
+    const navigate = useNavigate();
     const taglineRef = useRef(null);
     const containerRef = useRef(null);
     const [fontSize, setFontSize] = useState(16); // default 16px
@@ -112,7 +114,7 @@ const SidebarContent = ({ compact = false }) => {
                     style={nameStyle}
                     onMouseEnter={() => setIsHoveringName(true)}
                     onMouseLeave={() => setIsHoveringName(false)}
-                    onClick={() => { window.location.href = '/ramya'; }}
+                    onClick={() => navigate('/ramya')}
                 >
                     Ramya Iyer
                 </h1>

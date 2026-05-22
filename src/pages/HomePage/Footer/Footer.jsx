@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaArrowRight, FaExternalLinkAlt } from 'react-icons/fa';
 
 const Footer = () => {
     const { theme } = useTheme();
+    const navigate = useNavigate();
     const footerRef = useRef(null);
     const [visible, setVisible] = useState(false);
 
@@ -171,9 +173,7 @@ const Footer = () => {
 
                     <button
                         style={baseButtonStyle}
-                        onClick={() => {
-                            window.location.href = '/ramya';
-                        }}
+                        onClick={() => navigate('/ramya')}
                         onMouseEnter={hoverIn}
                         onMouseLeave={hoverOut}
                     >

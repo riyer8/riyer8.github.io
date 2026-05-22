@@ -1,0 +1,35 @@
+{
+  "title": "products principles.",
+  "colorLight": "#f0f8ff",
+  "colorDark": "#2b2f3b",
+  "principles": [
+    {
+      "principle": "reward curiosity.",
+      "body": ""
+    },
+    {
+      "principle": "hard problems are easier than simple ones.",
+      "body": ""
+    },
+    {
+      "principle": "it's okay if you are wrong as long as you move fast. plans are measured by decades.",
+      "body": ""
+    },
+    {
+      "principle": "celebrate openly. criticize privately.",
+      "body": ""
+    },
+    {
+      "principle": "speed comes from people, not process. exceptional people need fewer rules.",
+      "body": ""
+    },
+    {
+      "principle": "hire for slopes, not y-intercepts.",
+      "body": ""
+    },
+    {
+      "principle": "the first 90 days matter the most.",
+      "body": ""
+    }
+  ]
+}

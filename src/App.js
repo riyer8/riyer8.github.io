@@ -2,6 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
+import AnimatedLayout from "./components/PageTransition/AnimatedLayout";
 import { Sidebar, MainContent } from "./pages/HomePage";
 import HomeLandingScreen from "./pages/HomePage/HomeLandingScreen";
 import { HOME_INTRO } from "./pages/HomePage/homeIntroTiming";
@@ -80,38 +81,39 @@ const App = () => {
     pointerEvents: landingBlocksInteraction ? "auto" : "none",
   };
 
+  const homeRoute = (
+    <div style={homeRouteWrapperStyle}>
+      <div style={homeFadeInStyle}>
+        <div style={containerStyle}>
+          <Sidebar />
+          <MainContent />
+        </div>
+      </div>
+
+      {showLandingScreen && (
+        <div style={landingOverlayStyle}>
+          <HomeLandingScreen
+            onFadeStart={handleLandingFadeStart}
+            onComplete={handleLandingComplete}
+          />
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <ThemeProvider>
       <PixelatedBackground />
       <ThemeToggle />
       <SeasonalToggleManager />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <div style={homeRouteWrapperStyle}>
-              <div style={homeFadeInStyle}>
-                <div style={containerStyle}>
-                  <Sidebar />
-                  <MainContent />
-                </div>
-              </div>
-
-              {showLandingScreen && (
-                <div style={landingOverlayStyle}>
-                  <HomeLandingScreen
-                    onFadeStart={handleLandingFadeStart}
-                    onComplete={handleLandingComplete}
-                  />
-                </div>
-              )}
-            </div>
-          }
-        />
-        <Route path="/recent-reads" element={<BookshelfPage />} />
-        <Route path="/recent-reads/:slug" element={<BookshelfPage />} />
-        <Route path="/ramya" element={<AboutPage />} />
-        <Route path="/2026" element={<Year2026Page />} />
+        <Route element={<AnimatedLayout />}>
+          <Route path="/" element={homeRoute} />
+          <Route path="/recent-reads" element={<BookshelfPage />} />
+          <Route path="/recent-reads/:slug" element={<BookshelfPage />} />
+          <Route path="/ramya" element={<AboutPage />} />
+          <Route path="/2026" element={<Year2026Page />} />
+        </Route>
       </Routes>
     </ThemeProvider>
   );

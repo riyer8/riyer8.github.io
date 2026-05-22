@@ -47,10 +47,16 @@
 }
 
 .note-box:hover,
-.note-box:focus-within {
+.note-box:focus-visible,
+.note-box--active {
   z-index: 2;
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.note-box:focus-visible {
+  outline: 2px solid color-mix(in srgb, currentColor 35%, transparent);
+  outline-offset: 2px;
 }
 
 @keyframes rainbow-pastel {

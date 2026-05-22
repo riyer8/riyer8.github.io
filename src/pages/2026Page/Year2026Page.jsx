@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
-import PixelatedBackground from '../../components/Background/PixelatedBackground';
+import BackHomeLink from '../../components/Navigation/BackHomeLink';
 
 const Year2026Page = () => {
   const { theme } = useTheme();
@@ -100,6 +100,8 @@ const Year2026Page = () => {
 
   /* -------------------- Styles -------------------- */
   const containerStyle = {
+    position: 'relative',
+    zIndex: 1,
     minHeight: '100vh',
     width: '100%',
     color: theme.colors.text,
@@ -164,15 +166,13 @@ const Year2026Page = () => {
 
   /* -------------------- Render -------------------- */
   return (
-    <>
-      <PixelatedBackground />
-
-      <div style={containerStyle}>
-        <div style={contentStyle}>
-          <div style={sectionStyle}>
-            <h1 style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
-              Year in Review: 2026
-            </h1>
+    <div style={containerStyle}>
+      <div style={contentStyle}>
+        <BackHomeLink style={{ marginBottom: '1.25rem' }} />
+        <div style={sectionStyle}>
+          <h1 style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
+            Year in Review: 2026
+          </h1>
 
             {/* ---------- Top row (expandable cards) ---------- */}
             <div
@@ -313,7 +313,6 @@ const Year2026Page = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 
