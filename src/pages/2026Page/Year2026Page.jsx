@@ -59,13 +59,6 @@ const Year2026Page = () => {
 
   const sortedBooks = [...books].reverse();
 
-  const [places] = useState([
-    // Future place entries can go here
-  ]);
-
-
-
-
   /* -------------------- Calendar logic (2026) -------------------- */
   const today = new Date();
   const currentYear = 2026;

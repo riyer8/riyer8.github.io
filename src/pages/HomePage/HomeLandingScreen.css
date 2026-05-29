@@ -1,6 +1,8 @@
 .home-landing {
+  position: relative;
   width: 100%;
   min-height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,6 +27,7 @@
   text-align: center;
   animation: landing-name-float 2.4s ease-in-out infinite;
   position: relative;
+  z-index: 1;
   display: inline-block;
   min-width: 4ch;
 }

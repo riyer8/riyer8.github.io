@@ -6,6 +6,7 @@ import {
   getCondensedSwapMs,
   getHomeIntroFadeStartMs,
 } from "./homeIntroTiming";
+import LoadingPolaroids from "./LoadingPolaroids";
 import "./HomeLandingScreen.css";
 
 const FULL_TEXT = "ramya iyer.";
@@ -143,7 +144,6 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
     <div
       className={`home-landing${isFading ? " home-landing--fading" : ""}`}
       style={cssVars}
-      aria-label="Landing intro"
       aria-hidden={isFading ? "true" : undefined}
       onClick={handleSkip}
       role="button"
@@ -156,6 +156,7 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
         }
       }}
     >
+      <LoadingPolaroids />
       <h1 className="home-landing__title">
         <span
           className={`home-landing__full${

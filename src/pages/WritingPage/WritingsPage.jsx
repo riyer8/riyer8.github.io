@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import writings from './data/writingsData';
 import profilePhoto from '../../assets/photo3.JPG';
@@ -20,8 +20,6 @@ const WritingTile = ({ item, theme }) => (
 
 const WritingsPage = () => {
   const { theme } = useTheme();
-  const [email, setEmail] = useState('');
-  const [saved, setSaved] = useState(false);
 
   const pageContainer = {
     maxWidth: '1200px',
