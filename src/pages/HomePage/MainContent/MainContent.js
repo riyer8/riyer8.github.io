@@ -101,14 +101,6 @@ const MainContent = () => {
         textAlign: 'center',
     };
 
-    const headingStyle = {
-        fontSize: shouldCollapseSidebar ? '1.9rem' : '2.5rem',
-        fontWeight: 600,
-        color: theme.colors.text,
-        marginBottom: '1.6rem',
-        lineHeight: 1.2,
-    };
-
     /* Center text inside buttons for BookshelfSection */
     const bookshelfButtonWrapperStyle = {
         display: 'flex',

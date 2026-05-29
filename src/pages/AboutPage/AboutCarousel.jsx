@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
 import carouselPhotos from "../../assets/aboutCarouselPhotos.json";
 import photo1 from "../../assets/photo1.png";
@@ -26,19 +27,24 @@ const PHOTOS = carouselPhotos.photos
   .filter((p) => p.src != null);
 
 const AUTO_ADVANCE_MS = 5500;
+const CROSSFADE_EASE = [0.4, 0, 0.2, 1];
 
 const AboutCarousel = () => {
   const { theme } = useTheme();
+  const prefersReducedMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
-  const [isFading, setIsFading] = useState(false);
   const [paused, setPaused] = useState(false);
 
+  const slideTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.55, ease: CROSSFADE_EASE };
+
+  const captionTransition = prefersReducedMotion
+    ? { duration: 0 }
+    : { duration: 0.4, ease: CROSSFADE_EASE };
+
   const goTo = useCallback((nextIndex) => {
-    setIsFading(true);
-    window.setTimeout(() => {
-      setIndex((nextIndex + PHOTOS.length) % PHOTOS.length);
-      setIsFading(false);
-    }, 280);
+    setIndex((nextIndex + PHOTOS.length) % PHOTOS.length);
   }, []);
 
   const goNext = useCallback(() => {
@@ -50,15 +56,11 @@ const AboutCarousel = () => {
   }, [goTo, index]);
 
   useEffect(() => {
-    if (paused) return undefined;
-
-    const prefersReduced =
-      window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches ?? false;
-    if (prefersReduced) return undefined;
+    if (paused || prefersReducedMotion) return undefined;
 
     const timer = window.setInterval(goNext, AUTO_ADVANCE_MS);
     return () => window.clearInterval(timer);
-  }, [goNext, paused]);
+  }, [goNext, paused, prefersReducedMotion]);
 
   useEffect(() => {
     const onKeyDown = (e) => {
@@ -68,6 +70,8 @@ const AboutCarousel = () => {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [goNext, goPrev]);
+
+  const active = PHOTOS[index];
 
   return (
     <div
@@ -85,19 +89,21 @@ const AboutCarousel = () => {
         aria-roledescription="carousel"
         aria-label="Photo gallery"
       >
-        {PHOTOS.map((photo, i) => (
-          <img
-            key={photo.src}
-            src={photo.src}
-            alt={photo.alt}
+        <AnimatePresence mode="sync" initial={false}>
+          <motion.img
+            key={active.src}
+            src={active.src}
+            alt={active.alt}
             width={800}
             height={1000}
-            className={`about-carousel__slide${
-              i === index ? " about-carousel__slide--active" : ""
-            }${isFading && i === index ? " about-carousel__slide--fading" : ""}`}
+            className="about-carousel__slide"
             draggable={false}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={slideTransition}
           />
-        ))}
+        </AnimatePresence>
 
         <button
           type="button"
@@ -123,11 +129,20 @@ const AboutCarousel = () => {
           aria-live="polite"
           aria-atomic="true"
         >
-          {PHOTOS[index].caption ? (
-            <p key={index} className="about-carousel__caption">
-              {PHOTOS[index].caption}
-            </p>
-          ) : null}
+          <AnimatePresence mode="wait">
+            {active.caption ? (
+              <motion.p
+                key={`caption-${index}`}
+                className="about-carousel__caption"
+                initial={{ opacity: 0, y: 6 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -4 }}
+                transition={captionTransition}
+              >
+                {active.caption}
+              </motion.p>
+            ) : null}
+          </AnimatePresence>
         </div>
 
         <div className="about-carousel__dots" role="tablist" aria-label="Choose photo">

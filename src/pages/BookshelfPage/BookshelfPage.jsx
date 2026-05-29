@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import BackHomeLink from '../../components/Navigation/BackHomeLink';
 import profilePhoto from '../../assets/photo1.png';
@@ -137,9 +138,7 @@ const BookshelfPage = () => {
   };
 
   const [selectedItem, setSelectedItem] = useState(null);
-  const [notesOpen, setNotesOpen] = useState(true);
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [sortOpen, setSortOpen] = useState(false);
+  const [, setNotesOpen] = useState(true);
   const [categoriesExpanded, setCategoriesExpanded] = useState(false);
 
   const closeDetail = () => {
@@ -613,6 +612,8 @@ const BookshelfPage = () => {
         </div>
       </div>
 
+      {createPortal(
+        <>
       <div style={{
         position: 'fixed',
         inset: 0,
@@ -745,6 +746,9 @@ const BookshelfPage = () => {
           </div>
         ) : null}
       </div>
+        </>,
+        document.body
+      )}
     </div>
   );
 };
