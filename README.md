@@ -2,4 +2,4 @@
 
 https://riyer8.github.io/
 
-my personal website <3
+it's a little messy.

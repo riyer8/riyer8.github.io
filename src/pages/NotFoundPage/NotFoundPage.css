@@ -1,0 +1,64 @@
+.not-found-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.not-found-page__main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.not-found-page__row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.not-found-page__code {
+  margin: 0;
+  font-size: clamp(2.5rem, 8vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--not-found-text);
+}
+
+.not-found-page__divider {
+  display: block;
+  width: 1px;
+  height: 2.75rem;
+  background: var(--not-found-divider);
+  flex-shrink: 0;
+}
+
+.not-found-page__message {
+  margin: 0;
+  font-size: clamp(0.95rem, 2.5vw, 1.125rem);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--not-found-muted);
+}
+
+.not-found-page__home {
+  opacity: 0.9;
+}
+
+@media (max-width: 480px) {
+  .not-found-page__row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .not-found-page__divider {
+    width: 3rem;
+    height: 1px;
+  }
+}

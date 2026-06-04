@@ -10,6 +10,8 @@ import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
 import Year2026Page from "./pages/2026Page/Year2026Page";
 // import WritingsPage from "./pages/WritingPage/WritingsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
 import SeasonalToggleManager from "./randomfeatures/page-toggles/Toggles/ToggleManager";
 
 const HOME_INTRO_STORAGE_KEY = "homeIntroSeen";
@@ -83,6 +85,7 @@ const App = () => {
 
   const homeRoute = (
     <div style={homeRouteWrapperStyle}>
+      <HomeDocumentTitle />
       <div style={homeFadeInStyle}>
         <div style={containerStyle}>
           <Sidebar />
@@ -113,6 +116,7 @@ const App = () => {
           <Route path="/recent-reads/:slug" element={<BookshelfPage />} />
           <Route path="/ramya" element={<AboutPage />} />
           <Route path="/2026" element={<Year2026Page />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </ThemeProvider>

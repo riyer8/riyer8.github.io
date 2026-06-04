@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import BackHomeLink from '../../components/Navigation/BackHomeLink';
+import { formatPageTitle, usePageTitle } from '../../utils/pageTitle';
+
+const PAGE_TITLE = formatPageTitle('2026');
 
 const Year2026Page = () => {
   const { theme } = useTheme();
+  usePageTitle(PAGE_TITLE);
 
   /* -------------------- Responsive logic -------------------- */
   const [screenSize, setScreenSize] = useState({

@@ -1,5 +1,6 @@
 import React from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
+import { formatPageTitle, usePageTitle } from "../../utils/pageTitle";
 import BackHomeLink from "../../components/Navigation/BackHomeLink";
 import NotesSection from "../Principles/NotesSection";
 import AboutCarousel from "./AboutCarousel";
@@ -16,8 +17,11 @@ const SOCIAL_LINKS = [
   },
 ];
 
+const PAGE_TITLE = formatPageTitle("about");
+
 const AboutPage = () => {
   const { theme } = useTheme();
+  usePageTitle(PAGE_TITLE);
 
   return (
     <div
