@@ -1,6 +1,6 @@
 /** Shared timings for the home intro sequence (landing screen + content reveal). */
 export const HOME_INTRO = {
-  charTypeIntervalMs: 180,
+  charTypeIntervalMs: 80,
   holdAfterTypeMs: 160,
   condenseMs: 600,
   condenseHoldMs: 420,

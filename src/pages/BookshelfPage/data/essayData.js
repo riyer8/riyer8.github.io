@@ -1094,6 +1094,40 @@ If someone seems boring to you, or a bad fit, it might be that you don’t know 
 :::
     `
   },
+  {
+    title: "Why We Stay in Rooms We Should Leave",
+    url: "https://museguided.substack.com/p/why-we-stay-in-rooms-we-should-leave",
+    author: "Tamara",
+    dateAdded: "2026-05-29",
+    category: "life",
+    favorite: true,
+    medium: "essay",
+    tldr: "I hope you are able to leave the room that confines you to find air instead of walls.",
+    thoughts: "",
+    tags: ['life', 'relationships', 'psychology'],
+    notes: `
+I haven't been putting Substacks on my website log ever since I've been restacking on Substack itself, but this one hit me so hard that it felt only right to share it.
+
+:::quote
+The time between knowing and doing. The long hallway between intuition and motion. It’s about the soul’s strange attachment to places it has already outgrown, and the emotional physics of rooms that should have been vacated years ago but still smell faintly like home.
+:::
+
+:::quote
+It is a kind of moral vanity, however well-intentioned, the belief that endurance will earn the outcome. But some thresholds do not reward virtue. They punish misreading.
+:::
+
+:::quote
+We don’t often talk about the sacredness of staying. About how lingering, despite logic, despite pain, despite the bruising repetition of unmet needs, can be an act of love. Sometimes, we stay out of devotion. Out of commitment to a promise we made before we understood what the promise would cost. Sometimes, we stay because we still believe something holy might be salvaged. And that’s not delusion; that’s a form of faith.
+:::
+
+:::quote
+To leave a room that once made us feel safe is to kill the fantasy that safety can be permanent.
+:::
+
+> I don’t believe in reinvention anymore. **I believe in retrieval.** In becoming again the one you were before the room made you smaller. \n **So when you do go, and I hope you do, go with your flaws, your doubts, your boxes still unpacked. Go messy. Go late. Go unprepared. Go with nothing but the whisper that you were meant for air.** \n Because if there’s anything waiting on the other side, it’s not perfection. **It’s breath. It’s possibility.** It’s a room with light. And maybe, if you’re lucky, a window.
+
+    `
+  },
 
   /*{
     title: "",
