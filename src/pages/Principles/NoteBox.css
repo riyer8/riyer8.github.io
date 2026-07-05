@@ -6,6 +6,10 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  font-family: var(--font-ui);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-normal);
   overflow-wrap: normal;
   word-break: normal;
   hyphens: none;
@@ -71,8 +75,8 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 0.35rem 0.6rem;
-  font-size: 0.75rem;
-  font-weight: 500;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
   color: #fff;
   background: rgba(0, 0, 0, 0.75);
   border-radius: 6px;

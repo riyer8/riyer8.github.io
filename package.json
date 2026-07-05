@@ -55,8 +55,7 @@
       "postcss": "^8.5.15"
     },
     "react-scripts": {
-      "resolve-url-loader": "^5.0.0",
-      "webpack-dev-server": "^5.2.4"
+      "resolve-url-loader": "^5.0.0"
     }
   },
   "browserslist": {

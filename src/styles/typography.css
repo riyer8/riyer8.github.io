@@ -1,0 +1,85 @@
+:root {
+  /* Font families */
+  --font-brand: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-ui: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+
+  /* Type scale */
+  --text-brand: clamp(2.25rem, 4.5vw, 3.25rem);
+  --text-hero: clamp(3rem, 5vw, 3.5rem);
+  --text-section: 2.25rem;
+  --text-section-sm: 1.75rem;
+  --text-card: 1.5rem;
+  --text-body: clamp(1rem, 1.5vw, 1.125rem);
+  --text-meta: 0.875rem;
+  --text-caption: 0.8125rem;
+
+  /* Font weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Line heights */
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.7;
+
+  /* Spacing rhythm */
+  --space-section: 2.5rem;
+  --space-heading-body: 1rem;
+  --space-paragraph: 1rem;
+  --space-card: 1.25rem;
+}
+
+/* Brand name lockup */
+.brand-name {
+  font-family: var(--font-brand);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.brand-name__family {
+  font-style: italic;
+}
+
+/* Typography utilities */
+.type-section-title {
+  font-family: var(--font-ui);
+  font-size: var(--text-section);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: -0.02em;
+}
+
+.type-card-title {
+  font-family: var(--font-ui);
+  font-size: var(--text-card);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
+}
+
+.type-body {
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
+  font-weight: var(--weight-regular);
+}
+
+.type-meta {
+  font-family: var(--font-ui);
+  font-size: var(--text-meta);
+  line-height: var(--leading-normal);
+  font-weight: var(--weight-regular);
+}
+
+.type-caption {
+  font-family: var(--font-ui);
+  font-size: var(--text-caption);
+  line-height: var(--leading-normal);
+  font-weight: var(--weight-regular);
+}

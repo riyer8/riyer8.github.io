@@ -45,6 +45,7 @@
   border: 1px solid var(--modal-border);
   background: var(--modal-surface);
   color: var(--modal-text);
+  font-family: var(--font-ui);
   box-shadow:
     0 4px 6px rgba(0, 0, 0, 0.04),
     0 24px 48px rgba(0, 0, 0, 0.14),
@@ -159,8 +160,8 @@
   display: inline-block;
   margin: 0 0 0.55rem;
   padding: 0.28rem 0.65rem;
-  font-size: 0.68rem;
-  font-weight: 600;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
   letter-spacing: 0.04em;
   text-transform: lowercase;
   color: var(--modal-accent);
@@ -173,9 +174,9 @@
   margin: 0;
   width: 100%;
   max-width: 100%;
-  font-size: clamp(1.05rem, 2.4vw, 1.2rem);
-  font-weight: 600;
-  line-height: 1.45;
+  font-size: var(--text-card);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-snug);
   letter-spacing: -0.02em;
   text-align: center;
   color: var(--modal-text);
@@ -198,8 +199,8 @@
 
 .principle-modal__section-label {
   margin: 0 0 0.4rem;
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--modal-muted);
@@ -217,8 +218,8 @@
 
 .principle-modal__body {
   margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.65;
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
   color: var(--modal-text);
   white-space: pre-wrap;
   word-break: break-word;
@@ -241,8 +242,8 @@
 .principle-modal__source-label {
   display: block;
   margin-bottom: 0.3rem;
-  font-size: 0.65rem;
-  font-weight: 600;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--modal-muted);
@@ -250,8 +251,8 @@
 
 .principle-modal__source {
   margin: 0;
-  font-size: 0.84rem;
-  line-height: 1.5;
+  font-size: var(--text-meta);
+  line-height: var(--leading-normal);
 }
 
 .principle-modal__source a {
@@ -319,8 +320,8 @@
   border-radius: 10px;
   background: color-mix(in srgb, var(--modal-tint) 40%, transparent);
   color: var(--modal-text);
-  font-size: 0.82rem;
-  font-weight: 500;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
   cursor: pointer;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
