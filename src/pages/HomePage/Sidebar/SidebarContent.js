@@ -4,23 +4,36 @@ import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import { RiTwitterXLine } from 'react-icons/ri';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
+import BrandName from '../../../components/BrandName/BrandName';
 
 const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
     const navigate = useNavigate();
     const taglineRef = useRef(null);
+    const nameRef = useRef(null);
     const containerRef = useRef(null);
-    const [fontSize, setFontSize] = useState(16); // default 16px
+    const [fontSize, setFontSize] = useState(16);
 
     const [isHoveringName, setIsHoveringName] = useState(false);
 
-    // Dynamically shrink tagline to fit one line
     useEffect(() => {
         const adjustFontSize = () => {
-            if (!taglineRef.current || !containerRef.current) return;
+            if (!containerRef.current) return;
 
             const containerWidth = containerRef.current.offsetWidth;
-            let newFontSize = 16; // start font size
+
+            if (nameRef.current) {
+                let nameSize = 52;
+                nameRef.current.style.fontSize = `${nameSize}px`;
+                while (nameRef.current.scrollWidth > containerWidth && nameSize > 28) {
+                    nameSize -= 1;
+                    nameRef.current.style.fontSize = `${nameSize}px`;
+                }
+            }
+
+            if (!taglineRef.current) return;
+
+            let newFontSize = 16;
             taglineRef.current.style.fontSize = `${newFontSize}px`;
 
             while (taglineRef.current.scrollWidth > containerWidth && newFontSize > 10) {
@@ -38,11 +51,16 @@ const SidebarContent = ({ compact = false }) => {
     }, []);
 
     const nameStyle = {
-        fontSize: compact ? '2rem' : '2rem',
+        fontSize: 'var(--text-brand)',
+        fontFamily: theme.fonts?.brand,
         fontWeight: 700,
+        lineHeight: 'var(--leading-tight)',
         color: isHoveringName ? undefined : theme.colors.text,
-        marginBottom: '0.5rem',
+        margin: 0,
+        marginBottom: '0.75rem',
         marginTop: compact ? '1rem' : undefined,
+        padding: 0,
+        width: '100%',
         textAlign: 'center',
         cursor: 'pointer',
         animation: isHoveringName ? 'blueGreenText 2s linear infinite alternate' : 'none',
@@ -63,7 +81,8 @@ const SidebarContent = ({ compact = false }) => {
     const emailStyle = {
         color: theme.colors.accent,
         textDecoration: 'none',
-        fontSize: '0.95rem',
+        fontSize: 'var(--text-meta)',
+        fontWeight: 500,
         marginBottom: compact ? '1.2rem' : '1rem',
         display: 'inline-block',
         textAlign: 'center',
@@ -105,18 +124,19 @@ const SidebarContent = ({ compact = false }) => {
                     justifyContent: compact ? 'flex-start' : 'center',
                     width: '100%',
                     textAlign: 'center',
-                    fontFamily: theme.fonts?.base || 'sans-serif',
+                    fontFamily: theme.fonts?.base || 'var(--font-ui)',
                 }}
             >
                 <ProfilePhoto />
 
                 <h1
+                    ref={nameRef}
                     style={nameStyle}
                     onMouseEnter={() => setIsHoveringName(true)}
                     onMouseLeave={() => setIsHoveringName(false)}
                     onClick={() => navigate('/ramya')}
                 >
-                    Ramya Iyer
+                    <BrandName />
                 </h1>
 
                 <div ref={taglineRef} style={taglineStyle}>

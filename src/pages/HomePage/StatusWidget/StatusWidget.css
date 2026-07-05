@@ -1,7 +1,7 @@
 .status-widget {
     border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 2rem;
+    padding: var(--space-card);
+    margin-top: var(--space-section);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -9,6 +9,7 @@
     overflow: hidden;
     position: relative;
     animation: statusBgLight 10s ease-in-out infinite alternate;
+    font-family: var(--font-ui);
 }
 
 .status-widget.dark {
@@ -32,8 +33,8 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-size: 1rem;
-    line-height: 1.4;
+    font-size: var(--text-body);
+    line-height: var(--leading-normal);
 }
 
 .status-item.centered-text {
@@ -41,7 +42,7 @@
 }
 
 .status-label {
-    font-weight: 600;
+    font-weight: var(--weight-semibold);
 }
 
 .status-value {

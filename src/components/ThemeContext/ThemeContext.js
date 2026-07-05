@@ -74,10 +74,17 @@ export const ThemeProvider = ({ children }) => {
         },
 
         fonts: {
+            brand: '"Playfair Display", Georgia, "Times New Roman", serif',
             base: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
             heading: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
         }
     };
+
+    useEffect(() => {
+        const root = document.documentElement;
+        root.style.setProperty('--font-brand', theme.fonts.brand);
+        root.style.setProperty('--font-ui', theme.fonts.base);
+    }, [theme.fonts.brand, theme.fonts.base]);
 
     return (
         <ThemeContext.Provider value={{ theme, toggleTheme }}>

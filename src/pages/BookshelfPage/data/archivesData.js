@@ -2,98 +2,78 @@
 
 const archiveData = [
   {
-    title: "Shitty First Drafts",
-    author: "Anne Lamott",
-    url: "https://wrd.as.uky.edu/sites/default/files/1-Shitty%20First%20Drafts.pdf",
-    dateAdded: "2025-11-30",
-    category: "advice",
-    medium: "essay",
-    tags: ['writing', 'creativity', 'drafting'],
-    tldr: "It's okay if your first draft is shitty",
-    thoughts: "Know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",
-    notes: `
-> The first draft is the child's draft, where you let it all pour out and then let it romp all over the place, knowing that no one is going to see it and that you can shape it later. You just let this childlike part of you channel whatever voices and visions come through and onto the page.
-    
-> Just get it all down on paper because there may be something great in those six crazy pages that you would never have gotten to by more rational, grown-up means.
-
-> Start by getting something -- anything -- down on paper. A friend of mine says that the first draft is the down draft -- you just get it down. The second draft is the up draft -- you fix it up. You try to say what you have to say more accurately. And the third draft is the dental draft, where you check every tooth, to see if it's loose or cramped or decayed, or even, God help us, healthy.
-      `
-  },
-
-  {
-    title: "In the Age of AI, All We Have Left Is Taste",
-    author: "Uma Chalik",
-    url: "https://miscellaneousgood.substack.com/p/in-the-age-of-ai-all-we-have-left",
-    dateAdded: "2025-11-16",
+    title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
+    author: "Amber Atherton",
+    archives: true,
+    url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
+    dateAdded: "2025-12-22",
     category: "science",
     medium: "essay",
-    archives: true,
-    tldr: "✨ AI taking over taste won't result in personal, intimate connections with other people's personal taste.",
-    thoughts: "As someone who deeply thinks about personalization in the face of AI, this essay was really opening to me. We don't want to OR even need to automate everything. Allow people to have personal connections with others.",
-    tags: ['AI', 'personalization', 'taste', 'consumer-behavior'],
-    notes: ` I really love the contrast between the algorithmic optimization and deeply human texture of taste. The author argues that in a world where AI synthesizes everything we already know we want, the real value comes from the perspectives that we align with.
+    tldr: "How does taste fit into the world of LLMs and AI? How can LLMs learn taste (and should they)?",
+    thoughts: "In a way, we want LLMs to be objectively correct. But what if we spin it around so that LLMs can learn our subjective preferences and have their own taste that influences their answers?",
+    tags: ['taste', 'LLMs', 'personalization', 'consumer-behavior'],
+    notes: `
+:::figure
+![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/taste.png)
+This is the image that can be found in the article, describing the methods of taste in different POVs.
+:::
 
-> AI gives you exactly what you want. But in doing so, you never get what you didn’t know you needed.
+Like many consumer-related things (e.g. fashion, interests, music, etc.) taste is constantly evolving - there's never a perfect fit. Are there methods that we can employ to follow that trend? Are there patterns among these trends to develop a more dynamic taste algorithm?
 
-This captures the idea that taste isn't just about calculating accuracy; it's about personal discovery.
+> This is what makes computational taste so fascinating: it forces us to ask whether machines can model something that is designed to change.
 
-> Human recommendations, according to that logic, are not comprehensive or unbiased. They favor certain things and overlook others. In doing so, they create meaning. 
+> It means taste is no longer just something people express, it’s something models optimize for.
 
-The biases and preferences that we have actually help us when it comes to deciphering taste. It signals humanity.
+We can build LLMs that have taste: this can be via reward modeling from signals that humans provide along with explicit preference data through LoRe (Low-Rank Reward Modeling).
 
-> Creative ideas are best evaluated through the senses not the intellect - Rick Rubin`
+This can also lead to "Taste-as-a-Service APIs" that power personalized feeds across industries.
 
-  },
+As mentioned in the article, models like TAPO (Textual Aesthetics Preference Optimization) and G-Eval are pioneering ways to train LLMs on human-labeled taste preferences.
 
-  {
-    title: "Frequency Reduces Difficulty",
-    author: "Martin Fowler",
-    url: "https://martinfowler.com/bliki/FrequencyReducesDifficulty.html",
-    dateAdded: "2025-11-24",
-    category: "advice",
-    medium: "essay",
-    tags: ['habit', 'exposure', 'learning', 'practice', 'productivity'],
-    tldr: "Doing painful tasks more frequently dramatically reduces the difficulty.",
-    thoughts: "Directly aligned with the principle of exposure therapy, do what you don't like the most (within reason).",
-    notes: `The central line **"if it hurts, do it more often"** sounds almost counterintuitive (or obvious if you've seen this idea before), but Fowler integrates it rather well.
-He states that
-> "If we were able to plot pain versus time between integrations, we'd see an exponential curve."
-His argument is essentially exposure therapy for engineering. Painful tasks get exponentially worse the longer you avoid them, but breaking them into smaller, frequent chunks makes them more manageable.
+This means not *just* understanding what the person is replying but how they are replying to determine their taste / judgement embedding.
 
-Three main reasons why it is beneficial to essentially do exposure therapy:
-- Tasks, when decomposed, are easier to tackle.
-- Feedback loops; the more often you do something, the faster you learn (like reinforcement learning). Look for every opportunity to add feedback loops.
-- Practice. The more often you do it, the better you get at it. Every iteration makes you familiar with the patterns.
+This may also include understanding how **your friends** taste fingerprint is evolving and training models to predict how your taste may evolve, critical data for businesses.
 
-This essay allows us to increase frequency with more painful work, expanding beyond just engineering.
+> Emerging methods like LoRe show how to solve this: by modeling individual preferences as combinations of shared basis functions, you can personalize LLMs to each user’s taste with just a handful of examples. This sidesteps the need for full fine-tuning and avoids hardcoding users into static categories.
     `
   },
 
   {
-    title: "Why You Procrastinate (It Has Nothing to Do With Self-Control)",
-    author: "Charlotte Lieberman",
-    url: "https://www.nytimes.com/2019/03/25/smarter-living/why-you-procrastinate-it-has-nothing-to-do-with-self-control.html",
-    dateAdded: "2025-12-01",
-    category: "psychology",
-    medium: "essay",
+    title: "If you have multiple interests, do not waste the next 2-3 years",
+    url: "https://letters.thedankoe.com/p/if-you-have-multiple-interests-do",
+    author: "Dan Koe",
     archives: true,
-    tags: ["improv", "growth", 'creativity'],
+    dateAdded: "2026-04-01",
+    category: "career",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['interest', 'growth', 'career'],
     notes: `
-> Procrastination is an emotion regulation problem, not a time management problem
+:::quote
+We don’t live in the Industrial Age anymore. Specializing in one skill is almost certain death.
+:::
 
-> Dr. Hershfield’s research has shown that, on a neural level, we perceive our “future selves” more like strangers than as parts of ourselves. When we procrastinate, parts of our brains actually think that the tasks we’re putting off — and the accompanying negative feelings that await us on the other side — are somebody else’s problem.
+:::quote
+If pure specialization makes people stupid and dependent, what makes an individual smart and sovereign?
 
-How can we get down to the root cause of procrastination? Here are a couple of options mentioned in the article:
-1. One option is to **forgive yourself** in the moments you procrastinate... They concluded that self-forgiveness supported productivity by allowing “the individual to move past their maladaptive behavior and focus on the upcoming examination without the burden of past acts.”
+Three ingredients: **Self-education, self-interest, self-sufficiency.**
+- Self-interest motivates self-education.
+- Self-education enables self-sufficiency.
+- Self-sufficiency clarifies self-interest.
+:::
+    
+:::quote
+The ultimate moat, or the final competitive edge worth paying for, in my opinion, is an opinion.
 
-2. Another tactic is the related practice of **self-compassion**, which is treating ourselves with kindness and understanding in the face of our mistakes and failures.
+A perspective that only you can see, because the uniqueness of your life experience created it. That may just be the last thing anyone else can replicate.
+:::
 
-3. **Cultivate curiosity:** If you’re feeling tempted to procrastinate, bring your attention to the sensations arising in your mind and body. 
-
-4. **Consider the next action:** This is different than the age-old advice to break up a task you’re tempted to avoid into bite-sized chunks.
-
-5. **Make your temptations more inconvenient.**
-`
+:::figure
+![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/dan_koe_business.png)
+How to convert your own interests into a business. Image found in the original article.
+::: 
+    `
   },
 
   {
@@ -155,28 +135,6 @@ A few of my favorite quotes:
 
 > If you stand still, then you're moving backwards. Because everything is moving forward. **Do not stay in one place.**
 `
-  },
-
-  {
-    title: "to the people who overanalyze everything",
-    author: "sania and gor",
-    url: "https://chemicalhearts.substack.com/p/to-the-people-who-overanalyze-everything",
-    dateAdded: "2026-03-23",
-    category: "life",
-    medium: "essay",
-    archives: true,
-    tldr: "",
-    thoughts: "",
-    tags: ['life', 'overanalysis'],
-    notes: `
-the ending:
-:::quote
-let this be your permission slip — to care, to question, to breathe. to rest, even if the reply hasn’t come. to stop decoding every silence like it’s a threat. to believe, maybe for the first time, that some people won’t leave just because you let them see you.
-
-let yourself be messy. let yourself be known. that might be the bravest, most honest thing you ever do.   
-:::
-    
-    `
   },
 
 ];

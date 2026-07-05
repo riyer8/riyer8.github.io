@@ -22,13 +22,13 @@ const Footer = () => {
 
     const footerStyle = {
         width: '100%',
-        marginTop: '3rem',
+        marginTop: 'var(--space-section)',
         padding: '5rem 1.5rem 4.5rem',
         borderTop: `1px solid ${theme.colors.border}`,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        gap: '2.6rem',
+        gap: 'var(--space-section)',
         textAlign: 'center',
         boxSizing: 'border-box',
         position: 'relative',
@@ -70,18 +70,19 @@ const Footer = () => {
 
 
     const titleStyle = {
-        fontSize: '2.25rem',
+        fontFamily: theme.fonts?.heading,
+        fontSize: 'var(--text-section)',
         fontWeight: 600,
-        letterSpacing: '-0.03em',
+        letterSpacing: '-0.02em',
         color: theme.colors.text,
-        lineHeight: 1.2,
+        lineHeight: 'var(--leading-tight)',
     };
 
     const subtitleStyle = {
-        fontSize: '1rem',
+        fontSize: 'var(--text-body)',
         color: theme.colors.textSecondary || theme.colors.subtleText,
         maxWidth: '520px',
-        lineHeight: 1.6,
+        lineHeight: 'var(--leading-relaxed)',
         marginTop: '-0.6rem',
     };
 
@@ -98,7 +99,7 @@ const Footer = () => {
         alignItems: 'center',
         gap: '0.55rem',
         padding: '0.95rem 1.65rem',
-        fontSize: '0.95rem',
+        fontSize: 'var(--text-meta)',
         fontWeight: 500,
         borderRadius: '999px',
         cursor: 'pointer',

@@ -71,7 +71,7 @@ const MobileSidebar = ({ isOpen, onClose }) => {
 
         zIndex: 2100,
         boxSizing: 'border-box',
-        fontFamily: theme.fonts?.base || 'sans-serif',
+        fontFamily: theme.fonts?.base || 'var(--font-ui)',
     };
 
 

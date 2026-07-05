@@ -10,6 +10,19 @@ import LoadingPolaroids from "./LoadingPolaroids";
 import "./HomeLandingScreen.css";
 
 const FULL_TEXT = "ramya iyer.";
+const GIVEN_LENGTH = 5; // "ramya"
+
+const renderTypedName = (typedText) => {
+  if (typedText.length <= GIVEN_LENGTH) {
+    return <span className="brand-name__given">{typedText}</span>;
+  }
+  return (
+    <>
+      <span className="brand-name__given">{typedText.slice(0, GIVEN_LENGTH)}</span>
+      <span className="brand-name__family">{typedText.slice(GIVEN_LENGTH)}</span>
+    </>
+  );
+};
 
 const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
   const { theme } = useTheme();
@@ -21,7 +34,14 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
 
   const skipRequestedRef = useRef(false);
   const isFadingRef = useRef(false);
+  const introReadyForFadeRef = useRef(false);
+  const imagesReadyRef = useRef(false);
+  const activeTimingsRef = useRef(HOME_INTRO);
   const timersRef = useRef([]);
+
+  useEffect(() => {
+    activeTimingsRef.current = activeTimings;
+  }, [activeTimings]);
 
   const clearTimers = useCallback(() => {
     timersRef.current.forEach((clearFn) => clearFn());
@@ -46,9 +66,29 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
     [onFadeStart]
   );
 
+  const tryBeginFade = useCallback(
+    ({ force = false } = {}) => {
+      if (isFadingRef.current) return;
+      if (!force && (!introReadyForFadeRef.current || !imagesReadyRef.current)) {
+        return;
+      }
+      const timings = activeTimingsRef.current;
+      beginFade(timings);
+      scheduleTimeout(() => onComplete?.(), timings.fadeMs);
+    },
+    [beginFade, onComplete, scheduleTimeout]
+  );
+
+  const handleImagesReady = useCallback(() => {
+    imagesReadyRef.current = true;
+    tryBeginFade();
+  }, [tryBeginFade]);
+
   const runNormalIntro = useCallback(() => {
     clearTimers();
     isFadingRef.current = false;
+    introReadyForFadeRef.current = false;
+    imagesReadyRef.current = false;
     setActiveTimings(HOME_INTRO);
 
     let charIndex = 0;
@@ -68,19 +108,26 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
 
     scheduleTimeout(() => setIsCondensing(true), typingMs + HOME_INTRO.holdAfterTypeMs);
     scheduleTimeout(() => setShowCondensed(true), condensedSwapMs);
-    scheduleTimeout(() => beginFade(HOME_INTRO), fadeStartMs);
-    scheduleTimeout(() => onComplete?.(), fadeStartMs + HOME_INTRO.fadeMs);
-  }, [beginFade, clearTimers, onComplete, scheduleTimeout]);
+    scheduleTimeout(() => {
+      introReadyForFadeRef.current = true;
+      tryBeginFade();
+    }, fadeStartMs);
+  }, [clearTimers, scheduleTimeout, tryBeginFade]);
 
   const finishFadeQuickly = useCallback(() => {
     clearTimers();
     const quickFadeMs = 220;
-    setActiveTimings((prev) => ({ ...prev, fadeMs: quickFadeMs }));
+    setActiveTimings((prev) => {
+      const next = { ...prev, fadeMs: quickFadeMs };
+      activeTimingsRef.current = next;
+      return next;
+    });
     if (!isFadingRef.current) {
-      beginFade(HOME_INTRO_SKIP);
+      tryBeginFade({ force: true });
+      return;
     }
     scheduleTimeout(() => onComplete?.(), quickFadeMs);
-  }, [beginFade, clearTimers, onComplete, scheduleTimeout]);
+  }, [clearTimers, onComplete, scheduleTimeout, tryBeginFade]);
 
   useEffect(() => {
     runNormalIntro();
@@ -102,36 +149,36 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
 
     clearTimers();
     setActiveTimings(HOME_INTRO_SKIP);
+    activeTimingsRef.current = HOME_INTRO_SKIP;
     setTypedText(FULL_TEXT);
 
-    const { condenseMs, condenseHoldMs, fadeMs } = HOME_INTRO_SKIP;
+    const { condenseMs, condenseHoldMs } = HOME_INTRO_SKIP;
     const condensedSwapMs = getCondensedSwapMs(HOME_INTRO_SKIP);
 
     if (showCondensed) {
-      scheduleTimeout(() => beginFade(HOME_INTRO_SKIP), condenseHoldMs);
-      scheduleTimeout(() => onComplete?.(), condenseHoldMs + fadeMs);
+      scheduleTimeout(() => tryBeginFade({ force: true }), condenseHoldMs);
       return;
     }
 
     if (!isCondensing) {
       setIsCondensing(true);
       scheduleTimeout(() => setShowCondensed(true), condensedSwapMs);
-      scheduleTimeout(() => beginFade(HOME_INTRO_SKIP), condenseMs + condenseHoldMs);
-      scheduleTimeout(() => onComplete?.(), condenseMs + condenseHoldMs + fadeMs);
+      scheduleTimeout(
+        () => tryBeginFade({ force: true }),
+        condenseMs + condenseHoldMs
+      );
       return;
     }
 
     setShowCondensed(true);
-    scheduleTimeout(() => beginFade(HOME_INTRO_SKIP), condenseHoldMs);
-    scheduleTimeout(() => onComplete?.(), condenseHoldMs + fadeMs);
+    scheduleTimeout(() => tryBeginFade({ force: true }), condenseHoldMs);
   }, [
-    beginFade,
     clearTimers,
     finishFadeQuickly,
     isCondensing,
-    onComplete,
     scheduleTimeout,
     showCondensed,
+    tryBeginFade,
   ]);
 
   const cssVars = {
@@ -156,14 +203,14 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
         }
       }}
     >
-      <LoadingPolaroids />
-      <h1 className="home-landing__title">
+      <LoadingPolaroids onAllImagesLoaded={handleImagesReady} />
+      <h1 className="home-landing__title brand-name">
         <span
           className={`home-landing__full${
             isCondensing || showCondensed ? " home-landing__full--condensing" : ""
           }`}
         >
-          {typedText}
+          {renderTypedName(typedText)}
         </span>
         <span
           className={`home-landing__condensed${

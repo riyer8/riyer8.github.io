@@ -2,7 +2,7 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import BackHomeLink from '../../components/Navigation/BackHomeLink';
-import profilePhoto from '../../assets/photo1.png';
+import bookshelfPhoto from '../../assets/loading_page/bookshelf.png';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa';
 import { useParams, useNavigate } from 'react-router-dom';
@@ -161,7 +161,7 @@ const BookshelfPage = () => {
   const tableStyle = {
     width: '100%',
     borderCollapse: 'collapse',
-    fontFamily: 'Inter, -apple-system, system-ui, sans-serif',
+    fontFamily: theme.fonts?.base || 'var(--font-ui)',
     border: `1px solid ${theme.colors.border}`,
     borderRadius: '8px',
     overflow: 'hidden'
@@ -172,7 +172,7 @@ const BookshelfPage = () => {
     padding: '0.75rem 1rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.textSecondary,
-    fontSize: '0.95rem',
+    fontSize: 'var(--text-meta)',
     cursor: 'pointer',
     userSelect: 'none'
   };
@@ -181,7 +181,7 @@ const BookshelfPage = () => {
     padding: '0.85rem 1rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.text,
-    fontSize: '0.95rem',
+    fontSize: 'var(--text-meta)',
     verticalAlign: 'middle',
     minWidth: 0
   };
@@ -195,16 +195,15 @@ const BookshelfPage = () => {
 
   const pageContainer = {
     maxWidth: '1200px',
-    margin: '2rem auto',
-    padding: '1rem',
-    fontFamily: 'Inter, -apple-system, system-ui, sans-serif'
+    margin: 'var(--space-section) auto',
+    padding: 'var(--space-card)',
+    fontFamily: theme.fonts?.base || 'var(--font-ui)'
   };
 
   return (
     <div style={pageContainer}>
       <div style={headerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-
           <BackHomeLink />
         </div>
 
@@ -215,11 +214,19 @@ const BookshelfPage = () => {
       <div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
           <div style={{ width: 84, height: 84 }}>
-            <img src={profilePhoto} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
+            <img src={bookshelfPhoto} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
           </div>
           <div style={{ flex: 1 }}>
-            <h1 style={{ margin: 0, color: theme.colors.text }}>bookshelf</h1>
-            <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary }}>every time i am not reading, i think about reading.</p>
+            <h1 style={{
+              margin: 0,
+              color: theme.colors.text,
+              fontFamily: theme.fonts?.heading,
+              fontSize: 'var(--text-section)',
+              fontWeight: 600,
+              lineHeight: 'var(--leading-tight)',
+              letterSpacing: '-0.02em',
+            }}>Bookshelf</h1>
+            <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary, fontSize: 'var(--text-body)', lineHeight: 'var(--leading-relaxed)' }}>Every time I'm not reading, I'm thinking about reading.</p>
           </div>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
           </div>
@@ -269,7 +276,7 @@ const BookshelfPage = () => {
                   color: theme.colors.textSecondary,
                   border: `1px solid ${theme.colors.border}`,
                   cursor: 'pointer',
-                  fontSize: '0.9rem'
+                  fontSize: 'var(--text-meta)'
                 }}
               >
                 more tags
@@ -311,7 +318,7 @@ const BookshelfPage = () => {
                     color: theme.colors.textSecondary,
                     border: `1px solid ${theme.colors.border}`,
                     cursor: 'pointer',
-                    fontSize: '0.9rem'
+                    fontSize: 'var(--text-meta)'
                   }}
                 >
                   less tags
@@ -350,7 +357,7 @@ const BookshelfPage = () => {
         </div>
 
         {/* Total entries count */}
-        <div style={{ marginLeft: '0.5rem', marginBottom: '0.2rem', color: theme.colors.textSecondary, fontSize: '0.7rem' }}>
+        <div style={{ marginLeft: '0.5rem', marginBottom: '0.2rem', color: theme.colors.textSecondary, fontSize: 'var(--text-caption)' }}>
           {filtered.length} {filtered.length === 1 ? 'entry' : 'entries'}
         </div>
 
@@ -366,7 +373,7 @@ const BookshelfPage = () => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Title
                     {sortKey === 'title' && (
-                      <span style={{ fontSize: '0.8rem' }}>
+                      <span style={{ fontSize: 'var(--text-caption)' }}>
                         {sortDirection === 'asc' ? '↑' : '↓'}
                       </span>
                     )}
@@ -376,7 +383,7 @@ const BookshelfPage = () => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Category
                     {sortKey === 'category' && (
-                      <span style={{ fontSize: '0.8rem' }}>
+                      <span style={{ fontSize: 'var(--text-caption)' }}>
                         {sortDirection === 'asc' ? '↑' : '↓'}
                       </span>
                     )}
@@ -386,7 +393,7 @@ const BookshelfPage = () => {
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Medium
                     {sortKey === 'medium' && (
-                      <span style={{ fontSize: '0.8rem' }}>
+                      <span style={{ fontSize: 'var(--text-caption)' }}>
                         {sortDirection === 'asc' ? '↑' : '↓'}
                       </span>
                     )}
@@ -435,7 +442,7 @@ const BookshelfPage = () => {
                           <span
                             style={{
                               flexShrink: 0,
-                              fontSize: '0.75rem',
+                              fontSize: 'var(--text-caption)',
                               color: theme.colors.textSecondary,
                               fontStyle: 'italic'
                             }}
@@ -524,7 +531,7 @@ const BookshelfPage = () => {
                           ))}
                           {remainingCount > 0 && (
                             <span style={{
-                              fontSize: '0.8rem',
+                              fontSize: 'var(--text-caption)',
                               color: theme.colors.textSecondary,
                               fontWeight: 500
                             }}>
@@ -554,7 +561,7 @@ const BookshelfPage = () => {
                 background: currentPage === 1 ? (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#f5f5f5') : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
                 color: currentPage === 1 ? theme.colors.textSecondary : theme.colors.text,
                 cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                fontSize: '0.9rem'
+                fontSize: 'var(--text-meta)'
               }}
             >
               ← Previous
@@ -584,7 +591,7 @@ const BookshelfPage = () => {
                       background: currentPage === pageNum ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
                       color: currentPage === pageNum ? '#fff' : theme.colors.text,
                       cursor: 'pointer',
-                      fontSize: '0.9rem',
+                      fontSize: 'var(--text-meta)',
                       minWidth: '2.5rem'
                     }}
                   >
@@ -604,7 +611,7 @@ const BookshelfPage = () => {
                 background: currentPage === totalPages ? (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#f5f5f5') : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
                 color: currentPage === totalPages ? theme.colors.textSecondary : theme.colors.text,
                 cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-                fontSize: '0.9rem'
+                fontSize: 'var(--text-meta)'
               }}
             >
               Next →
@@ -616,7 +623,7 @@ const BookshelfPage = () => {
           paddingTop: '1rem',
           borderTop: `1px solid ${theme.colors.border}`,
           textAlign: 'center',
-          fontSize: '0.8rem',
+          fontSize: 'var(--text-caption)',
           color: theme.colors.textSecondary
         }}>
           Credits to <a href="https://masonjwang.com/bookshelf" target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'underline' }}>Mason Wang</a> for heavily inspiring this format and initial reads.
@@ -693,7 +700,7 @@ const BookshelfPage = () => {
                 {/* Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                   <div style={{ flex: 1 }}>
-                    <h2 style={{ margin: 0, color: theme.colors.text, fontSize: '1.2rem', letterSpacing: '0.2px' }}>{selectedItem.title}</h2>
+                    <h2 style={{ margin: 0, color: theme.colors.text, fontSize: 'var(--text-card)', fontWeight: 600, letterSpacing: '-0.01em' }}>{selectedItem.title}</h2>
                     <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>{(selectedItem.tags || []).map((t, i) => <Badge key={i} theme={theme}>{t}</Badge>)}</div>
                   </div>
 
@@ -705,9 +712,9 @@ const BookshelfPage = () => {
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', color: theme.colors.textSecondary, alignItems: 'center' }}>
                   <div style={{ display: 'flex', gap: '1.25rem' }}>
-                    <div style={{ fontSize: '0.85rem' }}>{/* placeholder left */}</div>
+                    <div style={{ fontSize: 'var(--text-meta)' }}>{/* placeholder left */}</div>
                   </div>
-                  <div style={{ fontSize: '0.9rem' }}>{selectedItem.dateAdded}</div>
+                  <div style={{ fontSize: 'var(--text-meta)' }}>{selectedItem.dateAdded}</div>
                 </div>
 
                 <QuoteWidget variant="compact" contextTitle={selectedItem.title} />
@@ -738,14 +745,14 @@ const BookshelfPage = () => {
                       borderTop: `4px solid ${theme.colors.border}`,
                       borderRight: `4px solid ${theme.colors.border}`,
                       color: theme.colors.text,
-                      fontSize: '15px',
-                      lineHeight: 1.6,
-                      fontFamily: 'Inter, -apple-system, system-ui, sans-serif',
+                      fontSize: 'var(--text-body)',
+                      lineHeight: 'var(--leading-relaxed)',
+                      fontFamily: theme.fonts?.base || 'var(--font-ui)',
                       borderRadius: 6,
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <div style={{ color: theme.colors.textSecondary, fontSize: '0.9rem', fontWeight: 600 }}>Notes</div>
+                      <div style={{ color: theme.colors.textSecondary, fontSize: 'var(--text-meta)', fontWeight: 600 }}>Notes</div>
                       <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}></div>
                     </div>
 

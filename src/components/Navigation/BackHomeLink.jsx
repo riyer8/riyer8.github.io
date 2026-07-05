@@ -15,7 +15,9 @@ const BackHomeLink = ({ className = "", style = {} }) => {
     color: theme.isDarkMode ? theme.colors.text : "#fff",
     border: `1px solid ${theme.colors.border}`,
     cursor: "pointer",
-    fontFamily: theme.fonts?.base,
+    fontFamily: theme.fonts?.base || "var(--font-ui)",
+    fontSize: "var(--text-meta)",
+    fontWeight: 500,
   };
 
   return (

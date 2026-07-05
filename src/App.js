@@ -60,7 +60,7 @@ const App = () => {
     zIndex: 1,
     minHeight: "100vh",
     display: "flex",
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, sans-serif',
+    fontFamily: "var(--font-ui)",
     margin: 0,
     padding: 0,
   };

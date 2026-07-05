@@ -102,7 +102,7 @@ const Year2026Page = () => {
     minHeight: '100vh',
     width: '100%',
     color: theme.colors.text,
-    fontFamily: theme.fonts?.base || 'sans-serif',
+    fontFamily: theme.fonts?.base || 'var(--font-ui)',
   };
 
   const contentStyle = {

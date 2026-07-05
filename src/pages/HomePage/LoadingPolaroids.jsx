@@ -1,5 +1,14 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./LoadingPolaroids.css";
+
+function preloadImage(src) {
+  return new Promise((resolve) => {
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = src;
+  });
+}
 
 /** Grab every image dropped into src/assets/loading_page (webpack require.context). */
 function loadFolderImages() {
@@ -44,7 +53,14 @@ function shuffle(arr) {
   return a;
 }
 
-const LoadingPolaroids = () => {
+const LoadingPolaroids = ({ onAllImagesLoaded }) => {
+  const [imagesReady, setImagesReady] = useState(false);
+  const onAllImagesLoadedRef = useRef(onAllImagesLoaded);
+
+  useEffect(() => {
+    onAllImagesLoadedRef.current = onAllImagesLoaded;
+  }, [onAllImagesLoaded]);
+
   const items = useMemo(() => {
     if (!ALL_IMAGES.length) return [];
     const slots = shuffle(SLOTS);
@@ -65,7 +81,28 @@ const LoadingPolaroids = () => {
     });
   }, []);
 
-  if (!items.length) return null;
+  useEffect(() => {
+    if (!items.length) {
+      setImagesReady(false);
+      onAllImagesLoadedRef.current?.();
+      return undefined;
+    }
+
+    let cancelled = false;
+    setImagesReady(false);
+
+    Promise.all(items.map((item) => preloadImage(item.src))).then(() => {
+      if (cancelled) return;
+      setImagesReady(true);
+      onAllImagesLoadedRef.current?.();
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [items]);
+
+  if (!items.length || !imagesReady) return null;
 
   return (
     <div className="loading-polaroids" aria-hidden="true">

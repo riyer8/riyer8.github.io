@@ -50,8 +50,9 @@
 
 .bookshelf-quote__label {
   margin: 0 0 0.4rem;
-  font-size: clamp(0.62rem, 1.8vw, 0.68rem);
-  font-weight: 600;
+  font-family: var(--font-ui);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--quote-muted);
@@ -67,9 +68,9 @@
   margin: 0;
   padding: 0;
   border: none;
-  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-  font-size: clamp(0.88rem, 2.2vw, 1rem);
-  line-height: 1.5;
+  font-family: var(--font-ui);
+  font-size: var(--text-body);
+  line-height: var(--leading-relaxed);
   font-style: italic;
   color: var(--quote-text);
   opacity: 0.92;
@@ -79,8 +80,8 @@
 }
 
 .bookshelf-quote--compact .bookshelf-quote__text {
-  font-size: clamp(0.82rem, 2vw, 0.9rem);
-  line-height: 1.45;
+  font-size: var(--text-meta);
+  line-height: var(--leading-normal);
 }
 
 .bookshelf-quote__text::before {
@@ -117,7 +118,7 @@
 }
 
 .bookshelf-quote__cite {
-  font-size: clamp(0.76rem, 1.8vw, 0.82rem);
+  font-size: var(--text-caption);
   font-style: normal;
   color: var(--quote-muted);
   overflow-wrap: anywhere;
@@ -129,8 +130,8 @@
 }
 
 .bookshelf-quote__link {
-  font-size: clamp(0.72rem, 1.6vw, 0.78rem);
-  font-weight: 500;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
   color: var(--quote-accent);
   text-decoration: none;
   opacity: 0.9;

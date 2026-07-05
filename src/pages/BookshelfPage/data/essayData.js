@@ -98,38 +98,6 @@ The idea of **regret minimization**:
   },
 
   {
-    title: "tryhard",
-    author: "Jasmine Sun",
-    url: "https://jasmi.news/p/tryhard",
-    dateAdded: "2025-10-17",
-    category: "advice",
-    medium: "essay",
-    tldr: "🌻 A simple, reflective piece on the fruits of trying hard. Why not give it all you got?",
-    thoughts: "Contrary to much of what I used to read, this one encourages that trying hard, harder than one expects. Maybe this is the best form of self help.",
-    tags: ['motivation', 'growth', 'productivity', 'mindset'],
-    notes: `Contrary to the usual anti-hustle discourse, this essay reminds me that sometimes the best thing you can do for yourself is just try harder, longer, and more consistently than feels reasonable. Showing up because you care and effort is the human aspect of it.
-Ambition is reframed: don't set goals so you are able to *easily* hit them, but rather one that is exhilarating to play.
-> The ones who succeed are often simply the ones who try harder than everybody else. 
-
-Sometimes people overstate 'luck' as being the factor. Maybe trying harder will make you better.
-> Claire Dederer writes that “Finishers are always monsters” - that is, behind every completed oeuvre is a trail of broken promises to people you love. 
-
-I really like this quote mainly because finishers may be glamorous, but it comes with a trail that not everyone will love the way you get there. It's uncomfortable.
-
-> For many years, I obsessed over the “hedonic treadmill” and “cruel optimism” and all these other catchy phrases for feeling bad about achievement culture. What’s the point of working so hard for what you want, if you’ll simply adjust your expectations and revert to the mean after? What if the system is designed on purpose to keep us from success? But it’s Nguyen who gave me peace of mind: These questions are inverted. **I don’t play in order to hit the goals; I set goals so I can play.**
-
-The big takeaway **ambition isn't about chasing outcomes; it is about choosing the games that you want to struggle through**
-
-> Never spend time on something I’d end up regretting if it didn’t lead to the outcome I hoped for.
-
-Make effort feel intentional. You get to choose the game you play, but you have to play it. Not be on the sidelines.
-
-> Ira Glass bit about the taste gap: “It is only by going through a volume of work that you will close that gap, and **your work will be as good as your ambitions**… It’s gonna take awhile. It’s normal to take awhile. You’ve just gotta fight your way through.”
-    `
-
-  },
-
-  {
     title: "Don't Read History for Lessons",
     author: "Cedric Chin",
     url: "https://commoncog.com/dont-read-history-for-lessons/",
@@ -159,42 +127,8 @@ Make effort feel intentional. You get to choose the game you play, but you have 
   },
 
   {
-    title: "What Goes Wrong",
-    author: "Jessica Livingston",
-    url: "https://www.founderstribune.org/p/what-goes-wrong-by-jessica-livingston",
-    dateAdded: "2025-11-28",
-    category: "career",
-    medium: "essay",
-    tags: ["entrepreneurship", "career", "lessons", "failure", "startups"],
-    tldr: "🚀 Livingston provides a recount of reasons why startups fail from her experience of founding YC",
-    thoughts: "It's easy to live in the glamour of startup success stories, but this is really grounding on the (many) ways that things can do wrong and why they go wrong before you realize you're on to something.",
-    notes: `
-> Determination is really two separate things: resilience and drive. Resilience keeps you from being pushed backwards. Drive moves you forwards.
-
-> What you don't realize until you start a startup is how much external validation you've gotten for the conservative choices you've made in the past.
-
-Livingston describes the various ways that people will quit on their ideas after seven years of YC:
-
-1. **Sheer variety of problems that will happen _technically_ with a startup**.
-2. **Cofounder disputes**. 
-   - It's a red flag when you find yourself worrying whether your cofounder is trustworthy or whether he/she works hard enough or is competent.
-3. **Investors**. 
-   - Investors tend to have a herd mentality. They like you if other investors like you.
-   - Investors will also drag their feet. There's no downside for them to delay whereas delay will kill you.
-4. **Distractions**.
-   > There are really only three things you should focus on: building things, talking to users, and exercising
-5. **HR Acquisitions**.
-6. **Making Something People Don't Want**.
-   - Talk to users and adjust your idea accordingly
-
-> Just remember that no extreme ever lasts (good or bad). Don't let yourself get immobilized by sadness when things go wrong. Just keep putting one foot in front of the other and know it will get better.
-`
-  },
-
-  {
     title: "Experts and Elites Play Fundamentally Different Games",
     author: "Rob Henderson",
-    archives: true,
     url: "https://www.robkhenderson.com/p/experts-and-elites-play-fundamentally",
     dateAdded: "2025-11-30",
     category: "psychology",
@@ -341,64 +275,22 @@ This is probably even more relevant with the rise of search engines and LLMs tha
   },
 
   {
-    title: "home for the holidays",
-    author: "Rayne Fisher-Quann",
-    url: "https://internetprincess.substack.com/p/home-for-the-holidays",
-    dateAdded: "2025-12-21",
-    category: "life",
+    title: "Shitty First Drafts",
+    author: "Anne Lamott",
+    url: "https://wrd.as.uky.edu/sites/default/files/1-Shitty%20First%20Drafts.pdf",
+    dateAdded: "2025-11-30",
+    category: "advice",
     medium: "essay",
-    favorite: true,
-    thoughts: "I feel rather deeply exposed for how rich and deep the writing and reflections are. Highly recommend this read.",
-    tags: ['personal', 'grief'],
+    tags: ['writing', 'creativity', 'drafting'],
+    tldr: "It's okay if your first draft is shitty",
+    thoughts: "Know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",
     notes: `
-Quotes and sentences that I really liked:
-> Ontario in the winter is a province in greyscale. It’s the kind of grey that takes something from you; you are less of yourself for being surrounded by it. **There are stretches of the road that make you colourblind.**
+> The first draft is the child's draft, where you let it all pour out and then let it romp all over the place, knowing that no one is going to see it and that you can shape it later. You just let this childlike part of you channel whatever voices and visions come through and onto the page.
+    
+> Just get it all down on paper because there may be something great in those six crazy pages that you would never have gotten to by more rational, grown-up means.
 
-> Sometimes an apology means *I wish this wasn’t happening to you*, and sometimes an apology means *I’m sorry I did this to you.*
-
-On grief and depression:
-> Grief obliterates time: it strips it of meaning, destroys its constancy, renders it useless as a measure of anything that matters. 
-
-> In the car ride home from the train station, my father says he’s sorry that I was born with a brain that wants to hurt me. I remind myself: sometimes an apology means *I wish this wasn’t happening to you*, and sometimes an apology means *I’m sorry I did this to you*. This time, I can’t tell exactly which one he’s trying to say.
-
-> I’m still unsure if I can accept the idea of grief as a final form of love, but I understand intimately, now, its fundamental truth: horror and pain and loss do not exist in opposition to love, but as affirmation of it. All this terror because of all this beauty. All this just to have something worthwhile to ruin. 
-`
-  },
-
-  {
-    title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
-    author: "Amber Atherton",
-    url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
-    dateAdded: "2025-12-22",
-    category: "science",
-    medium: "essay",
-    tldr: "How does taste fit into the world of LLMs and AI? How can LLMs learn taste (and should they)?",
-    thoughts: "In a way, we want LLMs to be objectively correct. But what if we spin it around so that LLMs can learn our subjective preferences and have their own taste that influences their answers?",
-    tags: ['taste', 'LLMs', 'personalization', 'consumer-behavior'],
-    notes: `
-:::figure
-![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/taste.png)
-This is the image that can be found in the article, describing the methods of taste in different POVs.
-:::
-
-Like many consumer-related things (e.g. fashion, interests, music, etc.) taste is constantly evolving - there's never a perfect fit. Are there methods that we can employ to follow that trend? Are there patterns among these trends to develop a more dynamic taste algorithm?
-
-> This is what makes computational taste so fascinating: it forces us to ask whether machines can model something that is designed to change.
-
-> It means taste is no longer just something people express, it’s something models optimize for.
-
-We can build LLMs that have taste: this can be via reward modeling from signals that humans provide along with explicit preference data through LoRe (Low-Rank Reward Modeling).
-
-This can also lead to "Taste-as-a-Service APIs" that power personalized feeds across industries.
-
-As mentioned in the article, models like TAPO (Textual Aesthetics Preference Optimization) and G-Eval are pioneering ways to train LLMs on human-labeled taste preferences.
-
-This means not *just* understanding what the person is replying but how they are replying to determine their taste / judgement embedding.
-
-This may also include understanding how **your friends** taste fingerprint is evolving and training models to predict how your taste may evolve, critical data for businesses.
-
-> Emerging methods like LoRe show how to solve this: by modeling individual preferences as combinations of shared basis functions, you can personalize LLMs to each user’s taste with just a handful of examples. This sidesteps the need for full fine-tuning and avoids hardcoding users into static categories.
-    `
+> Start by getting something -- anything -- down on paper. A friend of mine says that the first draft is the down draft -- you just get it down. The second draft is the up draft -- you fix it up. You try to say what you have to say more accurately. And the third draft is the dental draft, where you check every tooth, to see if it's loose or cramped or decayed, or even, God help us, healthy.
+      `
   },
 
   {
@@ -782,7 +674,6 @@ Strangely, it’s often those closest to us that we stop being curious about. We
     category: "life",
     medium: "essay",
     tldr: "",
-    favorite: true,
     thoughts: "",
     tags: ['life', 'start-now', 'seriousness'],
     notes: `
@@ -802,6 +693,7 @@ Every day I grow older, I feel like the gap becomes more and more apparent. It's
   {
     title: "There's a place for everyone",
     author: "Adam Mastroianni",
+    favorite: true,
     url: "https://www.experimental-history.com/p/theres-a-place-for-everyone",
     dateAdded: "2026-03-26",
     category: "life",
@@ -851,43 +743,6 @@ so what would it mean to stop fighting that. to stop trying to turn my life into
 :::
 
 > if the goal is to experience, then there is no such thing as a wasted day.
-    `
-  },
-
-  {
-    title: "If you have multiple interests, do not waste the next 2-3 years",
-    url: "https://letters.thedankoe.com/p/if-you-have-multiple-interests-do",
-    author: "Dan Koe",
-    dateAdded: "2026-04-01",
-    category: "career",
-    medium: "essay",
-    tldr: "",
-    thoughts: "",
-    tags: ['interest', 'growth', 'career'],
-    notes: `
-:::quote
-We don’t live in the Industrial Age anymore. Specializing in one skill is almost certain death.
-:::
-
-:::quote
-If pure specialization makes people stupid and dependent, what makes an individual smart and sovereign?
-
-Three ingredients: **Self-education, self-interest, self-sufficiency.**
-- Self-interest motivates self-education.
-- Self-education enables self-sufficiency.
-- Self-sufficiency clarifies self-interest.
-:::
-    
-:::quote
-The ultimate moat, or the final competitive edge worth paying for, in my opinion, is an opinion.
-
-A perspective that only you can see, because the uniqueness of your life experience created it. That may just be the last thing anyone else can replicate.
-:::
-
-:::figure
-![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/dan_koe_business.png)
-How to convert your own interests into a business. Image found in the original article.
-::: 
     `
   },
 

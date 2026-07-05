@@ -4,7 +4,6 @@ import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaBars } from 'react-icons/fa';
-import Footer from '../Footer/Footer';
 
 const MainContent = () => {
     const { theme } = useTheme();
@@ -46,10 +45,6 @@ const MainContent = () => {
 
     const openMobileSidebar = () => setIsMobileSidebarOpen(true);
     const closeMobileSidebar = () => setIsMobileSidebarOpen(false);
-
-    /* =======================
-       Layout Styles
-    ======================== */
 
     const pageLayoutStyle = {
         display: 'flex',
@@ -97,39 +92,14 @@ const MainContent = () => {
     const sectionStyle = {
         width: '100%',
         maxWidth: '800px',
-        marginBottom: '2.5rem',
+        marginBottom: 'var(--space-section)',
         textAlign: 'center',
-    };
-
-    /* Center text inside buttons for BookshelfSection */
-    const bookshelfButtonWrapperStyle = {
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '1rem',
-        alignItems: 'center',
-        width: '100%',
-    };
-
-    const bookshelfButtonStyle = {
-        width: '100%',
-        maxWidth: '300px',
-        textAlign: 'center',
-        padding: '0.8rem 1.2rem',
-        borderRadius: '8px',
-        border: `1px solid ${theme.colors.border}`,
-        background: theme.colors.cardBackground,
-        color: theme.colors.text,
-        fontWeight: 500,
-        cursor: 'pointer',
-        transition: 'all 0.2s ease',
     };
 
     return (
         <>
             <div style={pageLayoutStyle}>
-                {/* MAIN COLUMN */}
                 <div style={mainColumnStyle}>
-                    {/* CENTERED CONTENT */}
                     <div style={centeredContentStyle}>
                         <div style={mobileHeaderStyle}>
                             <button
@@ -145,14 +115,10 @@ const MainContent = () => {
                             <StatusWidget />
                         </div>
 
-                        <BookshelfSection screenSize={screenSize} buttonWrapperStyle={bookshelfButtonWrapperStyle} buttonStyle={bookshelfButtonStyle} />
+                        <BookshelfSection />
                     </div>
-
-                    {/* FULL-WIDTH FOOTER */}
-                    <Footer />
                 </div>
 
-                {/* SIDEBAR OVERLAY (mobile only) */}
                 {shouldCollapseSidebar && (
                     <MobileSidebar
                         isOpen={isMobileSidebarOpen}

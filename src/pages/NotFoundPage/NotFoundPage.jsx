@@ -15,7 +15,6 @@ const NotFoundPage = () => {
       className="not-found-page"
       style={{
         color: theme.colors.text,
-        fontFamily: theme.fonts?.base,
         "--not-found-text": theme.colors.text,
         "--not-found-muted": theme.colors.textSecondary,
         "--not-found-divider": theme.isDarkMode

@@ -5,12 +5,13 @@ import './StatusWidget.css';
 const currentActivities = [
     "researching LLM (and human) daydreaming 🌈",
     "thinking about the AI x human connection tradeoff 💡",
-    "graduating soon 🎓",
-    "reading \"Dopamine Nation\" at a cafe ☕️",
-    "writing ✍️",
+    "reading at a cafe ☕️",
+    "writing a new Substack article ✍️",
     "gyming 🥊",
-    "talking to cool people 🤝",
     "exploring San Francisco 🌉",
+    "hiking in the California mountains 🥾",
+    "reviewing food at new restaurants 🍽️",
+    "planning my next trip 🌍",
 ];
 
 const StatusWidget = () => {

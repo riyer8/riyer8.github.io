@@ -15,6 +15,7 @@ const SOCIAL_LINKS = [
     label: "Google Scholar",
     href: "https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en",
   },
+  { label: "Substack", href: "https://ramyai.substack.com/" },
 ];
 
 const PAGE_TITLE = formatPageTitle("about");
@@ -28,7 +29,6 @@ const AboutPage = () => {
       className="about-page"
       style={{
         color: theme.colors.text,
-        fontFamily: theme.fonts?.base,
         "--about-text": theme.colors.text,
         "--about-muted": theme.colors.textSecondary,
         "--about-accent": theme.colors.accent,
@@ -38,24 +38,8 @@ const AboutPage = () => {
         <BackHomeLink className="about-page__home-link" />
 
         <section className="about-page__hero" aria-label="About Ramya">
-          <AboutCarousel />
-
-          <div className="about-page__intro">
-            <h1 className="about-page__title" style={{ color: theme.colors.text }}>
-              Hi, I&apos;m Ramya.
-            </h1>
-
-            <p className="about-page__lead">
-              I&apos;ve always found it unrealistic to try to define who I am in a few
-              sentences. It would probably be updated every other day anyway. If you want
-              to know me, let's chat! Email me at{" "}
-              <a href="mailto:ramya1@stanford.edu" className="about-page__email">
-                ramya1@stanford.edu
-              </a>
-              ; I pride myself on replying to <em>exciting</em> emails rather quickly.
-            </p>
-
-            <p className="about-page__note">Even this will probably be updated soon ✨</p>
+          <aside className="about-page__aside" aria-label="Photos and links">
+            <AboutCarousel />
 
             <ul className="about-page__links">
               {SOCIAL_LINKS.map((item) => (
@@ -71,6 +55,47 @@ const AboutPage = () => {
                 </li>
               ))}
             </ul>
+          </aside>
+
+          <div className="about-page__intro">
+            <h1 className="about-page__title" style={{ color: theme.colors.text }}>
+              Hi, I&apos;m{" "}
+              <span className="about-page__title-name">Ramya</span>.
+            </h1>
+
+            <div className="about-page__body">
+              <p>
+                I&apos;ve always found it a little unrealistic to define who I am in a
+                few sentences. It would probably be updated every other day anyway.
+              </p>
+
+              <p className="about-page__note">
+                That said, here&apos;s my best attempt today.
+              </p>
+
+              <p>
+                I&apos;m a recent Stanford graduate in my twenties, currently living in
+                San Francisco and living this thing called life! A lot of my days revolve
+                around AI and mathematics, but those are only part of the story. I love
+                strava-ing my hikes, discovering new restaurants, wandering through cities,
+                and indulging in new books. I&apos;m also fascinated by human connection and
+                people.
+              </p>
+
+              <p>
+                I&apos;ve recently started writing as well on my Substack, which I hope
+                you&apos;ll check out! If any of that resonates with you, I can&apos;t wait
+                to hear from you. You can email me at{" "}
+                <a href="mailto:ramya1@stanford.edu" className="about-page__email">
+                  ramya1@stanford.edu
+                </a>
+                ; I pride myself on replying to <em>exciting</em> emails rather quickly.
+              </p>
+
+              <p className="about-page__note about-page__note--footer">
+                Even this will probably be updated soon. ✨
+              </p>
+            </div>
           </div>
         </section>
       </main>

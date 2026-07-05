@@ -46,9 +46,7 @@ const NotesSection = () => {
     <div
       className="notes-section"
       style={{
-        "--notes-font": theme.fonts?.base || "sans-serif",
         color: theme.colors.text,
-        fontFamily: theme.fonts?.base || "sans-serif",
       }}
     >
       <h2 className="notes-section__title" style={{ color: theme.colors.text }}>

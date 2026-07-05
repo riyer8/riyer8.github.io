@@ -9,7 +9,7 @@ const Pill = ({ children, theme }) => (
     display: 'inline-block',
     padding: '0.25rem 0.6rem',
     borderRadius: '6px',
-    fontSize: '0.8rem',
+    fontSize: 'var(--text-caption)',
     fontWeight: 500,
     background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)',
     color: theme.colors.text,
@@ -50,8 +50,8 @@ const BookshelfSection = () => {
   const sectionStyle = {
     maxWidth: '900px',
     width: '100%',
-    margin: '2rem auto',
-    padding: '1rem',
+    margin: 'var(--space-section) auto',
+    padding: 'var(--space-card)',
     boxSizing: 'border-box',
     opacity: mounted ? 1 : 0,
     transform: mounted ? 'translateY(0)' : 'translateY(15px)',
@@ -59,10 +59,13 @@ const BookshelfSection = () => {
   };
 
   const titleStyle = {
-    fontSize: '2rem',
+    fontFamily: theme.fonts?.heading,
+    fontSize: 'var(--text-section-sm)',
     fontWeight: 600,
+    lineHeight: 'var(--leading-tight)',
+    letterSpacing: '-0.02em',
     color: theme.colors.text,
-    marginBottom: '1rem',
+    marginBottom: 'var(--space-heading-body)',
     textAlign: 'center',
     cursor: 'pointer'
   };
@@ -70,7 +73,7 @@ const BookshelfSection = () => {
   const tableStyle = {
     width: '100%',
     borderCollapse: 'collapse',
-    fontFamily: 'Inter, -apple-system, system-ui, sans-serif'
+    fontFamily: theme.fonts?.base || 'var(--font-ui)',
   };
 
   const thStyle = {
@@ -78,14 +81,15 @@ const BookshelfSection = () => {
     padding: '0.75rem 1rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.textSecondary,
-    fontSize: '0.95rem'
+    fontSize: 'var(--text-meta)',
+    fontWeight: 500,
   };
 
   const tdStyle = {
     padding: '0.85rem 1rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.text,
-    fontSize: '0.95rem',
+    fontSize: 'var(--text-body)',
     verticalAlign: 'middle',
     textAlign: 'left'
   };
@@ -96,7 +100,7 @@ const BookshelfSection = () => {
         Recent Reads
       </h2>
 
-      <div style={{ fontWeight: 600, fontSize: '1.1rem', marginBottom: '0.75rem', color: theme.colors.textSecondary, textAlign: 'left' }}>
+      <div style={{ fontWeight: 600, fontSize: 'var(--text-meta)', marginBottom: '0.75rem', color: theme.colors.textSecondary, textAlign: 'left' }}>
         Favorites from my Recent Reads
       </div>
 
@@ -117,7 +121,7 @@ const BookshelfSection = () => {
                   onClick={() => navigate(`/recent-reads/${titleToSlug(row.title)}`)}
               >
                 <td style={tdStyle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1rem' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: 'var(--text-body)' }}>
                     <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} size={16} style={{ flexShrink: 0 }} />
                     <span style={{ fontWeight: 600, color: theme.colors.accent }}>{row.title}</span>
                   </div>
@@ -140,7 +144,7 @@ const BookshelfSection = () => {
 
                         {remainingCount > 0 && (
                           <span style={{
-                            fontSize: '0.8rem',
+                            fontSize: 'var(--text-caption)',
                             color: theme.colors.textSecondary,
                             fontWeight: 500
                           }}>
