@@ -3,21 +3,7 @@ import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaStar } from 'react-icons/fa';
 import bookshelfData from '../../../pages/BookshelfPage/data/bookshelfData';
 import { useNavigate } from 'react-router-dom';
-
-const Pill = ({ children, theme }) => (
-  <span style={{
-    display: 'inline-block',
-    padding: '0.25rem 0.6rem',
-    borderRadius: '6px',
-    fontSize: 'var(--text-caption)',
-    fontWeight: 500,
-    background: theme.isDarkMode ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)',
-    color: theme.colors.text,
-    marginRight: '0.25rem'
-  }}>
-    {children}
-  </span>
-);
+import Badge from '../../../pages/BookshelfPage/Badge';
 
 const titleToSlug = (title) => 
   encodeURIComponent(
@@ -78,7 +64,7 @@ const BookshelfSection = () => {
 
   const thStyle = {
     textAlign: 'left',
-    padding: '0.75rem 1rem',
+    padding: '0.6rem 0.85rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.textSecondary,
     fontSize: 'var(--text-meta)',
@@ -86,10 +72,10 @@ const BookshelfSection = () => {
   };
 
   const tdStyle = {
-    padding: '0.85rem 1rem',
+    padding: '0.65rem 0.85rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.text,
-    fontSize: 'var(--text-body)',
+    fontSize: 'var(--text-meta)',
     verticalAlign: 'middle',
     textAlign: 'left'
   };
@@ -99,10 +85,6 @@ const BookshelfSection = () => {
       <h2 style={titleStyle} onClick={() => navigate('/recent-reads')}>
         Recent Reads
       </h2>
-
-      <div style={{ fontWeight: 600, fontSize: 'var(--text-meta)', marginBottom: '0.75rem', color: theme.colors.textSecondary, textAlign: 'left' }}>
-        Favorites from my Recent Reads
-      </div>
 
       <div style={{ overflowX: 'auto' }}>
         <table style={tableStyle}>
@@ -121,9 +103,9 @@ const BookshelfSection = () => {
                   onClick={() => navigate(`/recent-reads/${titleToSlug(row.title)}`)}
               >
                 <td style={tdStyle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: 'var(--text-body)' }}>
-                    <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} size={16} style={{ flexShrink: 0 }} />
-                    <span style={{ fontWeight: 600, color: theme.colors.accent }}>{row.title}</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                    <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} size={12} style={{ flexShrink: 0 }} />
+                    <span style={{ fontWeight: 500, color: theme.colors.accent }}>{row.title}</span>
                   </div>
                 </td>
 
@@ -139,7 +121,7 @@ const BookshelfSection = () => {
                     return (
                       <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
                         {displayTags.map((t, idx) => (
-                          <Pill key={idx} theme={theme}>{t}</Pill>
+                          <Badge key={idx} theme={theme}>{t}</Badge>
                         ))}
 
                         {remainingCount > 0 && (
@@ -165,8 +147,9 @@ const BookshelfSection = () => {
       <div 
         onClick={() => navigate('/recent-reads')}
         style={{
-          marginTop: '1rem',
-          fontWeight: 600,
+          marginTop: '0.85rem',
+          fontSize: 'var(--text-meta)',
+          fontWeight: 500,
           color: theme.colors.accent,
           cursor: 'pointer',
           display: 'flex',

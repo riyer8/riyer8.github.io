@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import { RiTwitterXLine } from 'react-icons/ri';
+import { SiGooglescholar, SiSubstack } from 'react-icons/si';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import BrandName from '../../../components/BrandName/BrandName';
 
@@ -155,6 +156,22 @@ const SidebarContent = ({ compact = false }) => {
                         onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
                     >
                         <FaGithub />
+                    </a>
+                    <a
+                        href="https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en"
+                        style={socialLinkStyle}
+                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
+                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
+                    >
+                        <SiGooglescholar />
+                    </a>
+                    <a
+                        href="https://ramyai.substack.com/"
+                        style={socialLinkStyle}
+                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
+                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
+                    >
+                        <SiSubstack />
                     </a>
                     <a
                         href="https://www.linkedin.com/in/ramya-i/"
