@@ -169,7 +169,7 @@ const BookshelfPage = () => {
 
   const thStyle = {
     textAlign: 'left',
-    padding: '0.75rem 1rem',
+    padding: '0.6rem 0.85rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.textSecondary,
     fontSize: 'var(--text-meta)',
@@ -178,7 +178,7 @@ const BookshelfPage = () => {
   };
 
   const tdStyle = {
-    padding: '0.85rem 1rem',
+    padding: '0.65rem 0.85rem',
     borderBottom: `1px solid ${theme.colors.border}`,
     color: theme.colors.text,
     fontSize: 'var(--text-meta)',
@@ -197,7 +197,21 @@ const BookshelfPage = () => {
     maxWidth: '1200px',
     margin: 'var(--space-section) auto',
     padding: 'var(--space-card)',
-    fontFamily: theme.fonts?.base || 'var(--font-ui)'
+    fontFamily: theme.fonts?.base || 'var(--font-ui)',
+    fontSize: 'var(--text-meta)',
+  };
+
+  const panelLabelStyle = {
+    color: theme.colors.textSecondary,
+    fontSize: 'var(--text-meta)',
+    fontWeight: 600,
+    marginBottom: '0.4rem',
+  };
+
+  const panelTextStyle = {
+    color: theme.colors.text,
+    fontSize: 'var(--text-meta)',
+    lineHeight: 'var(--leading-relaxed)',
   };
 
   return (
@@ -221,12 +235,12 @@ const BookshelfPage = () => {
               margin: 0,
               color: theme.colors.text,
               fontFamily: theme.fonts?.heading,
-              fontSize: 'var(--text-section)',
+              fontSize: 'var(--text-section-sm)',
               fontWeight: 600,
               lineHeight: 'var(--leading-tight)',
               letterSpacing: '-0.02em',
             }}>Bookshelf</h1>
-            <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary, fontSize: 'var(--text-body)', lineHeight: 'var(--leading-relaxed)' }}>Every time I'm not reading, I'm thinking about reading.</p>
+            <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary, fontSize: 'var(--text-meta)', lineHeight: 'var(--leading-normal)' }}>Every time I'm not reading, I'm thinking about reading.</p>
           </div>
           <div style={{ display: 'flex', gap: '0.5rem' }}>
           </div>
@@ -237,7 +251,7 @@ const BookshelfPage = () => {
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
 
           {/* Category and Medium filters */}
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', fontSize: 'var(--text-meta)' }}>
 
             <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>All</button>
             <button onClick={() => setShowFavorites(f => !f)}
@@ -350,7 +364,9 @@ const BookshelfPage = () => {
                 border: `1px solid ${theme.colors.border}`,
                 background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
                 color: theme.colors.text,
-                boxSizing: 'border-box'
+                boxSizing: 'border-box',
+                fontSize: 'var(--text-meta)',
+                fontFamily: theme.fonts?.base || 'var(--font-ui)',
               }}
             />
           </div>
@@ -430,7 +446,8 @@ const BookshelfPage = () => {
                           all: 'unset',
                           cursor: 'pointer',
                           color: theme.colors.accent,
-                          fontWeight: 600,
+                          fontWeight: 500,
+                          fontSize: 'var(--text-meta)',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '0.4rem',
@@ -454,7 +471,7 @@ const BookshelfPage = () => {
                         {row.favorite && (
                           <FaStar
                             color={theme.isDarkMode ? '#FFD700' : '#000'}
-                            size={16}
+                            size={12}
                             style={{ flexShrink: 0 }}
                           />
                         )}
@@ -700,13 +717,13 @@ const BookshelfPage = () => {
                 {/* Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                   <div style={{ flex: 1 }}>
-                    <h2 style={{ margin: 0, color: theme.colors.text, fontSize: 'var(--text-card)', fontWeight: 600, letterSpacing: '-0.01em' }}>{selectedItem.title}</h2>
+                    <h2 style={{ margin: 0, color: theme.colors.text, fontSize: 'var(--text-body)', fontWeight: 600, letterSpacing: '-0.01em', lineHeight: 'var(--leading-snug)' }}>{selectedItem.title}</h2>
                     <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>{(selectedItem.tags || []).map((t, i) => <Badge key={i} theme={theme}>{t}</Badge>)}</div>
                   </div>
 
                   <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                     {selectedItem.url ? <a href={selectedItem.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}>↗</a> : null}
-                    <button onClick={closeDetail} style={{ background: 'none', border: 'none', fontSize: '1.3rem', cursor: 'pointer', color: theme.colors.textSecondary }}>×</button>
+                    <button onClick={closeDetail} style={{ background: 'none', border: 'none', fontSize: '1.1rem', cursor: 'pointer', color: theme.colors.textSecondary }}>×</button>
                   </div>
                 </div>
 
@@ -721,15 +738,15 @@ const BookshelfPage = () => {
 
                 {selectedItem.tldr && (
                   <div>
-                    <div style={{ color: theme.colors.textSecondary, fontWeight: 600, marginBottom: '0.4rem' }}>TL;DR</div>
-                    <div style={{ color: theme.colors.text }}>{selectedItem.tldr}</div>
+                    <div style={panelLabelStyle}>TL;DR</div>
+                    <div style={panelTextStyle}>{selectedItem.tldr}</div>
                   </div>
                 )}
 
                 {selectedItem.thoughts && (
                   <div>
-                    <div style={{ color: theme.colors.textSecondary, fontWeight: 600, marginBottom: '0.4rem' }}>Thoughts</div>
-                    <div style={{ color: theme.colors.text }}>{selectedItem.thoughts}</div>
+                    <div style={panelLabelStyle}>Thoughts</div>
+                    <div style={panelTextStyle}>{selectedItem.thoughts}</div>
                   </div>
                 )}
 
@@ -745,14 +762,14 @@ const BookshelfPage = () => {
                       borderTop: `4px solid ${theme.colors.border}`,
                       borderRight: `4px solid ${theme.colors.border}`,
                       color: theme.colors.text,
-                      fontSize: 'var(--text-body)',
+                      fontSize: 'var(--text-meta)',
                       lineHeight: 'var(--leading-relaxed)',
                       fontFamily: theme.fonts?.base || 'var(--font-ui)',
                       borderRadius: 6,
                     }}
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <div style={{ color: theme.colors.textSecondary, fontSize: 'var(--text-meta)', fontWeight: 600 }}>Notes</div>
+                      <div style={panelLabelStyle}>Notes</div>
                       <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}></div>
                     </div>
 
