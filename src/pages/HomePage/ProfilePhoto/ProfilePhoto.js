@@ -2,12 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 import photo1 from '../../../assets/photo1.png';
 import photo2 from '../../../assets/photo2.png';
-import photo3 from '../../../assets/photo3.png';
-import photo4 from '../../../assets/photo4.jpeg';
-import photo5 from '../../../assets/photo5.jpeg';
+import photo3 from '../../../assets/photo3.jpeg';
+import photo4 from '../../../assets/photo4.png';
+import photo5 from '../../../assets/photo5.png';
+import photo6 from '../../../assets/photo6.png';
+import photo7 from '../../../assets/photo7.png';
 
 const ProfilePhoto = () => {
-    const photos = [photo1, photo2, photo5, photo3, photo4];
+    const photos = [photo1, photo2, photo3, photo4, photo5, photo6, photo7];
 
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [isHovered, setIsHovered] = useState(false);
@@ -16,14 +18,14 @@ const ProfilePhoto = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setIsTransitioning(true);
-            
+
             setTimeout(() => {
-                setCurrentPhotoIndex((prevIndex) => 
+                setCurrentPhotoIndex((prevIndex) =>
                     (prevIndex + 1) % photos.length
                 );
                 setIsTransitioning(false);
             }, 300);
-            
+
         }, 15000);
 
         return () => clearInterval(interval);
@@ -31,9 +33,9 @@ const ProfilePhoto = () => {
 
     const handlePhotoClick = () => {
         setIsTransitioning(true);
-        
+
         setTimeout(() => {
-            setCurrentPhotoIndex((prevIndex) => 
+            setCurrentPhotoIndex((prevIndex) =>
                 (prevIndex + 1) % photos.length
             );
             setIsTransitioning(false);
@@ -66,7 +68,7 @@ const ProfilePhoto = () => {
 
     return (
         <div>
-            <div 
+            <div
                 style={containerStyle}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
