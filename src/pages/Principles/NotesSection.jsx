@@ -1,10 +1,11 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
 import NoteBox from "./NoteBox";
 import PrincipleModal from "./PrincipleModal";
 import personal from "./data/personal.json";
 import ariana from "./data/ariana.json";
 import products from "./data/products.json";
+import { useCarouselModal } from "../Notes/shared/useCarouselModal";
 import "./NotesSection.css";
 
 /** Add or remove category files here — same pattern as the old .txt setup. */
@@ -12,7 +13,6 @@ const NOTES_CONFIG = [personal, ariana, products];
 
 const NotesSection = () => {
   const { theme } = useTheme();
-  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const allNotes = useMemo(() => {
     const loaded = [];
@@ -31,16 +31,17 @@ const NotesSection = () => {
     return loaded;
   }, []);
 
-  const selected = selectedIndex != null ? allNotes[selectedIndex] : null;
+  const {
+    selectedIndex,
+    openAt,
+    close,
+    goPrevious,
+    goNext,
+    hasPrevious,
+    hasNext,
+  } = useCarouselModal(allNotes.length);
 
-  const openAt = (index) => setSelectedIndex(index);
-  const close = () => setSelectedIndex(null);
-  const goPrevious = () => {
-    if (selectedIndex > 0) setSelectedIndex(selectedIndex - 1);
-  };
-  const goNext = () => {
-    if (selectedIndex < allNotes.length - 1) setSelectedIndex(selectedIndex + 1);
-  };
+  const selected = selectedIndex != null ? allNotes[selectedIndex] : null;
 
   return (
     <div
@@ -75,8 +76,8 @@ const NotesSection = () => {
         onClose={close}
         onPrevious={goPrevious}
         onNext={goNext}
-        hasPrevious={selectedIndex > 0}
-        hasNext={selectedIndex != null && selectedIndex < allNotes.length - 1}
+        hasPrevious={hasPrevious}
+        hasNext={hasNext}
         theme={theme}
       />
     </div>

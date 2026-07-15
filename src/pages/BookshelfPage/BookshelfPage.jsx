@@ -12,8 +12,6 @@ import QuoteWidget from './QuoteWidget/QuoteWidget';
 import { titleToSlug } from './bookshelfUtils';
 import { formatPageTitle, usePageTitle } from '../../utils/pageTitle';
 
-export { titleToSlug };
-
 const BookshelfPage = () => {
   const { theme } = useTheme();
 

@@ -1,1 +1,0 @@
-export { default as BirthdayToggle } from './Toggles/BirthdayToggle';

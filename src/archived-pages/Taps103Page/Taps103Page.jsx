@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
-import profilePhoto from "../../assets/photo3.JPG";
+import profilePhoto from "../../assets/photo3.jpeg";
 import MarkdownMath from "../../components/MarkdownMath/MarkdownMath";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialLight, materialDark } from "react-syntax-highlighter/dist/esm/styles/prism";

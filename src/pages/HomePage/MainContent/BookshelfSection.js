@@ -4,17 +4,7 @@ import { FaStar } from 'react-icons/fa';
 import bookshelfData from '../../../pages/BookshelfPage/data/bookshelfData';
 import { useNavigate } from 'react-router-dom';
 import Badge from '../../../pages/BookshelfPage/Badge';
-
-const titleToSlug = (title) => 
-  encodeURIComponent(
-    title
-      .toLowerCase()
-      .normalize("NFD")
-      .replace(/[\u0300-\u036f]/g, '')
-      .replace(/[^a-z0-9\s-]/g, '')
-      .trim()
-      .replace(/\s+/g, '-')
-  );
+import { titleToSlug } from '../../../pages/BookshelfPage/bookshelfUtils';
 
 const BookshelfSection = () => {
   const { theme } = useTheme();
