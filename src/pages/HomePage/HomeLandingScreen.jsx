@@ -3,6 +3,7 @@ import { useTheme } from "../../components/ThemeContext/ThemeContext";
 import {
   HOME_INTRO,
   HOME_INTRO_SKIP,
+  POLAROID_SETTLE_MS,
   getCondensedSwapMs,
   getHomeIntroFadeStartMs,
 } from "./homeIntroTiming";
@@ -36,6 +37,7 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
   const isFadingRef = useRef(false);
   const introReadyForFadeRef = useRef(false);
   const imagesReadyRef = useRef(false);
+  const polaroidsSettledRef = useRef(false);
   const activeTimingsRef = useRef(HOME_INTRO);
   const timersRef = useRef([]);
 
@@ -69,7 +71,12 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
   const tryBeginFade = useCallback(
     ({ force = false } = {}) => {
       if (isFadingRef.current) return;
-      if (!force && (!introReadyForFadeRef.current || !imagesReadyRef.current)) {
+      if (
+        !force &&
+        (!introReadyForFadeRef.current ||
+          !imagesReadyRef.current ||
+          !polaroidsSettledRef.current)
+      ) {
         return;
       }
       const timings = activeTimingsRef.current;
@@ -81,14 +88,18 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
 
   const handleImagesReady = useCallback(() => {
     imagesReadyRef.current = true;
-    tryBeginFade();
-  }, [tryBeginFade]);
+    scheduleTimeout(() => {
+      polaroidsSettledRef.current = true;
+      tryBeginFade();
+    }, POLAROID_SETTLE_MS);
+  }, [scheduleTimeout, tryBeginFade]);
 
   const runNormalIntro = useCallback(() => {
     clearTimers();
     isFadingRef.current = false;
     introReadyForFadeRef.current = false;
     imagesReadyRef.current = false;
+    polaroidsSettledRef.current = false;
     setActiveTimings(HOME_INTRO);
 
     let charIndex = 0;

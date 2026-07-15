@@ -10,7 +10,7 @@ const pageShellStyle = {
 };
 
 /** Slug/detail routes share one key so only top-level pages animate. */
-export function getTransitionKey(pathname) {
+function getTransitionKey(pathname) {
   if (pathname.startsWith("/recent-reads")) return "/recent-reads";
   return pathname;
 }

@@ -3,6 +3,7 @@ import { useTheme } from "../../components/ThemeContext/ThemeContext";
 import { formatPageTitle, usePageTitle } from "../../utils/pageTitle";
 import BackHomeLink from "../../components/Navigation/BackHomeLink";
 import NotesSection from "../Principles/NotesSection";
+import LifeGoalsSection from "../LifeGoals/LifeGoalsSection";
 import AboutCarousel from "./AboutCarousel";
 import "./AboutPage.css";
 
@@ -100,7 +101,8 @@ const AboutPage = () => {
         </section>
       </main>
 
-      <section className="about-page__principles" aria-label="Life advice notes">
+      <section className="about-page__principles" aria-label="Life goals and life advice notes">
+        <LifeGoalsSection />
         <NotesSection />
       </section>
     </div>

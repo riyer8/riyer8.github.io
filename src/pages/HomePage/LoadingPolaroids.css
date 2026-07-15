@@ -15,10 +15,15 @@
   border-radius: 2px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
   opacity: 0;
+  visibility: hidden;
   transform: rotate(var(--polaroid-rotate)) scale(0.82) translateY(12px);
+  will-change: transform, opacity;
+}
+
+.loading-polaroid--visible {
+  visibility: visible;
   animation: polaroid-drop 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
   animation-delay: var(--polaroid-delay);
-  will-change: transform, opacity;
 }
 
 .loading-polaroid__img {
@@ -53,8 +58,9 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .loading-polaroid {
+  .loading-polaroid--visible {
     opacity: 1;
+    visibility: visible;
     transform: rotate(var(--polaroid-rotate));
     animation: none;
   }

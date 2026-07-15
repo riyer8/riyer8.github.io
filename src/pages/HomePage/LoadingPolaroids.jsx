@@ -1,27 +1,39 @@
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./LoadingPolaroids.css";
 
-function preloadImage(src) {
-  return new Promise((resolve) => {
-    const img = new Image();
-    img.onload = () => resolve(true);
-    img.onerror = () => resolve(false);
-    img.src = src;
-  });
-}
-
-/** Grab every image dropped into src/assets/loading_page (webpack require.context). */
+/** Profile photos plus any extras in src/assets/loading_page (e.g. bookshelf, alt crops). */
 function loadFolderImages() {
+  const toUrls = (ctx) =>
+    ctx.keys().map((key) => ctx(key)).map((m) => (m && m.default) || m);
+
+  const images = [];
   try {
-    const ctx = require.context(
-      "../../assets/loading_page",
-      false,
-      /\.(png|jpe?g|gif|webp|avif)$/i
+    images.push(
+      ...toUrls(
+        require.context(
+          "../../assets",
+          false,
+          /\.(png|jpe?g|gif|webp|avif)$/i
+        )
+      )
     );
-    return ctx.keys().map((key) => ctx(key)).map((m) => (m && m.default) || m);
   } catch (e) {
-    return [];
+    /* ignore */
   }
+  try {
+    images.push(
+      ...toUrls(
+        require.context(
+          "../../assets/loading_page",
+          false,
+          /\.(png|jpe?g|gif|webp|avif)$/i
+        )
+      )
+    );
+  } catch (e) {
+    /* ignore */
+  }
+  return images;
 }
 
 const ALL_IMAGES = loadFolderImages();
@@ -54,7 +66,8 @@ function shuffle(arr) {
 }
 
 const LoadingPolaroids = ({ onAllImagesLoaded }) => {
-  const [imagesReady, setImagesReady] = useState(false);
+  const [loadedIndices, setLoadedIndices] = useState(() => new Set());
+  const notifiedRef = useRef(false);
   const onAllImagesLoadedRef = useRef(onAllImagesLoaded);
 
   useEffect(() => {
@@ -81,28 +94,36 @@ const LoadingPolaroids = ({ onAllImagesLoaded }) => {
     });
   }, []);
 
-  useEffect(() => {
-    if (!items.length) {
-      setImagesReady(false);
-      onAllImagesLoadedRef.current?.();
-      return undefined;
-    }
-
-    let cancelled = false;
-    setImagesReady(false);
-
-    Promise.all(items.map((item) => preloadImage(item.src))).then(() => {
-      if (cancelled) return;
-      setImagesReady(true);
-      onAllImagesLoadedRef.current?.();
+  const markLoaded = useCallback((index) => {
+    setLoadedIndices((prev) => {
+      if (prev.has(index)) return prev;
+      const next = new Set(prev);
+      next.add(index);
+      return next;
     });
+  }, []);
 
-    return () => {
-      cancelled = true;
-    };
+  useEffect(() => {
+    notifiedRef.current = false;
+    setLoadedIndices(new Set());
   }, [items]);
 
-  if (!items.length || !imagesReady) return null;
+  useEffect(() => {
+    if (!items.length) {
+      if (!notifiedRef.current) {
+        notifiedRef.current = true;
+        onAllImagesLoadedRef.current?.();
+      }
+      return;
+    }
+
+    if (loadedIndices.size >= items.length && !notifiedRef.current) {
+      notifiedRef.current = true;
+      onAllImagesLoadedRef.current?.();
+    }
+  }, [items.length, loadedIndices]);
+
+  if (!items.length) return null;
 
   return (
     <div className="loading-polaroids" aria-hidden="true">
@@ -110,7 +131,9 @@ const LoadingPolaroids = ({ onAllImagesLoaded }) => {
         <figure
           // eslint-disable-next-line react/no-array-index-key
           key={i}
-          className="loading-polaroid"
+          className={`loading-polaroid${
+            loadedIndices.has(i) ? " loading-polaroid--visible" : ""
+          }`}
           style={{
             top: item.top,
             left: item.left,
@@ -125,6 +148,8 @@ const LoadingPolaroids = ({ onAllImagesLoaded }) => {
             loading="eager"
             decoding="async"
             draggable={false}
+            onLoad={() => markLoaded(i)}
+            onError={() => markLoaded(i)}
           />
         </figure>
       ))}

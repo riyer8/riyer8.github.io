@@ -7,8 +7,6 @@ import { Sidebar, MainContent } from "./pages/HomePage";
 import HomeLandingScreen from "./pages/HomePage/HomeLandingScreen";
 import { HOME_INTRO } from "./pages/HomePage/homeIntroTiming";
 import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
-import Year2026Page from "./pages/2026Page/Year2026Page";
-// import WritingsPage from "./pages/WritingPage/WritingsPage";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
@@ -115,7 +113,6 @@ const App = () => {
           <Route path="/recent-reads" element={<BookshelfPage />} />
           <Route path="/recent-reads/:slug" element={<BookshelfPage />} />
           <Route path="/ramya" element={<AboutPage />} />
-          <Route path="/2026" element={<Year2026Page />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
