@@ -1,24 +1,20 @@
 {
   "files": {
-    "main.css": "/static/css/main.eab6c7a8.css",
-    "main.js": "/static/js/main.047ffcb3.js",
+    "main.css": "/static/css/main.ef179ae3.css",
+    "main.js": "/static/js/main.592e5d4d.js",
     "static/media/waterfall.JPG": "/static/media/waterfall.7e491dc9e65c5ea478d8.JPG",
     "static/media/peak.jpg": "/static/media/peak.cda1a0e69be73bdd8cc9.jpg",
-    "static/media/photo3.jpeg": "/static/media/photo3.848ee310bf05c847396c.jpeg",
     "static/media/bookshelf.png": "/static/media/bookshelf.c98aa6c7b52893b21e82.png",
-    "static/media/photo6.png": "/static/media/photo6.5a1e1441da5559a12927.png",
-    "static/media/photo1.png": "/static/media/photo1.e45aebfc4096e38b3169.png",
     "static/media/free.jpg": "/static/media/free.abd8bd2fec0ab35479f7.jpg",
-    "static/media/photo7.png": "/static/media/photo7.ddd0bb391645b91be4f5.png",
-    "static/media/photo2.png": "/static/media/photo2.d4984252660984113f43.png",
+    "static/media/photo7.png": "/static/media/photo7.584c6a5bfc527f75e0ff.png",
     "static/media/photo4.png": "/static/media/photo4.e2d0dfffc0e4c44bd045.png",
     "static/media/photo5.png": "/static/media/photo5.081da57b54977c81ac52.png",
     "index.html": "/index.html",
-    "main.eab6c7a8.css.map": "/static/css/main.eab6c7a8.css.map",
-    "main.047ffcb3.js.map": "/static/js/main.047ffcb3.js.map"
+    "main.ef179ae3.css.map": "/static/css/main.ef179ae3.css.map",
+    "main.592e5d4d.js.map": "/static/js/main.592e5d4d.js.map"
   },
   "entrypoints": [
-    "static/css/main.eab6c7a8.css",
-    "static/js/main.047ffcb3.js"
+    "static/css/main.ef179ae3.css",
+    "static/js/main.592e5d4d.js"
   ]
 }
