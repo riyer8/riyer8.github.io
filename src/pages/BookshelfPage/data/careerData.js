@@ -9,7 +9,7 @@ const careerData = [
     medium: "essay",
     tags: ['career', 'management'],
     tldr: "Radical Candor is the intersection of personally caring for someone and challenging them directly, allowing for the most direct feedback.",
-    thoughts: "A really an interesting way to think about providing (and receiving) feedback.",
+    thoughts: "A really interesting way to think about providing (and receiving) feedback.",
     notes: `
 This article was actually recommended during my CS 183E class at Stanford about effective leadership. I think the frameworks addressed here are incredibly important, especially to enhance a culture of providing helpful feedback.
 
@@ -63,8 +63,8 @@ Hedges provides a model to get true buy-in:
 
 ### Expose the idea to outside criticism - and acknowledge it.
 - Hedges quotes Kotter noting that "if people have no opinions, no objections, and no emotions, it usually means they don't care."
-- This involves **productive advocacy**. Here, you share what you've thought about but acknowledge that it's from a limited perspective and take genuine interest in others' opinions.
-- We should also practice **productive inquiry**. This is how we engage and present ourselves with others via attentiveness and curiosity.
+- This involves **productive advocacy**. Here, you share what you've thought about but acknowledge that it's from a limited perspective and take a genuine interest in others' opinions.
+- We should also practice **productive inquiry**. This is how we engage with and present ourselves to others via attentiveness and curiosity.
 - Acknowledge others' criticism to gain a mutual understanding.
 
 ### Leverage others' feedback for improvement to achieve your end goal.

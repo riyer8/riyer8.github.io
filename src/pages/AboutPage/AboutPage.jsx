@@ -1,6 +1,13 @@
 import React from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
-import { formatPageTitle, usePageTitle } from "../../utils/pageTitle";
+import { SITE } from "../../seo/siteMetadata";
+import {
+  formatPageTitle,
+  makeBreadcrumbSchema,
+  personSchema,
+  usePageMetadata,
+  websiteSchema,
+} from "../../utils/pageTitle";
 import BackHomeLink from "../../components/Navigation/BackHomeLink";
 import NotesSection from "../Principles/NotesSection";
 import LifeGoalsSection from "../LifeGoals/LifeGoalsSection";
@@ -20,10 +27,32 @@ const SOCIAL_LINKS = [
 ];
 
 const PAGE_TITLE = formatPageTitle("about");
+const ABOUT_SCHEMA = [
+  websiteSchema,
+  personSchema,
+  {
+    "@type": "ProfilePage",
+    "@id": `${SITE.url}/ramya/#profile`,
+    url: `${SITE.url}/ramya/`,
+    name: "About Ramya Iyer",
+    mainEntity: { "@id": `${SITE.url}/#person` },
+    isPartOf: { "@id": `${SITE.url}/#website` },
+  },
+  makeBreadcrumbSchema([
+    { name: "Home", path: "/" },
+    { name: "About Ramya Iyer", path: "/ramya" },
+  ]),
+];
 
 const AboutPage = () => {
   const { theme } = useTheme();
-  usePageTitle(PAGE_TITLE);
+  usePageMetadata({
+    title: PAGE_TITLE,
+    description: SITE.aboutDescription,
+    pathname: "/ramya",
+    type: "profile",
+    schema: ABOUT_SCHEMA,
+  });
 
   return (
     <div

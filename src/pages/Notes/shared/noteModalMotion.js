@@ -1,4 +1,4 @@
-export const NOTE_MODAL_EASE = [0.4, 0, 0.2, 1];
+const NOTE_MODAL_EASE = [0.4, 0, 0.2, 1];
 
 export const noteModalContentVariants = {
   enter: {

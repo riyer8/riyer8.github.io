@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import StatusWidget from '../StatusWidget/StatusWidget';
 import MobileSidebar from '../Sidebar/MobileSidebar';
 import BookshelfSection from './BookshelfSection';
@@ -8,24 +8,13 @@ import { FaBars } from 'react-icons/fa';
 const MainContent = () => {
     const { theme } = useTheme();
     const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
-    const [screenSize, setScreenSize] = useState({
-        width: window.innerWidth,
-        isMobile: window.innerWidth <= 768,
-        isTablet: window.innerWidth > 768 && window.innerWidth <= 1024,
-        isDesktop: window.innerWidth > 1024,
-        shouldCollapseSidebar: window.innerWidth <= 900,
-    });
+    const [shouldCollapseSidebar, setShouldCollapseSidebar] = useState(
+        window.innerWidth <= 900
+    );
 
     useEffect(() => {
         const checkScreenSize = () => {
-            const width = window.innerWidth;
-            setScreenSize({
-                width,
-                isMobile: width <= 768,
-                isTablet: width > 768 && width <= 1024,
-                isDesktop: width > 1024,
-                shouldCollapseSidebar: width <= 900,
-            });
+            setShouldCollapseSidebar(window.innerWidth <= 900);
         };
 
         const debouncedResize = (() => {
@@ -40,8 +29,6 @@ const MainContent = () => {
         window.addEventListener('resize', debouncedResize);
         return () => window.removeEventListener('resize', debouncedResize);
     }, []);
-
-    const { shouldCollapseSidebar } = screenSize;
 
     const openMobileSidebar = () => setIsMobileSidebarOpen(true);
     const closeMobileSidebar = () => setIsMobileSidebarOpen(false);
@@ -97,8 +84,7 @@ const MainContent = () => {
     };
 
     return (
-        <>
-            <div style={pageLayoutStyle}>
+        <main style={pageLayoutStyle}>
                 <div style={mainColumnStyle}>
                     <div style={centeredContentStyle}>
                         <div style={mobileHeaderStyle}>
@@ -125,8 +111,7 @@ const MainContent = () => {
                         onClose={closeMobileSidebar}
                     />
                 )}
-            </div>
-        </>
+        </main>
     );
 };
 

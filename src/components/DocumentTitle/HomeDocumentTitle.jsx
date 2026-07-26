@@ -1,8 +1,19 @@
-import { SITE_TITLE, usePageTitle } from "../../utils/pageTitle";
+import { SITE } from "../../seo/siteMetadata";
+import {
+  personSchema,
+  usePageMetadata,
+  websiteSchema,
+} from "../../utils/pageTitle";
 
-/** Sets the tab title for the home route (render inside `/` only). */
+const HOME_SCHEMA = [websiteSchema, personSchema];
+
 const HomeDocumentTitle = () => {
-  usePageTitle(SITE_TITLE);
+  usePageMetadata({
+    title: "Ramya Iyer",
+    description: SITE.description,
+    pathname: "/",
+    schema: HOME_SCHEMA,
+  });
   return null;
 };
 

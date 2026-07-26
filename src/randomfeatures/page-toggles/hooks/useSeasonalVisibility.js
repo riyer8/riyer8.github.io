@@ -27,4 +27,3 @@ export const useSeasonalVisibility = ({
     return today >= start && today <= end;
   }, [month, day, rangeDays, exact]);
 };
-export default useSeasonalVisibility;

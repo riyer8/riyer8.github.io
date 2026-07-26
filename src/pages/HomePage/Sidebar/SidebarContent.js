@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router';
 import ProfilePhoto from '../ProfilePhoto';
 import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 import { RiTwitterXLine } from 'react-icons/ri';
@@ -9,7 +9,6 @@ import BrandName from '../../../components/BrandName/BrandName';
 
 const SidebarContent = ({ compact = false }) => {
     const { theme } = useTheme();
-    const navigate = useNavigate();
     const taglineRef = useRef(null);
     const nameRef = useRef(null);
     const containerRef = useRef(null);
@@ -135,9 +134,14 @@ const SidebarContent = ({ compact = false }) => {
                     style={nameStyle}
                     onMouseEnter={() => setIsHoveringName(true)}
                     onMouseLeave={() => setIsHoveringName(false)}
-                    onClick={() => navigate('/ramya')}
                 >
-                    <BrandName />
+                    <Link
+                        to="/ramya"
+                        aria-label="About Ramya Iyer"
+                        style={{ color: 'inherit', textDecoration: 'none' }}
+                    >
+                        <BrandName />
+                    </Link>
                 </h1>
 
                 <div ref={taglineRef} style={taglineStyle}>
@@ -151,6 +155,9 @@ const SidebarContent = ({ compact = false }) => {
                 <div style={socialLinksStyle}>
                     <a
                         href="https://github.com/riyer8"
+                        aria-label="Ramya Iyer on GitHub"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={socialLinkStyle}
                         onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
                         onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
@@ -159,6 +166,9 @@ const SidebarContent = ({ compact = false }) => {
                     </a>
                     <a
                         href="https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en"
+                        aria-label="Ramya Iyer on Google Scholar"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={socialLinkStyle}
                         onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
                         onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
@@ -167,6 +177,9 @@ const SidebarContent = ({ compact = false }) => {
                     </a>
                     <a
                         href="https://ramyai.substack.com/"
+                        aria-label="Ramya Iyer on Substack"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={socialLinkStyle}
                         onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
                         onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
@@ -175,6 +188,9 @@ const SidebarContent = ({ compact = false }) => {
                     </a>
                     <a
                         href="https://www.linkedin.com/in/ramya-i/"
+                        aria-label="Ramya Iyer on LinkedIn"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={socialLinkStyle}
                         onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
                         onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
@@ -183,6 +199,9 @@ const SidebarContent = ({ compact = false }) => {
                     </a>
                     <a
                         href="https://x.com/ramya_iyer1"
+                        aria-label="Ramya Iyer on X"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         style={socialLinkStyle}
                         onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
                         onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
@@ -191,6 +210,7 @@ const SidebarContent = ({ compact = false }) => {
                     </a>
                     <a
                         href="mailto:ramya1@stanford.edu"
+                        aria-label="Email Ramya Iyer"
                         style={socialLinkStyle}
                         onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
                         onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
