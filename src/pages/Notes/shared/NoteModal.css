@@ -123,10 +123,6 @@
   will-change: opacity;
 }
 
-.note-modal__card--compact {
-  justify-content: center;
-}
-
 .note-modal__body-section {
   flex: 1;
   min-height: 0;

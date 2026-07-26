@@ -4,35 +4,45 @@ const archiveData = [
   {
     title: "Toward Computational Taste: LLMs, Aesthetics & Judgment",
     author: "Amber Atherton",
-    archives: true,
     url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
     dateAdded: "2025-12-22",
     category: "science",
     medium: "essay",
-    tldr: "How does taste fit into the world of LLMs and AI? How can LLMs learn taste (and should they)?",
+    tldr: "Models are able to optimize on taste.",
     thoughts: "In a way, we want LLMs to be objectively correct. But what if we spin it around so that LLMs can learn our subjective preferences and have their own taste that influences their answers?",
-    tags: ['taste', 'LLMs', 'personalization', 'consumer-behavior'],
+    tags: ['taste', 'LLMs', 'personalization', 'AI'],
     notes: `
 :::figure
 ![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/taste.png)
 This is the image that can be found in the article, describing the methods of taste in different POVs.
 :::
 
-Like many consumer-related things (e.g. fashion, interests, music, etc.) taste is constantly evolving - there's never a perfect fit. Are there methods that we can employ to follow that trend? Are there patterns among these trends to develop a more dynamic taste algorithm?
+Like many consumer-related things (e.g. fashion, interests, music, etc.), taste is constantly evolving - there's never a perfect fit. Are there methods that we can employ to follow that trend? Are there patterns among these trends to develop a more dynamic taste algorithm?
 
 > This is what makes computational taste so fascinating: it forces us to ask whether machines can model something that is designed to change.
 
 > It means taste is no longer just something people express, it’s something models optimize for.
 
-We can build LLMs that have taste: this can be via reward modeling from signals that humans provide along with explicit preference data through LoRe (Low-Rank Reward Modeling).
+We can build LLMs that have taste via reward modeling from signals that humans provide + with explicit preference data through LoRe (Low-Rank Reward Modeling).
+
+:::sidenote
+[LoRe (Low-Rank Reward Modeling)](https://arxiv.org/abs/2504.14439): an AI framework that is designed to personalize LLMs to individual user preferences using a shared, low-dimensional preference space.
+
+LoRe compares to other recommendation engines like collaborative ranking (CR).
+
+*LoRe seems to be stuck at an infrastructure bottleneck. Companies would need to build a pipeline for a continuous, real-time database that has millions of individual user vectors for every single action.*
+
+LoRe will probably not be productionized as itself, but the underlying concept and foundation would be similar to how multi-user, multi-preference AI systems are built at scale.
+:::
+
 
 This can also lead to "Taste-as-a-Service APIs" that power personalized feeds across industries.
 
 As mentioned in the article, models like TAPO (Textual Aesthetics Preference Optimization) and G-Eval are pioneering ways to train LLMs on human-labeled taste preferences.
 
-This means not *just* understanding what the person is replying but how they are replying to determine their taste / judgement embedding.
+This means not *just* understanding what the person is replying with but *how* they are replying to determine their taste / judgment embedding.
 
-This may also include understanding how **your friends** taste fingerprint is evolving and training models to predict how your taste may evolve, critical data for businesses.
+This may also include understanding how **your friends'** taste fingerprint is evolving and training models to predict how your taste may evolve, critical data for businesses.
 
 > Emerging methods like LoRe show how to solve this: by modeling individual preferences as combinations of shared basis functions, you can personalize LLMs to each user’s taste with just a handful of examples. This sidesteps the need for full fine-tuning and avoids hardcoding users into static categories.
     `
@@ -85,8 +95,8 @@ How to convert your own interests into a business. Image found in the original a
     medium: "essay",
     archives: true,
     tags: ["improv", "growth", 'creativity'],
-    tldr: "de Jong explores the richness of improv from the actors and the audience perspective.",
-    thoughts: "I truly love the depth in which this essay describes improvisers and the ways in which audiences can extract away the hard work used to make scenes natural and believable.",
+    tldr: "de Jong explores the richness of improv from the actors' and the audience's perspectives.",
+    thoughts: "I truly love the depth with which this essay describes improvisers and the ways in which audiences can abstract away the hard work used to make scenes natural and believable.",
     notes: `
 
 I just really like this quote.
@@ -111,7 +121,7 @@ It's not merely just the words and actions used, but also understanding the char
 The paradoxical nature of acting and improvising.
 > One of the main realizations I had over the course of this work was that when improvisations are done well, they feel well-written, and when text-work is acted well, it feels improvised. This submersion between both worlds isn’t surprising. In both, the aim is to fool the audience, essentially, into believing something that’s not actually happening.
 
-Just another quote that I really loved about his distinction between great improvisers and actors
+Just another quote that I really loved about his distinction between great improvisers and actors.
 > Improvisation also helps you to develop a sense of the “first time,” one of the _sine qua nons_ of acting. An audience should not sense that it is witnessing an entertainment which has been very carefully rehearsed for its delectation and applause, but rather that it is seeing something that is transpiring at that very second for the first time. That quality of the first time, unfortunately, is very rare among actors. It requires knowing what you’re doing, plus the ability to forget it and then to find it again when you get on stage. The truly great actors have that gift.’
 `
   },

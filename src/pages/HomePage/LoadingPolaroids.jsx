@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./LoadingPolaroids.css";
 
 /** Profile photos plus any extras in src/assets/loading_page (e.g. bookshelf, alt crops). */
@@ -102,11 +102,6 @@ const LoadingPolaroids = ({ onAllImagesLoaded }) => {
       return next;
     });
   }, []);
-
-  useEffect(() => {
-    notifiedRef.current = false;
-    setLoadedIndices(new Set());
-  }, [items]);
 
   useEffect(() => {
     if (!items.length) {

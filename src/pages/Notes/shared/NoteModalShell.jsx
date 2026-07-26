@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
@@ -11,7 +11,6 @@ const NoteModalShell = ({
   isOpen,
   contentKey,
   titleId,
-  ariaLabel,
   labels,
   themeVars,
   panelClassName = "",
