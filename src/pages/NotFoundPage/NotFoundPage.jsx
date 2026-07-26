@@ -1,14 +1,23 @@
 import React from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
 import BackHomeLink from "../../components/Navigation/BackHomeLink";
-import { usePageTitle } from "../../utils/pageTitle";
+import { useLocation } from "react-router";
+import { formatPageTitle, usePageMetadata } from "../../utils/pageTitle";
 import "./NotFoundPage.css";
 
-const PAGE_TITLE = "404 | ramya iyer";
+const PAGE_TITLE = formatPageTitle("page not found");
 
 const NotFoundPage = () => {
   const { theme } = useTheme();
-  usePageTitle(PAGE_TITLE);
+  const location = useLocation();
+  usePageMetadata({
+    title: PAGE_TITLE,
+    description:
+      "This page could not be found on Ramya Iyer's site. Return home or browse her recent reading notes.",
+    pathname: location.pathname,
+    robots: "noindex, nofollow",
+    includeCanonical: false,
+  });
 
   return (
     <div

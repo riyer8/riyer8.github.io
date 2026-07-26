@@ -241,7 +241,7 @@ const bookData = [
     archives: true,
     medium: "book",
     tags: ["decisions", "uncertainty", "poker", "probabilities"],
-    tldr: "🎲 Life is better modeled as a poker game, where this is much uncertainty about what is coming next.",
+    tldr: "🎲 Life is better modeled as a poker game, where there is much uncertainty about what is coming next.",
     thoughts: "Such a nice parallel between life and poker, thinking in probabilities, and decisions.",
     notes: `
 **Introduction: Why This Isn’t A Poker Book**
@@ -385,9 +385,9 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
 
 This in fact is quite difficult for the brain to do and after a while, it will default to one or the other. It’s important to train it to process both especially within the first five seconds of delivering the stimulus (a question) and perceiving the answer
 
-**The idea here is that if you want to know if someone is lying, you need to ignore truthful behavior so that it’s no processed.**
+**The idea here is that if you want to know if someone is lying, you need to ignore truthful behavior so that it’s not processed.**
 
-Often times, people will provide “truthful statements” to suppress answering the directed question since they don’t want to put themselves in an uncomfortable spot.
+Oftentimes, people will provide “truthful statements” to suppress answering the directed question since they don’t want to put themselves in an uncomfortable spot.
 
 **All the lies that have ever been told or ever will be told fall into three categories, or strategies: lies of commission, lies of omission, and lies of influence.**
 
@@ -415,15 +415,15 @@ There are four main characters in the story:
 - Two mice: Sniff and Scurry
     - Sniff: able to sniff out change early
     - Scurry: quick to adapt to change
-- Two littlepeople: Hem and Haw
+- Two little people: Hem and Haw
     - Hem: resists change due to fear
     - Haw: learns to adapt in time when he sees changing can lead to something better
 
 The story begins where all four characters live in a maze and find one reliable source of cheese. However, one day, after eating all the cheese, they find that it is gone. The two mice, who have been noticing changes in the quality and quantity of cheese at that station, were able to quickly adapt and go back into the maze to find a new source.
 
-**The littlepeople were not able to adapt as quickly.**
+**The little people were not able to adapt as quickly.**
 
-They had settled their life around this one source of cheese and were not prepared to leave it. Hem resists change, fueled with anger and denial of why this resource has been depleted and anticipates that it will come back. The comfort of that station overpowers his desire to find a new one.
+They had settled their lives around this one source of cheese and were not prepared to leave it. Hem resists change, fueled with anger and denial of why this resource has been depleted and anticipates that it will come back. The comfort of that station overpowers his desire to find a new one.
 
 Haw, on the other hand, also initially resists change, but eventually comes to terms with the depleted resource and goes into the maze to find a new source of cheese. Along the way, he learns many lessons about change, which he writes on the walls of the maze so that Hem can learn from them if he chooses to follow.
 

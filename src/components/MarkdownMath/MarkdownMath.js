@@ -74,18 +74,9 @@ const preprocessFigures = (text) => {
 const preprocessCustomQuoteBlocks = (text) => {
   if (!text) return text;
 
-  return text.replace(
-    /:::quote\s+([\s\S]*?)\s+:::/g,
-    (_, content) => {
+  const renderCallout = (content, className, tagName) => {
       let inner = content.trim();
 
-      // 🔥 Prevent ordered list parsing
-      inner = inner.replace(/^(\d+)\.\s+/gm, '$1\\. ');
-
-      // Then parse markdown
-      inner = window.marked.parse(inner);
-
-      // Parse markdown inside the quote block
       if (typeof window !== 'undefined' && window.marked) {
         try {
           inner = window.marked.parse(inner);
@@ -96,37 +87,52 @@ const preprocessCustomQuoteBlocks = (text) => {
         inner = inner.replace(/\n/g, '<br/>');
       }
 
-      return `
-<blockquote class="custom-quote">
+      return `<${tagName} class="${className}">
   ${inner}
-</blockquote>
-`;
-    }
+</${tagName}>`;
+  };
+
+  text = text.replace(
+    /:::quote\s+([\s\S]*?)\s+:::/g,
+    (_, content) => renderCallout(content, 'custom-quote', 'blockquote')
+  );
+
+  return text.replace(
+    /:::sidenote\s+([\s\S]*?)\s+:::/g,
+    (_, content) => renderCallout(content, 'custom-sidenote', 'aside')
   );
 };
 
 
-// Render markdown -> HTML while preserving math
-const renderMarkdownWithKatexPlaceholders = (text) => {
-  if (!text) return '';
-
+// Protect math before any Markdown parsing.
+const extractMathPlaceholders = (text) => {
   const placeholders = [];
   let nextId = 0;
 
   // Display math $$...$$
   text = text.replace(/\$\$([\s\S]+?)\$\$/g, (m, expr) => {
-    const id = `__MATH_DISPLAY_${nextId++}__`;
+    const id = `MATHPLACEHOLDER${nextId++}TOKEN`;
     placeholders.push({ id, expr, display: true });
     return id;
   });
 
   // Inline math $...$
   text = text.replace(/\$([^$\n]+?)\$/g, (m, expr) => {
-    const id = `__MATH_INLINE_${nextId++}__`;
+    const id = `MATHPLACEHOLDER${nextId++}TOKEN`;
     placeholders.push({ id, expr, display: false });
     return id;
   });
 
+  return { text, placeholders };
+};
+
+const escapeHtml = (value) => value
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+
+// Render markdown -> HTML, then restore the protected math.
+const renderMarkdownWithKatexPlaceholders = (text, placeholders) => {
   let html;
   if (typeof window !== 'undefined' && window.marked) {
     try {
@@ -141,9 +147,10 @@ const renderMarkdownWithKatexPlaceholders = (text) => {
 
   // Restore math placeholders
   placeholders.forEach(p => {
+    const expression = escapeHtml(p.expr);
     const span = p.display
-      ? `<span data-katex-display>${p.expr}</span>`
-      : `<span data-katex-inline>${p.expr}</span>`;
+      ? `<span data-katex-display>${expression}</span>`
+      : `<span data-katex-inline>${expression}</span>`;
     html = html.split(p.id).join(span);
   });
 
@@ -191,10 +198,13 @@ const MarkdownMath = ({ text }) => {
   useEffect(() => {
     if (!ready) return;
 
+    const { text: textWithMathPlaceholders, placeholders } =
+      extractMathPlaceholders(text || '');
     const parsed = renderMarkdownWithKatexPlaceholders(
       preprocessCustomQuoteBlocks(
-        preprocessFigures(text)
-      )
+        preprocessFigures(textWithMathPlaceholders)
+      ),
+      placeholders
     );
     let sanitized = parsed;
 
@@ -229,18 +239,75 @@ const MarkdownMath = ({ text }) => {
     #markdown-math-root .custom-quote { 
       white-space: normal; 
       word-break: break-word; 
-      border-left: 4px solid ${theme.colors.accent};
-      background: ${theme.isDarkMode ? 'rgba(28, 27, 27, 0.05)' : 'rgba(0,0,0,0.04)'};
+      border: 1px solid ${theme.isDarkMode ? 'rgba(255, 179, 71, 0.38)' : 'transparent'};
+      border-left: 4px solid ${theme.isDarkMode ? '#FFB347' : theme.colors.accent};
+      background: ${theme.isDarkMode ? 'rgba(255, 179, 71, 0.14)' : 'rgba(0,0,0,0.04)'};
+      box-shadow: ${theme.isDarkMode ? 'inset 0 0 18px rgba(255, 179, 71, 0.04)' : 'none'};
       padding: 10px 12px;
       margin: 0.5em 0;
       border-radius: 8px;
       color: ${theme.colors.text};
     }
     #markdown-math-root blockquote p,
-    #markdown-math-root .custom-quote p {
-      margin: 0;
+    #markdown-math-root .custom-quote p,
+    #markdown-math-root .custom-sidenote p {
+      margin: 1em 0;
     }
-    #markdown-math-root .katex { max-width: 100%; overflow-wrap: anywhere; word-break: break-word; }
+    #markdown-math-root blockquote p:first-child,
+    #markdown-math-root .custom-quote p:first-child,
+    #markdown-math-root .custom-sidenote p:first-child {
+      margin-top: 0;
+    }
+    #markdown-math-root blockquote p:last-child,
+    #markdown-math-root .custom-quote p:last-child,
+    #markdown-math-root .custom-sidenote p:last-child {
+      margin-bottom: 0;
+    }
+    #markdown-math-root blockquote::after,
+    #markdown-math-root .custom-quote::after,
+    #markdown-math-root .custom-sidenote::after {
+      display: block;
+      margin-top: 0.65em;
+      font-size: 0.65em;
+      line-height: 1;
+      text-align: right;
+      letter-spacing: 0.04em;
+      opacity: 0.6;
+    }
+    #markdown-math-root blockquote::after,
+    #markdown-math-root .custom-quote::after {
+      content: "Quote from Article";
+      color: ${theme.isDarkMode ? '#FFCA80' : theme.colors.textSecondary};
+      font-weight: 700;
+    }
+    #markdown-math-root .custom-sidenote {
+      white-space: normal;
+      word-break: break-word;
+      border: 1px solid ${theme.isDarkMode ? 'rgba(102, 205, 189, 0.4)' : 'transparent'};
+      border-left: 4px solid ${theme.isDarkMode ? '#66cdbd' : '#2a9d8f'};
+      background: ${theme.isDarkMode ? 'rgba(102, 205, 189, 0.15)' : 'rgba(42, 157, 143, 0.09)'};
+      box-shadow: ${theme.isDarkMode ? 'inset 0 0 18px rgba(102, 205, 189, 0.04)' : 'none'};
+      padding: 10px 12px;
+      margin: 0.5em 0;
+      border-radius: 8px;
+      color: ${theme.colors.text};
+    }
+    #markdown-math-root .custom-sidenote::after {
+      content: "Sidenote";
+      color: ${theme.isDarkMode ? '#8DDED1' : '#2a9d8f'};
+      font-weight: 700;
+    }
+    #markdown-math-root .katex,
+    #markdown-math-root .katex * {
+      overflow-wrap: normal;
+      word-break: normal;
+      white-space: nowrap;
+    }
+    #markdown-math-root .katex-display {
+      max-width: 100%;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
     #markdown-math-root a { color: ${theme.colors.accent}; text-decoration: underline; }
     #markdown-math-root iframe, #markdown-math-root video { max-width: 100%; height: auto; display: block; margin: 1em 0; }
     #markdown-math-root figure.md-figure {
@@ -306,7 +373,10 @@ const MarkdownMath = ({ text }) => {
   `;
 
   return (
-    <div>
+    <div
+      data-markdown-present="true"
+      data-markdown-ready={ready && Boolean(html) ? "true" : "false"}
+    >
       <style>{styles}</style>
       <div ref={rootRef} id="markdown-math-root" dangerouslySetInnerHTML={{ __html: html }} />
     </div>

@@ -1,4 +1,3 @@
-import React from "react";
 import NoteModalShell from "../Notes/shared/NoteModalShell";
 import PersonalThoughts from "../Notes/shared/PersonalThoughts";
 import "./PrincipleModal.css";
@@ -47,7 +46,6 @@ const PrincipleModal = ({
       isOpen={Boolean(principle)}
       contentKey={`principle-${animationKey}`}
       titleId="principle-modal-title"
-      ariaLabel="Principle"
       labels={{
         backdrop: "Close principle",
         close: "Close",

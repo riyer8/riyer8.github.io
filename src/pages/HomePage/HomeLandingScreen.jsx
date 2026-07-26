@@ -215,7 +215,7 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
       }}
     >
       <LoadingPolaroids onAllImagesLoaded={handleImagesReady} />
-      <h1 className="home-landing__title brand-name">
+      <p className="home-landing__title brand-name" aria-hidden="true">
         <span
           className={`home-landing__full${
             isCondensing || showCondensed ? " home-landing__full--condensing" : ""
@@ -250,7 +250,7 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
             i
           </span>
         </span>
-      </h1>
+      </p>
     </div>
   );
 };

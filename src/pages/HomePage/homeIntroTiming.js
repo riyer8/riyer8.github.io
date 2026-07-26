@@ -1,6 +1,6 @@
 /** Polaroid drop animation (see LoadingPolaroids.css) + max stagger for 6 cards. */
-export const POLAROID_ANIM_MS = 620;
-export const POLAROID_MAX_STAGGER_DELAY_MS = 140 + 5 * 110;
+const POLAROID_ANIM_MS = 620;
+const POLAROID_MAX_STAGGER_DELAY_MS = 140 + 5 * 110;
 export const POLAROID_SETTLE_MS = POLAROID_MAX_STAGGER_DELAY_MS + POLAROID_ANIM_MS;
 
 /** Shared timings for the home intro sequence (landing screen + content reveal). */

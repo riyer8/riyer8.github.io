@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import { useTheme } from '../../../components/ThemeContext/ThemeContext';
+import { useState, useEffect } from 'react';
 import SidebarContent from './SidebarContent';
 
 const Sidebar = () => {
-    const { theme } = useTheme();
     const [shouldCollapseSidebar, setShouldCollapseSidebar] = useState(false);
 
     useEffect(() => {
@@ -23,14 +21,11 @@ const Sidebar = () => {
         display: shouldCollapseSidebar ? 'none' : 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-start',
-        background: shouldCollapseSidebar ? (theme.isDarkMode ? theme.colors.cardBackground : (theme.colors.mobileMenuBg || theme.colors.cardBackground)) : 'transparent',
+        background: 'transparent',
         minHeight: '100vh',
         position: 'relative',
         zIndex: 1,
-        backdropFilter: shouldCollapseSidebar ? 'blur(10px)' : undefined,
-        borderRight: shouldCollapseSidebar ? `1px solid ${theme.colors.border}` : 'none',
         transition: 'all 0.3s ease',
-        boxShadow: theme.isDarkMode && shouldCollapseSidebar ? 'inset 0 0 0 1px rgba(255,255,255,0.02)' : undefined
     };
 
     return (

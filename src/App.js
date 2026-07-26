@@ -1,12 +1,12 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
 import AnimatedLayout from "./components/PageTransition/AnimatedLayout";
 import { Sidebar, MainContent } from "./pages/HomePage";
 import HomeLandingScreen from "./pages/HomePage/HomeLandingScreen";
 import { HOME_INTRO } from "./pages/HomePage/homeIntroTiming";
-import BookshelfPage from "./pages/BookshelfPage/BookshelfPage";
+import BookshelfRoute from "./pages/BookshelfPage/BookshelfRoute";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
@@ -110,8 +110,8 @@ const App = () => {
       <Routes>
         <Route element={<AnimatedLayout />}>
           <Route path="/" element={homeRoute} />
-          <Route path="/recent-reads" element={<BookshelfPage />} />
-          <Route path="/recent-reads/:slug" element={<BookshelfPage />} />
+          <Route path="/recent-reads" element={<BookshelfRoute />} />
+          <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
           <Route path="/ramya" element={<AboutPage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>

@@ -1,14 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter } from "react-router";
 import App from "./App";
 import './index.css'; 
-
-// Handle redirect query param
-const redirectParam = new URLSearchParams(window.location.search).get("redirect");
-if (redirectParam) {
-  window.history.replaceState(null, "", decodeURIComponent(redirectParam));
-}
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

@@ -1,4 +1,3 @@
-import React from "react";
 import { getLifeGoalImage } from "./lifeGoalImages";
 import NoteModalShell from "../Notes/shared/NoteModalShell";
 import PersonalThoughts from "../Notes/shared/PersonalThoughts";
@@ -33,7 +32,6 @@ const LifeGoalModal = ({
       isOpen={Boolean(lifeGoal)}
       contentKey={`life-goal-${animationKey}`}
       titleId="life-goal-modal-title"
-      ariaLabel="Life goal"
       labels={{
         backdrop: "Close life goal",
         close: "Close",

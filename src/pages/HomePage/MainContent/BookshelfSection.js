@@ -2,13 +2,14 @@ import React, { useMemo, useState, useEffect } from 'react';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import { FaStar } from 'react-icons/fa';
 import bookshelfData from '../../../pages/BookshelfPage/data/bookshelfData';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router';
 import Badge from '../../../pages/BookshelfPage/Badge';
 import { titleToSlug } from '../../../pages/BookshelfPage/bookshelfUtils';
+import { useReducedMotion } from 'framer-motion';
 
 const BookshelfSection = () => {
   const { theme } = useTheme();
-  const navigate = useNavigate();
+  const prefersReducedMotion = useReducedMotion();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -29,8 +30,8 @@ const BookshelfSection = () => {
     margin: 'var(--space-section) auto',
     padding: 'var(--space-card)',
     boxSizing: 'border-box',
-    opacity: mounted ? 1 : 0,
-    transform: mounted ? 'translateY(0)' : 'translateY(15px)',
+    opacity: mounted || prefersReducedMotion ? 1 : 0,
+    transform: mounted || prefersReducedMotion ? 'translateY(0)' : 'translateY(15px)',
     transition: 'opacity 400ms ease, transform 400ms ease'
   };
 
@@ -72,8 +73,10 @@ const BookshelfSection = () => {
 
   return (
     <div style={sectionStyle}>
-      <h2 style={titleStyle} onClick={() => navigate('/recent-reads')}>
-        Recent Reads
+      <h2 style={titleStyle}>
+        <Link to="/recent-reads" style={{ color: 'inherit', textDecoration: 'none' }}>
+          Recent Reads
+        </Link>
       </h2>
 
       <div style={{ overflowX: 'auto' }}>
@@ -87,16 +90,18 @@ const BookshelfSection = () => {
           <tbody>
             {topFavorites.map((row, i) => (
               <tr key={i} 
-                  style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }}
+                  style={{ transition: 'background 180ms ease, transform 160ms ease' }}
                   onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
                   onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
-                  onClick={() => navigate(`/recent-reads/${titleToSlug(row.title)}`)}
               >
                 <td style={tdStyle}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <Link
+                    to={`/recent-reads/${titleToSlug(row.title)}`}
+                    style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', textDecoration: 'none' }}
+                  >
                     <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} size={12} style={{ flexShrink: 0 }} />
                     <span style={{ fontWeight: 500, color: theme.colors.accent }}>{row.title}</span>
-                  </div>
+                  </Link>
                 </td>
 
                 <td style={tdStyle}>
@@ -134,8 +139,8 @@ const BookshelfSection = () => {
         </table>
       </div>
 
-      <div 
-        onClick={() => navigate('/recent-reads')}
+      <Link
+        to="/recent-reads"
         style={{
           marginTop: '0.85rem',
           fontSize: 'var(--text-meta)',
@@ -146,11 +151,12 @@ const BookshelfSection = () => {
           justifyContent: 'flex-start',
           alignItems: 'center',
           gap: '0.25rem',
-          textAlign: 'left'
+          textAlign: 'left',
+          textDecoration: 'none'
         }}
       >
         Check out all my reads →
-      </div>
+      </Link>
     </div>
   );
 };
