@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
+import { useReducedMotion } from 'framer-motion';
 import './StatusWidget.css';
 
 const currentActivities = [
@@ -16,8 +17,11 @@ const currentActivities = [
 
 const StatusWidget = () => {
     const { theme } = useTheme();
+    const prefersReducedMotion = useReducedMotion();
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [displayText, setDisplayText] = useState("");
+    const [displayText, setDisplayText] = useState(
+        prefersReducedMotion ? currentActivities[0] : ""
+    );
     const [isDeleting, setIsDeleting] = useState(false);
     const [isPaused, setIsPaused] = useState(false);
     const [cursorVisible, setCursorVisible] = useState(true);
@@ -25,11 +29,13 @@ const StatusWidget = () => {
     const fullText = currentActivities[currentIndex];
 
     useEffect(() => {
+        if (prefersReducedMotion) return undefined;
         const blink = setInterval(() => setCursorVisible(v => !v), 500);
         return () => clearInterval(blink);
-    }, []);
+    }, [prefersReducedMotion]);
 
     useEffect(() => {
+        if (prefersReducedMotion) return undefined;
         if (isPaused) return;
 
         const typingSpeed = isDeleting
@@ -58,7 +64,7 @@ const StatusWidget = () => {
         }, typingSpeed);
 
         return () => clearTimeout(timeout);
-    }, [displayText, isDeleting, isPaused, fullText]);
+    }, [displayText, isDeleting, isPaused, fullText, prefersReducedMotion]);
 
     return (
         <div
@@ -70,7 +76,7 @@ const StatusWidget = () => {
         >
             <div className="status-item centered-text">
                 <span className="status-label" style={{ color: theme.colors.text }}>I'm currently...</span>
-                <span className="status-value">
+                <span className="status-value" aria-live="polite">
                     {displayText}
                     <span className="status-cursor" style={{ opacity: cursorVisible ? 1 : 0.2 }}>|</span>
                 </span>

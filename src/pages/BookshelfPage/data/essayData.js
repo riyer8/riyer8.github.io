@@ -15,7 +15,7 @@ Originally read in 10/11/2025, but each reread provides a new state of principle
 :::quote
 4. Environment matters a lot; move to where you flourish maximally. Put yourself in environments where you have to perform to your utmost; if you can get by being average, you probably will.
 :::
-This is probably one that I've thought heavily about over the past year as I go into post-grad life. What environment do I want to be in? How can I maximize my growth - this being through jobs and also other life activities? Maybe this also relates to a much broader extensial crisis of who do I want to be? Maybe that in and of itself is not the right question to ask just yet.
+This is probably one that I've thought heavily about over the past year as I go into post-grad life. What environment do I want to be in? How can I maximize my growth - this being through jobs and also other life activities? Maybe this also relates to a much broader existential crisis of who do I want to be? Maybe that in and of itself is not the right question to ask just yet.
 
 :::quote
 9. The world is a museum of passion projects.
@@ -49,12 +49,12 @@ Similar to having original thoughts. Learning to think critically of the things 
 :::quote
 35. Send more cold emails. People respond! Assume everyone’s your friend.
 :::
-I really love this one, but it seems naturally hard. Especially when surrounded by great privelege of being around some of the smartest people every day, it feels like you need to have a value to give back. But maybe this principle contradicts that and tells you that you really don't need to have something in return but just insight and thoughtfulness.
+I really love this one, but it seems naturally hard. Especially when surrounded by the great privilege of being around some of the smartest people every day, it feels like you need to have a value to give back. But maybe this principle contradicts that and tells you that you really don't need to have something in return but just insight and thoughtfulness.
 
 :::quote
 49. Figure out what gives you new ideas, and make sure you incorporate that into your routine. For me this is talking to people, tweeting, writing in my notebook, long conversations with friends (especially late night or while walking). For other people this is showering, baths, long walks, runs, etc. Make sure you “harvest” these ideas too, i.e. write them down somewhere so they don’t get lost.
 :::
-I remember I saw a rather similar idea when watching a podcast with Sara Blakely where she said that she gets her best ideas when driving around aimlessly. For me, finding more ways to have empty time to "think" has been a recent privelege - yet making that productive is another type of challenge.
+I remember I saw a rather similar idea when watching a podcast with Sara Blakely where she said that she gets her best ideas when driving around aimlessly. For me, finding more ways to have empty time to "think" has been a recent privilege - yet making that productive is another type of challenge.
 
 :::quote
 61. Luck isn’t a constant, it increases with surface area: be in the right places, have lots of conversations, put yourself out there, ask for what you want and be optimistic and positive. 
@@ -109,6 +109,7 @@ The idea of **regret minimization**:
     thoughts: "Really fascinating as I learn more about history and reframing history",
     tags: ['history', 'lessons', 'entrepreneurship', 'mental-models'],
     notes: `
+This happens to be one of my favorite essays I've read about history of all time. It changed the way I looked at studying and understanding history.
 > This has always been the tricky thing about learning from history. History is context dependent.
 
 > Learning narrow lessons from history is extremely risky because things that are true in one specific context might not be true in a different context - even a slightly different context.
@@ -178,7 +179,7 @@ It's like what Atomic Habits describes - growing 1% every day is better than not
 
 > Most highly successful people have been really right about the future at least once at a time when people thought they were wrong.
 
-Almost be awarely delusional about yourself and your skills. Remember to not overhaul this with being egoist.
+Be almost knowingly delusional about yourself and your skills. Remember to not overhaul this with being egoist.
 
 ### 3. Learn to think independently
 
@@ -334,7 +335,7 @@ Along with the above of exploring different things, that doesn't mean that diffe
 
 > Ambition comes in two forms, one that precedes interest in the subject and one that grows out of it. 
 
-It's not a defect in your character that it may be hard to get started. People have different activation energies, BUT there is always A activation energy required. Never back down.
+It's not a defect in your character that it may be hard to get started. People have different activation energies, BUT there is always an activation energy required. Never back down.
 > Don't worry about this... Work has a sort of activation energy, both per day and per project. It's usually a mistake to lie to yourself if you want to do great work, but this is one of the rare cases where it isn't. When I'm reluctant to start work in the morning, I often trick myself by saying "I'll just read over what I've got so far." Five minutes later I've found something that seems mistaken or incomplete, and I'm off.
 
 > This is one case where the young have an advantage. They're more optimistic, and even though one of the sources of their optimism is ignorance, in this case ignorance can sometimes beat knowledge.
@@ -369,7 +370,7 @@ It's not a defect in your character that it may be hard to get started. People h
     dateAdded: "2026-01-09",
     category: "science",
     medium: "essay",
-    tldr: "Why haven't LLM comes up with new discoveries dispite having so much information? The fixed knowledge of NN provide little room for growth; Gwern proposes 'day-dreaming loops' to create unique connections among ideas.",
+    tldr: "Why can't LLM come up with new discoveries despite having so much information? The fixed knowledge of NN provides little room for growth; Gwern proposes 'day-dreaming loops' to create unique connections among ideas.",
     thoughts: "",
     favorite: true,
     tags: ['AI', 'LLM', 'new-ideas'],
@@ -385,7 +386,7 @@ For one, humans have **continual learning**. Yes, while LLMs are getting new use
 
 But I think the main insight comes from the fact that humans have **continual thinking** -- whether that's while sleeping, walking, daydreaming, working, etc.
 
-Gwern outlines possible ways to combat this phenomenon, trying to promote more unqiue connections among ideas: 
+Gwern outlines possible ways to combat this phenomenon, trying to promote more unique connections among ideas:
 
 > **Day-dreaming loop (DDL):** a background process that continuously samples pairs of concepts from memory. A generator model explores non-obvious links between them, and a critic model filters the results for genuinely valuable ideas. These discoveries are fed back into the system’s memory, creating a compounding feedback loop where new ideas themselves become seeds for future combinations.
 
@@ -430,7 +431,7 @@ Kyla draws a distinction between three types of friction:
     notes: `
 > Taste is the faculty by which we make judgments about art. 
 
-The idea of taste itself has been paradoxical within itself. The quote below shows the contrast between the personal desire but alos conformation with society.
+The idea of taste itself has been paradoxical within itself. The quote below shows the contrast between personal desire and conformity with society.
 > The very notion of taste contains within itself two ideas in constant tension. First, **taste is always personal:** a judgment, but one’s own judgment. The idea derives from our physical sense of taste... And yet, however much we have a right to our own likes and dislikes, **such judgments are often measured against a standard**... These two principles—the autonomy of the individual taste and the existence of some broader principle of excellence—are perpetually at odds. 
 
 People fall into three different groups when it comes to taste:
@@ -456,7 +457,7 @@ Impressionists had two qualities working in their favor: the paintings themselve
     category: "advice",
     archives: true,
     medium: "essay",
-    tldr: "We actually know much less than we think we do. But maybe thsi is what helps us survive.",
+    tldr: "We actually know much less than we think we do. But maybe this is what helps us survive.",
     thoughts: "Fascinating article to expose the mysteries we have. There aren't many actionable takeaways. Maybe that is the point.",
     tags: ['psychology'],
     notes: `
@@ -555,10 +556,10 @@ The heart doesn’t think, it isn’t strategic. It just experiences. All that c
     favorite: true,
     medium: "essay",
     tldr: "",
-    thoughts: "In honor of me starting to read \"When Breathe Becomes Air\", doing a deep dive into Paul Kalanithi and his writing is the truest gift. Making me feel nostoalgic about Stanford and life.",
+    thoughts: "In honor of me starting to read \"When Breath Becomes Air\", doing a deep dive into Paul Kalanithi and his writing is the truest gift. Making me feel nostalgic about Stanford and life.",
     tags: ['life', 'growth'],
     notes: `
-I've just started to read *When Breathe Becomes Air* (just started meaning I'm 70 pages in) and nothing makes me feel more heartwarmed than the fact that he went to Stanford. I naively didn't know that before I picked up the book. Reading his experiences makes me long for life even more. He talked about this essay in his Prologue and I knew I wanted to read it soon.
+I've just started to read *When Breath Becomes Air* (just started meaning I'm 70 pages in), and nothing warms my heart more than the fact that he went to Stanford. I naively didn't know that before I picked up the book. Reading his experiences makes me long for life even more. He talked about this essay in his Prologue and I knew I wanted to read it soon.
 
 A rather sad but beautiful essay of his reflection.
 > Before my cancer was diagnosed, I knew that someday I would die, but I didn’t know when. After the diagnosis, I knew that someday I would die, but I didn’t know when. **But now I knew it acutely. The problem wasn’t really a scientific one. The fact of death is unsettling. Yet there is no other way to live.**
@@ -640,7 +641,7 @@ I personally really enjoyed the psychological breakdown with the thoughts on con
 The pattern of falling back into our old ways:
 > Sociologist Charles Horton Cooley once said, *“I am not who I think I am. I am not who you think I am. I am who I think you think I am.”*
 
-This part was intriguing. The closest ones to us can shallow us into a box that feels comfortable. Not out of spite but just truly becuase that's how they know us. How can we constantly allow ourselves to watch someone evolve without hindering it?
+This part was intriguing. The closest ones to us can shoehorn us into a box that feels comfortable. Not out of spite but just truly because that's how they know us. How can we constantly allow ourselves to watch someone evolve without hindering it?
 :::quote
 Strangely, it’s often those closest to us that we stop being curious about. We fall into rhythms. He’s the anxious one. She’s the advice-giver. They’re the funny one. Roles we play so often we forget they’re roles. Even our dearest friends become frozen in familiarity, with their updates unnoticed and their edges dulled by memory. We stop noticing the slow tectonic shifts of their inner world. We relate to the last version of them we remember, not to the self still unfolding in real time.
 :::
@@ -726,7 +727,7 @@ That’s why “where do I fit in?” is not a private question, like the passwo
     medium: "essay",
     favorite: true,
     tldr: "",
-    thoughts: "took a deeper breathe after reading this one.",
+    thoughts: "took a deeper breath after reading this one.",
     tags: ['life', 'growth'],
     notes: `
 > i kept thinking about that line: *everything is a win when the goal is to experience* and how for the first time it didn’t feel like something pretty or philosophical, it felt practical. like instructions. like a way to survive being human without constantly grading yourself.
@@ -826,7 +827,7 @@ Understanding the **precarity** that is yours:
     medium: "essay",
     favorite: true,
     tldr: "",
-    thoughts: "Thought about archiving this because its different than most of the other essays I have here - but I think I loved it too much.",
+    thoughts: "Thought about archiving this because it's different than most of the other essays I have here - but I think I loved it too much.",
     tags: ['life', 'self-love', 'friends', 'growth'],
     notes: `
 Some of my favorite quotes, but the entire essay is a gem.
@@ -936,7 +937,7 @@ come back to yourself. ask what you want, what you need, what actually feels tru
 The three categories of friendships:
 1. **Pleasure** (personal, self-centered). Someone who makes you laugh, or makes you feel desirable.
 2. **Utility** (tradeoff). You're friends because it is useful.
-3. **Virtue** (character-driven). Enjoy each others company even if they are / aren't fun or useful.
+3. **Virtue** (character-driven). Enjoy each other's company even if they are / aren't fun or useful.
 
 :::quote
 That is a friendship of virtue.
@@ -980,7 +981,6 @@ To leave a room that once made us feel safe is to kill the fantasy that safety c
 :::
 
 > I don’t believe in reinvention anymore. **I believe in retrieval.** In becoming again the one you were before the room made you smaller. \n **So when you do go, and I hope you do, go with your flaws, your doubts, your boxes still unpacked. Go messy. Go late. Go unprepared. Go with nothing but the whisper that you were meant for air.** \n Because if there’s anything waiting on the other side, it’s not perfection. **It’s breath. It’s possibility.** It’s a room with light. And maybe, if you’re lucky, a window.
-
     `
   },
 

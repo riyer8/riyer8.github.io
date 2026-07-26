@@ -47,30 +47,39 @@ const ProfilePhoto = () => {
         transition: 'transform 0.3s ease',
         transform: isHovered ? 'scale(1.05)' : 'scale(1)',
         overflow: 'hidden',
+        border: 0,
+        padding: 0,
     };
 
     const photoStyle = {
         position: 'absolute',
         inset: '4px',
         borderRadius: '50%',
-        backgroundImage: `url(${photos[currentPhotoIndex]})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        width: 'calc(100% - 8px)',
+        height: 'calc(100% - 8px)',
+        objectFit: 'cover',
+        objectPosition: 'center',
         transition: 'opacity 0.6s ease',
         opacity: isTransitioning ? 0 : 1,
     };
 
     return (
         <div>
-            <div
+            <button
+                type="button"
                 style={containerStyle}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 onClick={handlePhotoClick}
                 title="click to cycle!"
+                aria-label="Show the next photo of Ramya Iyer"
             >
-                <div style={photoStyle} />
-            </div>
+                <img
+                    src={photos[currentPhotoIndex]}
+                    alt="Ramya Iyer"
+                    style={photoStyle}
+                />
+            </button>
         </div>
     );
 };

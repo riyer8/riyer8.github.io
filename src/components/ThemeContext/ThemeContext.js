@@ -50,15 +50,6 @@ export const ThemeProvider = ({ children }) => {
                 ? 'rgba(78, 205, 196, 0.2)'
                 : 'rgba(78, 205, 196, 0.15)',
 
-            /* Overlays */
-            overlay: isDarkMode
-                ? 'linear-gradient(to right, rgba(26,26,26,0.35), rgba(26,26,26,0))'
-                : 'linear-gradient(to right, rgba(250,250,250,0.35), rgba(250,250,250,0))',
-
-            mobileMenuBg: isDarkMode
-                ? 'linear-gradient(to right, rgba(26,26,26,0.95), rgba(26,26,26,0.85))'
-                : 'linear-gradient(135deg, #ffffff 80%, #f7eaff 100%)',
-
             /* Background-only decorative accents */
             backgroundAccentPrimary: isDarkMode
                 ? 'rgba(78, 205, 196, 0.08)'
@@ -67,10 +58,6 @@ export const ThemeProvider = ({ children }) => {
             backgroundAccentSecondary: isDarkMode
                 ? 'rgba(255, 179, 71, 0.06)'
                 : 'rgba(255, 179, 71, 0.10)',
-
-            backgroundAccentSoft: isDarkMode
-                ? 'rgba(78, 205, 196, 0.03)'
-                : 'rgba(78, 205, 196, 0.05)',
         },
 
         fonts: {

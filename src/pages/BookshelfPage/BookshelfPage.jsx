@@ -1,16 +1,38 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import { useMemo, useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import BackHomeLink from '../../components/Navigation/BackHomeLink';
 import bookshelfPhoto from '../../assets/loading_page/bookshelf.png';
 import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa';
-import { useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import bookshelfData from './data/bookshelfData.js';
 import Badge from './Badge';
 import QuoteWidget from './QuoteWidget/QuoteWidget';
 import { titleToSlug } from './bookshelfUtils';
-import { formatPageTitle, usePageTitle } from '../../utils/pageTitle';
+import { SITE } from '../../seo/siteMetadata';
+import {
+  formatPageTitle,
+  makeBreadcrumbSchema,
+  personSchema,
+  usePageMetadata,
+  websiteSchema,
+} from '../../utils/pageTitle';
+
+const cleanExcerpt = (value = '') =>
+  value
+    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
+    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
+    .replace(/[#*_>`~]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+const itemDescription = (item) => {
+  if (!item) return SITE.bookshelfDescription;
+  const intro = `Ramya Iyer's reading notes on “${item.title}”${item.author ? ` by ${item.author}` : ''}.`;
+  const detail = cleanExcerpt(item.tldr || item.thoughts || '');
+  return `${intro}${detail ? ` ${detail}` : ''}`.slice(0, 160).trim();
+};
 
 const BookshelfPage = () => {
   const { theme } = useTheme();
@@ -49,17 +71,21 @@ const BookshelfPage = () => {
 
   const { slug } = useParams();
   const navigate = useNavigate();
+  const routeItem = useMemo(() => {
+    if (!slug) return null;
+    const decodedSlug = decodeURIComponent(slug);
+    return bookshelfData.find(r => titleToSlug(r.title) === decodedSlug) || null;
+  }, [slug]);
+  const [selectedItem, setSelectedItem] = useState(routeItem);
+  const closeButtonRef = useRef(null);
 
   useEffect(() => {
-    if (slug) {
-      const decodedSlug = decodeURIComponent(slug);
-      const item = bookshelfData.find(r => titleToSlug(r.title) === decodedSlug);
-      if (item) {
-        setSelectedItem(item);
-        setNotesOpen(true); // open sidebar
-      }
+    if (routeItem) {
+      setSelectedItem(routeItem);
+    } else if (!slug) {
+      setSelectedItem(null);
     }
-  }, [slug]);
+  }, [routeItem, slug]);
 
 
   const filtered = useMemo(() => {
@@ -128,8 +154,6 @@ const BookshelfPage = () => {
         // Cycle back to default sort (most recent dateAdded first)
         setSortKey('dateAdded');
         setSortDirection('desc');
-      } else {
-        setSortDirection('asc');
       }
     } else {
       setSortKey(key);
@@ -137,23 +161,91 @@ const BookshelfPage = () => {
     }
   };
 
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [, setNotesOpen] = useState(true);
   const [categoriesExpanded, setCategoriesExpanded] = useState(false);
 
-  const pageTitle = useMemo(
-    () =>
-      selectedItem?.title
-        ? formatPageTitle(selectedItem.title, "bookshelf")
-        : formatPageTitle("bookshelf"),
-    [selectedItem?.title]
-  );
-  usePageTitle(pageTitle);
+  const metadataItem = routeItem || selectedItem;
+  const pageTitle = metadataItem?.title
+    ? formatPageTitle(metadataItem.title, "recent reads")
+    : formatPageTitle("recent reads");
+  const pagePath = metadataItem
+    ? `/recent-reads/${titleToSlug(metadataItem.title)}`
+    : "/recent-reads";
+  const pageSchema = useMemo(() => {
+    const collection = {
+      "@type": "CollectionPage",
+      "@id": `${SITE.url}/recent-reads/#collection`,
+      url: `${SITE.url}/recent-reads/`,
+      name: "Recent Reads",
+      description: SITE.bookshelfDescription,
+      numberOfItems: bookshelfData.length,
+      author: { "@id": `${SITE.url}/#person` },
+      isPartOf: { "@id": `${SITE.url}/#website` },
+    };
+    if (!metadataItem) {
+      return [
+        websiteSchema,
+        personSchema,
+        collection,
+        makeBreadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Recent Reads", path: "/recent-reads" },
+        ]),
+      ];
+    }
+    const sourceWork = {
+      "@type": metadataItem.medium === "book" ? "Book" : "CreativeWork",
+      name: metadataItem.title,
+      ...(metadataItem.author
+        ? { author: { "@type": "Person", name: metadataItem.author } }
+        : {}),
+      ...(metadataItem.url ? { url: metadataItem.url } : {}),
+    };
+    return [
+      websiteSchema,
+      personSchema,
+      collection,
+      {
+        "@type": "Article",
+        headline: `Reading notes on ${metadataItem.title}`,
+        url: `${SITE.url}${pagePath}/`,
+        description: itemDescription(metadataItem),
+        author: { "@id": `${SITE.url}/#person` },
+        about: sourceWork,
+        keywords: (metadataItem.tags || []).join(", "),
+        isPartOf: { "@id": `${SITE.url}/recent-reads/#collection` },
+      },
+      makeBreadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Recent Reads", path: "/recent-reads" },
+        { name: metadataItem.title, path: pagePath },
+      ]),
+    ];
+  }, [metadataItem, pagePath]);
+  usePageMetadata({
+    title: pageTitle,
+    description: itemDescription(metadataItem),
+    pathname: pagePath,
+    type: metadataItem ? "article" : "website",
+    schema: pageSchema,
+  });
 
   const closeDetail = () => {
     setSelectedItem(null);
     navigate('/recent-reads');
   };
+
+  useEffect(() => {
+    if (!selectedItem) return undefined;
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setSelectedItem(null);
+        navigate('/recent-reads');
+      }
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    closeButtonRef.current?.focus();
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [navigate, selectedItem]);
 
 
   const tableStyle = {
@@ -187,7 +279,7 @@ const BookshelfPage = () => {
   const headerStyle = {
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginBottom: '1rem'
   };
 
@@ -213,20 +305,15 @@ const BookshelfPage = () => {
   };
 
   return (
-    <div style={pageContainer}>
+    <main style={pageContainer}>
       <div style={headerStyle}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <BackHomeLink />
-        </div>
-
-        <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-        </div>
+        <BackHomeLink />
       </div>
 
       <div>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
           <div style={{ width: 84, height: 84 }}>
-            <img src={bookshelfPhoto} alt="avatar" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
+            <img src={bookshelfPhoto} alt="Bookshelf illustration" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
           </div>
           <div style={{ flex: 1 }}>
             <h1 style={{
@@ -240,8 +327,6 @@ const BookshelfPage = () => {
             }}>Bookshelf</h1>
             <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary, fontSize: 'var(--text-meta)', lineHeight: 'var(--leading-normal)' }}>Every time I'm not reading, I'm thinking about reading.</p>
           </div>
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-          </div>
         </div>
 
         <QuoteWidget />
@@ -251,8 +336,9 @@ const BookshelfPage = () => {
           {/* Category and Medium filters */}
           <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', fontSize: 'var(--text-meta)' }}>
 
-            <button onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>All</button>
+            <button aria-pressed={!activeCategory && !activeMedium} onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>All</button>
             <button onClick={() => setShowFavorites(f => !f)}
+              aria-pressed={showFavorites}
               style={{
                 padding: '0.45rem 0.75rem',
                 borderRadius: 8,
@@ -266,13 +352,13 @@ const BookshelfPage = () => {
             </button>
             {categoriesExpanded
               ? categories.map(c => (
-                <button key={c} onClick={() => {
+                <button key={c} aria-pressed={activeCategory === c} onClick={() => {
                   setActiveCategory(prev => prev === c ? null : c);
                   setActiveMedium(null);
                 }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
               ))
               : topCategories.map(c => (
-                <button key={c} onClick={() => {
+                <button key={c} aria-pressed={activeCategory === c} onClick={() => {
                   setActiveCategory(prev => prev === c ? null : c);
                   setActiveMedium(null);
                 }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
@@ -297,13 +383,14 @@ const BookshelfPage = () => {
             {categoriesExpanded && (
               <>
                 {mediums.map(m => (
-                  <button key={m} onClick={() => {
+                  <button key={m} aria-pressed={activeMedium === m} onClick={() => {
                     setActiveMedium(prev => prev === m ? null : m);
                     setActiveCategory(null);
                   }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
                 ))}
                 <button
                   onClick={() => setShowArchives(a => !a)}
+                  aria-pressed={showArchives}
                   style={{
                     padding: '0.45rem 0.75rem',
                     borderRadius: 8,
@@ -349,6 +436,9 @@ const BookshelfPage = () => {
               flexWrap: 'wrap'
             }}
           >
+            <label htmlFor="bookshelf-search" style={{ position: 'absolute', width: 1, height: 1, padding: 0, margin: -1, overflow: 'hidden', clip: 'rect(0, 0, 0, 0)', whiteSpace: 'nowrap', border: 0 }}>
+              Search reading notes
+            </label>
             <input
               id="bookshelf-search"
               placeholder="Search reading notes..."
@@ -379,7 +469,7 @@ const BookshelfPage = () => {
           <table style={tableStyle}>
             <thead>
               <tr>
-                <th style={{
+                <th scope="col" aria-sort={sortKey === 'title' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={{
                   ...thStyle,
                   width: '50%',
                   maxWidth: '0px'
@@ -393,7 +483,7 @@ const BookshelfPage = () => {
                     )}
                   </div>
                 </th>
-                <th style={thStyle} onClick={() => handleHeaderSort('category')}>
+                <th scope="col" aria-sort={sortKey === 'category' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={thStyle} onClick={() => handleHeaderSort('category')}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Category
                     {sortKey === 'category' && (
@@ -403,7 +493,7 @@ const BookshelfPage = () => {
                     )}
                   </div>
                 </th>
-                <th style={thStyle} onClick={() => handleHeaderSort('medium')}>
+                <th scope="col" aria-sort={sortKey === 'medium' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={thStyle} onClick={() => handleHeaderSort('medium')}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Medium
                     {sortKey === 'medium' && (
@@ -413,7 +503,7 @@ const BookshelfPage = () => {
                     )}
                   </div>
                 </th>
-                <th style={thStyle}>Tags</th>
+                <th scope="col" style={thStyle}>Tags</th>
               </tr>
             </thead>
             <tbody>
@@ -434,12 +524,9 @@ const BookshelfPage = () => {
                     width: '50%'
                   }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setSelectedItem(row);
-                          navigate(`/recent-reads/${titleToSlug(row.title)}`);
-                        }}
+                      <Link
+                        to={`/recent-reads/${titleToSlug(row.title)}`}
+                        onClick={(e) => e.stopPropagation()}
                         style={{
                           all: 'unset',
                           cursor: 'pointer',
@@ -488,7 +575,7 @@ const BookshelfPage = () => {
                           {row.author && ` | ${row.author}`}
                         </span>
 
-                      </button>
+                      </Link>
                     </div>
                   </td>
 
@@ -654,9 +741,12 @@ const BookshelfPage = () => {
             transition: 'background 260ms cubic-bezier(.2,.9,.2,1)',
             pointerEvents: selectedItem ? 'auto' : 'none',
             zIndex: 2100
-          }} onClick={closeDetail} />
+          }} onClick={closeDetail} aria-hidden="true" />
 
           <div
+            role="dialog"
+            aria-modal={selectedItem ? "true" : undefined}
+            aria-labelledby={selectedItem ? "reading-note-title" : undefined}
             style={{
               position: 'fixed',
               top: 0,
@@ -686,49 +776,22 @@ const BookshelfPage = () => {
             aria-hidden={!selectedItem}
           >
 
-            <style>
-              {`
-          :root {
-            --panel-width: 460px;
-            --panel-padding: 1.25rem 1.5rem;
-          }
-
-          @media (max-width: 900px) {
-            :root {
-              --panel-width: 80vw;
-              --panel-padding: 1rem;
-            }
-          }
-
-          @media (max-width: 600px) {
-            :root {
-              --panel-width: 100vw;
-              --panel-padding: 1rem;
-            }
-          }
-        `}
-            </style>
-
-
             {selectedItem ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 {/* Header */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                   <div style={{ flex: 1 }}>
-                    <h2 style={{ margin: 0, color: theme.colors.text, fontSize: 'var(--text-body)', fontWeight: 600, letterSpacing: '-0.01em', lineHeight: 'var(--leading-snug)' }}>{selectedItem.title}</h2>
+                    <h2 id="reading-note-title" style={{ margin: 0, color: theme.colors.text, fontSize: 'var(--text-body)', fontWeight: 600, letterSpacing: '-0.01em', lineHeight: 'var(--leading-snug)' }}>{selectedItem.title}</h2>
                     <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>{(selectedItem.tags || []).map((t, i) => <Badge key={i} theme={theme}>{t}</Badge>)}</div>
                   </div>
 
                   <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    {selectedItem.url ? <a href={selectedItem.url} target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}>↗</a> : null}
-                    <button onClick={closeDetail} style={{ background: 'none', border: 'none', fontSize: '1.1rem', cursor: 'pointer', color: theme.colors.textSecondary }}>×</button>
+                    {selectedItem.url ? <a href={selectedItem.url} target="_blank" rel="noreferrer" aria-label={`Open the original source for ${selectedItem.title}`} style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}>↗</a> : null}
+                    <button ref={closeButtonRef} onClick={closeDetail} aria-label="Close reading notes" style={{ background: 'none', border: 'none', fontSize: '1.1rem', cursor: 'pointer', color: theme.colors.textSecondary }}>×</button>
                   </div>
                 </div>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', color: theme.colors.textSecondary, alignItems: 'center' }}>
-                  <div style={{ display: 'flex', gap: '1.25rem' }}>
-                    <div style={{ fontSize: 'var(--text-meta)' }}>{/* placeholder left */}</div>
-                  </div>
+                <div style={{ display: 'flex', justifyContent: 'flex-end', color: theme.colors.textSecondary, alignItems: 'center' }}>
                   <div style={{ fontSize: 'var(--text-meta)' }}>{selectedItem.dateAdded}</div>
                 </div>
 
@@ -768,7 +831,6 @@ const BookshelfPage = () => {
                   >
                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
                       <div style={panelLabelStyle}>Notes</div>
-                      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}></div>
                     </div>
 
                     <div style={{ marginTop: 0 }}>
@@ -782,7 +844,7 @@ const BookshelfPage = () => {
         </>,
         document.body
       )}
-    </div>
+    </main>
   );
 };
 

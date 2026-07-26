@@ -1,21 +1,6 @@
 {
   "photos": [
     {
-      "file": "photo1.png",
-      "alt": "Ramya Iyer, digital photo at tahoe",
-      "caption": "at tahoe 2026!!"
-    },
-    {
-      "file": "photo2.png",
-      "alt": "Ramya Iyer, slow shutter photo at the tafoni sandstone",
-      "caption": "at the tafoni sandstone."
-    },
-    {
-      "file": "photo3.jpeg",
-      "alt": "Ramya Iyer, bay to breakers 2026",
-      "caption": "bay to breakers 2026!!!"
-    },
-    {
       "file": "photo4.png",
       "alt": "Ramya Iyer, graduation photo",
       "caption": "stanford graduation in june 2026."
@@ -23,17 +8,7 @@
     {
       "file": "photo5.png",
       "alt": "Ramya Iyer, photo in iceland",
-      "caption": "iceland, hiking the kalta ice cave."
-    },
-    {
-      "file": "photo6.png",
-      "alt": "Ramya Iyer, photo in iceland",
-      "caption": "iceland, july 2026."
-    },
-    {
-      "file": "photo7.png",
-      "alt": "Ramya Iyer, stanford dish hike",
-      "caption": "stanford dish hike."
+      "caption": "iceland, hiking the katla ice cave."
     }
   ]
 }

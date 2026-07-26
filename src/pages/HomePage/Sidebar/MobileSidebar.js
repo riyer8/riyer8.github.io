@@ -1,14 +1,17 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useTheme } from '../../../components/ThemeContext/ThemeContext';
 import SidebarContent from './SidebarContent';
-import { useEffect } from 'react';
 
 const MobileSidebar = ({ isOpen, onClose }) => {
     const { theme } = useTheme();
     
     useEffect(() => {
+        const handleKeyDown = (event) => {
+            if (event.key === 'Escape') onClose();
+        };
         if (isOpen) {
             const scrollY = window.scrollY;
+            document.addEventListener('keydown', handleKeyDown);
 
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollY}px`;
@@ -24,11 +27,12 @@ const MobileSidebar = ({ isOpen, onClose }) => {
         }
 
         return () => {
+            document.removeEventListener('keydown', handleKeyDown);
             document.body.style.position = '';
             document.body.style.top = '';
             document.body.style.width = '';
         };
-    }, [isOpen]);
+    }, [isOpen, onClose]);
 
     const overlayStyle = {
         position: 'fixed',
@@ -90,19 +94,18 @@ const MobileSidebar = ({ isOpen, onClose }) => {
 
     return (
         <>
-            <div style={overlayStyle} onClick={onClose} />
-            <aside style={sidebarStyle}>
+            <div style={overlayStyle} onClick={onClose} aria-hidden="true" />
+            <aside style={sidebarStyle} aria-label="Ramya Iyer profile and navigation" aria-hidden={!isOpen}>
                 <button
                     style={closeBtnStyle}
                     onClick={onClose}
                     title="Close sidebar"
+                    aria-label="Close sidebar"
                 >
                     ×
                 </button>
 
-                <div style={{ marginTop: '0' }}>
-                    <SidebarContent compact />
-                </div>
+                <SidebarContent compact />
             </aside>
         </>
     );

@@ -1,8 +1,7 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "../ThemeContext/ThemeContext";
 
-const BackHomeLink = ({ className = "", style = {} }) => {
+const BackHomeLink = ({ className = "" }) => {
   const { theme } = useTheme();
 
   const buttonStyle = {
@@ -24,11 +23,9 @@ const BackHomeLink = ({ className = "", style = {} }) => {
     <Link
       to="/"
       className={className}
-      style={{ textDecoration: "none", display: "inline-flex", ...style }}
+      style={{ textDecoration: "none", display: "inline-flex" }}
     >
-      <button type="button" style={buttonStyle}>
-        ← Home
-      </button>
+      <span style={buttonStyle}>← Home</span>
     </Link>
   );
 };
