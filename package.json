@@ -80,9 +80,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/register": "^7.29.7",
+    "@babel/register": "^8.0.1",
     "gh-pages": "^6.3.0",
     "patch-package": "^8.0.1",
-    "puppeteer": "^25.3.0"
+    "puppeteer": "^25.4.0"
   }
 }
