@@ -3,14 +3,14 @@ import { Routes, Route } from "react-router";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
 import AnimatedLayout from "./components/PageTransition/AnimatedLayout";
-import { Sidebar, MainContent } from "./pages/HomePage";
-import HomeLandingScreen from "./pages/HomePage/HomeLandingScreen";
-import { HOME_INTRO } from "./pages/HomePage/homeIntroTiming";
+import { HomePage } from "./pages/HomePage";
+import HomeLandingScreen from "./pages/HomePage/intro/HomeLandingScreen";
+import { HOME_INTRO } from "./pages/HomePage/intro/homeIntroTiming";
 import BookshelfRoute from "./pages/BookshelfPage/BookshelfRoute";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
-import SeasonalToggleManager from "./randomfeatures/page-toggles/Toggles/ToggleManager";
+import SeasonalToggleManager from "./features/seasonal/ToggleManager";
 
 const HOME_INTRO_STORAGE_KEY = "homeIntroSeen";
 
@@ -40,6 +40,13 @@ const App = () => {
     document.body.style.overflowX = "hidden";
   }, []);
 
+  // Keep the tab title simple during the loading intro.
+  React.useEffect(() => {
+    if (showLandingScreen) {
+      document.title = "Ramya Iyer";
+    }
+  }, [showLandingScreen]);
+
   const handleLandingFadeStart = React.useCallback((opts) => {
     setShowHomeContent(true);
     setLandingBlocksInteraction(false);
@@ -53,19 +60,9 @@ const App = () => {
     setShowLandingScreen(false);
   }, []);
 
-  const containerStyle = {
-    position: "relative",
-    zIndex: 1,
-    minHeight: "100vh",
-    display: "flex",
-    fontFamily: "var(--font-ui)",
-    margin: 0,
-    padding: 0,
-  };
-
   const homeFadeInStyle = {
     opacity: showHomeContent ? 1 : 0,
-    transition: `opacity ${homeContentRevealMs}ms ease`,
+    transition: `opacity ${homeContentRevealMs}ms cubic-bezier(0.22, 1, 0.36, 1)`,
   };
 
   const homeRouteWrapperStyle = {
@@ -85,10 +82,7 @@ const App = () => {
     <div style={homeRouteWrapperStyle}>
       <HomeDocumentTitle />
       <div style={homeFadeInStyle}>
-        <div style={containerStyle}>
-          <Sidebar />
-          <MainContent />
-        </div>
+        <HomePage />
       </div>
 
       {showLandingScreen && (

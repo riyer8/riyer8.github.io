@@ -1,226 +1,104 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router';
-import ProfilePhoto from '../ProfilePhoto';
-import { FaGithub, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
-import { RiTwitterXLine } from 'react-icons/ri';
-import { SiGooglescholar, SiSubstack } from 'react-icons/si';
-import { useTheme } from '../../../components/ThemeContext/ThemeContext';
-import BrandName from '../../../components/BrandName/BrandName';
+import { Link } from "react-router";
+import { useTheme } from "../../../components/ThemeContext/ThemeContext";
+import BrandName from "../../../components/BrandName/BrandName";
+import { SITE } from "../../../seo/siteMetadata";
+import ProfilePhoto from "../ProfilePhoto";
+import "./SidebarContent.css";
 
-const SidebarContent = ({ compact = false }) => {
-    const { theme } = useTheme();
-    const taglineRef = useRef(null);
-    const nameRef = useRef(null);
-    const containerRef = useRef(null);
-    const [fontSize, setFontSize] = useState(16);
+const HOME_ONELINER = "inspired by human connection.";
 
-    const [isHoveringName, setIsHoveringName] = useState(false);
+const ON_HERE = [
+  { label: "about", to: "/ramya" },
+  { label: "recent reads", to: "/recent-reads" },
+];
 
-    useEffect(() => {
-        const adjustFontSize = () => {
-            if (!containerRef.current) return;
+const OTHER_PLACES = [
+  { label: "github", href: SITE.profiles.github },
+  { label: "scholar", href: SITE.profiles.scholar },
+  { label: "substack", href: SITE.profiles.substack },
+  { label: "linkedin", href: SITE.profiles.linkedin },
+  { label: "twitter", href: SITE.profiles.x },
+];
 
-            const containerWidth = containerRef.current.offsetWidth;
+const PlaceLink = ({ item }) => {
+  const body = (
+    <>
+      <span>{item.label}</span>
+      <span className="sidebar-content__place-arrow" aria-hidden="true">
+        ↗
+      </span>
+    </>
+  );
 
-            if (nameRef.current) {
-                let nameSize = 52;
-                nameRef.current.style.fontSize = `${nameSize}px`;
-                while (nameRef.current.scrollWidth > containerWidth && nameSize > 28) {
-                    nameSize -= 1;
-                    nameRef.current.style.fontSize = `${nameSize}px`;
-                }
-            }
-
-            if (!taglineRef.current) return;
-
-            let newFontSize = 16;
-            taglineRef.current.style.fontSize = `${newFontSize}px`;
-
-            while (taglineRef.current.scrollWidth > containerWidth && newFontSize > 10) {
-                newFontSize -= 1;
-                taglineRef.current.style.fontSize = `${newFontSize}px`;
-            }
-
-            setFontSize(newFontSize);
-        };
-
-        adjustFontSize();
-        window.addEventListener('resize', adjustFontSize);
-
-        return () => window.removeEventListener('resize', adjustFontSize);
-    }, []);
-
-    const nameStyle = {
-        fontSize: 'var(--text-brand)',
-        fontFamily: theme.fonts?.brand,
-        fontWeight: 700,
-        lineHeight: 'var(--leading-tight)',
-        color: isHoveringName ? undefined : theme.colors.text,
-        margin: 0,
-        marginBottom: '0.75rem',
-        marginTop: compact ? '1rem' : undefined,
-        padding: 0,
-        width: '100%',
-        textAlign: 'center',
-        cursor: 'pointer',
-        animation: isHoveringName ? 'blueGreenText 2s linear infinite alternate' : 'none',
-        transition: 'color 1s ease',
-    };
-
-    const taglineStyle = {
-        fontSize: `${fontSize}px`,
-        color: theme.colors.textSecondary,
-        lineHeight: 1.5,
-        marginBottom: '0.5rem',
-        textAlign: 'center',
-        whiteSpace: 'nowrap',
-        overflow: 'hidden',
-        textOverflow: 'ellipsis',
-    };
-
-    const emailStyle = {
-        color: theme.colors.accent,
-        textDecoration: 'none',
-        fontSize: 'var(--text-meta)',
-        fontWeight: 500,
-        marginBottom: compact ? '1.2rem' : '1rem',
-        display: 'inline-block',
-        textAlign: 'center',
-    };
-
-    const socialLinksStyle = {
-        marginTop: compact ? '0.5rem' : '0rem',
-        display: 'flex',
-        gap: compact ? '1.2rem' : '1rem',
-        justifyContent: 'center',
-    };
-
-    const socialLinkStyle = {
-        color: theme.colors.textSecondary,
-        fontSize: compact ? '1.4rem' : '1.2rem',
-        textDecoration: 'none',
-        transition: 'color 0.3s ease',
-        display: 'flex',
-        alignItems: 'center',
-    };
-
+  if (item.to) {
     return (
-        <>
-            <style>
-                {`
-                @keyframes blueGreenText {
-                    0% { color: #0055ffff; }
-                    100% { color: #14815eff; }
-                }
-                `}
-            </style>
-
-            <div
-                ref={containerRef}
-                style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: compact ? 'flex-start' : 'center',
-                    width: '100%',
-                    textAlign: 'center',
-                    fontFamily: theme.fonts?.base || 'var(--font-ui)',
-                }}
-            >
-                <ProfilePhoto />
-
-                <h1
-                    ref={nameRef}
-                    style={nameStyle}
-                    onMouseEnter={() => setIsHoveringName(true)}
-                    onMouseLeave={() => setIsHoveringName(false)}
-                >
-                    <Link
-                        to="/ramya"
-                        aria-label="About Ramya Iyer"
-                        style={{ color: 'inherit', textDecoration: 'none' }}
-                    >
-                        <BrandName />
-                    </Link>
-                </h1>
-
-                <div ref={taglineRef} style={taglineStyle}>
-                    CS (AI) • Math • History Minor
-                </div>
-
-                <a href="mailto:ramya1@stanford.edu" style={emailStyle}>
-                    ramya1@stanford.edu
-                </a>
-
-                <div style={socialLinksStyle}>
-                    <a
-                        href="https://github.com/riyer8"
-                        aria-label="Ramya Iyer on GitHub"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={socialLinkStyle}
-                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
-                    >
-                        <FaGithub />
-                    </a>
-                    <a
-                        href="https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en"
-                        aria-label="Ramya Iyer on Google Scholar"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={socialLinkStyle}
-                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
-                    >
-                        <SiGooglescholar />
-                    </a>
-                    <a
-                        href="https://ramyai.substack.com/"
-                        aria-label="Ramya Iyer on Substack"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={socialLinkStyle}
-                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
-                    >
-                        <SiSubstack />
-                    </a>
-                    <a
-                        href="https://www.linkedin.com/in/ramya-i/"
-                        aria-label="Ramya Iyer on LinkedIn"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={socialLinkStyle}
-                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
-                    >
-                        <FaLinkedinIn />
-                    </a>
-                    <a
-                        href="https://x.com/ramya_iyer1"
-                        aria-label="Ramya Iyer on X"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={socialLinkStyle}
-                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
-                    >
-                        <RiTwitterXLine />
-                    </a>
-                    <a
-                        href="mailto:ramya1@stanford.edu"
-                        aria-label="Email Ramya Iyer"
-                        style={socialLinkStyle}
-                        onMouseEnter={e => (e.currentTarget.style.color = theme.colors.accent)}
-                        onMouseLeave={e => (e.currentTarget.style.color = theme.colors.textSecondary)}
-                    >
-                        <FaEnvelope />
-                    </a>
-                </div>
-            </div>
-        </>
+      <Link to={item.to} className="sidebar-content__place-link">
+        {body}
+      </Link>
     );
+  }
+
+  return (
+    <a
+      href={item.href}
+      className="sidebar-content__place-link"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {body}
+    </a>
+  );
+};
+
+const LinkGroup = ({ title, items }) => (
+  <div className="sidebar-content__link-group">
+    <p className="sidebar-content__places-label">{title}</p>
+    <ul className="sidebar-content__places-list">
+      {items.map((item) => (
+        <li key={item.label}>
+          <PlaceLink item={item} />
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const SidebarContent = () => {
+  const { theme } = useTheme();
+
+  return (
+    <div
+      className="sidebar-content"
+      style={{
+        "--sidebar-text": theme.colors.text,
+        "--sidebar-muted": theme.colors.textSecondary,
+        "--sidebar-accent": theme.colors.accent,
+        color: theme.colors.text,
+        fontFamily: theme.fonts?.base || "var(--font-ui)",
+      }}
+    >
+      <h1 className="sidebar-content__name">
+        <Link to="/ramya" aria-label="About Ramya Iyer">
+          <BrandName />
+        </Link>
+      </h1>
+
+      <p className="sidebar-content__oneliner">{HOME_ONELINER}</p>
+
+      <a className="sidebar-content__email" href="mailto:ramya1@stanford.edu">
+        ramya1@stanford.edu
+      </a>
+
+      <div className="sidebar-content__photo">
+        <ProfilePhoto />
+      </div>
+
+      <nav className="sidebar-content__places" aria-label="Site and social links">
+        <LinkGroup title="ON HERE" items={ON_HERE} />
+        <LinkGroup title="OTHER PLACES" items={OTHER_PLACES} />
+      </nav>
+    </div>
+  );
 };
 
 export default SidebarContent;

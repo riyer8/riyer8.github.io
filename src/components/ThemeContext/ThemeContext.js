@@ -1,4 +1,3 @@
-// src/context/ThemeContext.js
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
 const ThemeContext = createContext(null);
@@ -12,13 +11,11 @@ export const useTheme = () => {
 };
 
 export const ThemeProvider = ({ children }) => {
-    // Initialize theme from localStorage or default to light mode
     const [isDarkMode, setIsDarkMode] = useState(() => {
         const saved = localStorage.getItem('theme');
         return saved ? JSON.parse(saved) : false;
     });
 
-    // Persist theme preference
     useEffect(() => {
         localStorage.setItem('theme', JSON.stringify(isDarkMode));
     }, [isDarkMode]);

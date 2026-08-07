@@ -2,7 +2,7 @@ import React from "react";
 import { useTheme } from "../../components/ThemeContext/ThemeContext";
 import BackHomeLink from "../../components/Navigation/BackHomeLink";
 import { useLocation } from "react-router";
-import { formatPageTitle, usePageMetadata } from "../../utils/pageTitle";
+import { formatPageTitle, usePageMetadata } from "../../seo/pageMetadata";
 import "./NotFoundPage.css";
 
 const PAGE_TITLE = formatPageTitle("page not found");

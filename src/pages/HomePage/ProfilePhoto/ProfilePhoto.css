@@ -1,0 +1,55 @@
+.profile-photo {
+  display: block;
+  position: relative;
+  width: min(100%, 14rem);
+  aspect-ratio: 4 / 5;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 2px;
+  cursor: pointer;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.06);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.profile-photo:hover {
+  transform: scale(1.02);
+}
+
+.profile-photo__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: inherit;
+  pointer-events: none;
+  user-select: none;
+}
+
+.profile-photo__img--current {
+  z-index: 1;
+}
+
+.profile-photo__img--outgoing {
+  z-index: 2;
+  animation: profile-photo-fade-out 0.6s ease forwards;
+}
+
+@keyframes profile-photo-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .profile-photo__img--outgoing {
+    animation-duration: 0.01ms;
+  }
+}

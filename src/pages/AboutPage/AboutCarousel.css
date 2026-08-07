@@ -48,7 +48,10 @@
   align-items: center;
   justify-content: center;
   opacity: 0;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.3s ease;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
 }
 
@@ -58,7 +61,13 @@
 }
 
 .about-carousel__nav:hover {
-  transform: translateY(-50%) scale(1.06);
+  transform: translateY(-50%) scale(1.08);
+  background: #fff;
+}
+
+.about-carousel__nav:active {
+  transform: translateY(-50%) scale(0.96);
+  transition-duration: 0.1s;
 }
 
 .about-carousel__nav--prev {
@@ -118,15 +127,23 @@
   background: var(--carousel-muted);
   opacity: 0.35;
   cursor: pointer;
-  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease;
+  transition:
+    opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    background 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .about-carousel__dot--active {
   opacity: 1;
   background: var(--carousel-accent);
-  transform: scale(1.15);
+  transform: scale(1.2);
 }
 
 .about-carousel__dot:hover {
   opacity: 0.7;
+  transform: scale(1.1);
+}
+
+.about-carousel__dot:active {
+  transform: scale(0.95);
 }

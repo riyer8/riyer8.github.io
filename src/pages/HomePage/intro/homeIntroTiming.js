@@ -1,0 +1,39 @@
+/** Polaroid drop animation (see LoadingPolaroids.css) + max stagger for visible cards. */
+const POLAROID_ANIM_MS = 680;
+const POLAROID_MAX_STAGGER_DELAY_MS = 140 + 4 * 110;
+export const POLAROID_SETTLE_MS = POLAROID_MAX_STAGGER_DELAY_MS + POLAROID_ANIM_MS;
+
+/** Shared timings for the home intro sequence (landing screen + content reveal). */
+export const HOME_INTRO = {
+  charTypeIntervalMs: 80,
+  holdAfterTypeMs: 160,
+  condenseMs: 600,
+  condenseHoldMs: 420,
+  fadeMs: 650,
+  contentRevealMs: 650,
+};
+
+/** Faster tail of the sequence when the user clicks to skip ahead (still animated). */
+export const HOME_INTRO_SKIP = {
+  condenseMs: 360,
+  condenseHoldMs: 170,
+  fadeMs: 420,
+  contentRevealMs: 420,
+  condensedSwapMs: 160,
+};
+
+export function getCondensedSwapMs(timings = HOME_INTRO) {
+  if (timings.condensedSwapMs != null) return timings.condensedSwapMs;
+  return Math.floor(timings.condenseMs * 0.45);
+}
+
+export function getHomeIntroFadeStartMs(timings = HOME_INTRO) {
+  const fullText = "ramya iyer.";
+  const typingMs = fullText.length * timings.charTypeIntervalMs;
+  return (
+    typingMs +
+    timings.holdAfterTypeMs +
+    timings.condenseMs +
+    timings.condenseHoldMs
+  );
+}

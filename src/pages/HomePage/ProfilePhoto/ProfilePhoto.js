@@ -1,87 +1,78 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from "react";
+import { PROFILE_PHOTOS } from "../../../assets/profilePhotos";
+import "./ProfilePhoto.css";
 
-import { PROFILE_PHOTOS } from '../../../assets/profilePhotos';
+const FADE_MS = 600;
+const AUTO_CYCLE_MS = 15000;
 
 const ProfilePhoto = () => {
-    const photos = PROFILE_PHOTOS;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [outgoingIndex, setOutgoingIndex] = useState(null);
+  const currentIndexRef = useRef(0);
+  const isAnimatingRef = useRef(false);
+  const fadeTimeoutRef = useRef(null);
 
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
-    const [isTransitioning, setIsTransitioning] = useState(false);
+  const clearFadeTimeout = () => {
+    if (fadeTimeoutRef.current != null) {
+      clearTimeout(fadeTimeoutRef.current);
+      fadeTimeoutRef.current = null;
+    }
+  };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setIsTransitioning(true);
+  const goToNext = useCallback(() => {
+    if (isAnimatingRef.current || PROFILE_PHOTOS.length < 2) return;
 
-            setTimeout(() => {
-                setCurrentPhotoIndex((prevIndex) =>
-                    (prevIndex + 1) % photos.length
-                );
-                setIsTransitioning(false);
-            }, 300);
+    isAnimatingRef.current = true;
+    clearFadeTimeout();
 
-        }, 15000);
+    const previous = currentIndexRef.current;
+    const next = (previous + 1) % PROFILE_PHOTOS.length;
+    currentIndexRef.current = next;
 
-        return () => clearInterval(interval);
-    }, [photos.length]);
+    setOutgoingIndex(previous);
+    setCurrentIndex(next);
 
-    const handlePhotoClick = () => {
-        setIsTransitioning(true);
+    fadeTimeoutRef.current = setTimeout(() => {
+      setOutgoingIndex(null);
+      isAnimatingRef.current = false;
+      fadeTimeoutRef.current = null;
+    }, FADE_MS);
+  }, []);
 
-        setTimeout(() => {
-            setCurrentPhotoIndex((prevIndex) =>
-                (prevIndex + 1) % photos.length
-            );
-            setIsTransitioning(false);
-        }, 300);
+  useEffect(() => {
+    const interval = setInterval(goToNext, AUTO_CYCLE_MS);
+    return () => {
+      clearInterval(interval);
+      clearFadeTimeout();
     };
+  }, [goToNext]);
 
-    const containerStyle = {
-        width: '200px',
-        height: '200px',
-        borderRadius: '50%',
-        background: 'linear-gradient(135deg, #4ECDC4, #FFB347)',
-        marginBottom: '1rem',
-        position: 'relative',
-        cursor: 'pointer',
-        transition: 'transform 0.3s ease',
-        transform: isHovered ? 'scale(1.05)' : 'scale(1)',
-        overflow: 'hidden',
-        border: 0,
-        padding: 0,
-    };
-
-    const photoStyle = {
-        position: 'absolute',
-        inset: '4px',
-        borderRadius: '50%',
-        width: 'calc(100% - 8px)',
-        height: 'calc(100% - 8px)',
-        objectFit: 'cover',
-        objectPosition: 'center',
-        transition: 'opacity 0.6s ease',
-        opacity: isTransitioning ? 0 : 1,
-    };
-
-    return (
-        <div>
-            <button
-                type="button"
-                style={containerStyle}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
-                onClick={handlePhotoClick}
-                title="click to cycle!"
-                aria-label="Show the next photo of Ramya Iyer"
-            >
-                <img
-                    src={photos[currentPhotoIndex]}
-                    alt="Ramya Iyer"
-                    style={photoStyle}
-                />
-            </button>
-        </div>
-    );
+  return (
+    <button
+      type="button"
+      className="profile-photo"
+      onClick={goToNext}
+      title="click to cycle!"
+      aria-label="Show the next photo of Ramya Iyer"
+    >
+      <img
+        className="profile-photo__img profile-photo__img--current"
+        src={PROFILE_PHOTOS[currentIndex]}
+        alt="Ramya Iyer"
+        draggable={false}
+      />
+      {outgoingIndex != null && (
+        <img
+          key={outgoingIndex}
+          className="profile-photo__img profile-photo__img--outgoing"
+          src={PROFILE_PHOTOS[outgoingIndex]}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+        />
+      )}
+    </button>
+  );
 };
 
 export default ProfilePhoto;

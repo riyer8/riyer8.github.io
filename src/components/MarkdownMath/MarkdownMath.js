@@ -1,44 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useTheme } from '../ThemeContext/ThemeContext'; // import your theme context
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import katex from 'katex';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
+import 'katex/dist/katex.min.css';
+import { useTheme } from '../ThemeContext/ThemeContext';
 
-// Inject KaTeX CSS + JS
-const injectKatex = () => {
-  if (typeof window === 'undefined') return;
-  if (document.getElementById('katex-css')) return;
-
-  const link = document.createElement('link');
-  link.id = 'katex-css';
-  link.rel = 'stylesheet';
-  link.href = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css';
-  document.head.appendChild(link);
-
-  const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js';
-  script.defer = true;
-  document.head.appendChild(script);
-};
-
-// Inject marked + DOMPurify
-const injectMarkedAndSanitizer = () => {
-  if (typeof window === 'undefined') return;
-  if (!window.marked) {
-    const s = document.createElement('script');
-    s.src = 'https://cdn.jsdelivr.net/npm/marked/marked.min.js';
-    s.defer = true;
-    document.head.appendChild(s);
-  }
-  if (!window.DOMPurify) {
-    const s2 = document.createElement('script');
-    s2.src = 'https://cdn.jsdelivr.net/npm/dompurify@2.4.0/dist/purify.min.js';
-    s2.defer = true;
-    document.head.appendChild(s2);
-  }
-};
+marked.setOptions({ gfm: true, breaks: true });
 
 const preprocessFigures = (text) => {
   if (!text) return text;
 
-  // Handle explicit :::figure blocks first (keep existing functionality)
   text = text.replace(
     /:::figure\s+([\s\S]*?)\s+:::/g,
     (_, content) => {
@@ -55,7 +26,6 @@ const preprocessFigures = (text) => {
     }
   );
 
-  // Automatically convert any image + following text line into a figure
   text = text.replace(
     /!\[([^\]]*)\]\(([^)]+)\)\s*\n([^\n]+)/g,
     (_, alt, src, caption) => {
@@ -77,13 +47,9 @@ const preprocessCustomQuoteBlocks = (text) => {
   const renderCallout = (content, className, tagName) => {
       let inner = content.trim();
 
-      if (typeof window !== 'undefined' && window.marked) {
-        try {
-          inner = window.marked.parse(inner);
-        } catch (e) {
-          inner = inner.replace(/\n/g, '<br/>');
-        }
-      } else {
+      try {
+        inner = marked.parse(inner);
+      } catch (e) {
         inner = inner.replace(/\n/g, '<br/>');
       }
 
@@ -104,19 +70,17 @@ const preprocessCustomQuoteBlocks = (text) => {
 };
 
 
-// Protect math before any Markdown parsing.
+// Protect math before Markdown parsing.
 const extractMathPlaceholders = (text) => {
   const placeholders = [];
   let nextId = 0;
 
-  // Display math $$...$$
   text = text.replace(/\$\$([\s\S]+?)\$\$/g, (m, expr) => {
     const id = `MATHPLACEHOLDER${nextId++}TOKEN`;
     placeholders.push({ id, expr, display: true });
     return id;
   });
 
-  // Inline math $...$
   text = text.replace(/\$([^$\n]+?)\$/g, (m, expr) => {
     const id = `MATHPLACEHOLDER${nextId++}TOKEN`;
     placeholders.push({ id, expr, display: false });
@@ -131,17 +95,12 @@ const escapeHtml = (value) => value
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;');
 
-// Render markdown -> HTML, then restore the protected math.
+// Render markdown -> HTML, then restore protected math.
 const renderMarkdownWithKatexPlaceholders = (text, placeholders) => {
   let html;
-  if (typeof window !== 'undefined' && window.marked) {
-    try {
-      window.marked.setOptions({ gfm: true, breaks: true, smartLists: true });
-      html = window.marked.parse(text);
-    } catch (e) {
-      html = `<p>${text.replace(/\n\n+/g, '</p><p>').replace(/\n/g, '<br/>')}</p>`;
-    }
-  } else {
+  try {
+    html = marked.parse(text);
+  } catch (e) {
     html = `<p>${text.replace(/\n\n+/g, '</p><p>').replace(/\n/g, '<br/>')}</p>`;
   }
 
@@ -149,55 +108,40 @@ const renderMarkdownWithKatexPlaceholders = (text, placeholders) => {
   placeholders.forEach(p => {
     const expression = escapeHtml(p.expr);
     const span = p.display
-      ? `<span data-katex-display>${expression}</span>`
-      : `<span data-katex-inline>${expression}</span>`;
+      ? `<span data-katex-display="true">${expression}</span>`
+      : `<span data-katex-inline="true">${expression}</span>`;
     html = html.split(p.id).join(span);
   });
 
   return html;
 };
 
-// Apply KaTeX to all math nodes
 const applyKatexToNode = (node) => {
-  if (typeof window === 'undefined' || !window.katex) return;
+  if (!node) return;
 
-  node.querySelectorAll('span[data-katex-display]').forEach(el => {
-    try { window.katex.render(el.textContent, el, { displayMode: true, throwOnError: false }); }
-    catch { el.innerText = el.textContent; }
+  node.querySelectorAll('span[data-katex-display]').forEach((el) => {
+    try {
+      katex.render(el.textContent, el, { displayMode: true, throwOnError: false });
+    } catch {
+      el.innerText = el.textContent;
+    }
   });
 
-  node.querySelectorAll('span[data-katex-inline]').forEach(el => {
-    try { window.katex.render(el.textContent, el, { displayMode: false, throwOnError: false }); }
-    catch { el.innerText = el.textContent; }
+  node.querySelectorAll('span[data-katex-inline]').forEach((el) => {
+    try {
+      katex.render(el.textContent, el, { displayMode: false, throwOnError: false });
+    } catch {
+      el.innerText = el.textContent;
+    }
   });
 };
 
 const MarkdownMath = ({ text }) => {
-  const { theme } = useTheme(); // use your theme
+  const { theme } = useTheme();
   const rootRef = useRef(null);
-  const [ready, setReady] = useState(false);
   const [html, setHtml] = useState('');
 
-  // Inject dependencies
   useEffect(() => {
-    injectKatex();
-    injectMarkedAndSanitizer();
-
-    const interval = setInterval(() => {
-      if (window.marked && window.DOMPurify && window.katex) {
-        clearInterval(interval);
-        setReady(true);
-      }
-    }, 150);
-
-    const timeout = setTimeout(() => clearInterval(interval), 5000);
-    return () => { clearInterval(interval); clearTimeout(timeout); };
-  }, []);
-
-  // Render markdown once libraries are ready
-  useEffect(() => {
-    if (!ready) return;
-
     const { text: textWithMathPlaceholders, placeholders } =
       extractMathPlaceholders(text || '');
     const parsed = renderMarkdownWithKatexPlaceholders(
@@ -206,10 +150,9 @@ const MarkdownMath = ({ text }) => {
       ),
       placeholders
     );
-    let sanitized = parsed;
 
-    if (typeof window !== 'undefined' && window.DOMPurify) {
-      sanitized = window.DOMPurify.sanitize(parsed, {
+    setHtml(
+      DOMPurify.sanitize(parsed, {
         ADD_TAGS: ['iframe', 'video', 'source', 'figure', 'figcaption'],
         ADD_ATTR: [
           'data-katex-display',
@@ -218,18 +161,15 @@ const MarkdownMath = ({ text }) => {
           'frameborder', 'allow', 'allowfullscreen', 'controls', 'type'
         ],
         ALLOWED_URI_REGEXP: /^(?:http|https|data|\/)/i
-      });
-    }
+      })
+    );
+  }, [text]);
 
-    setHtml(sanitized);
+  useLayoutEffect(() => {
+    if (!html) return;
+    applyKatexToNode(rootRef.current);
+  }, [html]);
 
-    const t = setTimeout(() => {
-      if (rootRef.current) applyKatexToNode(rootRef.current);
-    }, 200);
-    return () => clearTimeout(t);
-  }, [text, ready]);
-
-  // Styles dynamically respect theme
   const styles = `
     #markdown-math-root { box-sizing: border-box; width: 100%; color: ${theme.colors.text}; }
     #markdown-math-root p, #markdown-math-root li, #markdown-math-root h1, #markdown-math-root h2, #markdown-math-root h3, #markdown-math-root h4, #markdown-math-root h5, #markdown-math-root span { word-break: break-word; overflow-wrap: anywhere; white-space: normal; }
@@ -331,17 +271,16 @@ const MarkdownMath = ({ text }) => {
       line-height: 1.4;
     }
 
-        /* ------------------ */
-    /* Markdown tables    */
-    /* ------------------ */
-
     #markdown-math-root table {
+      display: block;
       width: 100%;
       border-collapse: collapse;
       margin: 1.25em 0;
       font-size: 0.95em;
       border-radius: 8px;
-      overflow: hidden;
+      overflow-x: auto;
+      overflow-y: hidden;
+      white-space: nowrap;
       background: ${theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff'};
     }
 
@@ -363,19 +302,12 @@ const MarkdownMath = ({ text }) => {
       background: ${theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fafafa'};
     }
 
-    /* Mobile-safe horizontal scroll */
-    #markdown-math-root table {
-      display: block;
-      overflow-x: auto;
-      white-space: nowrap;
-    }
-
   `;
 
   return (
     <div
       data-markdown-present="true"
-      data-markdown-ready={ready && Boolean(html) ? "true" : "false"}
+      data-markdown-ready={html ? "true" : "false"}
     >
       <style>{styles}</style>
       <div ref={rootRef} id="markdown-math-root" dangerouslySetInnerHTML={{ __html: html }} />

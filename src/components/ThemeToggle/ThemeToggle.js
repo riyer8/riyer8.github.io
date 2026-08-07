@@ -20,7 +20,7 @@ const ThemeToggle = () => {
         cursor: 'pointer',
         color: theme.colors.text,
         backdropFilter: 'blur(10px)',
-        transition: 'box-shadow 0.25s ease, background 0.25s ease',
+        transition: 'box-shadow 0.28s cubic-bezier(0.22, 1, 0.36, 1), background 0.28s cubic-bezier(0.22, 1, 0.36, 1), transform 0.22s cubic-bezier(0.22, 1, 0.36, 1)',
         zIndex: 1001,
         boxShadow: theme.isDarkMode
             ? '0 4px 14px rgba(0, 0, 0, 0.3)'
@@ -34,7 +34,7 @@ const ThemeToggle = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        transition: 'transform 0.25s ease',
+        transition: 'transform 0.28s cubic-bezier(0.22, 1, 0.36, 1)',
         transform: 'scale(1)',
     };
 
@@ -52,9 +52,11 @@ const ThemeToggle = () => {
             style={buttonStyle}
             onClick={toggleTheme}
             onMouseEnter={(e) => {
-                e.currentTarget.querySelector('.icon-wrapper').style.transform = 'scale(1.15)';
+                e.currentTarget.style.transform = 'scale(1.05)';
+                e.currentTarget.querySelector('.icon-wrapper').style.transform = 'scale(1.12)';
             }}
             onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'scale(1)';
                 e.currentTarget.querySelector('.icon-wrapper').style.transform = 'scale(1)';
             }}
             title={theme.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}

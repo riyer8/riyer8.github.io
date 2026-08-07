@@ -1,31 +1,24 @@
 import { Link } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
+import "./BackHomeLink.css";
 
 const BackHomeLink = ({ className = "" }) => {
   const { theme } = useTheme();
 
-  const buttonStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "0.5rem",
-    padding: "0.4rem 0.6rem",
-    borderRadius: 8,
-    background: theme.isDarkMode ? "rgba(255,255,255,0.04)" : theme.colors.accent,
-    color: theme.isDarkMode ? theme.colors.text : "#fff",
-    border: `1px solid ${theme.colors.border}`,
-    cursor: "pointer",
-    fontFamily: theme.fonts?.base || "var(--font-ui)",
-    fontSize: "var(--text-meta)",
-    fontWeight: 500,
-  };
-
   return (
     <Link
       to="/"
-      className={className}
-      style={{ textDecoration: "none", display: "inline-flex" }}
+      className={`back-home-link${theme.isDarkMode ? " back-home-link--dark" : ""}${className ? ` ${className}` : ""}`}
+      style={{
+        "--bh-bg": theme.isDarkMode
+          ? "rgba(255,255,255,0.04)"
+          : theme.colors.accent,
+        "--bh-color": theme.isDarkMode ? theme.colors.text : "#fff",
+        "--bh-border": theme.colors.border,
+        "--bh-accent": theme.colors.accent,
+      }}
     >
-      <span style={buttonStyle}>← Home</span>
+      <span className="back-home-link__btn">← Home</span>
     </Link>
   );
 };

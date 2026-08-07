@@ -1,0 +1,67 @@
+.loading-polaroids {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.loading-polaroid {
+  position: absolute;
+  margin: 0;
+  width: clamp(74px, 8.4vw, 124px);
+  padding: 1% 1% 4% 1%;
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.16);
+  opacity: 0;
+  visibility: hidden;
+  transform: rotate(var(--polaroid-rotate)) scale(0.82) translateY(12px);
+  will-change: transform, opacity;
+}
+
+.loading-polaroid--visible {
+  visibility: visible;
+  animation: polaroid-drop 680ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: var(--polaroid-delay);
+}
+
+.loading-polaroid__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  background: #111;
+  border-radius: 0;
+}
+
+@keyframes polaroid-drop {
+  0% {
+    opacity: 0;
+    transform: rotate(var(--polaroid-rotate)) scale(0.82) translateY(12px);
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: rotate(var(--polaroid-rotate)) scale(1) translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .loading-polaroid {
+    width: clamp(56px, 16vw, 84px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loading-polaroid--visible {
+    opacity: 1;
+    visibility: visible;
+    transform: rotate(var(--polaroid-rotate));
+    animation: none;
+  }
+}

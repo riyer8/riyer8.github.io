@@ -14,7 +14,7 @@ const PHOTOS = carouselPhotos.photos
   .filter((p) => p.src != null);
 
 const AUTO_ADVANCE_MS = 5500;
-const CROSSFADE_EASE = [0.4, 0, 0.2, 1];
+const CROSSFADE_EASE = [0.22, 1, 0.36, 1];
 
 const AboutCarousel = () => {
   const { theme } = useTheme();
@@ -24,11 +24,11 @@ const AboutCarousel = () => {
 
   const slideTransition = prefersReducedMotion
     ? { duration: 0 }
-    : { duration: 0.55, ease: CROSSFADE_EASE };
+    : { duration: 0.72, ease: CROSSFADE_EASE };
 
   const captionTransition = prefersReducedMotion
     ? { duration: 0 }
-    : { duration: 0.4, ease: CROSSFADE_EASE };
+    : { duration: 0.5, ease: CROSSFADE_EASE };
 
   const goTo = useCallback((nextIndex) => {
     setIndex((nextIndex + PHOTOS.length) % PHOTOS.length);

@@ -1,0 +1,45 @@
+.back-home-link {
+  text-decoration: none;
+  display: inline-flex;
+}
+
+.back-home-link__btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+  background: var(--bh-bg);
+  color: var(--bh-color);
+  border: 1px solid var(--bh-border);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: var(--text-meta);
+  font-weight: 500;
+  transition:
+    background 160ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    border-color 160ms cubic-bezier(0.25, 0.1, 0.25, 1),
+    box-shadow 160ms cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.back-home-link:hover .back-home-link__btn {
+  background: color-mix(in srgb, var(--bh-accent) 88%, #000);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.back-home-link--dark:hover .back-home-link__btn {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.back-home-link:active .back-home-link__btn {
+  box-shadow: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-home-link__btn,
+  .back-home-link:hover .back-home-link__btn,
+  .back-home-link:active .back-home-link__btn {
+    transition: none;
+    transform: none;
+  }
+}

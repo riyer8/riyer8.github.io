@@ -15,7 +15,7 @@ const bookData = [
 
 ## Chapters
 
-### 1. Every Day is Ground Hog Day
+### 1. Every Day is Groundhog Day
 > The creative life is not linear.
 
 > Rather than restricting your freedom, a routine gives you freedom by protecting you from the ups and downs of life and helping you take advantage of your limited time, energy, and talent.
@@ -332,7 +332,7 @@ const bookData = [
     dateAdded: "2025-11-30",
     category: "creativity",
     medium: "essay",
-    favorite: true,
+    favorites: 1,
     tags: ["career", "creativity"],
     tldr: "The best way to live is to create. Don't leave this world with ideas that could have been something out there.",
     thoughts: "Oh wow. Definitely something I'm coming back to later.",
@@ -379,7 +379,7 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
     notes: `
 > In order to determine whether a person is being untruthful, we need to look and listen for the first deceptive behavior to occur within the first five seconds after the stimulus is delivered.
 
-> At any given moment in time, as human beings we tend to be either be visually dominant or auditory dominant — we’re either more aware of and processing what we’re seeing, or more aware of and processing what we’re hearing. The problem with that goes back to what we said about communication being both verbal and nonverbal in nature, which means that deceptive behavior can come in either or both forms
+> At any given moment in time, as human beings we tend to be either visually dominant or auditory dominant — we’re either more aware of and processing what we’re seeing, or more aware of and processing what we’re hearing. The problem with that goes back to what we said about communication being both verbal and nonverbal in nature, which means that deceptive behavior can come in either or both forms
 
 > The trick is to train our brains to go into what we call “L-squared mode” - we have to tell it to *look* and *listen* simultaneously.
 
@@ -448,7 +448,7 @@ Basically, change is coming and the quicker we move and iterate, the faster we c
     category: "life",
     tags: ['philosophy', 'morality', 'stanford'],
     medium: "book",
-    favorite: true,
+    favorites: 1,
     tldr: "",
     thoughts: "Truly has to be one of my favorite books I've ever read in my life. Apart from the fact that Kalanithi went to Stanford, his writing is so beautiful and reflective.",
     notes: `

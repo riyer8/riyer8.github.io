@@ -87,7 +87,7 @@ This is the image that can be found in the article, displaying the architecture 
     dateAdded: "2026-03-16",
     category: "science",
     medium: "research paper",
-    tags: ['large-language-models'],
+    tags: ['LLMs'],
     tldr: "",
     notes: `
 
@@ -211,7 +211,7 @@ Here, LLMs can take an environment and mutate it (as seen in AlphaEvolve). EAs c
     dateAdded: "2026-07-25",
     category: "science",
     medium: "research paper",
-    tags: ['large-language-models', 'deep-rl', 'human-preferences'],
+    tags: ['LLMs', 'deep-rl', 'human-preferences'],
     tldr: "Integrating humans by using their feedback as the reward signal for complex goals.",
     notes: `
 This paper is proposing a new method for humans to provide feedback for complex tasks, reducing the amount of feedback by orders of magnitude (since full human feedback would require a ton of time).

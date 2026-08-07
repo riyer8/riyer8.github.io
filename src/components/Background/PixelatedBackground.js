@@ -20,7 +20,6 @@ const PixelatedBackground = () => {
         resize();
         window.addEventListener('resize', resize);
 
-        // 🖱️ Mouse tracking
         const mouse = { x: 0, y: 0 };
         const targetMouse = { x: 0, y: 0 };
 
@@ -31,7 +30,6 @@ const PixelatedBackground = () => {
 
         window.addEventListener('mousemove', handleMouseMove);
 
-        // 🌊 blobs
         const blobs = Array.from({ length: 6 }, () => ({
             baseX: Math.random() * window.innerWidth,
             baseY: Math.random() * window.innerHeight,
@@ -45,14 +43,12 @@ const PixelatedBackground = () => {
         const draw = () => {
             time += 0.0015;
 
-            // smooth mouse
             mouse.x = lerp(mouse.x, targetMouse.x, 0.05);
             mouse.y = lerp(mouse.y, targetMouse.y, 0.05);
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.filter = 'blur(40px)';
 
-            // 🌊 BLOBS
             blobs.forEach((b, i) => {
                 const t = time + b.phase;
 
@@ -61,7 +57,6 @@ const PixelatedBackground = () => {
                 let x = b.baseX + Math.sin(t * 0.2 * b.depth) * movement;
                 let y = b.baseY + Math.cos(t * 0.2 * b.depth) * movement;
 
-                // 🖱️ parallax
                 const parallaxStrength = 100;
                 x += mouse.x * parallaxStrength * b.depth;
                 y += mouse.y * parallaxStrength * b.depth;
@@ -86,7 +81,6 @@ const PixelatedBackground = () => {
                 ctx.fill();
             });
 
-            // 🌟 CURSOR LIGHT (NEW)
             const lightX = canvas.width / 2 + mouse.x * canvas.width * 0.5;
             const lightY = canvas.height / 2 + mouse.y * canvas.height * 0.5;
 
@@ -101,13 +95,9 @@ const PixelatedBackground = () => {
                 lightRadius
             );
 
-            const lightColor = theme.isDarkMode
-                ? '255,255,255'
-                : '255,255,255';
-
-            lightGradient.addColorStop(0, `rgba(${lightColor}, 0.08)`);
-            lightGradient.addColorStop(0.4, `rgba(${lightColor}, 0.04)`);
-            lightGradient.addColorStop(1, `rgba(${lightColor}, 0)`);
+            lightGradient.addColorStop(0, 'rgba(255,255,255, 0.08)');
+            lightGradient.addColorStop(0.4, 'rgba(255,255,255, 0.04)');
+            lightGradient.addColorStop(1, 'rgba(255,255,255, 0)');
 
             ctx.globalCompositeOperation = 'lighter';
             ctx.fillStyle = lightGradient;
