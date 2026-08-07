@@ -1,0 +1,77 @@
+.page-transition {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  z-index: 1;
+}
+
+.page-transition__page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.page-transition__veil {
+  position: fixed;
+  inset: 0;
+  z-index: 800;
+  pointer-events: none;
+  /* Opaque canvas ground — matches PixelatedBackground, no blur wash */
+  will-change: opacity;
+}
+
+.page-transition__veil--active {
+  pointer-events: auto;
+}
+
+/*
+ * Text / image / chrome units drop in top → bottom.
+ */
+.page-transition__page.is-entering .page-cascade-item:not(tr) {
+  animation: content-drop 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--cascade-i, 0) * 70ms + 80ms);
+  will-change: opacity, transform;
+}
+
+/*
+ * Table rows: transform on <tr> is unreliable — animate cells instead
+ * so each bookshelf line drops as a readable row of text.
+ */
+.page-transition__page.is-entering tr.page-cascade-item > th,
+.page-transition__page.is-entering tr.page-cascade-item > td {
+  animation: content-drop 0.62s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--cascade-i, 0) * 52ms + 100ms);
+  will-change: opacity, transform;
+}
+
+/* Bookshelf intro blocks breathe a touch more before the list waterfall */
+.page-transition__page.is-entering .bookshelf-hero.page-cascade-item,
+.page-transition__page.is-entering .bookshelf-quote.page-cascade-item,
+.page-transition__page.is-entering .bookshelf-filters.page-cascade-item,
+.page-transition__page.is-entering .bookshelf-search-row.page-cascade-item {
+  animation-duration: 0.8s;
+}
+
+@keyframes content-drop {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -0.95rem, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-transition__veil {
+    display: none;
+  }
+
+  .page-transition__page.is-entering .page-cascade-item:not(tr),
+  .page-transition__page.is-entering tr.page-cascade-item > th,
+  .page-transition__page.is-entering tr.page-cascade-item > td {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}

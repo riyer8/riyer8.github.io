@@ -7,10 +7,10 @@ import {
   personSchema,
   usePageMetadata,
   websiteSchema,
-} from "../../utils/pageTitle";
+} from "../../seo/pageMetadata";
 import BackHomeLink from "../../components/Navigation/BackHomeLink";
-import NotesSection from "../Principles/NotesSection";
-import LifeGoalsSection from "../LifeGoals/LifeGoalsSection";
+import NotesSection from "./principles/NotesSection";
+import LifeGoalsSection from "./lifeGoals/LifeGoalsSection";
 import AboutCarousel from "./AboutCarousel";
 import "./AboutPage.css";
 

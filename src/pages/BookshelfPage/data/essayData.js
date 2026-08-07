@@ -5,7 +5,7 @@ const essayData = [
     url: "https://nabeelqu.co/principles",
     dateAdded: "2026-04-11",
     category: "advice",
-    favorite: true,
+    favorites: 1,
     medium: "essay",
     thoughts: "A piece I continue to come back to - but also one that encourages me to think about my own principles. I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford but in a more informal way.",
     tags: ['principles', 'life', 'advice'],
@@ -59,7 +59,7 @@ I remember I saw a rather similar idea when watching a podcast with Sara Blakely
 :::quote
 61. Luck isn’t a constant, it increases with surface area: be in the right places, have lots of conversations, put yourself out there, ask for what you want and be optimistic and positive. 
 :::
-Instead your surface area and luck follows. Similar to a ton of his other principles where writing more, emailing more, avoiding lurking, all of these lead to getting your thoughts out there.
+Increase your surface area and luck follows. Similar to a ton of his other principles where writing more, emailing more, avoiding lurking, all of these lead to getting your thoughts out there.
     `
   },
 
@@ -104,7 +104,7 @@ The idea of **regret minimization**:
     dateAdded: "2025-11-19",
     category: "psychology",
     medium: "essay",
-    favorite: true,
+    favorites: 1,
     tldr: "🕰️ Just extracting lessons from history diminishes its purpose. History is context dependent that can help build mental models for future decisions.",
     thoughts: "Really fascinating as I learn more about history and reframing history",
     tags: ['history', 'lessons', 'entrepreneurship', 'mental-models'],
@@ -134,7 +134,7 @@ This happens to be one of my favorite essays I've read about history of all time
     dateAdded: "2025-11-30",
     category: "psychology",
     medium: "essay",
-    tags: ["status", "sociology", "expertise", "elites", "incentives"],
+    tags: ["status", "sociology", "expertise", "elites",],
     tldr: "⚖️ The divide between experts (technically backed) and elites (socially backed)",
     thoughts: "Really fascinating account of status and the tradeoffs. Definitely something I will be thinking about.",
     notes: `
@@ -160,7 +160,7 @@ Both of these archetypes serve different functions. Henderson actually sums this
     author: "Sam Altman",
     url: "https://blog.samaltman.com/how-to-be-successful",
     dateAdded: "2025-12-07",
-    favorite: true,
+    favorites: 1,
     category: "advice",
     medium: "essay",
     tags: ["advice", "success", 'startups'],
@@ -282,7 +282,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
     dateAdded: "2025-11-30",
     category: "advice",
     medium: "essay",
-    tags: ['writing', 'creativity', 'drafting'],
+    tags: ['writing', 'creativity'],
     tldr: "It's okay if your first draft is shitty",
     thoughts: "Know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",
     notes: `
@@ -301,7 +301,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
     dateAdded: "2025-12-26",
     category: "advice",
     medium: "essay",
-    favorite: true,
+    favorites: 1,
     tldr: "",
     thoughts: "long essay but filled with fruits.",
     tags: ['great-work', 'ambition'],
@@ -372,8 +372,8 @@ It's not a defect in your character that it may be hard to get started. People h
     medium: "essay",
     tldr: "Why can't LLM come up with new discoveries despite having so much information? The fixed knowledge of NN provides little room for growth; Gwern proposes 'day-dreaming loops' to create unique connections among ideas.",
     thoughts: "",
-    favorite: true,
-    tags: ['AI', 'LLM', 'new-ideas'],
+    favorites: 1,
+    tags: ['AI', 'LLMs', 'new-ideas'],
     notes: `
 2/25/2026 Update: It's evident that the idea of continual learning is not new. However, there is still fruit in the idea of daydreaming. Possibly, how can we extract the most out of a static dataset (rather than inputting new information) via daydreaming. Currently doing research on it.
 
@@ -505,7 +505,7 @@ I've been looking for essays and opinions about rosy retrospection and how our b
     url: "https://www.youtube.com/watch?v=iRB-C5TgGec",
     dateAdded: "2026-02-24",
     category: "life",
-    favorite: true,
+    favorites: 1,
     medium: "video",
     tldr: "",
     thoughts: "Truly one of my favorite videos.",
@@ -524,7 +524,7 @@ The way I see it, we begin life close to God, to the universe and to all things.
 
 **I believe there is a great connectedness to this world we find ourselves in and of, and yet, slowly, we grow up and fall for the idea that we’re all separate and isolated. I’ve fallen for this idea.** The grand illusion is that we think we’re finding our way by building up our identities, our accomplishments, our empires, but really **we grow blind to what we are and where we come from.**
 
-> I want to see clearly. I want to see beyond this illusion. I want to wake up. I need to remember that I’m not separate from the world around me. I can see that the things that I cling to, the things I want to own, own me. They blind me. I must surrender to all that I am terrified by. Freedom comes from letting go. That’s is. It sounds simple, because it is simple. Even so, I’m coming to realize that letting go of everything that I know about myself is perhaps the most terrifying thing I can seek to do.
+> I want to see clearly. I want to see beyond this illusion. I want to wake up. I need to remember that I’m not separate from the world around me. I can see that the things that I cling to, the things I want to own, own me. They blind me. I must surrender to all that I am terrified by. Freedom comes from letting go. That’s it. It sounds simple, because it is simple. Even so, I’m coming to realize that letting go of everything that I know about myself is perhaps the most terrifying thing I can seek to do.
 
 Still, I find myself doing what I can to peel away the layers. Tearing off my armor, every last one of the walls must come down. It will take me a while, but eventually, I will go home. Maybe when I can see clearly, I’ll see that I am already home.
 
@@ -534,7 +534,7 @@ Still, I find myself doing what I can to peel away the layers. Tearing off my ar
 
 I’ve come to learn that beyond every fear is a new discovery I will make about myself. **I let the things that scare me be my sign posts, telling me where I must go next.** What a gift, to be able to keep learning about myself.
 
-**And so I find myself in conversation with fear.** It is not a conversation to be had with the mind, but with the heart. If fear is the tunnel, than my heart is the torch, the lantern, illuminating just enough for me to take my next steps. 
+**And so I find myself in conversation with fear.** It is not a conversation to be had with the mind, but with the heart. If fear is the tunnel, then my heart is the torch, the lantern, illuminating just enough for me to take my next steps. 
 
 When I am acting with my heart, I can say to fear: “Hello my dear friend, I see you. My mind tells me to hate you, to destroy but my heart tells me to be curious about you, to move towards you. I want to get to know you better because you teach me so much about me.”
 
@@ -553,7 +553,7 @@ The heart doesn’t think, it isn’t strategic. It just experiences. All that c
     url: "https://www.nytimes.com/2014/01/25/opinion/sunday/how-long-have-i-got-left.html",
     dateAdded: "2026-03-03",
     category: "life",
-    favorite: true,
+    favorites: 1,
     medium: "essay",
     tldr: "",
     thoughts: "In honor of me starting to read \"When Breath Becomes Air\", doing a deep dive into Paul Kalanithi and his writing is the truest gift. Making me feel nostalgic about Stanford and life.",
@@ -629,7 +629,7 @@ I find it useful to distinguish between luck-luck and skill-luck. Luck-luck is p
     category: "life",
     medium: "essay",
     tldr: "",
-    favorite: true,
+    favorites: 1,
     thoughts: "So many psychological concepts connected with conversations. I love humans.",
     tags: ['life', 'conversations', 'friends', 'psychology'],
     notes: `
@@ -694,7 +694,7 @@ Every day I grow older, I feel like the gap becomes more and more apparent. It's
   {
     title: "There's a place for everyone",
     author: "Adam Mastroianni",
-    favorite: true,
+    favorites: 1,
     url: "https://www.experimental-history.com/p/theres-a-place-for-everyone",
     dateAdded: "2026-03-26",
     category: "life",
@@ -725,7 +725,7 @@ That’s why “where do I fit in?” is not a private question, like the passwo
     dateAdded: "2026-03-28",
     category: "life",
     medium: "essay",
-    favorite: true,
+    favorites: 1,
     tldr: "",
     thoughts: "took a deeper breath after reading this one.",
     tags: ['life', 'growth'],
@@ -825,7 +825,7 @@ Understanding the **precarity** that is yours:
     dateAdded: "2026-04-10",
     category: "life",
     medium: "essay",
-    favorite: true,
+    favorites: 1,
     tldr: "",
     thoughts: "Thought about archiving this because it's different than most of the other essays I have here - but I think I loved it too much.",
     tags: ['life', 'self-love', 'friends', 'growth'],
@@ -861,7 +861,7 @@ As a sidenote, I think this article could be a sequel to [this essay](https://me
     author: "Carina",
     dateAdded: "2026-04-10",
     category: "life",
-    favorite: true,
+    favorites: 1,
     medium: "essay",
     tldr: "Trying is the greatest form of love.",
     thoughts: "",
@@ -904,7 +904,7 @@ In fashion, maybe a precursor to this article can be [this one](https://the25res
     dateAdded: "2026-04-12",
     category: "life",
     medium: "essay",
-    favorite: true,
+    favorites: 1,
     tldr: "",
     thoughts: "",
     tags: ['life', 'comparison', 'career'],
@@ -930,8 +930,8 @@ come back to yourself. ask what you want, what you need, what actually feels tru
     dateAdded: "2026-04-17",
     category: "life",
     medium: "essay",
-    tldr: "",
-    thoughts: "",
+    tldr: "There are three categories to friendship: pleasure, utility, and virtue. Sometimes, you haven't become friends with someone because you haven't asked them / talked to them about the right topics.",
+    thoughts: "If you search hard enough, more often than not, people have more in common with each other than you think. The bottleneck is how long are you willing to spend to find that spark.",
     tags: ['friends', 'life', 'psychology'],
     notes: `
 The three categories of friendships:
@@ -940,7 +940,7 @@ The three categories of friendships:
 3. **Virtue** (character-driven). Enjoy each other's company even if they are / aren't fun or useful.
 
 :::quote
-That is a friendship of virtue.
+**That is a friendship of virtue.**
 
 And in a long enough perspective, it is the only thing that matters in a relationship. Pleasure will come and go, as will utility.
 :::
@@ -956,21 +956,20 @@ If someone seems boring to you, or a bad fit, it might be that you don’t know 
     author: "Tamara",
     dateAdded: "2026-05-29",
     category: "life",
-    favorite: true,
+    favorites: 1,
     medium: "essay",
     tldr: "I hope you are able to leave the room that confines you to find air instead of walls.",
     thoughts: "",
     tags: ['life', 'relationships', 'psychology'],
     notes: `
-I haven't been putting Substacks on my website log ever since I've been restacking on Substack itself, but this one hit me so hard that it felt only right to share it.
+I haven't been putting Substacks on my website log ever since I've been restacking on Substack itself, but this one resonated with me that it only felt right to share it.
 
+I think there's a certain attachment and familiarity to what you already know. It's strange to hike into the unknown, unsure of what is to come. Part of it can be pondering of whether that unknown is better than what you already know. I'd probably say that you'll never know unless you get yourself out of the room to find out. Easier said than done...
 :::quote
 The time between knowing and doing. The long hallway between intuition and motion. It’s about the soul’s strange attachment to places it has already outgrown, and the emotional physics of rooms that should have been vacated years ago but still smell faintly like home.
 :::
 
-:::quote
-It is a kind of moral vanity, however well-intentioned, the belief that endurance will earn the outcome. But some thresholds do not reward virtue. They punish misreading.
-:::
+It's often self-sabotaging of us to imagine that staying in rooms that already hurt us can be a form of love. "Don't mess it up. Don't change what you know." Maybe leaving is the ultimate form of self-love.
 
 :::quote
 We don’t often talk about the sacredness of staying. About how lingering, despite logic, despite pain, despite the bruising repetition of unmet needs, can be an act of love. Sometimes, we stay out of devotion. Out of commitment to a promise we made before we understood what the promise would cost. Sometimes, we stay because we still believe something holy might be salvaged. And that’s not delusion; that’s a form of faith.
@@ -980,7 +979,28 @@ We don’t often talk about the sacredness of staying. About how lingering, desp
 To leave a room that once made us feel safe is to kill the fantasy that safety can be permanent.
 :::
 
+There will never be a perfect time to leave and to go. So go with whatever you have now and see what happens :)
+
 > I don’t believe in reinvention anymore. **I believe in retrieval.** In becoming again the one you were before the room made you smaller. \n **So when you do go, and I hope you do, go with your flaws, your doubts, your boxes still unpacked. Go messy. Go late. Go unprepared. Go with nothing but the whisper that you were meant for air.** \n Because if there’s anything waiting on the other side, it’s not perfection. **It’s breath. It’s possibility.** It’s a room with light. And maybe, if you’re lucky, a window.
+    `
+  },
+
+  {
+    title: "Give Hard Feedback Fast",
+    url: "https://boz.com/articles/give-hard-feedback-fast",
+    author: "Andrew Bosworth",
+    dateAdded: "2026-08-04",
+    category: "life",
+    medium: "essay",
+    tldr: "Every second that you decide to delay giving feedback is a lost opportunity for growth.",
+    thoughts: "In a way, I actually really relate to boz + his personality and getting that hard / not-nice-to-hear feedback + criticism can be liberating.",
+    tags: ['feedback', 'life', 'career'],
+    notes: `
+Meta is so big on feedback, so it's no surprise that boz would write about it in his personal blog.
+
+I also think this pairs well with his essay about [Think of Pavlov](https://boz.com/articles/think-pavlov) which discusses being aware that every time you interact with someone affects the way they come into the next conversation. Personally, I think it's important to know but not necessarily constant to think about because at the end of the day, you can't control every interaction and *how you are perceived*).
+
+> Feedback is better late than never but every second of delay denies the subject an opportunity to get better.
     `
   },
 

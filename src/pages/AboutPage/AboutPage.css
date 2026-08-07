@@ -76,8 +76,8 @@
 
 .about-page__body p {
   margin: 0;
-  font-size: var(--text-body);
-  line-height: var(--leading-relaxed);
+  font-size: var(--text-meta);
+  line-height: var(--leading-normal);
   color: var(--about-text);
 }
 
@@ -119,13 +119,25 @@
   border: 1px solid color-mix(in srgb, var(--about-accent) 35%, transparent);
   border-radius: 999px;
   background: color-mix(in srgb, var(--about-accent) 8%, transparent);
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition:
+    background 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.2s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.2s cubic-bezier(0.22, 1, 0.36, 1);
   white-space: nowrap;
 }
 
 .about-page__link:hover {
   background: color-mix(in srgb, var(--about-accent) 16%, transparent);
   border-color: var(--about-accent);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--about-accent) 18%, transparent);
+}
+
+.about-page__link:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow: none;
+  transition-duration: 0.1s;
 }
 
 .about-page__email {

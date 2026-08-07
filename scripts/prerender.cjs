@@ -20,6 +20,10 @@ const RENDER_CONCURRENCY = Math.max(
   1,
   Number.parseInt(process.env.PRERENDER_CONCURRENCY || "4", 10) || 4
 );
+const RENDER_RETRIES = Math.max(
+  1,
+  Number.parseInt(process.env.PRERENDER_RETRIES || "2", 10) || 2
+);
 const bookshelfData =
   require("../src/pages/BookshelfPage/data/bookshelfData").default;
 const {
@@ -46,19 +50,66 @@ const MIME_TYPES = {
 const normalizeRoute = (route) =>
   route === "/" ? "/" : `/${route.replace(/^\/+|\/+$/g, "")}/`;
 
+const toIsoDate = (value) => {
+  if (!value || typeof value !== "string") return null;
+  const match = value.trim().match(/^(\d{4}-\d{2}-\d{2})/);
+  return match ? match[1] : null;
+};
+
+const maxIsoDate = (dates) =>
+  dates.filter(Boolean).sort().at(-1) || null;
+
+const escapeXml = (value) =>
+  String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;");
+
 const buildRoutes = () => {
-  const detailRoutes = bookshelfData.map((item) => {
+  const detailEntries = bookshelfData.map((item) => {
     if (!item.title?.trim()) throw new Error("A bookshelf item is missing a title.");
     const slug = titleToSlug(item.title);
     if (!slug) throw new Error(`Could not create a slug for "${item.title}".`);
-    return normalizeRoute(`/recent-reads/${slug}`);
+    return {
+      route: normalizeRoute(`/recent-reads/${slug}`),
+      lastmod: toIsoDate(item.dateAdded),
+      changefreq: "monthly",
+      priority: "0.6",
+    };
   });
-  const routes = ["/", "/ramya/", "/recent-reads/", ...detailRoutes];
-  const duplicates = routes.filter(
-    (route, index) => routes.indexOf(route) !== index
-  );
+
+  const recentReadsLastmod = maxIsoDate(detailEntries.map((entry) => entry.lastmod));
+  const routes = [
+    {
+      route: "/",
+      lastmod: recentReadsLastmod,
+      changefreq: "weekly",
+      priority: "1.0",
+    },
+    {
+      route: "/ramya/",
+      lastmod: null,
+      changefreq: "monthly",
+      priority: "0.8",
+    },
+    {
+      route: "/recent-reads/",
+      lastmod: recentReadsLastmod,
+      changefreq: "weekly",
+      priority: "0.9",
+    },
+    ...detailEntries,
+  ];
+
+  const duplicates = routes
+    .map((entry) => entry.route)
+    .filter((route, index, all) => all.indexOf(route) !== index);
   if (duplicates.length) {
-    throw new Error(`Duplicate prerender routes: ${[...new Set(duplicates)].join(", ")}`);
+    throw new Error(
+      `Duplicate prerender routes: ${[...new Set(duplicates)].join(", ")}`
+    );
   }
   return routes;
 };
@@ -66,14 +117,17 @@ const buildRoutes = () => {
 const startServer = (shellHtml) =>
   new Promise((resolve) => {
     const server = http.createServer((request, response) => {
-      const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
+      const pathname = decodeURIComponent(
+        new URL(request.url, "http://localhost").pathname
+      );
       const requestedPath = path.resolve(BUILD_DIR, `.${pathname}`);
       const isSafe = requestedPath.startsWith(BUILD_DIR);
       const isAsset = path.extname(pathname);
 
       if (isSafe && isAsset && fs.existsSync(requestedPath)) {
         response.writeHead(200, {
-          "Content-Type": MIME_TYPES[path.extname(requestedPath)] || "application/octet-stream",
+          "Content-Type":
+            MIME_TYPES[path.extname(requestedPath)] || "application/octet-stream",
         });
         fs.createReadStream(requestedPath).pipe(response);
         return;
@@ -113,6 +167,10 @@ const validateHtml = (html, route, { indexable = true } = {}) => {
       !indexable || html.includes(`href="${expectedCanonical}"`),
       `canonical ${expectedCanonical}`,
     ],
+    [
+      !indexable || html.includes(`content="${expectedCanonical}"`),
+      `og:url ${expectedCanonical}`,
+    ],
     [html.includes('id="page-structured-data"'), "structured data"],
     [/<div id="root">[\s\S]*\S[\s\S]*<\/div>/.test(html), "non-empty root content"],
     [
@@ -128,7 +186,24 @@ const validateHtml = (html, route, { indexable = true } = {}) => {
   }
 };
 
-const renderRoute = async (
+const attachLocalOnlyNetworking = async (page, origin) => {
+  await page.setRequestInterception(true);
+  page.on("request", (request) => {
+    const url = request.url();
+    if (
+      url.startsWith(origin) ||
+      url.startsWith("data:") ||
+      url.startsWith("blob:")
+    ) {
+      request.continue();
+      return;
+    }
+    // Keep prerender offline: no Google Fonts, CDNs, analytics, or other beacons.
+    request.abort();
+  });
+};
+
+const renderRouteOnce = async (
   browser,
   origin,
   route,
@@ -137,81 +212,115 @@ const renderRoute = async (
   const page = await browser.newPage();
   const pageErrors = [];
   page.on("pageerror", (error) => pageErrors.push(error.message));
-  await page.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
-  await page.emulateMediaFeatures([
-    { name: "prefers-reduced-motion", value: "reduce" },
-    { name: "prefers-color-scheme", value: "light" },
-  ]);
-  await page.evaluateOnNewDocument(() => {
-    window.sessionStorage.setItem("homeIntroSeen", "true");
-  });
 
-  await page.goto(`${origin}${route}`, {
-    waitUntil: "domcontentloaded",
-    timeout: 30000,
-  });
-  await page.waitForFunction(
-    (expectedPath, canonicalRequired) => {
-      const canonical = document.querySelector('link[rel="canonical"]')?.href;
-      return (
-        document.documentElement.dataset.prerenderReady === "true" &&
-        document.querySelector("#root")?.textContent.trim().length > 0 &&
-        (canonicalRequired ? canonical?.endsWith(expectedPath) : !canonical)
-      );
-    },
-    { timeout: 30000 },
-    route,
-    expectCanonical
-  );
-  await page.waitForFunction(
-    () =>
-      !document.querySelector(
-        '[data-markdown-present="true"][data-markdown-ready="false"]'
-      ),
-    { timeout: 30000 }
-  );
-  await page.evaluate(async () => {
-    if (document.fonts?.ready) await document.fonts.ready;
-    await new Promise((resolve) =>
-      requestAnimationFrame(() => requestAnimationFrame(resolve))
+  try {
+    await attachLocalOnlyNetworking(page, origin);
+    await page.setViewport({ width: 1440, height: 1000, deviceScaleFactor: 1 });
+    await page.emulateMediaFeatures([
+      { name: "prefers-reduced-motion", value: "reduce" },
+      { name: "prefers-color-scheme", value: "light" },
+    ]);
+    await page.evaluateOnNewDocument(() => {
+      window.sessionStorage.setItem("homeIntroSeen", "true");
+    });
+
+    await page.goto(`${origin}${route}`, {
+      waitUntil: "domcontentloaded",
+      timeout: 30000,
+    });
+    await page.waitForFunction(
+      (expectedPath, canonicalRequired) => {
+        const canonical = document.querySelector('link[rel="canonical"]')?.href;
+        return (
+          document.documentElement.dataset.prerenderReady === "true" &&
+          document.querySelector("#root")?.textContent.trim().length > 0 &&
+          (canonicalRequired ? canonical?.endsWith(expectedPath) : !canonical)
+        );
+      },
+      { timeout: 30000 },
+      route,
+      expectCanonical
     );
-  });
+    await page.waitForFunction(
+      () =>
+        !document.querySelector(
+          '[data-markdown-present="true"][data-markdown-ready="false"]'
+        ),
+      { timeout: 30000 }
+    );
+    await page.evaluate(async () => {
+      if (document.fonts?.ready) await document.fonts.ready;
+      await new Promise((resolve) =>
+        requestAnimationFrame(() => requestAnimationFrame(resolve))
+      );
+    });
 
-  if (pageErrors.length) {
-    throw new Error(`Browser errors on ${route}: ${pageErrors.join("; ")}`);
+    if (pageErrors.length) {
+      throw new Error(`Browser errors on ${route}: ${pageErrors.join("; ")}`);
+    }
+    return await page.content();
+  } finally {
+    await page.close();
   }
-  const html = await page.content();
-  await page.close();
-  return html;
 };
 
-const writeSitemap = (routes) => {
-  const urls = routes
-    .map((route) => `  <url><loc>${SITE_URL}${route}</loc></url>`)
+const renderRoute = async (browser, origin, route, options = {}) => {
+  let lastError;
+  for (let attempt = 1; attempt <= RENDER_RETRIES; attempt += 1) {
+    try {
+      return await renderRouteOnce(browser, origin, route, options);
+    } catch (error) {
+      lastError = error;
+      if (attempt < RENDER_RETRIES) {
+        console.warn(
+          `Retrying ${route} (${attempt}/${RENDER_RETRIES}): ${error.message}`
+        );
+      }
+    }
+  }
+  throw lastError;
+};
+
+const writeSitemap = (entries) => {
+  const urls = entries
+    .map((entry) => {
+      const lines = [`    <loc>${escapeXml(`${SITE_URL}${entry.route}`)}</loc>`];
+      if (entry.lastmod) {
+        lines.push(`    <lastmod>${escapeXml(entry.lastmod)}</lastmod>`);
+      }
+      if (entry.changefreq) {
+        lines.push(`    <changefreq>${escapeXml(entry.changefreq)}</changefreq>`);
+      }
+      if (entry.priority) {
+        lines.push(`    <priority>${escapeXml(entry.priority)}</priority>`);
+      }
+      return `  <url>\n${lines.join("\n")}\n  </url>`;
+    })
     .join("\n");
+
   fs.writeFileSync(
     path.join(BUILD_DIR, "sitemap.xml"),
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
   );
 };
 
-const renderRoutes = async (browser, origin, routes) => {
+const renderRoutes = async (browser, origin, entries) => {
   let nextRouteIndex = 0;
-  const workerCount = Math.min(RENDER_CONCURRENCY, routes.length);
+  const workerCount = Math.min(RENDER_CONCURRENCY, entries.length);
 
   const worker = async () => {
-    while (nextRouteIndex < routes.length) {
-      const route = routes[nextRouteIndex];
+    while (nextRouteIndex < entries.length) {
+      const entry = entries[nextRouteIndex];
       nextRouteIndex += 1;
       try {
-        const html = await renderRoute(browser, origin, route);
-        validateHtml(html, route);
-        const outputPath = outputPathForRoute(route);
+        const html = await renderRoute(browser, origin, entry.route);
+        validateHtml(html, entry.route);
+        const outputPath = outputPathForRoute(entry.route);
         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
         fs.writeFileSync(outputPath, html);
-        console.log(`Prerendered ${route}`);
+        console.log(`Prerendered ${entry.route}`);
       } catch (error) {
-        throw new Error(`Failed to prerender ${route}: ${error.message}`, {
+        throw new Error(`Failed to prerender ${entry.route}: ${error.message}`, {
           cause: error,
         });
       }
@@ -227,22 +336,25 @@ const main = async () => {
     throw new Error("build/index.html is missing. Run this after react-scripts build.");
   }
 
-  const routes = buildRoutes();
+  const entries = buildRoutes();
   const shellHtml = fs.readFileSync(shellPath, "utf8");
   const { server, origin } = await startServer(shellHtml);
   let browser;
 
   try {
-    browser = await puppeteer.launch({ headless: true });
-    await renderRoutes(browser, origin, routes);
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ["--disable-dev-shm-usage"],
+    });
+    await renderRoutes(browser, origin, entries);
 
     const notFoundHtml = await renderRoute(browser, origin, "/__not-found__/", {
       expectCanonical: false,
     });
     validateHtml(notFoundHtml, "/__not-found__/", { indexable: false });
     fs.writeFileSync(path.join(BUILD_DIR, "404.html"), notFoundHtml);
-    writeSitemap(routes);
-    console.log(`Prerendered ${routes.length} indexable routes and 404.html.`);
+    writeSitemap(entries);
+    console.log(`Prerendered ${entries.length} indexable routes and 404.html.`);
   } finally {
     if (browser) await browser.close();
     await new Promise((resolve) => server.close(resolve));

@@ -3,7 +3,7 @@ import {
   personSchema,
   usePageMetadata,
   websiteSchema,
-} from "../../utils/pageTitle";
+} from "../../seo/pageMetadata";
 
 const HOME_SCHEMA = [websiteSchema, personSchema];
 

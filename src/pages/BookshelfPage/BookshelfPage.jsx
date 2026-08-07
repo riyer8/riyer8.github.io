@@ -1,5 +1,6 @@
-import { useMemo, useState, useEffect, useRef } from 'react';
+import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
 import BackHomeLink from '../../components/Navigation/BackHomeLink';
 import bookshelfPhoto from '../../assets/loading_page/bookshelf.png';
@@ -7,17 +8,24 @@ import MarkdownMath from '../../components/MarkdownMath/MarkdownMath';
 import { FaStar } from 'react-icons/fa';
 import { Link, useParams, useNavigate } from 'react-router';
 import bookshelfData from './data/bookshelfData.js';
-import Badge from './Badge';
-import QuoteWidget from './QuoteWidget/QuoteWidget';
-import { titleToSlug } from './bookshelfUtils';
+import Badge from './components/Badge';
+import FavoriteStars from './components/FavoriteStars';
+import QuoteWidget from './components/QuoteWidget/QuoteWidget';
+import { getFavoriteTier, titleToSlug } from './bookshelfUtils';
 import { SITE } from '../../seo/siteMetadata';
+import './BookshelfPage.css';
 import {
   formatPageTitle,
   makeBreadcrumbSchema,
   personSchema,
   usePageMetadata,
   websiteSchema,
-} from '../../utils/pageTitle';
+} from '../../seo/pageMetadata';
+
+const DRAWER_EASE = [0.22, 1, 0.36, 1];
+const FAVORITE_TIERS = [1, 2, 3];
+const starColor = (isDark, active) =>
+  active ? '#fff' : (isDark ? '#FFD700' : '#000');
 
 const cleanExcerpt = (value = '') =>
   value
@@ -36,13 +44,14 @@ const itemDescription = (item) => {
 
 const BookshelfPage = () => {
   const { theme } = useTheme();
+  const prefersReducedMotion = useReducedMotion();
 
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
   const [activeMedium, setActiveMedium] = useState(null);
   const [sortKey, setSortKey] = useState('dateAdded');
   const [sortDirection, setSortDirection] = useState('desc');
-  const [showFavorites, setShowFavorites] = useState(false);
+  const [favoriteTier, setFavoriteTier] = useState(null); // 1 | 2 | 3 | null
   const [showArchives, setShowArchives] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 50;
@@ -99,7 +108,7 @@ const BookshelfPage = () => {
         // 2. Apply other filters normally
         if (activeCategory && r.category !== activeCategory) return false;
         if (activeMedium && r.medium !== activeMedium) return false;
-        if (showFavorites && !r.favorite) return false;
+        if (favoriteTier && getFavoriteTier(r) !== favoriteTier) return false;
 
         // 3. Search matching
         if (q) {
@@ -117,7 +126,9 @@ const BookshelfPage = () => {
       .sort((a, b) => {
         let comparison = 0;
 
-        if (sortKey === 'dateAdded') {
+        if (sortKey === 'favorites') {
+          comparison = getFavoriteTier(a) - getFavoriteTier(b);
+        } else if (sortKey === 'dateAdded') {
           const dateA = a.dateAdded ? new Date(a.dateAdded) : new Date(0);
           const dateB = b.dateAdded ? new Date(b.dateAdded) : new Date(0);
           comparison = dateA - dateB;
@@ -129,12 +140,12 @@ const BookshelfPage = () => {
 
         return sortDirection === 'asc' ? comparison : -comparison;
       });
-  }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites, showArchives]);
+  }, [search, activeCategory, activeMedium, sortKey, sortDirection, favoriteTier, showArchives]);
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, activeCategory, activeMedium, sortKey, sortDirection, showFavorites, showArchives]);
+  }, [search, activeCategory, activeMedium, sortKey, sortDirection, favoriteTier, showArchives]);
 
   // Calculate paginated data
   const paginatedData = useMemo(() => {
@@ -229,23 +240,25 @@ const BookshelfPage = () => {
     schema: pageSchema,
   });
 
-  const closeDetail = () => {
+  const closeDetail = useCallback(() => {
     setSelectedItem(null);
     navigate('/recent-reads');
-  };
+  }, [navigate]);
 
   useEffect(() => {
     if (!selectedItem) return undefined;
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") {
-        setSelectedItem(null);
-        navigate('/recent-reads');
-      }
+      if (event.key === "Escape") closeDetail();
     };
     document.addEventListener("keydown", handleKeyDown);
     closeButtonRef.current?.focus();
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [navigate, selectedItem]);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [closeDetail, selectedItem]);
 
 
   const tableStyle = {
@@ -304,14 +317,34 @@ const BookshelfPage = () => {
     lineHeight: 'var(--leading-relaxed)',
   };
 
+  const themeVars = {
+    '--bs-text': theme.colors.text,
+    '--bs-muted': theme.colors.textSecondary,
+    '--bs-accent': theme.colors.accent,
+    '--bs-border': theme.colors.border,
+    '--bs-surface': theme.colors.cardBackground,
+    '--bs-chip-bg': theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff',
+    '--bs-input-bg': theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
+  };
+
+  const chipClass = (active) =>
+    `bookshelf-chip${active ? ' bookshelf-chip--active' : ''}`;
+
+  const drawerTransitions = prefersReducedMotion
+    ? { backdrop: { duration: 0 }, panel: { duration: 0 } }
+    : {
+        backdrop: { duration: 0.28, ease: DRAWER_EASE },
+        panel: { duration: 0.38, ease: DRAWER_EASE },
+      };
+
   return (
-    <main style={pageContainer}>
-      <div style={headerStyle}>
+    <main style={{ ...pageContainer, ...themeVars }}>
+      <div style={headerStyle} className="bookshelf-chrome">
         <BackHomeLink />
       </div>
 
       <div>
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
+        <div className="bookshelf-hero" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
           <div style={{ width: 84, height: 84 }}>
             <img src={bookshelfPhoto} alt="Bookshelf illustration" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
           </div>
@@ -331,51 +364,94 @@ const BookshelfPage = () => {
 
         <QuoteWidget />
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
+        <div className="bookshelf-controls" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
 
           {/* Category and Medium filters */}
-          <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', fontSize: 'var(--text-meta)' }}>
+          <div className="bookshelf-filters" style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', fontSize: 'var(--text-meta)' }}>
 
-            <button aria-pressed={!activeCategory && !activeMedium} onClick={() => { setActiveCategory(null); setActiveMedium(null); setSearch(''); }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: (!activeCategory && !activeMedium) ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : 'rgba(0,0,0,0.04)'), color: (!activeCategory && !activeMedium) ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>All</button>
-            <button onClick={() => setShowFavorites(f => !f)}
-              aria-pressed={showFavorites}
-              style={{
-                padding: '0.45rem 0.75rem',
-                borderRadius: 8,
-                background: showFavorites ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
-                color: showFavorites ? '#fff' : theme.colors.text,
-                border: `1px solid ${theme.colors.border}`,
-                cursor: 'pointer'
+            <button
+              type="button"
+              className={chipClass(!activeCategory && !activeMedium && !favoriteTier)}
+              aria-pressed={!activeCategory && !activeMedium && !favoriteTier}
+              onClick={() => {
+                setActiveCategory(null);
+                setActiveMedium(null);
+                setFavoriteTier(null);
+                setSearch('');
               }}
             >
-              <FaStar color={theme.isDarkMode ? '#FFD700' : '#000'} /> favorites
+              All
             </button>
+            {FAVORITE_TIERS.map((tier) => {
+              const active = favoriteTier === tier;
+              return (
+                <button
+                  type="button"
+                  key={`fav-${tier}`}
+                  className={chipClass(active)}
+                  onClick={() => {
+                    setFavoriteTier((prev) => (prev === tier ? null : tier));
+                    setActiveCategory(null);
+                    setActiveMedium(null);
+                    if (favoriteTier !== tier) {
+                      setSortKey('favorites');
+                      setSortDirection('desc');
+                    } else {
+                      setSortKey('dateAdded');
+                      setSortDirection('desc');
+                    }
+                  }}
+                  aria-pressed={active}
+                  aria-label={`Filter ${tier} star favorites`}
+                  title={`${tier} star${tier === 1 ? '' : 's'}`}
+                >
+                  {Array.from({ length: tier }, (_, i) => (
+                    <FaStar
+                      key={i}
+                      color={starColor(theme.isDarkMode, active)}
+                      size={12}
+                    />
+                  ))}
+                </button>
+              );
+            })}
             {categoriesExpanded
               ? categories.map(c => (
-                <button key={c} aria-pressed={activeCategory === c} onClick={() => {
-                  setActiveCategory(prev => prev === c ? null : c);
-                  setActiveMedium(null);
-                }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
+                <button
+                  type="button"
+                  key={c}
+                  className={chipClass(activeCategory === c)}
+                  aria-pressed={activeCategory === c}
+                  onClick={() => {
+                    setActiveCategory(prev => prev === c ? null : c);
+                    setActiveMedium(null);
+                    setFavoriteTier(null);
+                  }}
+                >
+                  {c}
+                </button>
               ))
               : topCategories.map(c => (
-                <button key={c} aria-pressed={activeCategory === c} onClick={() => {
-                  setActiveCategory(prev => prev === c ? null : c);
-                  setActiveMedium(null);
-                }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeCategory === c ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeCategory === c ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{c}</button>
+                <button
+                  type="button"
+                  key={c}
+                  className={chipClass(activeCategory === c)}
+                  aria-pressed={activeCategory === c}
+                  onClick={() => {
+                    setActiveCategory(prev => prev === c ? null : c);
+                    setActiveMedium(null);
+                    setFavoriteTier(null);
+                  }}
+                >
+                  {c}
+                </button>
               ))
             }
             {!categoriesExpanded && categories.length > 3 && (
               <button
+                type="button"
+                className="bookshelf-chip bookshelf-chip--ghost"
                 onClick={() => setCategoriesExpanded(true)}
-                style={{
-                  padding: '0.45rem 0.75rem',
-                  borderRadius: 8,
-                  background: 'transparent',
-                  color: theme.colors.textSecondary,
-                  border: `1px solid ${theme.colors.border}`,
-                  cursor: 'pointer',
-                  fontSize: 'var(--text-meta)'
-                }}
               >
                 more tags
               </button>
@@ -383,42 +459,39 @@ const BookshelfPage = () => {
             {categoriesExpanded && (
               <>
                 {mediums.map(m => (
-                  <button key={m} aria-pressed={activeMedium === m} onClick={() => {
-                    setActiveMedium(prev => prev === m ? null : m);
-                    setActiveCategory(null);
-                  }} style={{ padding: '0.45rem 0.75rem', borderRadius: 8, background: activeMedium === m ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'), color: activeMedium === m ? '#fff' : theme.colors.text, border: `1px solid ${theme.colors.border}`, cursor: 'pointer' }}>{m}</button>
+                  <button
+                    type="button"
+                    key={m}
+                    className={chipClass(activeMedium === m)}
+                    aria-pressed={activeMedium === m}
+                    onClick={() => {
+                      setActiveMedium(prev => prev === m ? null : m);
+                      setActiveCategory(null);
+                      setFavoriteTier(null);
+                    }}
+                  >
+                    {m}
+                  </button>
                 ))}
                 <button
+                  type="button"
+                  className={chipClass(showArchives)}
                   onClick={() => setShowArchives(a => !a)}
                   aria-pressed={showArchives}
-                  style={{
-                    padding: '0.45rem 0.75rem',
-                    borderRadius: 8,
-                    background: showArchives ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff'),
-                    color: showArchives ? '#fff' : theme.colors.text,
-                    border: `1px solid ${theme.colors.border}`,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.25rem'
-                  }}
                 >
                   archives
-                  <span style={{ color: theme.colors.textSecondary, fontStyle: 'italic', fontWeight: 400 }}>
+                  <span style={{
+                    color: showArchives ? 'rgba(255,255,255,0.75)' : theme.colors.textSecondary,
+                    fontStyle: 'italic',
+                    fontWeight: 400,
+                  }}>
                     {archiveCount}
                   </span>
                 </button>
                 <button
+                  type="button"
+                  className="bookshelf-chip bookshelf-chip--ghost"
                   onClick={() => setCategoriesExpanded(false)}
-                  style={{
-                    padding: '0.45rem 0.75rem',
-                    borderRadius: 8,
-                    background: 'transparent',
-                    color: theme.colors.textSecondary,
-                    border: `1px solid ${theme.colors.border}`,
-                    cursor: 'pointer',
-                    fontSize: 'var(--text-meta)'
-                  }}
                 >
                   less tags
                 </button>
@@ -429,6 +502,7 @@ const BookshelfPage = () => {
 
           {/* Search, Filter, and Sort */}
           <div
+            className="bookshelf-search-row"
             style={{
               display: 'flex',
               alignItems: 'center',
@@ -441,34 +515,23 @@ const BookshelfPage = () => {
             </label>
             <input
               id="bookshelf-search"
+              className="bookshelf-search"
               placeholder="Search reading notes..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              style={{
-                flex: 1,
-                minWidth: 200,
-                padding: '0.6rem 0.75rem',
-                borderRadius: 8,
-                border: `1px solid ${theme.colors.border}`,
-                background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
-                color: theme.colors.text,
-                boxSizing: 'border-box',
-                fontSize: 'var(--text-meta)',
-                fontFamily: theme.fonts?.base || 'var(--font-ui)',
-              }}
             />
           </div>
         </div>
 
         {/* Total entries count */}
-        <div style={{ marginLeft: '0.5rem', marginBottom: '0.2rem', color: theme.colors.textSecondary, fontSize: 'var(--text-caption)' }}>
+        <div className="bookshelf-count" style={{ marginLeft: '0.5rem', marginBottom: '0.2rem', color: theme.colors.textSecondary, fontSize: 'var(--text-caption)' }}>
           {filtered.length} {filtered.length === 1 ? 'entry' : 'entries'}
         </div>
 
-        <div style={{ overflowX: 'auto' }}>
+        <div className="bookshelf-table-wrap" style={{ overflowX: 'auto' }}>
           <table style={tableStyle}>
             <thead>
-              <tr>
+              <tr className="bookshelf-head-row">
                 <th scope="col" aria-sort={sortKey === 'title' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={{
                   ...thStyle,
                   width: '50%',
@@ -509,10 +572,8 @@ const BookshelfPage = () => {
             <tbody>
               {paginatedData.map((row, i) => (
                 <tr
-                  key={i}
-                  style={{ cursor: 'pointer', transition: 'background 180ms ease, transform 160ms ease' }}
-                  onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
+                  key={`${row.title}-${i}`}
+                  className="bookshelf-row"
                   onClick={() => {
                     setSelectedItem(row);
                     navigate(`/recent-reads/${titleToSlug(row.title)}`);
@@ -553,13 +614,11 @@ const BookshelfPage = () => {
                           </span>
                         )}
 
-                        {row.favorite && (
-                          <FaStar
-                            color={theme.isDarkMode ? '#FFD700' : '#000'}
-                            size={12}
-                            style={{ flexShrink: 0 }}
-                          />
-                        )}
+                        <FavoriteStars
+                          item={row}
+                          size={11}
+                          color={theme.isDarkMode ? '#FFD700' : '#000'}
+                        />
 
                         <span
                           style={{
@@ -581,19 +640,11 @@ const BookshelfPage = () => {
 
                   <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
                     <button
+                      type="button"
+                      className="bookshelf-chip bookshelf-chip--cell"
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveCategory(prev => prev === row.category ? null : row.category);
-                      }}
-                      style={{
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 6,
-                        cursor: 'pointer',
-                        border: `1px solid ${theme.colors.border}`,
-                        background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
-                        color: theme.colors.text,
-                        transition: 'background 140ms ease, color 140ms ease',
-                        whiteSpace: 'nowrap', // prevent button text wrapping
                       }}
                     >
                       {row.category}
@@ -602,19 +653,11 @@ const BookshelfPage = () => {
 
                   <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
                     <button
+                      type="button"
+                      className="bookshelf-chip bookshelf-chip--cell"
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveMedium(prev => prev === row.medium ? null : row.medium);
-                      }}
-                      style={{
-                        padding: '0.25rem 0.5rem',
-                        borderRadius: 6,
-                        cursor: 'pointer',
-                        border: `1px solid ${theme.colors.border}`,
-                        background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
-                        color: theme.colors.text,
-                        transition: 'background 140ms ease, color 140ms ease',
-                        whiteSpace: 'nowrap', // prevent button text wrapping
                       }}
                     >
                       {row.medium}
@@ -652,19 +695,12 @@ const BookshelfPage = () => {
 
         {/* Pagination controls */}
         {totalPages > 1 && (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', marginBottom: '1rem' }}>
+          <div className="bookshelf-pagination" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '0.5rem', marginTop: '1.5rem', marginBottom: '1rem' }}>
             <button
+              type="button"
+              className="bookshelf-chip"
               onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
               disabled={currentPage === 1}
-              style={{
-                padding: '0.5rem 0.75rem',
-                borderRadius: 6,
-                border: `1px solid ${theme.colors.border}`,
-                background: currentPage === 1 ? (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#f5f5f5') : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
-                color: currentPage === 1 ? theme.colors.textSecondary : theme.colors.text,
-                cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
-                fontSize: 'var(--text-meta)'
-              }}
             >
               ← Previous
             </button>
@@ -684,18 +720,11 @@ const BookshelfPage = () => {
 
                 return (
                   <button
+                    type="button"
                     key={pageNum}
+                    className={chipClass(currentPage === pageNum)}
                     onClick={() => setCurrentPage(pageNum)}
-                    style={{
-                      padding: '0.5rem 0.75rem',
-                      borderRadius: 6,
-                      border: `1px solid ${theme.colors.border}`,
-                      background: currentPage === pageNum ? theme.colors.accent : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
-                      color: currentPage === pageNum ? '#fff' : theme.colors.text,
-                      cursor: 'pointer',
-                      fontSize: 'var(--text-meta)',
-                      minWidth: '2.5rem'
-                    }}
+                    style={{ minWidth: '2.5rem', justifyContent: 'center' }}
                   >
                     {pageNum}
                   </button>
@@ -704,144 +733,163 @@ const BookshelfPage = () => {
             </div>
 
             <button
+              type="button"
+              className="bookshelf-chip"
               onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
               disabled={currentPage === totalPages}
-              style={{
-                padding: '0.5rem 0.75rem',
-                borderRadius: 6,
-                border: `1px solid ${theme.colors.border}`,
-                background: currentPage === totalPages ? (theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#f5f5f5') : (theme.isDarkMode ? 'rgba(255,255,255,0.04)' : '#fff'),
-                color: currentPage === totalPages ? theme.colors.textSecondary : theme.colors.text,
-                cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
-                fontSize: 'var(--text-meta)'
-              }}
             >
               Next →
             </button>
           </div>
         )}
 
-        <div style={{
+        <div className="bookshelf-credits" style={{
           paddingTop: '1rem',
           borderTop: `1px solid ${theme.colors.border}`,
           textAlign: 'center',
           fontSize: 'var(--text-caption)',
           color: theme.colors.textSecondary
         }}>
-          Credits to <a href="https://masonjwang.com/bookshelf" target="_blank" rel="noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'underline' }}>Mason Wang</a> for heavily inspiring this format and initial reads.
+          Credits to <a href="https://masonjwang.com/bookshelf" target="_blank" rel="noopener noreferrer" style={{ color: theme.colors.textSecondary, textDecoration: 'underline' }}>Mason Wang</a> for heavily inspiring this format and initial reads.
         </div>
       </div>
 
       {createPortal(
-        <>
-          <div style={{
-            position: 'fixed',
-            inset: 0,
-            background: selectedItem ? 'rgba(0,0,0,0.32)' : 'transparent',
-            transition: 'background 260ms cubic-bezier(.2,.9,.2,1)',
-            pointerEvents: selectedItem ? 'auto' : 'none',
-            zIndex: 2100
-          }} onClick={closeDetail} aria-hidden="true" />
+        <AnimatePresence>
+          {selectedItem ? (
+            <motion.button
+              key="bookshelf-backdrop"
+              type="button"
+              className="bookshelf-drawer-backdrop"
+              aria-label="Close reading notes"
+              onClick={closeDetail}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={drawerTransitions.backdrop}
+            />
+          ) : null}
+          {selectedItem ? (
+              <motion.div
+                key="bookshelf-drawer"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="reading-note-title"
+                className="bookshelf-drawer"
+                style={themeVars}
+                initial={prefersReducedMotion ? false : { x: '100%' }}
+                animate={{ x: 0 }}
+                exit={prefersReducedMotion ? undefined : { x: '100%' }}
+                transition={drawerTransitions.panel}
+                onClick={(event) => event.stopPropagation()}
+              >
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+                      <div className="bookshelf-detail__heading">
+                        <h2 id="reading-note-title" className="bookshelf-detail__title" style={{ color: theme.colors.text }}>{selectedItem.title}</h2>
+                        {selectedItem.author ? (
+                          <div className="bookshelf-detail__author" style={{ color: theme.colors.textSecondary }}>
+                            by {selectedItem.author}
+                          </div>
+                        ) : null}
+                      </div>
 
-          <div
-            role="dialog"
-            aria-modal={selectedItem ? "true" : undefined}
-            aria-labelledby={selectedItem ? "reading-note-title" : undefined}
-            style={{
-              position: 'fixed',
-              top: 0,
-              right: 0,
-              height: '100vh',
-              minWidth: '280px',
-              background: theme.colors.cardBackground,
-              boxShadow: '-6px 0 30px rgba(0,0,0,0.14)',
-              transition: 'transform 320ms cubic-bezier(.22,.9,.34,1)',
-              zIndex: 2200,
-              overflowY: 'auto',
-
-              width: 'min(460px, 90vw)',
-              maxWidth: '90vw',
-              padding: '1.25rem 1.5rem',
-
-              ...(window.innerWidth <= 480
-                ? {
-                  width: '100vw',
-                  maxWidth: '100vw',
-                  borderRadius: 0,
-                }
-                : {}),
-
-              transform: selectedItem ? 'translateX(0%)' : 'translateX(105%)'
-            }}
-            aria-hidden={!selectedItem}
-          >
-
-            {selectedItem ? (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                {/* Header */}
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
-                  <div style={{ flex: 1 }}>
-                    <h2 id="reading-note-title" style={{ margin: 0, color: theme.colors.text, fontSize: 'var(--text-body)', fontWeight: 600, letterSpacing: '-0.01em', lineHeight: 'var(--leading-snug)' }}>{selectedItem.title}</h2>
-                    <div style={{ marginTop: '0.5rem', display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>{(selectedItem.tags || []).map((t, i) => <Badge key={i} theme={theme}>{t}</Badge>)}</div>
-                  </div>
-
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                    {selectedItem.url ? <a href={selectedItem.url} target="_blank" rel="noreferrer" aria-label={`Open the original source for ${selectedItem.title}`} style={{ color: theme.colors.textSecondary, textDecoration: 'none' }}>↗</a> : null}
-                    <button ref={closeButtonRef} onClick={closeDetail} aria-label="Close reading notes" style={{ background: 'none', border: 'none', fontSize: '1.1rem', cursor: 'pointer', color: theme.colors.textSecondary }}>×</button>
-                  </div>
-                </div>
-
-                <div style={{ display: 'flex', justifyContent: 'flex-end', color: theme.colors.textSecondary, alignItems: 'center' }}>
-                  <div style={{ fontSize: 'var(--text-meta)' }}>{selectedItem.dateAdded}</div>
-                </div>
-
-                <QuoteWidget variant="compact" contextTitle={selectedItem.title} />
-
-                {selectedItem.tldr && (
-                  <div>
-                    <div style={panelLabelStyle}>TL;DR</div>
-                    <div style={panelTextStyle}>{selectedItem.tldr}</div>
-                  </div>
-                )}
-
-                {selectedItem.thoughts && (
-                  <div>
-                    <div style={panelLabelStyle}>Thoughts</div>
-                    <div style={panelTextStyle}>{selectedItem.thoughts}</div>
-                  </div>
-                )}
-
-                {selectedItem.notes && (
-                  <div
-                    style={{
-                      marginTop: '0.75rem',
-                      marginBottom: '2rem',
-                      padding: 16,
-                      background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-                      borderLeft: `4px solid ${theme.colors.border}`,
-                      borderBottom: `4px solid ${theme.colors.border}`,
-                      borderTop: `4px solid ${theme.colors.border}`,
-                      borderRight: `4px solid ${theme.colors.border}`,
-                      color: theme.colors.text,
-                      fontSize: 'var(--text-meta)',
-                      lineHeight: 'var(--leading-relaxed)',
-                      fontFamily: theme.fonts?.base || 'var(--font-ui)',
-                      borderRadius: 6,
-                    }}
-                  >
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                      <div style={panelLabelStyle}>Notes</div>
+                      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                        {selectedItem.url ? (
+                          <a
+                            href={selectedItem.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label={`Open the original source for ${selectedItem.title}`}
+                            className="bookshelf-drawer__source"
+                          >
+                            ↗
+                          </a>
+                        ) : null}
+                        <button
+                          ref={closeButtonRef}
+                          type="button"
+                          onClick={closeDetail}
+                          aria-label="Close reading notes"
+                          className="bookshelf-drawer__close"
+                        >
+                          ×
+                        </button>
+                      </div>
                     </div>
 
-                    <div style={{ marginTop: 0 }}>
-                      <MarkdownMath text={selectedItem.notes} />
+                    <div className="bookshelf-detail__metadata" style={{ color: theme.colors.textSecondary }}>
+                      {(selectedItem.tags || []).length ? (
+                        <div
+                          className="bookshelf-detail__tags"
+                          aria-label="Tags"
+                          tabIndex={0}
+                          onWheel={(event) => {
+                            const element = event.currentTarget;
+                            const delta = event.deltaX || event.deltaY;
+                            const canScroll = delta > 0
+                              ? element.scrollLeft + element.clientWidth < element.scrollWidth
+                              : element.scrollLeft > 0;
+                            if (canScroll) {
+                              event.preventDefault();
+                              element.scrollLeft += delta;
+                            }
+                          }}
+                        >
+                          {selectedItem.tags.map((tag) => (
+                            <Badge key={tag} theme={theme}>{tag}</Badge>
+                          ))}
+                        </div>
+                      ) : null}
+                      {selectedItem.dateAdded ? (
+                        <time className="bookshelf-detail__date" dateTime={selectedItem.dateAdded}>
+                          {selectedItem.dateAdded}
+                        </time>
+                      ) : null}
                     </div>
+
+                    {selectedItem.tldr && (
+                      <div>
+                        <div style={panelLabelStyle}>TL;DR</div>
+                        <div style={panelTextStyle}>{selectedItem.tldr}</div>
+                      </div>
+                    )}
+
+                    {selectedItem.thoughts && (
+                      <div>
+                        <div style={panelLabelStyle}>Thoughts</div>
+                        <div style={panelTextStyle}>{selectedItem.thoughts}</div>
+                      </div>
+                    )}
+
+                    {selectedItem.notes && (
+                      <div
+                        style={{
+                          marginTop: '0.75rem',
+                          marginBottom: '2rem',
+                          padding: 16,
+                          background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+                          border: `4px solid ${theme.colors.border}`,
+                          color: theme.colors.text,
+                          fontSize: '0.85rem',
+                          lineHeight: 'var(--leading-relaxed)',
+                          fontFamily: theme.fonts?.base || 'var(--font-ui)',
+                          borderRadius: 6,
+                        }}
+                      >
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                          <div style={panelLabelStyle}>Notes</div>
+                        </div>
+
+                        <div style={{ marginTop: 0 }}>
+                          <MarkdownMath text={selectedItem.notes} />
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div>
-            ) : null}
-          </div>
-        </>,
+              </motion.div>
+          ) : null}
+        </AnimatePresence>,
         document.body
       )}
     </main>

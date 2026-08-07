@@ -1,0 +1,1892 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bookshelf Data Analysis</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1e293b;
+      --muted: #64748b;
+      --line: #dbe4ee;
+      --surface: #f8fafc;
+      --accent: #3b6b59;
+      --accent-soft: #dceae4;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #fff;
+      color: var(--ink);
+      font: 15px/1.5 ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    main { width: min(1100px, calc(100% - 40px)); margin: 0 auto; padding: 56px 0 80px; }
+    header { border-bottom: 1px solid var(--line); padding-bottom: 28px; }
+    h1 { margin: 0 0 8px; font-size: clamp(30px, 5vw, 48px); letter-spacing: -0.04em; }
+    h2 { margin: 0; font-size: 28px; letter-spacing: -0.025em; }
+    h3 { margin: 0 0 4px; font-size: 17px; }
+    p { margin: 0; }
+    .summary { color: var(--muted); max-width: 680px; }
+    .stats { display: flex; gap: 28px; margin-top: 24px; flex-wrap: wrap; }
+    .stat strong { display: block; font-size: 24px; color: var(--accent); }
+    .stat span, .source, .axis-label, .eyebrow, .total { color: var(--muted); font-size: 13px; }
+    section { padding-top: 56px; }
+    .section-heading { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
+    .eyebrow { margin-bottom: 3px; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+    .panel { padding: 22px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+    .axis-label { margin-bottom: 10px; }
+    .legend { display: flex; gap: 18px; margin-bottom: 18px; color: var(--muted); font-size: 12px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend i { display: inline-block; width: 22px; height: 9px; border-radius: 2px; }
+    .legend-all { background: var(--accent); }
+    .legend-archived { border: 1px dashed var(--accent); background: transparent; }
+    .chart { display: grid; gap: 8px; max-height: 520px; overflow-y: auto; padding-right: 8px; }
+    .chart-all-tags { max-height: none; overflow-y: visible; }
+    .bar-row { width: 100%; display: grid; grid-template-columns: minmax(90px, 160px) 1fr 44px; gap: 12px; align-items: center; min-height: 34px; padding: 3px; border: 0; border-radius: 4px; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+    .bar-row:hover, .bar-row:focus-visible, tbody .filter-trigger:hover, tbody .filter-trigger:focus-visible { background: var(--accent-soft); outline: none; }
+    .bar-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; text-align: right; font-size: 13px; }
+    .bar-group { display: grid; gap: 4px; }
+    .bar-track { height: 14px; background: var(--accent-soft); border-radius: 3px; overflow: hidden; }
+    .archived-track { height: 9px; border: 1px dashed var(--accent); background: transparent; }
+    .bar { height: 100%; background: var(--accent); border-radius: 2px; }
+    .archived-bar { background: var(--accent); opacity: 0.45; }
+    .bar-values { display: grid; font-size: 12px; line-height: 1.1; text-align: right; }
+    .bar-values em { color: var(--muted); font-style: normal; }
+    .interaction-hint { margin-top: 14px; color: var(--accent); font-size: 12px; font-weight: 700; }
+    .source { margin-top: 18px; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .table-wrap { margin-top: 18px; max-height: 440px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 10px 14px; border-bottom: 1px solid var(--line); text-align: left; }
+    th { position: sticky; top: 0; background: var(--surface); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+    td:nth-child(1), td:nth-child(3), td:nth-child(4) { font-variant-numeric: tabular-nums; }
+    tbody tr:last-child td { border-bottom: 0; }
+    tbody .filter-trigger { cursor: pointer; }
+    .detail-overlay { position: fixed; inset: 0; z-index: 10; background: rgb(15 23 42 / 28%); opacity: 0; pointer-events: none; transition: opacity 160ms ease; }
+    .detail-panel { position: fixed; inset: 0 0 0 auto; z-index: 11; width: min(620px, 92vw); padding: 28px; overflow-y: auto; background: #fff; border-left: 1px solid var(--line); transform: translateX(100%); transition: transform 180ms ease; }
+    .detail-overlay.is-open { opacity: 1; pointer-events: auto; }
+    .detail-panel.is-open { transform: translateX(0); }
+    .detail-header { display: flex; align-items: start; justify-content: space-between; gap: 20px; padding-bottom: 18px; }
+    .detail-header h2 { color: var(--accent); }
+    .detail-summary { color: var(--muted); margin-top: 4px; }
+    .close-button { border: 1px solid var(--line); border-radius: 6px; padding: 7px 11px; background: transparent; color: var(--ink); cursor: pointer; }
+    .detail-table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+    .detail-table a { color: var(--accent); font-weight: 700; text-decoration: none; }
+    .detail-table a:hover { text-decoration: underline; }
+    .archive-mark { color: var(--accent); font-weight: 700; }
+    body.panel-open { overflow: hidden; }
+    @media (max-width: 620px) {
+      main { width: min(100% - 24px, 1100px); padding-top: 32px; }
+      .bar-row { grid-template-columns: 100px 1fr 28px; gap: 8px; }
+      .section-heading { align-items: start; flex-direction: column; }
+      th, td { padding: 9px 10px; }
+      .detail-panel { padding: 20px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <p class="eyebrow">Bookshelf data audit</p>
+      <h1>What is on the bookshelf?</h1>
+      <p class="summary">Frequency plots and count tables for every tag, category, and medium across all source arrays in the Bookshelf page data folder. The aggregate <code>bookshelfData.js</code> file is skipped to prevent counting the same entries twice.</p>
+      <div class="stats">
+        <div class="stat"><strong>51</strong><span>entries</span></div>
+        <div class="stat"><strong>5</strong><span>source files</span></div>
+        <div class="stat"><strong>73</strong><span>unique tags</span></div>
+        <div class="stat"><strong>6</strong><span>categories</span></div>
+        <div class="stat"><strong>4</strong><span>media</span></div>
+        <div class="stat"><strong>8</strong><span>archived</span></div>
+      </div>
+    </header>
+    
+    <section>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Multi-value field</p>
+          <h2>Tag frequency</h2>
+        </div>
+        <span class="total">73 unique values</span>
+      </div>
+
+      <div class="panel">
+        <h3>Tag frequency plot</h3>
+        <p class="axis-label">Frequency (number of bookshelf entries)</p>
+        <div class="legend" aria-label="Plot legend">
+          <span><i class="legend-all"></i>All entries</span>
+          <span><i class="legend-archived"></i>Archived subset</span>
+        </div>
+        <div class="chart chart-all-tags">
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="life">
+          <span class="bar-label">life</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="13 total entries">
+              <div class="bar" style="width: 100%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>13</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="growth">
+          <span class="bar-label">growth</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="11 total entries">
+              <div class="bar" style="width: 84.61538461538461%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="4 archived entries">
+              <div class="bar archived-bar" style="width: 30.76923076923077%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>11</strong><em>4</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="career">
+          <span class="bar-label">career</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="8 total entries">
+              <div class="bar" style="width: 61.53846153846154%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>8</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="psychology">
+          <span class="bar-label">psychology</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="8 total entries">
+              <div class="bar" style="width: 61.53846153846154%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>8</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="creativity">
+          <span class="bar-label">creativity</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="6 total entries">
+              <div class="bar" style="width: 46.15384615384615%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="2 archived entries">
+              <div class="bar archived-bar" style="width: 15.384615384615385%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>6</strong><em>2</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="advice">
+          <span class="bar-label">advice</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="4 total entries">
+              <div class="bar" style="width: 30.76923076923077%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>4</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="friends">
+          <span class="bar-label">friends</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="4 total entries">
+              <div class="bar" style="width: 30.76923076923077%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>4</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="LLMs">
+          <span class="bar-label">LLMs</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="4 total entries">
+              <div class="bar" style="width: 30.76923076923077%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>4</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="AI">
+          <span class="bar-label">AI</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="3 total entries">
+              <div class="bar" style="width: 23.076923076923077%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>3</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="learning">
+          <span class="bar-label">learning</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="3 total entries">
+              <div class="bar" style="width: 23.076923076923077%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>3</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="adaptive-bitrate">
+          <span class="bar-label">adaptive-bitrate</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="boredom">
+          <span class="bar-label">boredom</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="feedback">
+          <span class="bar-label">feedback</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="improv">
+          <span class="bar-label">improv</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="2 archived entries">
+              <div class="bar archived-bar" style="width: 15.384615384615385%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>2</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="new-ideas">
+          <span class="bar-label">new-ideas</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="reinforcement-learning">
+          <span class="bar-label">reinforcement-learning</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="self-belief">
+          <span class="bar-label">self-belief</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="self-love">
+          <span class="bar-label">self-love</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="taste">
+          <span class="bar-label">taste</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="video-streaming">
+          <span class="bar-label">video-streaming</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 15.384615384615385%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="ambition">
+          <span class="bar-label">ambition</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="art">
+          <span class="bar-label">art</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="be-a-fool">
+          <span class="bar-label">be-a-fool</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="brain">
+          <span class="bar-label">brain</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="capitalism">
+          <span class="bar-label">capitalism</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="change">
+          <span class="bar-label">change</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="comparison">
+          <span class="bar-label">comparison</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="conversations">
+          <span class="bar-label">conversations</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="deception">
+          <span class="bar-label">deception</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="decisions">
+          <span class="bar-label">decisions</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="deep-rl">
+          <span class="bar-label">deep-rl</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="economy">
+          <span class="bar-label">economy</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="elites">
+          <span class="bar-label">elites</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="entrepreneurship">
+          <span class="bar-label">entrepreneurship</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="expertise">
+          <span class="bar-label">expertise</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="great-work">
+          <span class="bar-label">great-work</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="habits">
+          <span class="bar-label">habits</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="history">
+          <span class="bar-label">history</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="human-preferences">
+          <span class="bar-label">human-preferences</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="influence">
+          <span class="bar-label">influence</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="interest">
+          <span class="bar-label">interest</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="leadership">
+          <span class="bar-label">leadership</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="lessons">
+          <span class="bar-label">lessons</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="life-planning">
+          <span class="bar-label">life-planning</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="love">
+          <span class="bar-label">love</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="machine-learning">
+          <span class="bar-label">machine-learning</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="management">
+          <span class="bar-label">management</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="mental-models">
+          <span class="bar-label">mental-models</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="mindset">
+          <span class="bar-label">mindset</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="money">
+          <span class="bar-label">money</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="morality">
+          <span class="bar-label">morality</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="motivation">
+          <span class="bar-label">motivation</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="personalization">
+          <span class="bar-label">personalization</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="philosophy">
+          <span class="bar-label">philosophy</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="poker">
+          <span class="bar-label">poker</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="principles">
+          <span class="bar-label">principles</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="probabilities">
+          <span class="bar-label">probabilities</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="productivity">
+          <span class="bar-label">productivity</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="purpose">
+          <span class="bar-label">purpose</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="relationships">
+          <span class="bar-label">relationships</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="science">
+          <span class="bar-label">science</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="seriousness">
+          <span class="bar-label">seriousness</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="sociology">
+          <span class="bar-label">sociology</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="solitude">
+          <span class="bar-label">solitude</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="stanford">
+          <span class="bar-label">stanford</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="start-now">
+          <span class="bar-label">start-now</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="startups">
+          <span class="bar-label">startups</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="status">
+          <span class="bar-label">status</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="success">
+          <span class="bar-label">success</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="thinking">
+          <span class="bar-label">thinking</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="trying">
+          <span class="bar-label">trying</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="uncertainty">
+          <span class="bar-label">uncertainty</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 7.6923076923076925%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="tags" data-value="writing">
+          <span class="bar-label">writing</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="1 total entries">
+              <div class="bar" style="width: 7.6923076923076925%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>1</strong><em>0</em></span>
+        </button></div>
+        <p class="interaction-hint">Select any row to see its matching titles.</p>
+        <p class="source">Source: all 5 data arrays in <code>BookshelfPage/data</code> · 51 bookshelf entries</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Tag</th>
+              <th>Count</th>
+              <th>Archived</th>
+              <th>Share of entries</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="life">
+          <td>1</td>
+          <td>life</td>
+          <td>13</td>
+          <td>0</td>
+          <td>25.5%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="growth">
+          <td>2</td>
+          <td>growth</td>
+          <td>11</td>
+          <td>4</td>
+          <td>21.6%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="career">
+          <td>3</td>
+          <td>career</td>
+          <td>8</td>
+          <td>1</td>
+          <td>15.7%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="psychology">
+          <td>4</td>
+          <td>psychology</td>
+          <td>8</td>
+          <td>1</td>
+          <td>15.7%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="creativity">
+          <td>5</td>
+          <td>creativity</td>
+          <td>6</td>
+          <td>2</td>
+          <td>11.8%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="advice">
+          <td>6</td>
+          <td>advice</td>
+          <td>4</td>
+          <td>0</td>
+          <td>7.8%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="friends">
+          <td>7</td>
+          <td>friends</td>
+          <td>4</td>
+          <td>0</td>
+          <td>7.8%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="LLMs">
+          <td>8</td>
+          <td>LLMs</td>
+          <td>4</td>
+          <td>0</td>
+          <td>7.8%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="AI">
+          <td>9</td>
+          <td>AI</td>
+          <td>3</td>
+          <td>0</td>
+          <td>5.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="learning">
+          <td>10</td>
+          <td>learning</td>
+          <td>3</td>
+          <td>1</td>
+          <td>5.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="adaptive-bitrate">
+          <td>11</td>
+          <td>adaptive-bitrate</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="boredom">
+          <td>12</td>
+          <td>boredom</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="feedback">
+          <td>13</td>
+          <td>feedback</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="improv">
+          <td>14</td>
+          <td>improv</td>
+          <td>2</td>
+          <td>2</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="new-ideas">
+          <td>15</td>
+          <td>new-ideas</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="reinforcement-learning">
+          <td>16</td>
+          <td>reinforcement-learning</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="self-belief">
+          <td>17</td>
+          <td>self-belief</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="self-love">
+          <td>18</td>
+          <td>self-love</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="taste">
+          <td>19</td>
+          <td>taste</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="video-streaming">
+          <td>20</td>
+          <td>video-streaming</td>
+          <td>2</td>
+          <td>0</td>
+          <td>3.9%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="ambition">
+          <td>21</td>
+          <td>ambition</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="art">
+          <td>22</td>
+          <td>art</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="be-a-fool">
+          <td>23</td>
+          <td>be-a-fool</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="brain">
+          <td>24</td>
+          <td>brain</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="capitalism">
+          <td>25</td>
+          <td>capitalism</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="change">
+          <td>26</td>
+          <td>change</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="comparison">
+          <td>27</td>
+          <td>comparison</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="conversations">
+          <td>28</td>
+          <td>conversations</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="deception">
+          <td>29</td>
+          <td>deception</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="decisions">
+          <td>30</td>
+          <td>decisions</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="deep-rl">
+          <td>31</td>
+          <td>deep-rl</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="economy">
+          <td>32</td>
+          <td>economy</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="elites">
+          <td>33</td>
+          <td>elites</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="entrepreneurship">
+          <td>34</td>
+          <td>entrepreneurship</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="expertise">
+          <td>35</td>
+          <td>expertise</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="great-work">
+          <td>36</td>
+          <td>great-work</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="habits">
+          <td>37</td>
+          <td>habits</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="history">
+          <td>38</td>
+          <td>history</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="human-preferences">
+          <td>39</td>
+          <td>human-preferences</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="influence">
+          <td>40</td>
+          <td>influence</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="interest">
+          <td>41</td>
+          <td>interest</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="leadership">
+          <td>42</td>
+          <td>leadership</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="lessons">
+          <td>43</td>
+          <td>lessons</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="life-planning">
+          <td>44</td>
+          <td>life-planning</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="love">
+          <td>45</td>
+          <td>love</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="machine-learning">
+          <td>46</td>
+          <td>machine-learning</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="management">
+          <td>47</td>
+          <td>management</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="mental-models">
+          <td>48</td>
+          <td>mental-models</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="mindset">
+          <td>49</td>
+          <td>mindset</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="money">
+          <td>50</td>
+          <td>money</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="morality">
+          <td>51</td>
+          <td>morality</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="motivation">
+          <td>52</td>
+          <td>motivation</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="personalization">
+          <td>53</td>
+          <td>personalization</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="philosophy">
+          <td>54</td>
+          <td>philosophy</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="poker">
+          <td>55</td>
+          <td>poker</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="principles">
+          <td>56</td>
+          <td>principles</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="probabilities">
+          <td>57</td>
+          <td>probabilities</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="productivity">
+          <td>58</td>
+          <td>productivity</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="purpose">
+          <td>59</td>
+          <td>purpose</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="relationships">
+          <td>60</td>
+          <td>relationships</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="science">
+          <td>61</td>
+          <td>science</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="seriousness">
+          <td>62</td>
+          <td>seriousness</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="sociology">
+          <td>63</td>
+          <td>sociology</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="solitude">
+          <td>64</td>
+          <td>solitude</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="stanford">
+          <td>65</td>
+          <td>stanford</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="start-now">
+          <td>66</td>
+          <td>start-now</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="startups">
+          <td>67</td>
+          <td>startups</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="status">
+          <td>68</td>
+          <td>status</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="success">
+          <td>69</td>
+          <td>success</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="thinking">
+          <td>70</td>
+          <td>thinking</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="trying">
+          <td>71</td>
+          <td>trying</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="uncertainty">
+          <td>72</td>
+          <td>uncertainty</td>
+          <td>1</td>
+          <td>1</td>
+          <td>2.0%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="tags" data-value="writing">
+          <td>73</td>
+          <td>writing</td>
+          <td>1</td>
+          <td>0</td>
+          <td>2.0%</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    
+    <section>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">One category per entry</p>
+          <h2>Category frequency</h2>
+        </div>
+        <span class="total">6 unique values</span>
+      </div>
+
+      <div class="panel">
+        <h3>Category frequency plot</h3>
+        <p class="axis-label">Frequency (number of bookshelf entries)</p>
+        <div class="legend" aria-label="Plot legend">
+          <span><i class="legend-all"></i>All entries</span>
+          <span><i class="legend-archived"></i>Archived subset</span>
+        </div>
+        <div class="chart">
+        <button class="bar-row filter-trigger" type="button" data-field="category" data-value="life">
+          <span class="bar-label">life</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="15 total entries">
+              <div class="bar" style="width: 100%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>15</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="category" data-value="advice">
+          <span class="bar-label">advice</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="12 total entries">
+              <div class="bar" style="width: 80%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="4 archived entries">
+              <div class="bar archived-bar" style="width: 26.666666666666668%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>12</strong><em>4</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="category" data-value="science">
+          <span class="bar-label">science</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="9 total entries">
+              <div class="bar" style="width: 60%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>9</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="category" data-value="career">
+          <span class="bar-label">career</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="7 total entries">
+              <div class="bar" style="width: 46.666666666666664%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 6.666666666666667%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>7</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="category" data-value="psychology">
+          <span class="bar-label">psychology</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="5 total entries">
+              <div class="bar" style="width: 33.33333333333333%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 6.666666666666667%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>5</strong><em>1</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="category" data-value="creativity">
+          <span class="bar-label">creativity</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="3 total entries">
+              <div class="bar" style="width: 20%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="2 archived entries">
+              <div class="bar archived-bar" style="width: 13.333333333333334%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>3</strong><em>2</em></span>
+        </button></div>
+        <p class="interaction-hint">Select any row to see its matching titles.</p>
+        <p class="source">Source: all 5 data arrays in <code>BookshelfPage/data</code> · 51 bookshelf entries</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Category</th>
+              <th>Count</th>
+              <th>Archived</th>
+              <th>Share of entries</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="category" data-value="life">
+          <td>1</td>
+          <td>life</td>
+          <td>15</td>
+          <td>0</td>
+          <td>29.4%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="category" data-value="advice">
+          <td>2</td>
+          <td>advice</td>
+          <td>12</td>
+          <td>4</td>
+          <td>23.5%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="category" data-value="science">
+          <td>3</td>
+          <td>science</td>
+          <td>9</td>
+          <td>0</td>
+          <td>17.6%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="category" data-value="career">
+          <td>4</td>
+          <td>career</td>
+          <td>7</td>
+          <td>1</td>
+          <td>13.7%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="category" data-value="psychology">
+          <td>5</td>
+          <td>psychology</td>
+          <td>5</td>
+          <td>1</td>
+          <td>9.8%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="category" data-value="creativity">
+          <td>6</td>
+          <td>creativity</td>
+          <td>3</td>
+          <td>2</td>
+          <td>5.9%</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+    
+    <section>
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">One medium per entry</p>
+          <h2>Medium frequency</h2>
+        </div>
+        <span class="total">4 unique values</span>
+      </div>
+
+      <div class="panel">
+        <h3>Medium frequency plot</h3>
+        <p class="axis-label">Frequency (number of bookshelf entries)</p>
+        <div class="legend" aria-label="Plot legend">
+          <span><i class="legend-all"></i>All entries</span>
+          <span><i class="legend-archived"></i>Archived subset</span>
+        </div>
+        <div class="chart">
+        <button class="bar-row filter-trigger" type="button" data-field="medium" data-value="essay">
+          <span class="bar-label">essay</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="37 total entries">
+              <div class="bar" style="width: 100%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="3 archived entries">
+              <div class="bar archived-bar" style="width: 8.108108108108109%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>37</strong><em>3</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="medium" data-value="book">
+          <span class="bar-label">book</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="8 total entries">
+              <div class="bar" style="width: 21.62162162162162%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="4 archived entries">
+              <div class="bar archived-bar" style="width: 10.81081081081081%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>8</strong><em>4</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="medium" data-value="research paper">
+          <span class="bar-label">research paper</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="4 total entries">
+              <div class="bar" style="width: 10.81081081081081%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="0 archived entries">
+              <div class="bar archived-bar" style="width: 0%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>4</strong><em>0</em></span>
+        </button>
+        <button class="bar-row filter-trigger" type="button" data-field="medium" data-value="video">
+          <span class="bar-label">video</span>
+          <div class="bar-group">
+            <div class="bar-track" aria-label="2 total entries">
+              <div class="bar" style="width: 5.405405405405405%"></div>
+            </div>
+            <div class="bar-track archived-track" aria-label="1 archived entries">
+              <div class="bar archived-bar" style="width: 2.7027027027027026%"></div>
+            </div>
+          </div>
+          <span class="bar-values"><strong>2</strong><em>1</em></span>
+        </button></div>
+        <p class="interaction-hint">Select any row to see its matching titles.</p>
+        <p class="source">Source: all 5 data arrays in <code>BookshelfPage/data</code> · 51 bookshelf entries</p>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Rank</th>
+              <th>Medium</th>
+              <th>Count</th>
+              <th>Archived</th>
+              <th>Share of entries</th>
+            </tr>
+          </thead>
+          <tbody>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="medium" data-value="essay">
+          <td>1</td>
+          <td>essay</td>
+          <td>37</td>
+          <td>3</td>
+          <td>72.5%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="medium" data-value="book">
+          <td>2</td>
+          <td>book</td>
+          <td>8</td>
+          <td>4</td>
+          <td>15.7%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="medium" data-value="research paper">
+          <td>3</td>
+          <td>research paper</td>
+          <td>4</td>
+          <td>0</td>
+          <td>7.8%</td>
+        </tr>
+        <tr class="filter-trigger" tabindex="0" role="button" data-field="medium" data-value="video">
+          <td>4</td>
+          <td>video</td>
+          <td>2</td>
+          <td>1</td>
+          <td>3.9%</td>
+        </tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+  <div class="detail-overlay" id="detail-overlay"></div>
+  <aside class="detail-panel" id="detail-panel" aria-hidden="true" aria-labelledby="detail-title">
+    <div class="detail-header">
+      <div>
+        <p class="eyebrow" id="detail-field"></p>
+        <h2 id="detail-title"></h2>
+        <p class="detail-summary" id="detail-summary"></p>
+      </div>
+      <button class="close-button" id="close-panel" type="button">Close</button>
+    </div>
+    <div class="detail-table-wrap">
+      <table class="detail-table">
+        <thead><tr><th>Title</th><th>Author</th><th>Medium</th><th>Archived</th></tr></thead>
+        <tbody id="detail-rows"></tbody>
+      </table>
+    </div>
+  </aside>
+  <script>
+    const bookshelfItems = [{"title":"Toward Computational Taste: LLMs, Aesthetics & Judgment","author":"Amber Atherton","url":"https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment","tags":["taste","LLMs","personalization","AI"],"category":"science","medium":"essay","archived":false},{"title":"If you have multiple interests, do not waste the next 2-3 years","author":"Dan Koe","url":"https://letters.thedankoe.com/p/if-you-have-multiple-interests-do","tags":["interest","growth","career"],"category":"career","medium":"essay","archived":true},{"title":"A Critical Essay On the Art of Performance","author":"Gunnar de Jong","url":"https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d","tags":["improv","growth","creativity"],"category":"creativity","medium":"essay","archived":true},{"title":"Take Aim, Even Badly","author":"Jordan B Peterson","url":"https://www.youtube.com/watch?v=ZwGDnSWmqhM","tags":["be-a-fool"],"category":"advice","medium":"video","archived":true},{"title":"Keep Going","author":"Austin Kleon","url":"https://www.goodreads.com/book/show/40591677-keep-going","tags":["growth","motivation","mindset"],"category":"advice","medium":"book","archived":true},{"title":"Limitless","author":"Jim Kwik","url":"https://www.goodreads.com/book/show/49994260-limitless","tags":["learning","brain","productivity","habits"],"category":"advice","medium":"book","archived":true},{"title":"Improv Wisdom","author":"Patricia Ryan Madson","url":"https://www.goodreads.com/book/show/182052.Improv_Wisdom","tags":["improv","growth","creativity"],"category":"creativity","medium":"book","archived":true},{"title":"Thinking In Bets","author":"Annie Duke","url":"https://www.goodreads.com/book/show/35957157-thinking-in-bets","tags":["decisions","uncertainty","poker","probabilities"],"category":"psychology","medium":"book","archived":true},{"title":"Here's how to live: Create.","author":"Derek Sivers","url":"https://sive.rs/htl23","tags":["career","creativity"],"category":"creativity","medium":"essay","archived":false},{"title":"Talk to Strangers: The Yes Theory Story","author":"Matt Dahlia","url":"https://www.goodreads.com/book/show/198220896-talk-to-strangers","tags":["self-belief","learning","creativity"],"category":"advice","medium":"book","archived":false},{"title":"Spy The Lie","author":"Philip Houston, Michael Floyd, Susan Carnicero, Don Tennant","url":"https://www.goodreads.com/book/show/13167156-spy-the-lie","tags":["psychology","deception"],"category":"psychology","medium":"book","archived":false},{"title":"Who Moved My Cheese?","author":"Spencer Johnson","url":"https://www.goodreads.com/book/show/4894.Who_Moved_My_Cheese_","tags":["change"],"category":"career","medium":"book","archived":false},{"title":"When Breath Becomes Air","author":"Paul Kalanithi","url":"https://www.goodreads.com/book/show/25614898-when-breath-becomes-air","tags":["philosophy","morality","stanford"],"category":"life","medium":"book","archived":false},{"title":"Radical Candor — The Surprising Secret to Being a Good Boss","author":"Unknown author","url":"https://review.firstround.com/radical-candor-the-surprising-secret-to-being-a-good-boss/","tags":["career","management"],"category":"career","medium":"essay","archived":false},{"title":"How To Get Real Buy-In For Your Idea","author":"Kristi Hedges","url":"https://www.forbes.com/sites/work-in-progress/2015/03/16/how-to-get-real-buy-in-for-your-idea/","tags":["career","growth","influence","leadership"],"category":"career","medium":"essay","archived":false},{"title":"Feedback: Staying on your side of the net","author":"Itamar Goldminz","url":"https://orghacking.com/feedback-staying-on-your-side-of-the-net-6d14f4b0b170","tags":["career","feedback"],"category":"career","medium":"essay","archived":false},{"title":"Principles","author":"Nabeel Qureshi","url":"https://nabeelqu.co/principles","tags":["principles","life","advice"],"category":"advice","medium":"essay","archived":false},{"title":"What to do with your life","author":"Julian Shapiro","url":"https://www.julian.com/blog/life-planning","tags":["advice","career","purpose","life-planning"],"category":"advice","medium":"essay","archived":false},{"title":"Don't Read History for Lessons","author":"Cedric Chin","url":"https://commoncog.com/dont-read-history-for-lessons/","tags":["history","lessons","entrepreneurship","mental-models"],"category":"psychology","medium":"essay","archived":false},{"title":"Experts and Elites Play Fundamentally Different Games","author":"Rob Henderson","url":"https://www.robkhenderson.com/p/experts-and-elites-play-fundamentally","tags":["status","sociology","expertise","elites"],"category":"psychology","medium":"essay","archived":false},{"title":"How To Be Successful","author":"Sam Altman","url":"https://blog.samaltman.com/how-to-be-successful","tags":["advice","success","startups"],"category":"advice","medium":"essay","archived":false},{"title":"Cultivating a state of mind where new ideas are born","author":"Henrik & Johanna Karlsson","url":"https://www.henrikkarlsson.xyz/p/good-ideas","tags":["self-belief","solitude","learning","creativity"],"category":"advice","medium":"essay","archived":false},{"title":"Shitty First Drafts","author":"Anne Lamott","url":"https://wrd.as.uky.edu/sites/default/files/1-Shitty%20First%20Drafts.pdf","tags":["writing","creativity"],"category":"advice","medium":"essay","archived":false},{"title":"How To Do Great Work","author":"Paul Graham","url":"https://paulgraham.com/greatwork.html","tags":["great-work","ambition"],"category":"advice","medium":"essay","archived":false},{"title":"Staring into the abyss as a core life skill","author":"Ben Kuhn","url":"https://www.benkuhn.net/abyss/","tags":["boredom"],"category":"advice","medium":"essay","archived":false},{"title":"LLM Daydreaming","author":"Gwern","url":"https://gwern.net/ai-daydreaming","tags":["AI","LLMs","new-ideas"],"category":"science","medium":"essay","archived":false},{"title":"The Most Valuable Commodity in the World is Friction","author":"Kyla Scanlon","url":"https://kyla.substack.com/p/the-most-valuable-commodity-in-the","tags":["thinking","boredom","new-ideas"],"category":"science","medium":"essay","archived":false},{"title":"On Taste","author":"Thomas Kaminski","url":"https://claremontreviewofbooks.com/on-taste/","tags":["taste","psychology","art"],"category":"psychology","medium":"essay","archived":false},{"title":"On the importance of staring directly into the sun","author":"Adam Mastroianni","url":"https://www.experimental-history.com/p/on-the-importance-of-staring-directly","tags":["psychology"],"category":"advice","medium":"essay","archived":true},{"title":"Nostalgia as a Trap: Why We Romanticize the Past","author":"Mindful Growth","url":"https://mindfulgrowth100.substack.com/p/nostalgia-as-a-trap-why-we-romanticize","tags":["psychology"],"category":"science","medium":"essay","archived":false},{"title":"Watch This When I Die","author":"Nathaniel Drew","url":"https://www.youtube.com/watch?v=iRB-C5TgGec","tags":["advice"],"category":"life","medium":"video","archived":false},{"title":"How Long Have I Got Left?","author":"Paul Kalanithi","url":"https://www.nytimes.com/2014/01/25/opinion/sunday/how-long-have-i-got-left.html","tags":["life","growth"],"category":"life","medium":"essay","archived":false},{"title":"This is Water","author":"David Foster Wallace","url":"https://fs.blog/david-foster-wallace-this-is-water/","tags":["life","growth"],"category":"life","medium":"essay","archived":false},{"title":"How to engineer luck","author":"George Mack","url":"https://essays.highagency.com/p/how-could-you-double-your-luck-in","tags":["life","growth"],"category":"career","medium":"essay","archived":false},{"title":"why some conversations rearrange your brain","author":"Maja","url":"https://velvetnoise.substack.com/p/why-some-conversations-rearrange","tags":["life","conversations","friends","psychology"],"category":"life","medium":"essay","archived":false},{"title":"who are you when nobody’s watching?","author":"Letters from Rosie","url":"https://medium.com/@lynwrites_/who-are-you-when-nobodys-watching-cfddcd4a48f4","tags":["self-love"],"category":"life","medium":"essay","archived":false},{"title":"Everyone Can Tell if You're a Serious Person","author":"Connor Jennings","url":"https://mindmeandering.substack.com/p/everyone-can-tell-if-youre-a-serious","tags":["life","start-now","seriousness"],"category":"life","medium":"essay","archived":false},{"title":"There's a place for everyone","author":"Adam Mastroianni","url":"https://www.experimental-history.com/p/theres-a-place-for-everyone","tags":["life","growth","friends"],"category":"life","medium":"essay","archived":false},{"title":"everything is a win when the goal is to experience","author":"Sentimental Being","url":"https://yearlyblues.substack.com/p/everything-is-a-win-when-the-goal","tags":["life","growth"],"category":"life","medium":"essay","archived":false},{"title":"I make good money. Why do I still feel like this?","author":"Hanna Horvath","url":"https://yourbrainonmoney.substack.com/p/i-make-good-money-why-do-i-still","tags":["money","economy","capitalism","psychology"],"category":"career","medium":"essay","archived":false},{"title":"learn to belong to yourself without feeling the need to be with others","author":"Gor","url":"https://goranshbharal.substack.com/p/learn-to-belong-to-yourself-without","tags":["life","self-love","friends","growth"],"category":"life","medium":"essay","archived":false},{"title":"There is so much love in trying","author":"Carina","url":"https://carinas.substack.com/p/there-is-so-much-love-in-trying","tags":["love","trying"],"category":"life","medium":"essay","archived":false},{"title":"how can you be behind in life when your life is only yours","author":"Gor","url":"https://goranshbharal.substack.com/p/how-can-you-be-behind-in-life-when","tags":["life","comparison","career"],"category":"life","medium":"essay","archived":false},{"title":"Sometimes the reason you can’t find people you resonate with is because you misread the ones you meet","author":"Henrik Karlsson","url":"https://www.henrikkarlsson.xyz/p/friends-missed","tags":["friends","life","psychology"],"category":"life","medium":"essay","archived":false},{"title":"Why We Stay in Rooms We Should Leave","author":"Tamara","url":"https://museguided.substack.com/p/why-we-stay-in-rooms-we-should-leave","tags":["life","relationships","psychology"],"category":"life","medium":"essay","archived":false},{"title":"Give Hard Feedback Fast","author":"Andrew Bosworth","url":"https://boz.com/articles/give-hard-feedback-fast","tags":["feedback","life","career"],"category":"life","medium":"essay","archived":false},{"title":"Neural Adaptive Video Streaming with Pensieve (2017)","author":"Unknown author","url":"https://dl.acm.org/doi/10.1145/3098822.3098843","tags":["video-streaming","adaptive-bitrate","reinforcement-learning"],"category":"science","medium":"research paper","archived":false},{"title":"A Buffer-Based Approach to Rate Adaptation: Evidence from a Large Video Streaming Service (2014)","author":"Unknown author","url":"https://yuba.stanford.edu/~nickm/papers/sigcomm2014-video.pdf","tags":["video-streaming","adaptive-bitrate","reinforcement-learning"],"category":"science","medium":"research paper","archived":false},{"title":"Language Models as Knowledge Bases? (2019)","author":"Unknown author","url":"https://arxiv.org/abs/1909.01066","tags":["LLMs"],"category":"science","medium":"research paper","archived":false},{"title":"Self play and autocurricula In the age of agents","author":"Rohan Virani","url":"https://www.amplifypartners.com/blog-posts/self-play-and-autocurricula-in-the-age-of-agents","tags":["science","AI","machine-learning"],"category":"science","medium":"essay","archived":false},{"title":"Deep Reinforcement Learning from Human Preferences (2017)","author":"Unknown author","url":"https://arxiv.org/abs/1706.03741","tags":["LLMs","deep-rl","human-preferences"],"category":"science","medium":"research paper","archived":false}];
+    const panel = document.getElementById("detail-panel");
+    const overlay = document.getElementById("detail-overlay");
+    const closeButton = document.getElementById("close-panel");
+    const detailField = document.getElementById("detail-field");
+    const detailTitle = document.getElementById("detail-title");
+    const detailSummary = document.getElementById("detail-summary");
+    const detailRows = document.getElementById("detail-rows");
+
+    function matchesFilter(item, field, value) {
+      return field === "tags" ? item.tags.includes(value) : item[field] === value;
+    }
+
+    function appendCell(row, text, className) {
+      const cell = document.createElement("td");
+      cell.textContent = text;
+      if (className) cell.className = className;
+      row.appendChild(cell);
+    }
+
+    function openPanel(field, value) {
+      const matches = bookshelfItems.filter((item) => matchesFilter(item, field, value));
+      const archivedCount = matches.filter((item) => item.archived).length;
+      const fieldLabel = field === "tags" ? "Tag" : field[0].toUpperCase() + field.slice(1);
+
+      detailField.textContent = fieldLabel + " selection";
+      detailTitle.textContent = value;
+      detailSummary.textContent = matches.length + " matching " + (matches.length === 1 ? "title" : "titles") + " · " + archivedCount + " archived";
+      detailRows.replaceChildren();
+
+      matches
+        .sort((itemA, itemB) => itemA.title.localeCompare(itemB.title))
+        .forEach((item) => {
+          const row = document.createElement("tr");
+          const titleCell = document.createElement("td");
+          if (item.url) {
+            const link = document.createElement("a");
+            link.href = item.url;
+            link.target = "_blank";
+            link.rel = "noreferrer";
+            link.textContent = item.title;
+            titleCell.appendChild(link);
+          } else {
+            titleCell.textContent = item.title;
+          }
+          row.appendChild(titleCell);
+          appendCell(row, item.author);
+          appendCell(row, item.medium);
+          appendCell(row, item.archived ? "Yes" : "No", item.archived ? "archive-mark" : "");
+          detailRows.appendChild(row);
+        });
+
+      panel.classList.add("is-open");
+      overlay.classList.add("is-open");
+      panel.setAttribute("aria-hidden", "false");
+      document.body.classList.add("panel-open");
+      closeButton.focus();
+    }
+
+    function closePanel() {
+      panel.classList.remove("is-open");
+      overlay.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("panel-open");
+    }
+
+    document.addEventListener("click", (event) => {
+      const trigger = event.target.closest(".filter-trigger");
+      if (trigger) openPanel(trigger.dataset.field, trigger.dataset.value);
+    });
+    document.addEventListener("keydown", (event) => {
+      const trigger = event.target.closest(".filter-trigger");
+      if (trigger && (event.key === "Enter" || event.key === " ")) {
+        event.preventDefault();
+        openPanel(trigger.dataset.field, trigger.dataset.value);
+      }
+      if (event.key === "Escape") closePanel();
+    });
+    closeButton.addEventListener("click", closePanel);
+    overlay.addEventListener("click", closePanel);
+  </script>
+</body>
+</html>
