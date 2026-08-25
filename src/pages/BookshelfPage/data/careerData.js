@@ -35,14 +35,14 @@ As a side note, Scott also writes an extension to this, describing the gender dy
       `
   },
 
-   {
+  {
     title: "How To Get Real Buy-In For Your Idea",
     author: "Kristi Hedges",
     url: "https://www.forbes.com/sites/work-in-progress/2015/03/16/how-to-get-real-buy-in-for-your-idea/",
     dateAdded: "2025-11-28",
     category: "career",
     medium: "essay",
-    tags: ["career", "growth", 'influence', 'leadership'],
+    tags: ["growth", 'leadership'],
     tldr: "🤝 Getting real buy-in for an idea requires influence and co-creation.",
     thoughts: "Such an interesting take on getting people to believe in your idea — in your career or even earlier stages.",
     notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article was written in 2015, almost a decade old (is it still relevant? I'd personally assume so).

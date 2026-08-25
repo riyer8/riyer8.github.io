@@ -8,7 +8,7 @@ const essayData = [
     favorites: 1,
     medium: "essay",
     thoughts: "A piece I continue to come back to - but also one that encourages me to think about my own principles. I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford but in a more informal way.",
-    tags: ['principles', 'life', 'advice'],
+    tags: ['principles', 'life'],
     notes: `
 Originally read in 10/11/2025, but each reread provides a new state of principles to focus on at this moment. Here are some of the new ones six months later :)
 
@@ -72,7 +72,7 @@ Increase your surface area and luck follows. Similar to a ton of his other princ
     medium: "essay",
     tldr: "A framework to evaluate the values of your life.",
     thoughts: "",
-    tags: ['advice', 'career', 'purpose', 'life-planning'],
+    tags: ['career', 'purpose'],
     notes: `
 Originally read on 10/17/2025. Revising to add more thoughts and notes.
 
@@ -163,7 +163,7 @@ Both of these archetypes serve different functions. Henderson actually sums this
     favorites: 1,
     category: "advice",
     medium: "essay",
-    tags: ["advice", "success", 'startups'],
+    tags: ["success", 'startups'],
     notes: `
 ### 1. Compound Yourself
 
@@ -509,7 +509,7 @@ I've been looking for essays and opinions about rosy retrospection and how our b
     medium: "video",
     tldr: "",
     thoughts: "Truly one of my favorite videos.",
-    tags: ['advice'],
+    tags: [],
     notes: `
 Below is the full transcript of the video, bolded with some of my favorite lines. But every line is so beautiful. You have to watch it for yourself.
 
@@ -676,7 +676,7 @@ Strangely, it’s often those closest to us that we stop being curious about. We
     medium: "essay",
     tldr: "",
     thoughts: "",
-    tags: ['life', 'start-now', 'seriousness'],
+    tags: ['personality', 'growth', 'life'],
     notes: `
 In a weird way, this was exactly the essay I needed at this time. It might be a little bit later to start taking my life seriously, but late is better than never.
 
@@ -990,7 +990,7 @@ There will never be a perfect time to leave and to go. So go with whatever you h
     url: "https://boz.com/articles/give-hard-feedback-fast",
     author: "Andrew Bosworth",
     dateAdded: "2026-08-04",
-    category: "life",
+    category: "career",
     medium: "essay",
     tldr: "Every second that you decide to delay giving feedback is a lost opportunity for growth.",
     thoughts: "In a way, I actually really relate to boz + his personality and getting that hard / not-nice-to-hear feedback + criticism can be liberating.",
@@ -1002,6 +1002,101 @@ I also think this pairs well with his essay about [Think of Pavlov](https://boz.
 
 > Feedback is better late than never but every second of delay denies the subject an opportunity to get better.
     `
+  },
+  {
+    title: "Building AI Products In The Probabilistic Era",
+    url: "https://giansegato.com/essays/probabilistic-era",
+    author: "Gian Segato",
+    dateAdded: "2026-08-15",
+    category: "perspective",
+    medium: "essay",
+    tldr: "The world is changing in a different way than we've previously seen with AI. Previously, we've had deterministic functions where you can put the same input in a get (relatively) the same output out. Now, systems are stochastic because AI can generate new thoughts and ideas. Even people creating AI don't exactly know what's happening.",
+    thoughts: "",
+    tags: ['AI', 'learning', 'new-ideas', 'change'],
+    notes: `
+I think we see this cultural shift happen a lot throughout history:
+- Socrates was famously against the idea of writing, believing that people would rely on external marks than utilizing what they had in their mind.
+- Morris was skeptical of using industrial machinery, arguing that poeple would become servants of machinery.
+- Warner was uncertain about sound films because previously actors didn't talk in film.
+- etc.
+
+The list can go on. Of course, it's not as if these arguments are incorrect. They were based on the information that was avaliable to them at the time.
+
+It goes without saying that the AI wave feels different. Being actively in the change makes us question it more. Those voices shouldn't go unheard.
+
+This essay really provides a nuanced view about the grey area of AI, what it means to be at the beginning of a forefront piece of technology.
+    `
+  },
+  {
+    title: "Labor market impacts of AI: A new measure and early evidence",
+    url: "https://www.anthropic.com/research/labor-market-impacts",
+    author: "Anthropic",
+    dateAdded: "2026-08-21",
+    category: "science",
+    medium: "research paper",
+    tldr: "",
+    thoughts: "",
+    tags: [''],
+    notes: `
+:::quote
+**Observed exposure:** measurement for AI displacement risk; combines theoretical LLM capability and real-world usage data, weighting automated (rather than augmentative) and work-related use more heavily.
+:::
+
+Essentially, they are measuring how likely AI is to *replace* the human work rather than merely help humans to do their work.
+
+:::sidenote
+Automated use = AI does the task instead of human.
+Augmentative use = AI helps a human do the task but they remain involved.
+:::
+
+CONTINUE
+    `
+  },
+  {
+    title: "If You Want Taste, You're Gonna Have to Eat",
+    url: "https://x.com/jxnlco/status/2073819508729684462",
+    author: "Jason Liu",
+    dateAdded: "2026-08-23",
+    category: "advice",
+    medium: "essay",
+    tldr: "You can curate taste every day. It's becoming increasingly harder with lower attention spans and fast dopamine hits, but by being more in tune with your decisions, you can curate your taste further.",
+    thoughts: "",
+    tags: ['taste'],
+    notes: `
+> But I think taste is really your ability to model out what people will like. **It's curation versus consumption.** And with AI there's so much more volume of work now that it's really easy to regress to the mean.
+
+> Taste is a kind of risk-taking. You're choosing to deviate from the safe average.
+
+I initially expected this to be a more "AI" version of taste, but it actually took a fashion take on taste (the more traditional type of taste that people imagine). I enjoyed it, Jason seems like a deep thinker about taste in his own life.
+    `
+  },
+
+  {
+    title: "Learning to Replicate Expert Judgment in Financial Tasks",
+    url: "https://thinkingmachines.ai/news/learning-to-replicate-expert-judgment-in-financial-tasks/",
+    author: "Thinking Machines",
+    dateAdded: "2026-08-24",
+    category: "science",
+    medium: "research paper",
+    tldr: "",
+    thoughts: "",
+    tags: ['taste', 'AI', 'finance'],
+    notes: `
+AI's use of *differentiated intelligene* in finance.
+:::sidenote
+To make this more specific, the idea of *differentiated intelligence* is when models tune to the needs of particular organizations rather than one giant general-purpose model.
+:::
+
+- Baseline as a standard **GRPO** + **importance-sampling loss**.
+- Upgraded model by including **interleaved batching, CISPO loss with asymmetric clipping, on-policy distillation (OPD)** with strong teachers.
+
+---
+
+As an overview, Thinking Machines did the following:
+1. Take an ordinary base model + high-quality, expert-verified examples.
+2. Train it and fine-tune it -> the model develops a *taste* for domain-specific activities.
+3. Cut out the noise: make it **smaller + cheaper** than a frontier model while still having higher accuracy at that specific task.
+`
   },
 
   /*{

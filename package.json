@@ -10,7 +10,8 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build -m \"Deploy on $(date +'%Y-%m-%d %H:%M:%S')\"",
     "eject": "react-scripts eject",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "test": "react-scripts test --watchAll=false"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",

@@ -333,9 +333,9 @@ const BookshelfPage = () => {
   const drawerTransitions = prefersReducedMotion
     ? { backdrop: { duration: 0 }, panel: { duration: 0 } }
     : {
-        backdrop: { duration: 0.28, ease: DRAWER_EASE },
-        panel: { duration: 0.38, ease: DRAWER_EASE },
-      };
+      backdrop: { duration: 0.28, ease: DRAWER_EASE },
+      panel: { duration: 0.38, ease: DRAWER_EASE },
+    };
 
   return (
     <main style={{ ...pageContainer, ...themeVars }}>
@@ -352,11 +352,11 @@ const BookshelfPage = () => {
             <h1 style={{
               margin: 0,
               color: theme.colors.text,
-              fontFamily: theme.fonts?.heading,
-              fontSize: 'var(--text-section-sm)',
-              fontWeight: 600,
+              fontFamily: 'var(--font-brand)',
+              fontSize: 'var(--text-brand)',
+              fontWeight: 'var(--weight-bold)',
               lineHeight: 'var(--leading-tight)',
-              letterSpacing: '-0.02em',
+              letterSpacing: '-0.01em',
             }}>Bookshelf</h1>
             <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary, fontSize: 'var(--text-meta)', lineHeight: 'var(--leading-normal)' }}>Every time I'm not reading, I'm thinking about reading.</p>
           </div>
@@ -676,7 +676,7 @@ const BookshelfPage = () => {
                           ))}
                           {remainingCount > 0 && (
                             <span style={{
-                              fontSize: 'var(--text-caption)',
+                              fontSize: 'var(--text-meta)',
                               color: theme.colors.textSecondary,
                               fontWeight: 500
                             }}>
@@ -770,124 +770,124 @@ const BookshelfPage = () => {
             />
           ) : null}
           {selectedItem ? (
-              <motion.div
-                key="bookshelf-drawer"
-                role="dialog"
-                aria-modal="true"
-                aria-labelledby="reading-note-title"
-                className="bookshelf-drawer"
-                style={themeVars}
-                initial={prefersReducedMotion ? false : { x: '100%' }}
-                animate={{ x: 0 }}
-                exit={prefersReducedMotion ? undefined : { x: '100%' }}
-                transition={drawerTransitions.panel}
-                onClick={(event) => event.stopPropagation()}
-              >
-                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
-                      <div className="bookshelf-detail__heading">
-                        <h2 id="reading-note-title" className="bookshelf-detail__title" style={{ color: theme.colors.text }}>{selectedItem.title}</h2>
-                        {selectedItem.author ? (
-                          <div className="bookshelf-detail__author" style={{ color: theme.colors.textSecondary }}>
-                            by {selectedItem.author}
-                          </div>
-                        ) : null}
+            <motion.div
+              key="bookshelf-drawer"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="reading-note-title"
+              className="bookshelf-drawer"
+              style={themeVars}
+              initial={prefersReducedMotion ? false : { x: '100%' }}
+              animate={{ x: 0 }}
+              exit={prefersReducedMotion ? undefined : { x: '100%' }}
+              transition={drawerTransitions.panel}
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+                  <div className="bookshelf-detail__heading">
+                    <h2 id="reading-note-title" className="bookshelf-detail__title" style={{ color: theme.colors.text }}>{selectedItem.title}</h2>
+                    {selectedItem.author ? (
+                      <div className="bookshelf-detail__author" style={{ color: theme.colors.textSecondary }}>
+                        by {selectedItem.author}
                       </div>
-
-                      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                        {selectedItem.url ? (
-                          <a
-                            href={selectedItem.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Open the original source for ${selectedItem.title}`}
-                            className="bookshelf-drawer__source"
-                          >
-                            ↗
-                          </a>
-                        ) : null}
-                        <button
-                          ref={closeButtonRef}
-                          type="button"
-                          onClick={closeDetail}
-                          aria-label="Close reading notes"
-                          className="bookshelf-drawer__close"
-                        >
-                          ×
-                        </button>
-                      </div>
-                    </div>
-
-                    <div className="bookshelf-detail__metadata" style={{ color: theme.colors.textSecondary }}>
-                      {(selectedItem.tags || []).length ? (
-                        <div
-                          className="bookshelf-detail__tags"
-                          aria-label="Tags"
-                          tabIndex={0}
-                          onWheel={(event) => {
-                            const element = event.currentTarget;
-                            const delta = event.deltaX || event.deltaY;
-                            const canScroll = delta > 0
-                              ? element.scrollLeft + element.clientWidth < element.scrollWidth
-                              : element.scrollLeft > 0;
-                            if (canScroll) {
-                              event.preventDefault();
-                              element.scrollLeft += delta;
-                            }
-                          }}
-                        >
-                          {selectedItem.tags.map((tag) => (
-                            <Badge key={tag} theme={theme}>{tag}</Badge>
-                          ))}
-                        </div>
-                      ) : null}
-                      {selectedItem.dateAdded ? (
-                        <time className="bookshelf-detail__date" dateTime={selectedItem.dateAdded}>
-                          {selectedItem.dateAdded}
-                        </time>
-                      ) : null}
-                    </div>
-
-                    {selectedItem.tldr && (
-                      <div>
-                        <div style={panelLabelStyle}>TL;DR</div>
-                        <div style={panelTextStyle}>{selectedItem.tldr}</div>
-                      </div>
-                    )}
-
-                    {selectedItem.thoughts && (
-                      <div>
-                        <div style={panelLabelStyle}>Thoughts</div>
-                        <div style={panelTextStyle}>{selectedItem.thoughts}</div>
-                      </div>
-                    )}
-
-                    {selectedItem.notes && (
-                      <div
-                        style={{
-                          marginTop: '0.75rem',
-                          marginBottom: '2rem',
-                          padding: 16,
-                          background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
-                          border: `4px solid ${theme.colors.border}`,
-                          color: theme.colors.text,
-                          fontSize: '0.85rem',
-                          lineHeight: 'var(--leading-relaxed)',
-                          fontFamily: theme.fonts?.base || 'var(--font-ui)',
-                          borderRadius: 6,
-                        }}
-                      >
-                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
-                          <div style={panelLabelStyle}>Notes</div>
-                        </div>
-
-                        <div style={{ marginTop: 0 }}>
-                          <MarkdownMath text={selectedItem.notes} />
-                        </div>
-                      </div>
-                    )}
+                    ) : null}
                   </div>
-              </motion.div>
+
+                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                    {selectedItem.url ? (
+                      <a
+                        href={selectedItem.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Open the original source for ${selectedItem.title}`}
+                        className="bookshelf-drawer__source"
+                      >
+                        ↗
+                      </a>
+                    ) : null}
+                    <button
+                      ref={closeButtonRef}
+                      type="button"
+                      onClick={closeDetail}
+                      aria-label="Close reading notes"
+                      className="bookshelf-drawer__close"
+                    >
+                      ×
+                    </button>
+                  </div>
+                </div>
+
+                <div className="bookshelf-detail__metadata" style={{ color: theme.colors.textSecondary }}>
+                  {(selectedItem.tags || []).length ? (
+                    <div
+                      className="bookshelf-detail__tags"
+                      aria-label="Tags"
+                      tabIndex={0}
+                      onWheel={(event) => {
+                        const element = event.currentTarget;
+                        const delta = event.deltaX || event.deltaY;
+                        const canScroll = delta > 0
+                          ? element.scrollLeft + element.clientWidth < element.scrollWidth
+                          : element.scrollLeft > 0;
+                        if (canScroll) {
+                          event.preventDefault();
+                          element.scrollLeft += delta;
+                        }
+                      }}
+                    >
+                      {selectedItem.tags.map((tag) => (
+                        <Badge key={tag} theme={theme}>{tag}</Badge>
+                      ))}
+                    </div>
+                  ) : null}
+                  {selectedItem.dateAdded ? (
+                    <time className="bookshelf-detail__date" dateTime={selectedItem.dateAdded}>
+                      {selectedItem.dateAdded}
+                    </time>
+                  ) : null}
+                </div>
+
+                {selectedItem.tldr && (
+                  <div>
+                    <div style={panelLabelStyle}>TL;DR</div>
+                    <div style={panelTextStyle}>{selectedItem.tldr}</div>
+                  </div>
+                )}
+
+                {selectedItem.thoughts && (
+                  <div>
+                    <div style={panelLabelStyle}>Thoughts</div>
+                    <div style={panelTextStyle}>{selectedItem.thoughts}</div>
+                  </div>
+                )}
+
+                {selectedItem.notes && (
+                  <div
+                    style={{
+                      marginTop: '0.75rem',
+                      marginBottom: '2rem',
+                      padding: 16,
+                      background: theme.isDarkMode ? 'rgba(255,255,255,0.02)' : 'rgba(0,0,0,0.02)',
+                      border: `4px solid ${theme.colors.border}`,
+                      color: theme.colors.text,
+                      fontSize: '0.85rem',
+                      lineHeight: 'var(--leading-relaxed)',
+                      fontFamily: theme.fonts?.base || 'var(--font-ui)',
+                      borderRadius: 6,
+                    }}
+                  >
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+                      <div style={panelLabelStyle}>Notes</div>
+                    </div>
+
+                    <div style={{ marginTop: 0 }}>
+                      <MarkdownMath text={selectedItem.notes} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </motion.div>
           ) : null}
         </AnimatePresence>,
         document.body

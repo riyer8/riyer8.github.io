@@ -1,7 +1,7 @@
 {
   "title": "personal principles.",
-  "colorLight": "#f5fff3ff",
-  "colorDark": "#3c3e3cff",
+  "colorLight": "#f5fff3",
+  "colorDark": "#3c3e3c",
   "principles": [
     {
       "principle": "take swings early.",
@@ -13,8 +13,8 @@
       "body": "be so delusional with your life that you have no other choice but to succeed. there will also be people who don't see the future you do, but that should never diminish your light."
     },
     {
-      "principle": "you can become paralyzed if you overanalyze.",
-      "body": "thinking can be productive, but it can also be paralyzing. it makes you feel productive, but it can also cause you to feel stuck. don't overanalyze to the point that you are paralyzed."
+      "principle": "paralyzation leds to overanalyzation.",
+      "body": "thinking makes you feel be productive, but it can also be paralyzing. not everything requires so much thinking."
     },
     {
       "principle": "express gratitude freely and often!",
@@ -44,6 +44,26 @@
     {
       "principle": "taking risks compounds in life.",
       "body": ""
+    },
+    {
+      "principle": "sweat the details (the ones that are important).",
+      "body": "",
+      "source": "Alana Goyal (alanagoyal.com) principles"
+    },
+    {
+      "principle": "taste is a muscle.",
+      "body": "",
+      "source": "Alana Goyal (alanagoyal.com) principles"
+    },
+    {
+      "principle": "surround yourself with people who are better than you are.",
+      "body": "this one is objective, but i think about it as better in any avenue of life i'm trying to become better at.",
+      "source": "Alana Goyal (alanagoyal.com) principles"
+    },
+    {
+      "principle": "close the loop.",
+      "body": "a major one i'm still working on.",
+      "source": "Alana Goyal (alanagoyal.com) principles"
     }
   ]
 }

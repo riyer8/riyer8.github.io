@@ -5,11 +5,13 @@ import PrincipleModal from "./PrincipleModal";
 import personal from "./data/personal.json";
 import ariana from "./data/ariana.json";
 import products from "./data/products.json";
+import quotes from "./data/quotes.json";
 import { useCarouselModal } from "../../../components/NoteModal/useCarouselModal";
 import "./NotesSection.css";
 
 /** Add or remove category files here — same pattern as the old .txt setup. */
 const NOTES_CONFIG = [personal, ariana, products];
+const QUOTES_CONFIG = [quotes]
 
 const NotesSection = () => {
   const { theme } = useTheme();

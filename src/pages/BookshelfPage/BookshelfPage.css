@@ -104,7 +104,7 @@
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
   background: var(--bs-chip-bg);
-  font-size: inherit;
+  font-size: var(--text-meta);
 }
 
 .bookshelf-chip--cell:hover {

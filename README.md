@@ -2,4 +2,5 @@
 
 https://riyer8.github.io/
 
-it's a little messy.
+
+[![CI](https://github.com/riyer8/riyer8.github.io/actions/workflows/ci.yml/badge.svg?branch=source)](https://github.com/riyer8/riyer8.github.io/actions/workflows/ci.yml)
