@@ -12,35 +12,20 @@ import Badge from './components/Badge';
 import FavoriteStars from './components/FavoriteStars';
 import QuoteWidget from './components/QuoteWidget/QuoteWidget';
 import { getFavoriteTier, titleToSlug } from './bookshelfUtils';
-import { SITE } from '../../seo/siteMetadata';
+import {
+  buildBookshelfPageSchema,
+  itemDescription,
+} from './bookshelfSchema';
 import './BookshelfPage.css';
 import {
   formatPageTitle,
-  makeBreadcrumbSchema,
-  personSchema,
   usePageMetadata,
-  websiteSchema,
 } from '../../seo/pageMetadata';
 
 const DRAWER_EASE = [0.22, 1, 0.36, 1];
 const FAVORITE_TIERS = [1, 2, 3];
 const starColor = (isDark, active) =>
   active ? '#fff' : (isDark ? '#FFD700' : '#000');
-
-const cleanExcerpt = (value = '') =>
-  value
-    .replace(/!\[[^\]]*\]\([^)]*\)/g, '')
-    .replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[#*_>`~]/g, '')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-const itemDescription = (item) => {
-  if (!item) return SITE.bookshelfDescription;
-  const intro = `Ramya Iyer's reading notes on “${item.title}”${item.author ? ` by ${item.author}` : ''}.`;
-  const detail = cleanExcerpt(item.tldr || item.thoughts || '');
-  return `${intro}${detail ? ` ${detail}` : ''}`.slice(0, 160).trim();
-};
 
 const BookshelfPage = () => {
   const { theme } = useTheme();
@@ -181,57 +166,10 @@ const BookshelfPage = () => {
   const pagePath = metadataItem
     ? `/recent-reads/${titleToSlug(metadataItem.title)}`
     : "/recent-reads";
-  const pageSchema = useMemo(() => {
-    const collection = {
-      "@type": "CollectionPage",
-      "@id": `${SITE.url}/recent-reads/#collection`,
-      url: `${SITE.url}/recent-reads/`,
-      name: "Recent Reads",
-      description: SITE.bookshelfDescription,
-      numberOfItems: bookshelfData.length,
-      author: { "@id": `${SITE.url}/#person` },
-      isPartOf: { "@id": `${SITE.url}/#website` },
-    };
-    if (!metadataItem) {
-      return [
-        websiteSchema,
-        personSchema,
-        collection,
-        makeBreadcrumbSchema([
-          { name: "Home", path: "/" },
-          { name: "Recent Reads", path: "/recent-reads" },
-        ]),
-      ];
-    }
-    const sourceWork = {
-      "@type": metadataItem.medium === "book" ? "Book" : "CreativeWork",
-      name: metadataItem.title,
-      ...(metadataItem.author
-        ? { author: { "@type": "Person", name: metadataItem.author } }
-        : {}),
-      ...(metadataItem.url ? { url: metadataItem.url } : {}),
-    };
-    return [
-      websiteSchema,
-      personSchema,
-      collection,
-      {
-        "@type": "Article",
-        headline: `Reading notes on ${metadataItem.title}`,
-        url: `${SITE.url}${pagePath}/`,
-        description: itemDescription(metadataItem),
-        author: { "@id": `${SITE.url}/#person` },
-        about: sourceWork,
-        keywords: (metadataItem.tags || []).join(", "),
-        isPartOf: { "@id": `${SITE.url}/recent-reads/#collection` },
-      },
-      makeBreadcrumbSchema([
-        { name: "Home", path: "/" },
-        { name: "Recent Reads", path: "/recent-reads" },
-        { name: metadataItem.title, path: pagePath },
-      ]),
-    ];
-  }, [metadataItem, pagePath]);
+  const pageSchema = useMemo(
+    () => buildBookshelfPageSchema(metadataItem),
+    [metadataItem]
+  );
   usePageMetadata({
     title: pageTitle,
     description: itemDescription(metadataItem),

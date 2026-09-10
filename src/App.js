@@ -16,6 +16,7 @@ import AboutPage from "./pages/AboutPage/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
 import SeasonalToggleManager from "./features/seasonal/ToggleManager";
+import { formatPageTitle } from "./seo/pageMetadata";
 
 const HomeIntroWall = ({ blocksInteraction, children }) => {
   return createPortal(
@@ -57,10 +58,10 @@ const App = () => {
     return undefined;
   }, [location.pathname]);
 
-  // Keep the tab title simple during the loading intro.
+  // Match homepage metadata during the loading intro so the tab title stays correct.
   React.useEffect(() => {
     if (showLandingScreen) {
-      document.title = "Ramya Iyer";
+      document.title = formatPageTitle();
     }
   }, [showLandingScreen]);
 

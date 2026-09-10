@@ -29,3 +29,14 @@ describe("absoluteAssetUrl", () => {
     );
   });
 });
+
+describe("SITE.profiles", () => {
+  it("includes corroborating profile URLs for Person sameAs", () => {
+    expect(SITE.profiles.integirls).toBe(
+      "https://houston.integirls.org/our-mission/ramya-iyer"
+    );
+    expect(SITE.profiles.aclanthology).toBe(
+      "https://aclanthology.org/people/ramya-iyer/"
+    );
+  });
+});

@@ -9,3 +9,4 @@ build/
 *.key
 credentials.json
 secrets.json
+.cursor/*

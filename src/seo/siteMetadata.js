@@ -2,6 +2,7 @@
 export const SITE = {
   name: "Ramya Iyer",
   shortName: "ramya iyer",
+  homeTitle: "Ramya Iyer | Stanford CS grad, AI evals & building",
   url: "https://riyer8.github.io",
   locale: "en_US",
   language: "en",
@@ -21,6 +22,8 @@ export const SITE = {
     substack: "https://ramyai.substack.com/",
     scholar:
       "https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en",
+    integirls: "https://houston.integirls.org/our-mission/ramya-iyer",
+    aclanthology: "https://aclanthology.org/people/ramya-iyer/",
   },
   degree: "M.S. in Computer Science, B.S. in Mathematics and Minor in History",
 };

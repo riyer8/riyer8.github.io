@@ -1,5 +1,6 @@
 import { SITE } from "../../seo/siteMetadata";
 import {
+  formatPageTitle,
   personSchema,
   usePageMetadata,
   websiteSchema,
@@ -9,7 +10,7 @@ const HOME_SCHEMA = [websiteSchema, personSchema];
 
 const HomeDocumentTitle = () => {
   usePageMetadata({
-    title: "Ramya Iyer",
+    title: formatPageTitle(),
     description: SITE.description,
     pathname: "/",
     schema: HOME_SCHEMA,

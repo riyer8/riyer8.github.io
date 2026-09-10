@@ -8,13 +8,13 @@ import {
 
 const SITE_TITLE = SITE.name;
 
-/** Build a tab title: segments joined with " | ", ending with the site name. */
+/** Build a tab title. Inner pages are "Section | Ramya Iyer"; the homepage uses SITE.homeTitle. */
 export function formatPageTitle(...segments) {
   const parts = segments.filter(Boolean).map((segment) => {
     const value = String(segment);
     return `${value.charAt(0).toUpperCase()}${value.slice(1)}`;
   });
-  if (parts.length === 0) return SITE_TITLE;
+  if (parts.length === 0) return SITE.homeTitle;
   return [...parts, SITE_TITLE].join(" | ");
 }
 

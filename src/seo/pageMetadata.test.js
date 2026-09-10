@@ -1,9 +1,16 @@
-import { formatPageTitle, makeBreadcrumbSchema } from "./pageMetadata";
+import {
+  formatPageTitle,
+  makeBreadcrumbSchema,
+  personSchema,
+} from "./pageMetadata";
 import { SITE } from "./siteMetadata";
 
 describe("formatPageTitle", () => {
-  it("returns the site name when no segments are provided", () => {
-    expect(formatPageTitle()).toBe(SITE.name);
+  it("returns the descriptive homepage title when no segments are provided", () => {
+    expect(formatPageTitle()).toBe(SITE.homeTitle);
+    expect(formatPageTitle()).toBe(
+      "Ramya Iyer | Stanford CS grad, AI evals & building"
+    );
   });
 
   it("capitalizes segments and appends the site name", () => {
@@ -48,5 +55,16 @@ describe("makeBreadcrumbSchema", () => {
       position: 1,
       name: "Current page",
     });
+  });
+});
+
+describe("personSchema", () => {
+  it("lists corroborating profile URLs in sameAs", () => {
+    expect(personSchema.sameAs).toEqual(
+      expect.arrayContaining([
+        SITE.profiles.integirls,
+        SITE.profiles.aclanthology,
+      ])
+    );
   });
 });
