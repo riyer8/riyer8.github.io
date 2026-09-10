@@ -96,6 +96,19 @@ const toIsoDate = (value) => {
 const maxIsoDate = (dates) =>
   dates.filter(Boolean).sort().at(-1) || null;
 
+/** UTC calendar date of this prerender run (override with BUILD_DATE=YYYY-MM-DD). */
+const buildIsoDate = () =>
+  toIsoDate(process.env.BUILD_DATE) || new Date().toISOString().slice(0, 10);
+
+const BUILD_DATE = buildIsoDate();
+
+/**
+ * Every prerendered URL is rewritten on deploy, so lastmod is at least the
+ * build date. Content dates still win when they are newer.
+ */
+const lastmodOnRebuild = (contentDate, buildDate = BUILD_DATE) =>
+  maxIsoDate([toIsoDate(contentDate) || contentDate, buildDate]);
+
 const escapeXml = (value) =>
   String(value)
     .replace(/&/g, "&amp;")
@@ -111,7 +124,7 @@ const buildRoutes = () => {
     if (!slug) throw new Error(`Could not create a slug for "${item.title}".`);
     return {
       route: normalizeRoute(`/recent-reads/${slug}`),
-      lastmod: toIsoDate(item.dateAdded),
+      lastmod: lastmodOnRebuild(item.dateAdded),
       changefreq: "monthly",
       priority: "0.6",
     };
@@ -121,19 +134,19 @@ const buildRoutes = () => {
   const routes = [
     {
       route: "/",
-      lastmod: recentReadsLastmod,
+      lastmod: lastmodOnRebuild(recentReadsLastmod),
       changefreq: "weekly",
       priority: "1.0",
     },
     {
       route: "/ramya/",
-      lastmod: null,
+      lastmod: lastmodOnRebuild(null),
       changefreq: "monthly",
       priority: "0.8",
     },
     {
       route: "/recent-reads/",
-      lastmod: recentReadsLastmod,
+      lastmod: lastmodOnRebuild(recentReadsLastmod),
       changefreq: "weekly",
       priority: "0.9",
     },
