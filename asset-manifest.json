@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.a0ce6eb2.css",
-    "main.js": "/static/js/main.003e6e02.js",
+    "main.css": "/static/css/main.ea389c8b.css",
+    "main.js": "/static/js/main.e4047cb9.js",
     "static/media/waterfall.JPG": "/static/media/waterfall.7e491dc9e65c5ea478d8.JPG",
     "static/media/peak.jpg": "/static/media/peak.cda1a0e69be73bdd8cc9.jpg",
     "static/media/bookshelf.png": "/static/media/bookshelf.c98aa6c7b52893b21e82.png",
@@ -158,11 +158,11 @@
     "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "index.html": "/index.html",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.a0ce6eb2.css.map": "/static/css/main.a0ce6eb2.css.map",
-    "main.003e6e02.js.map": "/static/js/main.003e6e02.js.map"
+    "main.ea389c8b.css.map": "/static/css/main.ea389c8b.css.map",
+    "main.e4047cb9.js.map": "/static/js/main.e4047cb9.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0ce6eb2.css",
-    "static/js/main.003e6e02.js"
+    "static/css/main.ea389c8b.css",
+    "static/js/main.e4047cb9.js"
   ]
 }
