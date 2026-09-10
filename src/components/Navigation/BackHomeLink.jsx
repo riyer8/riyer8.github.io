@@ -2,7 +2,7 @@ import { Link } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
 import "./BackHomeLink.css";
 
-const BackHomeLink = ({ className = "" }) => {
+const BackHomeLink = ({ className = "", label = "home" }) => {
   const { theme } = useTheme();
 
   return (
@@ -18,7 +18,7 @@ const BackHomeLink = ({ className = "" }) => {
         "--bh-accent": theme.colors.accent,
       }}
     >
-      <span className="back-home-link__btn">← Home</span>
+      <span className="back-home-link__btn">← {label}</span>
     </Link>
   );
 };

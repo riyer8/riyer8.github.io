@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { useTheme } from "../../../components/ThemeContext/ThemeContext";
 import BrandName from "../../../components/BrandName/BrandName";
@@ -5,7 +6,17 @@ import { SITE } from "../../../seo/siteMetadata";
 import ProfilePhoto from "../ProfilePhoto";
 import "./SidebarContent.css";
 
-const HOME_ONELINER = "inspired by human connection.";
+const TAGLINES = [
+  "inspired by human connection.",
+  "professional daydreamer.",
+  "will trade candy for more Cursor credits.",
+];
+const HOME_ONELINER = TAGLINES[0];
+const FADE_MS = 200;
+
+const prefersReducedMotion = () =>
+  typeof window !== "undefined" &&
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const ON_HERE = [
   { label: "about", to: "/ramya", icon: "about" },
@@ -163,6 +174,37 @@ const LinkGroup = ({ title, items }) => (
 
 const SidebarContent = () => {
   const { theme } = useTheme();
+  const [oneliner, setOneliner] = useState(HOME_ONELINER);
+  const [isFading, setIsFading] = useState(false);
+  const hoverIndexRef = useRef(0);
+  const fadeTimerRef = useRef(null);
+
+  useEffect(
+    () => () => {
+      if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+    },
+    []
+  );
+
+  const swapOneliner = (next) => {
+    if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+    if (prefersReducedMotion()) {
+      setIsFading(false);
+      setOneliner(next);
+      return;
+    }
+    setIsFading(true);
+    fadeTimerRef.current = window.setTimeout(() => {
+      setOneliner(next);
+      setIsFading(false);
+      fadeTimerRef.current = null;
+    }, FADE_MS);
+  };
+
+  const handleOnelinerEnter = () => {
+    hoverIndexRef.current = (hoverIndexRef.current + 1) % TAGLINES.length;
+    swapOneliner(TAGLINES[hoverIndexRef.current]);
+  };
 
   return (
     <div
@@ -181,7 +223,13 @@ const SidebarContent = () => {
         </Link>
       </h1>
 
-      <p className="sidebar-content__oneliner">{HOME_ONELINER}</p>
+      <p
+        className={`sidebar-content__oneliner${isFading ? " is-fading" : ""}`}
+        aria-live="polite"
+        onMouseEnter={handleOnelinerEnter}
+      >
+        {oneliner}
+      </p>
 
       <a className="sidebar-content__email" href="mailto:ramya1@stanford.edu">
         ramya1@stanford.edu

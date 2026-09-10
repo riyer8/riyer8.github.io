@@ -17,6 +17,10 @@ import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
 import SeasonalToggleManager from "./features/seasonal/ToggleManager";
 import { formatPageTitle } from "./seo/pageMetadata";
+import { CommandPaletteProvider } from "./components/CommandPalette/CommandPalette";
+import SiteFooter from "./components/SiteFooter/SiteFooter";
+import TabAttentionTitle from "./components/TabAttentionTitle";
+import CursorSparkles from "./components/CursorSparkles";
 
 const HomeIntroWall = ({ blocksInteraction, children }) => {
   return createPortal(
@@ -90,26 +94,31 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <PixelatedBackground />
-      <ThemeToggle />
-      <SeasonalToggleManager />
-      {showLandingScreen ? (
-        <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
-          <HomeLandingScreen
-            onFadeStart={handleLandingFadeStart}
-            onComplete={handleLandingComplete}
-          />
-        </HomeIntroWall>
-      ) : null}
-      <Routes>
-        <Route element={<AnimatedLayout />}>
-          <Route path="/" element={homeRoute} />
-          <Route path="/recent-reads" element={<BookshelfRoute />} />
-          <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
-          <Route path="/ramya" element={<AboutPage />} />
-          <Route path="*" element={<NotFoundPage />} />
-        </Route>
-      </Routes>
+      <CommandPaletteProvider>
+        <PixelatedBackground />
+        <ThemeToggle />
+        <SeasonalToggleManager />
+        <TabAttentionTitle />
+        <CursorSparkles />
+        {showLandingScreen ? (
+          <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
+            <HomeLandingScreen
+              onFadeStart={handleLandingFadeStart}
+              onComplete={handleLandingComplete}
+            />
+          </HomeIntroWall>
+        ) : null}
+        <Routes>
+          <Route element={<AnimatedLayout />}>
+            <Route path="/" element={homeRoute} />
+            <Route path="/recent-reads" element={<BookshelfRoute />} />
+            <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
+            <Route path="/ramya" element={<AboutPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+        <SiteFooter />
+      </CommandPaletteProvider>
     </ThemeProvider>
   );
 };

@@ -28,11 +28,26 @@
 
 .sidebar-content__oneliner {
   margin: 0 0 0.45rem;
+  min-height: calc(var(--text-meta) * var(--leading-normal) * 3);
+  width: 100%;
   font-family: var(--font-ui);
   font-size: var(--text-meta);
   font-weight: var(--weight-regular);
   line-height: var(--leading-normal);
   color: var(--sidebar-muted);
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 200ms ease;
+}
+
+.sidebar-content__oneliner.is-fading {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar-content__oneliner {
+    transition: none;
+  }
 }
 
 .sidebar-content__email {
