@@ -49,6 +49,10 @@ const CASCADE_SELECTOR = [
   ".about-page__note",
   ".brand-name",
   ".status-widget",
+  ".home-feed__section-head",
+  ".home-feed-card",
+  ".home-feed__row",
+  ".home-feed__more",
 ].join(",");
 
 function isVisible(el) {
@@ -100,12 +104,13 @@ function collectCascadeNodes(root) {
   const found = [...root.querySelectorAll(CASCADE_SELECTOR)].filter(isVisible);
 
   const selected = found.filter((el) => {
-    if (el.matches(".bookshelf-row, .bookshelf-head-row, tr")) return true;
+    if (el.matches(".bookshelf-row, .bookshelf-head-row, tr, .home-feed-card"))
+      return true;
     return !found.some(
       (other) =>
         other !== el &&
         other.contains(el) &&
-        !other.matches(".bookshelf-row, .bookshelf-head-row, tr")
+        !other.matches(".bookshelf-row, .bookshelf-head-row, tr, .home-feed-card")
     );
   });
 
@@ -115,7 +120,7 @@ function collectCascadeNodes(root) {
         (other) =>
           other !== el &&
           el.contains(other) &&
-          !el.matches(".bookshelf-row, .bookshelf-head-row, tr")
+          !el.matches(".bookshelf-row, .bookshelf-head-row, tr, .home-feed-card")
       )
   );
 
