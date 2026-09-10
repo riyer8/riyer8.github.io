@@ -11,11 +11,13 @@ import "@fontsource/playfair-display/600-italic.css";
 import "@fontsource/playfair-display/700-italic.css";
 import App from "./App";
 import "./index.css";
+import AnalyticsTracker from "./components/AnalyticsTracker";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter basename="/">
+      <AnalyticsTracker />
       <App />
     </BrowserRouter>
   </React.StrictMode>
