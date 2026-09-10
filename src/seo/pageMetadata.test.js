@@ -6,11 +6,8 @@ import {
 import { SITE } from "./siteMetadata";
 
 describe("formatPageTitle", () => {
-  it("returns the descriptive homepage title when no segments are provided", () => {
-    expect(formatPageTitle()).toBe(SITE.homeTitle);
-    expect(formatPageTitle()).toBe(
-      "Ramya Iyer | Stanford CS grad, AI evals & building"
-    );
+  it("returns the site name when no segments are provided", () => {
+    expect(formatPageTitle()).toBe(SITE.name);
   });
 
   it("capitalizes segments and appends the site name", () => {

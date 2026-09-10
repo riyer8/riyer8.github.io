@@ -14,18 +14,6 @@ import LifeGoalsSection from "./lifeGoals/LifeGoalsSection";
 import AboutCarousel from "./AboutCarousel";
 import "./AboutPage.css";
 
-const SOCIAL_LINKS = [
-  { label: "GitHub", href: "https://github.com/riyer8" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/ramya-i/" },
-  { label: "X", href: "https://x.com/ramya_iyer1" },
-  { label: "Email", href: "mailto:ramya1@stanford.edu" },
-  {
-    label: "Google Scholar",
-    href: "https://scholar.google.com/citations?user=uou0pPoAAAAJ&hl=en",
-  },
-  { label: "Substack", href: "https://ramyai.substack.com/" },
-];
-
 const PAGE_TITLE = formatPageTitle("about");
 const ABOUT_SCHEMA = [
   websiteSchema,
@@ -71,20 +59,6 @@ const AboutPage = () => {
           <aside className="about-page__aside" aria-label="Photos and links">
             <AboutCarousel />
 
-            <ul className="about-page__links">
-              {SOCIAL_LINKS.map((item) => (
-                <li key={item.label}>
-                  <a
-                    href={item.href}
-                    className="about-page__link"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </aside>
 
           <div className="about-page__intro">

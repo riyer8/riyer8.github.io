@@ -2,7 +2,6 @@
 export const SITE = {
   name: "Ramya Iyer",
   shortName: "ramya iyer",
-  homeTitle: "Ramya Iyer | Stanford CS grad, AI evals & building",
   url: "https://riyer8.github.io",
   locale: "en_US",
   language: "en",
