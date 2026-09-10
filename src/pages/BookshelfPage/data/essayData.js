@@ -1028,31 +1028,6 @@ This essay really provides a nuanced view about the grey area of AI, what it mea
     `
   },
   {
-    title: "Labor market impacts of AI: A new measure and early evidence",
-    url: "https://www.anthropic.com/research/labor-market-impacts",
-    author: "Anthropic",
-    dateAdded: "2026-08-21",
-    category: "science",
-    medium: "research paper",
-    tldr: "",
-    thoughts: "",
-    tags: [''],
-    notes: `
-:::quote
-**Observed exposure:** measurement for AI displacement risk; combines theoretical LLM capability and real-world usage data, weighting automated (rather than augmentative) and work-related use more heavily.
-:::
-
-Essentially, they are measuring how likely AI is to *replace* the human work rather than merely help humans to do their work.
-
-:::sidenote
-Automated use = AI does the task instead of human.
-Augmentative use = AI helps a human do the task but they remain involved.
-:::
-
-CONTINUE
-    `
-  },
-  {
     title: "If You Want Taste, You're Gonna Have to Eat",
     url: "https://x.com/jxnlco/status/2073819508729684462",
     author: "Jason Liu",
