@@ -1,20 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../../../components/ThemeContext/ThemeContext";
+import { NOW_TICKER } from "../../../components/NowCard/nowData";
 import { useReducedMotion } from "framer-motion";
 import { splitGraphemes, takeGraphemes } from "./graphemes";
 import "./StatusWidget.css";
-
-const currentActivities = [
-  "researching LLM (and human) daydreaming 🌈",
-  "thinking about the AI x human connection tradeoff 💡",
-  "reading at a cafe ☕️",
-  "writing a new Substack article ✍️",
-  "gyming 🥊",
-  "exploring San Francisco 🌉",
-  "hiking in the California mountains 🥾",
-  "reviewing food at new restaurants 🍽️",
-  "planning my next trip 🌍",
-];
 
 const HOLD_MS = 1800;
 const GAP_MS = 400;
@@ -23,12 +12,13 @@ const StatusWidget = () => {
   const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayText, setDisplayText] = useState(currentActivities[0]);
+  const [displayText, setDisplayText] = useState(NOW_TICKER[0]);
   const [isDeleting, setIsDeleting] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
+  const [isHoverPaused, setIsHoverPaused] = useState(false);
   const startedRef = useRef(false);
 
-  const fullText = currentActivities[currentIndex];
+  const fullText = NOW_TICKER[currentIndex];
   const fullUnits = splitGraphemes(fullText);
   const shownUnits = splitGraphemes(displayText);
   const phraseComplete = shownUnits.length >= fullUnits.length && !isDeleting;
@@ -41,6 +31,7 @@ const StatusWidget = () => {
 
   useEffect(() => {
     if (prefersReducedMotion) return undefined;
+    if (isHoverPaused) return undefined;
 
     const shown = splitGraphemes(displayText).length;
     const total = splitGraphemes(fullText).length;
@@ -64,12 +55,12 @@ const StatusWidget = () => {
     } else {
       timer = setTimeout(() => {
         setIsDeleting(false);
-        setCurrentIndex((i) => (i + 1) % currentActivities.length);
+        setCurrentIndex((i) => (i + 1) % NOW_TICKER.length);
       }, GAP_MS);
     }
 
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, fullText, prefersReducedMotion]);
+  }, [displayText, isDeleting, fullText, prefersReducedMotion, isHoverPaused]);
 
   return (
     <div
@@ -78,27 +69,41 @@ const StatusWidget = () => {
         border: `1px solid ${theme.colors.border}`,
         color: theme.colors.textSecondary,
       }}
+      onMouseEnter={() => setIsHoverPaused(true)}
+      onMouseLeave={() => setIsHoverPaused(false)}
     >
       <div className="status-item centered-text">
         <span className="status-label" style={{ color: theme.colors.text }}>
           I&apos;m currently...
         </span>
-        <span className="status-value" aria-live="polite">
-          {displayText}
-          <span
-            className="status-cursor"
-            style={{
-              opacity: prefersReducedMotion || phraseComplete
-                ? 0.2
-                : cursorVisible
-                  ? 1
-                  : 0.2,
-            }}
-          >
-            |
+        <button
+          type="button"
+          className="status-ticker"
+          aria-label="Open now card"
+          onClick={() =>
+            window.dispatchEvent(new CustomEvent("ramya:open-now"))
+          }
+        >
+          <span className="status-value" aria-live="polite">
+            {displayText}
+            <span
+              className="status-cursor"
+              style={{
+                opacity: prefersReducedMotion || phraseComplete
+                  ? 0.2
+                  : cursorVisible
+                    ? 1
+                    : 0.2,
+              }}
+            >
+              |
+            </span>
           </span>
-        </span>
+        </button>
       </div>
+      <span className="status-pause-hint" aria-hidden="true">
+        paused... take your time :)
+      </span>
     </div>
   );
 };

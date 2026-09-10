@@ -1,4 +1,5 @@
 .badge {
+  position: relative;
   display: inline-block;
   padding: 0.15rem 0.5rem;
   margin-right: 0.25rem;
@@ -14,4 +15,32 @@
 
 .badge-light {
   background: rgba(0, 0, 0, 0.05);
+}
+
+.badge[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.4rem);
+  transform: translateX(-50%) translateY(4px);
+  z-index: 12;
+  padding: 0.28rem 0.5rem;
+  border: 1px solid var(--badge-tip-border);
+  border-radius: 6px;
+  background: var(--badge-tip-bg);
+  color: var(--badge-tip-fg);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .badge[data-tooltip]:hover::after,
+  .badge[data-tooltip]:focus-visible::after {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
 }

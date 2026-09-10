@@ -1,10 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { Link } from "react-router";
 import { useTheme } from "../../../components/ThemeContext/ThemeContext";
 import BrandName from "../../../components/BrandName/BrandName";
 import { SITE } from "../../../seo/siteMetadata";
 import ProfilePhoto from "../ProfilePhoto";
 import "./SidebarContent.css";
+
+const EMAIL_ADDRESS = "ramya1@stanford.edu";
+const COPY_TOAST_MS = 2000;
 
 const TAGLINES = [
   "inspired by human connection.",
@@ -126,6 +130,37 @@ const PlaceIcon = ({ name }) => {
   }
 };
 
+const copyEmailAddress = async () => {
+  try {
+    if (navigator.clipboard?.writeText) {
+      await navigator.clipboard.writeText(EMAIL_ADDRESS);
+      return true;
+    }
+  } catch {
+    // fall through to execCommand
+  }
+
+  const textarea = document.createElement("textarea");
+  textarea.value = EMAIL_ADDRESS;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.top = "0";
+  textarea.style.left = "0";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.focus();
+  textarea.select();
+  textarea.setSelectionRange(0, EMAIL_ADDRESS.length);
+  let copied = false;
+  try {
+    copied = document.execCommand("copy");
+  } finally {
+    document.body.removeChild(textarea);
+  }
+  if (!copied) throw new Error("copy failed");
+  return true;
+};
+
 const PlaceLink = ({ item }) => {
   const body = (
     <>
@@ -176,15 +211,43 @@ const SidebarContent = () => {
   const { theme } = useTheme();
   const [oneliner, setOneliner] = useState(HOME_ONELINER);
   const [isFading, setIsFading] = useState(false);
+  const [copyToast, setCopyToast] = useState("hidden");
   const hoverIndexRef = useRef(0);
   const fadeTimerRef = useRef(null);
+  const copyToastTimerRef = useRef(null);
 
   useEffect(
     () => () => {
       if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
+      if (copyToastTimerRef.current) {
+        window.clearTimeout(copyToastTimerRef.current);
+      }
     },
     []
   );
+
+  const showCopyToast = () => {
+    if (copyToastTimerRef.current) {
+      window.clearTimeout(copyToastTimerRef.current);
+    }
+    setCopyToast("shown");
+    copyToastTimerRef.current = window.setTimeout(() => {
+      setCopyToast("leaving");
+      copyToastTimerRef.current = window.setTimeout(() => {
+        setCopyToast("hidden");
+        copyToastTimerRef.current = null;
+      }, 220);
+    }, COPY_TOAST_MS);
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      await copyEmailAddress();
+      showCopyToast();
+    } catch {
+      window.location.href = `mailto:${EMAIL_ADDRESS}`;
+    }
+  };
 
   const swapOneliner = (next) => {
     if (fadeTimerRef.current) window.clearTimeout(fadeTimerRef.current);
@@ -218,9 +281,7 @@ const SidebarContent = () => {
       }}
     >
       <h1 className="sidebar-content__name">
-        <Link to="/ramya" aria-label="About Ramya Iyer">
-          <BrandName />
-        </Link>
+        <BrandName />
       </h1>
 
       <p
@@ -231,9 +292,42 @@ const SidebarContent = () => {
         {oneliner}
       </p>
 
-      <a className="sidebar-content__email" href="mailto:ramya1@stanford.edu">
+      <button
+        type="button"
+        className="sidebar-content__email"
+        aria-label="Copy email address"
+        onClick={handleCopyEmail}
+      >
         ramya1@stanford.edu
-      </a>
+      </button>
+
+      {copyToast !== "hidden"
+        ? createPortal(
+            <div
+              className={`email-copy-toast${copyToast === "leaving" ? " is-leaving" : ""}`}
+              style={{
+                "--toast-text": theme.colors.text,
+                "--toast-muted": theme.colors.textSecondary,
+                "--toast-accent": theme.colors.accent,
+                "--toast-border": theme.colors.border,
+                "--toast-surface": theme.colors.cardBackground,
+                "--toast-shadow": theme.isDarkMode
+                  ? "0 8px 24px rgba(0, 0, 0, 0.35)"
+                  : "0 8px 24px rgba(0, 0, 0, 0.12)",
+              }}
+              role="status"
+            >
+              <p className="email-copy-toast__msg">copied — talk soon ✉</p>
+              <a
+                className="email-copy-toast__mail"
+                href={`mailto:${EMAIL_ADDRESS}`}
+              >
+                or open your mail app →
+              </a>
+            </div>,
+            document.body
+          )
+        : null}
 
       <div className="sidebar-content__photo">
         <ProfilePhoto />

@@ -49,7 +49,7 @@ const SiteFooter = () => {
             setFortune((current) => (current ? null : pickFortune(null)))
           }
         >
-          psst…
+          made with care :)
         </button>
         {fortune ? (
           <span className="site-footer__fortune" role="status">

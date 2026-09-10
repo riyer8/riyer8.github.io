@@ -11,6 +11,7 @@ import { createPortal } from "react-dom";
 import { useNavigate } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
 import { useNowCard } from "../NowCard/NowCard";
+import { useChangelog } from "../Changelog/ChangelogModal";
 import { SITE } from "../../seo/siteMetadata";
 import "./CommandPalette.css";
 
@@ -26,15 +27,16 @@ export const useCommandPalette = () => {
 
 const PALETTE_ITEMS = [
   { id: "about", label: "about", to: "/ramya", icon: "about" },
-  { id: "reads", label: "recent reads", to: "/recent-reads", icon: "reads" },
-  { id: "home", label: "home", to: "/", icon: "home" },
+  { id: "reads", label: "recent reads", to: "/recent-reads", icon: "reads", keywords: ["books", "research", "essays", "reads"], },
+  { id: "home", label: "home", to: "/", icon: "home", keywords: ["home", "overview"], },
   { id: "now", label: "now: what i'm up to", action: "now", icon: "now" },
-  { id: "github", label: "github", href: SITE.profiles.github, icon: "github" },
-  { id: "scholar", label: "scholar", href: SITE.profiles.scholar, icon: "scholar" },
-  { id: "substack", label: "substack", href: SITE.profiles.substack, icon: "substack" },
+  { id: "changelog", label: "the change log", action: "changelog", icon: "changelog", keywords: ["what's new", "updates", "history"], },
+  { id: "github", label: "github", href: SITE.profiles.github, icon: "github", keywords: ["what's new", "projects", "update"], },
+  { id: "scholar", label: "scholar", href: SITE.profiles.scholar, icon: "scholar", keywords: ["research", "projects", "quantum", "publications"] },
+  { id: "substack", label: "substack", href: SITE.profiles.substack, icon: "substack", keywords: ["essays", "writing", "updates"], },
   { id: "linkedin", label: "linkedin", href: SITE.profiles.linkedin, icon: "linkedin" },
   { id: "twitter", label: "twitter", href: SITE.profiles.x, icon: "twitter" },
-  { id: "email", label: "email", href: "mailto:ramya1@stanford.edu", icon: "email" },
+  { id: "email", label: "email", href: "mailto:ramya1@stanford.edu", icon: "email", keywords: ["contacts"], },
 ];
 
 const PaletteIcon = ({ name }) => {
@@ -91,6 +93,23 @@ const PaletteIcon = ({ name }) => {
       return (
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <circle cx="12" cy="12" r="5" fill="currentColor" />
+        </svg>
+      );
+    case "changelog":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M7 4.5h10v16H7z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M9.5 8.5h5M9.5 12h5M9.5 15.5h3"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
         </svg>
       );
     case "github":
@@ -163,9 +182,13 @@ const PaletteIcon = ({ name }) => {
   }
 };
 
-const runItem = (item, navigate, openNow) => {
+const runItem = (item, navigate, openNow, openChangelog) => {
   if (item.action === "now") {
     openNow();
+    return;
+  }
+  if (item.action === "changelog") {
+    openChangelog();
     return;
   }
   if (item.to != null) {
@@ -184,6 +207,7 @@ const runItem = (item, navigate, openNow) => {
 const CommandPalette = () => {
   const { isOpen, close, toggle } = useCommandPalette();
   const { open: openNow } = useNowCard();
+  const { open: openChangelog } = useChangelog();
   const { theme } = useTheme();
   const navigate = useNavigate();
   const inputRef = useRef(null);
@@ -193,9 +217,12 @@ const CommandPalette = () => {
   const matches = useMemo(() => {
     const needle = query.trim().toLowerCase();
     if (!needle) return PALETTE_ITEMS;
-    return PALETTE_ITEMS.filter((item) =>
-      item.label.toLowerCase().includes(needle)
-    );
+    return PALETTE_ITEMS.filter((item) => {
+      const haystack = [item.label, ...(item.keywords || [])]
+        .join(" ")
+        .toLowerCase();
+      return haystack.includes(needle);
+    });
   }, [query]);
 
   const topMatch = matches[0] || null;
@@ -232,9 +259,9 @@ const CommandPalette = () => {
     (item) => {
       if (!item) return;
       close();
-      runItem(item, navigate, openNow);
+      runItem(item, navigate, openNow, openChangelog);
     },
-    [close, navigate, openNow]
+    [close, navigate, openNow, openChangelog]
   );
 
   if (!isOpen) return null;

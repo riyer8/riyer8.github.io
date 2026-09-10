@@ -45,3 +45,19 @@
 .brand-name__family {
   font-style: italic;
 }
+
+.brand-name--pulse {
+  animation: brand-name-pulse 0.28s ease;
+}
+
+@keyframes brand-name-pulse {
+  50% {
+    transform: scale(1.03);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-name--pulse {
+    animation: none;
+  }
+}

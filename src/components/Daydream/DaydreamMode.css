@@ -1,0 +1,176 @@
+.daydream-btn {
+  position: fixed;
+  left: calc(20px + env(safe-area-inset-left, 0px));
+  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  z-index: 4000;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid color-mix(in srgb, var(--dream-accent) 45%, var(--dream-border));
+  border-radius: 999px;
+  background: var(--dream-accent);
+  color: #143a38;
+  box-shadow: var(--dream-shadow);
+  cursor: pointer;
+  appearance: none;
+  opacity: var(--dream-proximity, 0.12);
+  transition: opacity 0.22s ease, filter 0.18s ease;
+}
+
+.daydream-btn:hover {
+  filter: brightness(1.04);
+}
+
+.daydream-btn:focus-visible {
+  outline: 2px solid var(--dream-accent);
+  outline-offset: 3px;
+  opacity: 1;
+}
+
+.daydream-btn__icon {
+  display: flex;
+  width: 20px;
+  height: 20px;
+}
+
+.daydream-btn__icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.daydream-btn__tip {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 0.5rem);
+  transform: translateX(-50%) translateY(4px);
+  padding: 0.28rem 0.5rem;
+  border-radius: 6px;
+  background: var(--dream-surface);
+  color: var(--dream-text);
+  border: 1px solid var(--dream-border);
+  box-shadow: var(--dream-shadow);
+  font-family: var(--font-ui);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.daydream-btn:hover .daydream-btn__tip,
+.daydream-btn:focus-visible .daydream-btn__tip {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+.daydream-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 10030;
+  overflow: hidden;
+  background: var(--dream-veil);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  animation: daydream-veil-in var(--dream-fade-in, 480ms) ease forwards;
+}
+
+.daydream-veil.is-exiting {
+  animation: daydream-veil-out var(--dream-fade-out, 700ms) ease forwards;
+}
+
+@keyframes daydream-veil-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes daydream-veil-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.daydream-veil__hit {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.daydream-veil__word {
+  position: absolute;
+  bottom: -2rem;
+  color: var(--dream-text);
+  font-family: var(--font-brand);
+  font-style: italic;
+  font-weight: var(--weight-regular);
+  letter-spacing: 0.01em;
+  opacity: 0;
+  pointer-events: none;
+  animation: daydream-drift 6s ease-in forwards;
+}
+
+@keyframes daydream-drift {
+  0% {
+    opacity: 0;
+    transform: translate3d(-8px, 12px, 0);
+  }
+  12% {
+    opacity: 0.42;
+  }
+  70% {
+    opacity: 0.28;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(10px, -78vh, 0);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .daydream-btn {
+    opacity: 1;
+  }
+
+  .daydream-btn:hover .daydream-btn__tip {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .daydream-btn {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .daydream-btn {
+    opacity: 1;
+    transition: none;
+  }
+
+  .daydream-btn__tip {
+    transition: none;
+  }
+
+  .daydream-veil__word {
+    animation: none;
+  }
+}

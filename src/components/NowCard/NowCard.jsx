@@ -10,7 +10,7 @@ import {
 import { createPortal } from "react-dom";
 import { Link } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
-import { NOW_SECTIONS, NOW_UPDATED, USES_SECTIONS } from "./nowData";
+import { MINDS, NOW_SECTIONS, NOW_UPDATED, USES_SECTIONS } from "./nowData";
 import "./NowCard.css";
 
 const NowCardContext = createContext(null);
@@ -168,6 +168,15 @@ const NowCard = () => {
   const tabRefs = useRef({});
   const [tab, setTab] = useState("now");
   const tabListId = useId();
+
+  useEffect(() => {
+    const onOpenNow = () => {
+      setTab("now");
+      open();
+    };
+    window.addEventListener("ramya:open-now", onOpenNow);
+    return () => window.removeEventListener("ramya:open-now", onOpenNow);
+  }, [open]);
 
   useEffect(() => {
     if (!isOpen) {

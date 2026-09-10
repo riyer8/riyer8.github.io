@@ -12,6 +12,7 @@ import Badge from './components/Badge';
 import FavoriteStars from './components/FavoriteStars';
 import QuoteWidget from './components/QuoteWidget/QuoteWidget';
 import { getFavoriteTier, titleToSlug } from './bookshelfUtils';
+import { countByKey, countFavoriteTiers, countTags, formatTagCount } from './tagCounts';
 import {
   buildBookshelfPageSchema,
   itemDescription,
@@ -21,6 +22,7 @@ import {
   formatPageTitle,
   usePageMetadata,
 } from '../../seo/pageMetadata';
+import { useSiteToast } from '../../components/SiteToast/SiteToast';
 
 const DRAWER_EASE = [0.22, 1, 0.36, 1];
 const FAVORITE_TIERS = [1, 2, 3];
@@ -30,6 +32,7 @@ const starColor = (isDark, active) =>
 const BookshelfPage = () => {
   const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
+  const { showToast } = useSiteToast();
 
   const [search, setSearch] = useState('');
   const [activeCategory, setActiveCategory] = useState(null);
@@ -43,20 +46,19 @@ const BookshelfPage = () => {
 
   const categories = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.category).filter(Boolean))), []);
   const mediums = useMemo(() => Array.from(new Set(bookshelfData.map(r => r.medium).filter(Boolean))), []);
+  const tagCounts = useMemo(() => countTags(bookshelfData), []);
+  const categoryCounts = useMemo(() => countByKey(bookshelfData, 'category'), []);
+  const mediumCounts = useMemo(() => countByKey(bookshelfData, 'medium'), []);
+  const favoriteCounts = useMemo(() => countFavoriteTiers(bookshelfData), []);
 
-  // Calculate top 3 most popular categories
-  const topCategories = useMemo(() => {
-    const categoryCounts = {};
-    bookshelfData.forEach(item => {
-      if (item.category) {
-        categoryCounts[item.category] = (categoryCounts[item.category] || 0) + 1;
-      }
-    });
-    return Object.entries(categoryCounts)
-      .sort(([, a], [, b]) => b - a)
-      .slice(0, 3)
-      .map(([category]) => category);
-  }, []);
+  const topCategories = useMemo(
+    () =>
+      Object.entries(categoryCounts)
+        .sort(([, a], [, b]) => b - a)
+        .slice(0, 3)
+        .map(([category]) => category),
+    [categoryCounts]
+  );
 
   const archiveCount = useMemo(
     () => bookshelfData.filter(item => item.archives).length,
@@ -183,6 +185,23 @@ const BookshelfPage = () => {
     navigate('/recent-reads');
   }, [navigate]);
 
+  const copyEntryLink = useCallback(
+    async (event, item) => {
+      event.preventDefault();
+      event.stopPropagation();
+      const path = `/recent-reads/${titleToSlug(item.title)}`;
+      const url = `${window.location.origin}${path}/`;
+      try {
+        await navigator.clipboard.writeText(url);
+        showToast("link copied!");
+      } catch {
+        navigate(path);
+        showToast("link ready in the address bar");
+      }
+    },
+    [navigate, showToast]
+  );
+
   useEffect(() => {
     if (!selectedItem) return undefined;
     const handleKeyDown = (event) => {
@@ -263,6 +282,9 @@ const BookshelfPage = () => {
     '--bs-surface': theme.colors.cardBackground,
     '--bs-chip-bg': theme.isDarkMode ? 'rgba(255,255,255,0.03)' : '#fff',
     '--bs-input-bg': theme.isDarkMode ? 'rgba(255,255,255,0.02)' : '#fff',
+    '--badge-tip-bg': theme.isDarkMode ? '#2a2a2a' : '#ffffff',
+    '--badge-tip-fg': theme.colors.text,
+    '--badge-tip-border': theme.colors.border,
   };
 
   const chipClass = (active) =>
@@ -322,11 +344,13 @@ const BookshelfPage = () => {
             </button>
             {FAVORITE_TIERS.map((tier) => {
               const active = favoriteTier === tier;
+              const label = `${tier} star${tier === 1 ? "" : "s"}`;
               return (
                 <button
                   type="button"
                   key={`fav-${tier}`}
                   className={chipClass(active)}
+                  data-tooltip={formatTagCount(label, favoriteCounts[tier] || 0)}
                   onClick={() => {
                     setFavoriteTier((prev) => (prev === tier ? null : tier));
                     setActiveCategory(null);
@@ -341,7 +365,6 @@ const BookshelfPage = () => {
                   }}
                   aria-pressed={active}
                   aria-label={`Filter ${tier} star favorites`}
-                  title={`${tier} star${tier === 1 ? '' : 's'}`}
                 >
                   {Array.from({ length: tier }, (_, i) => (
                     <FaStar
@@ -360,6 +383,7 @@ const BookshelfPage = () => {
                   key={c}
                   className={chipClass(activeCategory === c)}
                   aria-pressed={activeCategory === c}
+                  data-tooltip={formatTagCount(c, categoryCounts[c] || 0)}
                   onClick={() => {
                     setActiveCategory(prev => prev === c ? null : c);
                     setActiveMedium(null);
@@ -375,6 +399,7 @@ const BookshelfPage = () => {
                   key={c}
                   className={chipClass(activeCategory === c)}
                   aria-pressed={activeCategory === c}
+                  data-tooltip={formatTagCount(c, categoryCounts[c] || 0)}
                   onClick={() => {
                     setActiveCategory(prev => prev === c ? null : c);
                     setActiveMedium(null);
@@ -402,6 +427,7 @@ const BookshelfPage = () => {
                     key={m}
                     className={chipClass(activeMedium === m)}
                     aria-pressed={activeMedium === m}
+                    data-tooltip={formatTagCount(m, mediumCounts[m] || 0)}
                     onClick={() => {
                       setActiveMedium(prev => prev === m ? null : m);
                       setActiveCategory(null);
@@ -522,7 +548,7 @@ const BookshelfPage = () => {
                     maxWidth: 0,
                     width: '50%'
                   }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <div className="bookshelf-row__title">
                       <Link
                         to={`/recent-reads/${titleToSlug(row.title)}`}
                         onClick={(e) => e.stopPropagation()}
@@ -573,6 +599,14 @@ const BookshelfPage = () => {
                         </span>
 
                       </Link>
+                      <a
+                        href={`/recent-reads/${titleToSlug(row.title)}/`}
+                        className="bookshelf-entry-anchor"
+                        aria-label={`Copy link to ${row.title}`}
+                        onClick={(event) => copyEntryLink(event, row)}
+                      >
+                        #
+                      </a>
                     </div>
                   </td>
 
@@ -580,6 +614,7 @@ const BookshelfPage = () => {
                     <button
                       type="button"
                       className="bookshelf-chip bookshelf-chip--cell"
+                      data-tooltip={row.category ? formatTagCount(row.category, categoryCounts[row.category] || 0) : undefined}
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveCategory(prev => prev === row.category ? null : row.category);
@@ -593,6 +628,7 @@ const BookshelfPage = () => {
                     <button
                       type="button"
                       className="bookshelf-chip bookshelf-chip--cell"
+                      data-tooltip={row.medium ? formatTagCount(row.medium, mediumCounts[row.medium] || 0) : undefined}
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveMedium(prev => prev === row.medium ? null : row.medium);
@@ -610,7 +646,7 @@ const BookshelfPage = () => {
                       return (
                         <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
                           {displayTags.map((t, idx) => (
-                            <Badge key={idx} theme={theme}>{t}</Badge>
+                            <Badge key={idx} theme={theme} count={tagCounts[t] || 0}>{t}</Badge>
                           ))}
                           {remainingCount > 0 && (
                             <span style={{
@@ -724,7 +760,17 @@ const BookshelfPage = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.9rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
                   <div className="bookshelf-detail__heading">
-                    <h2 id="reading-note-title" className="bookshelf-detail__title" style={{ color: theme.colors.text }}>{selectedItem.title}</h2>
+                    <div className="bookshelf-detail__title-row">
+                      <h2 id="reading-note-title" className="bookshelf-detail__title" style={{ color: theme.colors.text }}>{selectedItem.title}</h2>
+                      <a
+                        href={`/recent-reads/${titleToSlug(selectedItem.title)}/`}
+                        className="bookshelf-entry-anchor"
+                        aria-label={`Copy link to ${selectedItem.title}`}
+                        onClick={(event) => copyEntryLink(event, selectedItem)}
+                      >
+                        #
+                      </a>
+                    </div>
                     {selectedItem.author ? (
                       <div className="bookshelf-detail__author" style={{ color: theme.colors.textSecondary }}>
                         by {selectedItem.author}
@@ -775,7 +821,7 @@ const BookshelfPage = () => {
                       }}
                     >
                       {selectedItem.tags.map((tag) => (
-                        <Badge key={tag} theme={theme}>{tag}</Badge>
+                        <Badge key={tag} theme={theme} count={tagCounts[tag] || 0}>{tag}</Badge>
                       ))}
                     </div>
                   ) : null}

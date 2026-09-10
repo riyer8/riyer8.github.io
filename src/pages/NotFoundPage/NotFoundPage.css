@@ -26,6 +26,18 @@
   color: var(--not-found-text);
 }
 
+.not-found-page__headline {
+  margin: 0;
+  max-width: 22rem;
+  font-family: var(--font-brand);
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  font-weight: var(--weight-bold);
+  font-style: italic;
+  line-height: var(--leading-snug);
+  letter-spacing: -0.02em;
+  color: var(--not-found-text);
+}
+
 .not-found-page__message {
   margin: 0 0 0.75rem;
   font-size: var(--text-body);
@@ -36,4 +48,50 @@
 
 .not-found-page__home {
   opacity: 0.9;
+}
+
+.not-found-page__deal {
+  margin-top: 0.35rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--not-found-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--not-found-accent) 14%, transparent);
+  color: var(--not-found-text);
+  font-family: var(--font-ui);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  cursor: pointer;
+}
+
+.not-found-page__deal:hover,
+.not-found-page__deal:focus-visible {
+  border-color: var(--not-found-accent);
+}
+
+.not-found-page__deal:focus-visible {
+  outline: 2px solid var(--not-found-accent);
+  outline-offset: 2px;
+}
+
+.not-found-page__advice {
+  margin: 1.25rem 0 0;
+  max-width: 26rem;
+  padding: 0;
+  border: 0;
+}
+
+.not-found-page__quote {
+  margin: 0;
+  font-family: var(--font-brand);
+  font-size: var(--text-body);
+  font-style: italic;
+  line-height: var(--leading-snug);
+  color: var(--not-found-text);
+}
+
+.not-found-page__source {
+  margin-top: 0.45rem;
+  font-family: var(--font-ui);
+  font-size: var(--text-caption);
+  color: var(--not-found-muted);
 }

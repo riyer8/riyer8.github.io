@@ -19,9 +19,13 @@ import SeasonalToggleManager from "./features/seasonal/ToggleManager";
 import { formatPageTitle } from "./seo/pageMetadata";
 import { CommandPaletteProvider } from "./components/CommandPalette/CommandPalette";
 import { NowCardProvider } from "./components/NowCard/NowCard";
+import { ChangelogProvider } from "./components/Changelog/ChangelogModal";
+import { SiteToastProvider } from "./components/SiteToast/SiteToast";
 import SiteFooter from "./components/SiteFooter/SiteFooter";
 import TabAttentionTitle from "./components/TabAttentionTitle";
 import CursorSparkles from "./components/CursorSparkles";
+import DaydreamMode from "./components/Daydream/DaydreamMode";
+import { logConsoleEgg } from "./components/consoleEgg";
 
 const HomeIntroWall = ({ blocksInteraction, children }) => {
   return createPortal(
@@ -51,6 +55,7 @@ const App = () => {
     document.body.style.margin = "0";
     document.body.style.padding = "0";
     document.body.style.overflowX = "hidden";
+    logConsoleEgg();
   }, []);
 
   React.useLayoutEffect(() => {
@@ -95,33 +100,38 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <NowCardProvider>
-        <CommandPaletteProvider>
-          <PixelatedBackground />
-          <ThemeToggle />
-          <SeasonalToggleManager />
-          <TabAttentionTitle />
-          <CursorSparkles />
-          {showLandingScreen ? (
-            <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
-              <HomeLandingScreen
-                onFadeStart={handleLandingFadeStart}
-                onComplete={handleLandingComplete}
-              />
-            </HomeIntroWall>
-          ) : null}
-          <Routes>
-            <Route element={<AnimatedLayout />}>
-              <Route path="/" element={homeRoute} />
-              <Route path="/recent-reads" element={<BookshelfRoute />} />
-              <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
-              <Route path="/ramya" element={<AboutPage />} />
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
-          </Routes>
-          <SiteFooter />
-        </CommandPaletteProvider>
-      </NowCardProvider>
+      <SiteToastProvider>
+        <NowCardProvider>
+          <ChangelogProvider>
+            <CommandPaletteProvider>
+              <PixelatedBackground />
+              <ThemeToggle />
+              <SeasonalToggleManager />
+              <TabAttentionTitle />
+              <CursorSparkles />
+              <DaydreamMode />
+              {showLandingScreen ? (
+                <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
+                  <HomeLandingScreen
+                    onFadeStart={handleLandingFadeStart}
+                    onComplete={handleLandingComplete}
+                  />
+                </HomeIntroWall>
+              ) : null}
+              <Routes>
+                <Route element={<AnimatedLayout />}>
+                  <Route path="/" element={homeRoute} />
+                  <Route path="/recent-reads" element={<BookshelfRoute />} />
+                  <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
+                  <Route path="/ramya" element={<AboutPage />} />
+                  <Route path="*" element={<NotFoundPage />} />
+                </Route>
+              </Routes>
+              <SiteFooter />
+            </CommandPaletteProvider>
+          </ChangelogProvider>
+        </NowCardProvider>
+      </SiteToastProvider>
     </ThemeProvider>
   );
 };
