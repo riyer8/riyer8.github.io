@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { useTheme } from '../ThemeContext/ThemeContext';
 
-const PixelatedBackground = () => {
+const PixelatedBackground = ({ embedded = false }) => {
     const { theme } = useTheme();
     const canvasRef = useRef(null);
     const animRef = useRef(null);
@@ -124,9 +124,9 @@ const PixelatedBackground = () => {
     }, [theme.isDarkMode]);
 
     const backgroundStyle = {
-        position: 'fixed',
+        position: embedded ? 'absolute' : 'fixed',
         inset: 0,
-        zIndex: -1,
+        zIndex: embedded ? 0 : -1,
         backgroundColor: theme.colors.background,
         transition: 'background-color 0.3s ease',
     };

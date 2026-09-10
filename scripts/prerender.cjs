@@ -66,6 +66,9 @@ const bookshelfData =
 const {
   titleToSlug,
 } = require("../src/pages/BookshelfPage/bookshelfUtils");
+const {
+  stripIntroSkipFromHtml,
+} = require("../src/pages/HomePage/intro/homeIntroStorage");
 
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
@@ -367,7 +370,9 @@ const renderRoutes = async (browser, origin, entries) => {
         validateHtml(html, entry.route);
         const outputPath = outputPathForRoute(entry.route);
         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-        fs.writeFileSync(outputPath, html);
+        const htmlToWrite =
+          entry.route === "/" ? stripIntroSkipFromHtml(html) : html;
+        fs.writeFileSync(outputPath, htmlToWrite);
         console.log(`Prerendered ${entry.route}`);
       } catch (error) {
         throw new Error(`Failed to prerender ${entry.route}: ${error.message}`, {

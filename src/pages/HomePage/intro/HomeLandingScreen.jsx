@@ -7,6 +7,8 @@ import {
   getCondensedSwapMs,
   getHomeIntroFadeStartMs,
 } from "./homeIntroTiming";
+import { startHomeIntroCoverFade } from "./homeIntroStorage";
+import { PixelatedBackground } from "../../../components";
 import LoadingPolaroids from "./LoadingPolaroids";
 import "./HomeLandingScreen.css";
 
@@ -61,6 +63,7 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
       if (isFadingRef.current) return;
       isFadingRef.current = true;
       setIsFading(true);
+      startHomeIntroCoverFade(timings.fadeMs);
       onFadeStart?.({
         contentRevealMs: timings.contentRevealMs ?? HOME_INTRO.contentRevealMs,
       });
@@ -137,6 +140,7 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
       tryBeginFade({ force: true });
       return;
     }
+    startHomeIntroCoverFade(quickFadeMs);
     scheduleTimeout(() => onComplete?.(), quickFadeMs);
   }, [clearTimers, onComplete, scheduleTimeout, tryBeginFade]);
 
@@ -194,6 +198,7 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
 
   const cssVars = {
     "--landing-accent": theme.colors.accent,
+    "--landing-bg": theme.colors.background,
     "--landing-fade-ms": `${activeTimings.fadeMs}ms`,
     "--landing-condense-ms": `${activeTimings.condenseMs}ms`,
   };
@@ -214,6 +219,9 @@ const HomeLandingScreen = ({ onFadeStart, onComplete }) => {
         }
       }}
     >
+      <div className="home-landing__backdrop" aria-hidden="true">
+        <PixelatedBackground embedded />
+      </div>
       <LoadingPolaroids onAllImagesLoaded={handleImagesReady} />
       <p className="home-landing__title brand-name" aria-hidden="true">
         <span

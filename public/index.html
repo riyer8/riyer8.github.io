@@ -20,9 +20,106 @@
     <meta name="twitter:creator" content="@ramya_iyer1" />
     <link rel="canonical" href="https://riyer8.github.io/" />
     <title>Ramya Iyer</title>
+    <style>
+        /* Visible by default so first paint is the wall, not the prerendered home. */
+        #home-intro-cover {
+            display: block;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background-color: #f8f9fa;
+            opacity: 1;
+            pointer-events: auto;
+            transition: opacity var(--intro-cover-fade-ms, 650ms) cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        #home-intro-cover .home-intro-cover__grid,
+        #home-intro-cover .home-intro-cover__wash,
+        #home-intro-cover .home-intro-cover__vignette {
+            position: absolute;
+            inset: 0;
+        }
+
+        #home-intro-cover .home-intro-cover__grid {
+            background-image:
+                linear-gradient(90deg, rgba(78, 205, 196, 0.15) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(78, 205, 196, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.45;
+        }
+
+        #home-intro-cover .home-intro-cover__wash {
+            background-image:
+                radial-gradient(ellipse at 20% 30%, rgba(78, 205, 196, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 179, 71, 0.10) 0%, transparent 55%);
+            background-size: 140% 140%, 140% 140%;
+            background-position: 0% 0%, 100% 100%;
+        }
+
+        #home-intro-cover .home-intro-cover__vignette {
+            background: radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.10) 100%);
+        }
+
+        html[data-intro-theme="dark"] #home-intro-cover {
+            background-color: #1a1a1a;
+        }
+
+        html[data-intro-theme="dark"] #home-intro-cover .home-intro-cover__grid {
+            background-image:
+                linear-gradient(90deg, rgba(78, 205, 196, 0.2) 1px, transparent 1px),
+                linear-gradient(0deg, rgba(78, 205, 196, 0.2) 1px, transparent 1px);
+            opacity: 0.28;
+        }
+
+        html[data-intro-theme="dark"] #home-intro-cover .home-intro-cover__wash {
+            background-image:
+                radial-gradient(ellipse at 20% 30%, rgba(78, 205, 196, 0.08) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 70%, rgba(255, 179, 71, 0.06) 0%, transparent 55%);
+        }
+
+        html[data-intro-theme="dark"] #home-intro-cover .home-intro-cover__vignette {
+            background: radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(0, 0, 0, 0.38) 100%);
+        }
+
+        html[data-intro-fading] #home-intro-cover {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        html[data-skip-intro] #home-intro-cover {
+            display: none;
+        }
+
+        html:not([data-skip-intro]) {
+            overflow: hidden;
+        }
+    </style>
+    <script>
+        (function () {
+            try {
+                var path = location.pathname.replace(/\/index\.html$/i, "").replace(/\/+$/, "") || "/";
+                var seen = false;
+                try { seen = sessionStorage.getItem("homeIntroSeen") === "true"; } catch (e) {}
+                if (path !== "/" || seen) {
+                    document.documentElement.setAttribute("data-skip-intro", "true");
+                    return;
+                }
+                var dark = false;
+                try { dark = JSON.parse(localStorage.getItem("theme") || "false"); } catch (e) {}
+                if (dark) document.documentElement.setAttribute("data-intro-theme", "dark");
+            } catch (e) {
+                document.documentElement.setAttribute("data-skip-intro", "true");
+            }
+        })();
+    </script>
 </head>
 
 <body>
+    <div id="home-intro-cover" aria-hidden="true">
+        <div class="home-intro-cover__grid"></div>
+        <div class="home-intro-cover__wash"></div>
+        <div class="home-intro-cover__vignette"></div>
+    </div>
     <div id="root"></div>
 </body>
 

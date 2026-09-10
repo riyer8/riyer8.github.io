@@ -30,9 +30,11 @@
 
 .status-item {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    max-width: 100%;
     font-size: var(--text-meta);
     line-height: var(--leading-normal);
 }
@@ -43,12 +45,15 @@
 
 .status-label {
     font-weight: var(--weight-semibold);
+    flex: 0 0 auto;
 }
 
 .status-value {
     cursor: default;
     user-select: none;
     line-height: 1.4;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 
 .status-cursor {

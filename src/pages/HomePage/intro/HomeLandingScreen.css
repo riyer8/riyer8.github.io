@@ -1,18 +1,28 @@
 .home-landing {
-  position: relative;
+  position: fixed;
+  inset: 0;
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 1;
+  background-color: var(--landing-bg, #f8f9fa);
   transition: opacity var(--landing-fade-ms) cubic-bezier(0.22, 1, 0.36, 1);
   cursor: pointer;
 }
 
 .home-landing--fading {
   opacity: 0;
+}
+
+.home-landing__backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
 }
 
 .home-landing__title {
@@ -27,7 +37,7 @@
   text-align: center;
   animation: landing-name-float 2.8s ease-in-out infinite;
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: inline-block;
   white-space: nowrap;
   min-width: 4ch;

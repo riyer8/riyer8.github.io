@@ -1,44 +1,61 @@
 import React from "react";
-import { Routes, Route } from "react-router";
+import { createPortal } from "react-dom";
+import { Routes, Route, useLocation } from "react-router";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
 import AnimatedLayout from "./components/PageTransition/AnimatedLayout";
 import { HomePage } from "./pages/HomePage";
 import HomeLandingScreen from "./pages/HomePage/intro/HomeLandingScreen";
-import { HOME_INTRO } from "./pages/HomePage/intro/homeIntroTiming";
+import {
+  clearHomeIntroCover,
+  markHomeIntroSeen,
+  shouldPlayHomeIntro,
+} from "./pages/HomePage/intro/homeIntroStorage";
 import BookshelfRoute from "./pages/BookshelfPage/BookshelfRoute";
 import AboutPage from "./pages/AboutPage/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
 import SeasonalToggleManager from "./features/seasonal/ToggleManager";
 
-const HOME_INTRO_STORAGE_KEY = "homeIntroSeen";
+const HomeIntroWall = ({ blocksInteraction, children }) => {
+  return createPortal(
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 10001,
+        pointerEvents: blocksInteraction ? "auto" : "none",
+      }}
+    >
+      {children}
+    </div>,
+    document.body
+  );
+};
 
 const App = () => {
-  const shouldShowLandingOnLoad = React.useMemo(() => {
-    if (typeof window === "undefined") return false;
-    const hasSeenIntro =
-      window.sessionStorage.getItem(HOME_INTRO_STORAGE_KEY) === "true";
-    return window.location.pathname === "/" && !hasSeenIntro;
-  }, []);
-
-  const [showLandingScreen, setShowLandingScreen] = React.useState(
-    shouldShowLandingOnLoad
-  );
-  const [showHomeContent, setShowHomeContent] = React.useState(
-    !shouldShowLandingOnLoad
-  );
+  const location = useLocation();
+  // Match prerendered HTML (intro skipped) to avoid hydration mismatches.
+  // A layout effect then plays the intro for first visits this session.
+  const [showLandingScreen, setShowLandingScreen] = React.useState(false);
   const [landingBlocksInteraction, setLandingBlocksInteraction] =
-    React.useState(shouldShowLandingOnLoad);
-  const [homeContentRevealMs, setHomeContentRevealMs] = React.useState(
-    HOME_INTRO.contentRevealMs
-  );
+    React.useState(false);
 
   React.useEffect(() => {
     document.body.style.margin = "0";
     document.body.style.padding = "0";
     document.body.style.overflowX = "hidden";
   }, []);
+
+  React.useLayoutEffect(() => {
+    if (!shouldPlayHomeIntro(location.pathname)) {
+      clearHomeIntroCover();
+      return undefined;
+    }
+    setShowLandingScreen(true);
+    setLandingBlocksInteraction(true);
+    return undefined;
+  }, [location.pathname]);
 
   // Keep the tab title simple during the loading intro.
   React.useEffect(() => {
@@ -47,52 +64,26 @@ const App = () => {
     }
   }, [showLandingScreen]);
 
-  const handleLandingFadeStart = React.useCallback((opts) => {
-    setShowHomeContent(true);
+  const handleLandingFadeStart = React.useCallback(() => {
     setLandingBlocksInteraction(false);
-    if (opts?.contentRevealMs != null) {
-      setHomeContentRevealMs(opts.contentRevealMs);
-    }
   }, []);
 
   const handleLandingComplete = React.useCallback(() => {
-    window.sessionStorage.setItem(HOME_INTRO_STORAGE_KEY, "true");
+    markHomeIntroSeen();
+    clearHomeIntroCover();
     setShowLandingScreen(false);
   }, []);
 
-  const homeFadeInStyle = {
-    opacity: showHomeContent ? 1 : 0,
-    transition: `opacity ${homeContentRevealMs}ms cubic-bezier(0.22, 1, 0.36, 1)`,
-  };
-
-  const homeRouteWrapperStyle = {
-    position: "relative",
-    width: "100%",
-    minHeight: "100vh",
-  };
-
-  const landingOverlayStyle = {
-    position: "absolute",
-    inset: 0,
-    zIndex: 2,
-    pointerEvents: landingBlocksInteraction ? "auto" : "none",
-  };
-
   const homeRoute = (
-    <div style={homeRouteWrapperStyle}>
+    <div
+      style={{
+        position: "relative",
+        width: "100%",
+        minHeight: "100vh",
+      }}
+    >
       <HomeDocumentTitle />
-      <div style={homeFadeInStyle}>
-        <HomePage />
-      </div>
-
-      {showLandingScreen && (
-        <div style={landingOverlayStyle}>
-          <HomeLandingScreen
-            onFadeStart={handleLandingFadeStart}
-            onComplete={handleLandingComplete}
-          />
-        </div>
-      )}
+      <HomePage />
     </div>
   );
 
@@ -101,6 +92,14 @@ const App = () => {
       <PixelatedBackground />
       <ThemeToggle />
       <SeasonalToggleManager />
+      {showLandingScreen ? (
+        <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
+          <HomeLandingScreen
+            onFadeStart={handleLandingFadeStart}
+            onComplete={handleLandingComplete}
+          />
+        </HomeIntroWall>
+      ) : null}
       <Routes>
         <Route element={<AnimatedLayout />}>
           <Route path="/" element={homeRoute} />

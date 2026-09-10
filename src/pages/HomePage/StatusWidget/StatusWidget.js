@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTheme } from "../../../components/ThemeContext/ThemeContext";
 import { useReducedMotion } from "framer-motion";
+import { splitGraphemes, takeGraphemes } from "./graphemes";
 import "./StatusWidget.css";
 
 const currentActivities = [
@@ -15,18 +16,22 @@ const currentActivities = [
   "planning my next trip 🌍",
 ];
 
+const HOLD_MS = 1800;
+const GAP_MS = 400;
+
 const StatusWidget = () => {
   const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [displayText, setDisplayText] = useState(
-    prefersReducedMotion ? currentActivities[0] : ""
-  );
+  const [displayText, setDisplayText] = useState(currentActivities[0]);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
   const [cursorVisible, setCursorVisible] = useState(true);
+  const startedRef = useRef(false);
 
   const fullText = currentActivities[currentIndex];
+  const fullUnits = splitGraphemes(fullText);
+  const shownUnits = splitGraphemes(displayText);
+  const phraseComplete = shownUnits.length >= fullUnits.length && !isDeleting;
 
   useEffect(() => {
     if (prefersReducedMotion) return undefined;
@@ -36,33 +41,35 @@ const StatusWidget = () => {
 
   useEffect(() => {
     if (prefersReducedMotion) return undefined;
-    if (isPaused) return;
 
-    const typingSpeed = isDeleting
-      ? 50 + Math.random() * 20
-      : 35 + Math.random() * 25;
+    const shown = splitGraphemes(displayText).length;
+    const total = splitGraphemes(fullText).length;
+    let timer;
 
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (displayText.length < fullText.length) {
-          setDisplayText(fullText.slice(0, displayText.length + 1));
-        } else {
-          setIsPaused(true);
-          setTimeout(() => {
-            setIsPaused(false);
-            setIsDeleting(true);
-          }, 1000);
-        }
-      } else if (displayText.length > 0) {
-        setDisplayText(displayText.slice(0, -1));
-      } else {
+    if (!isDeleting && shown < total) {
+      const typingSpeed = 35 + Math.random() * 25;
+      timer = setTimeout(() => {
+        setDisplayText(takeGraphemes(fullText, shown + 1));
+      }, typingSpeed);
+    } else if (!isDeleting && shown >= total) {
+      // Always finish (and hold) the full phrase before deleting.
+      const hold = startedRef.current ? HOLD_MS : HOLD_MS + 400;
+      startedRef.current = true;
+      timer = setTimeout(() => setIsDeleting(true), hold);
+    } else if (isDeleting && shown > 0) {
+      const deletingSpeed = 50 + Math.random() * 20;
+      timer = setTimeout(() => {
+        setDisplayText(takeGraphemes(fullText, shown - 1));
+      }, deletingSpeed);
+    } else {
+      timer = setTimeout(() => {
         setIsDeleting(false);
         setCurrentIndex((i) => (i + 1) % currentActivities.length);
-      }
-    }, typingSpeed);
+      }, GAP_MS);
+    }
 
-    return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, isPaused, fullText, prefersReducedMotion]);
+    return () => clearTimeout(timer);
+  }, [displayText, isDeleting, fullText, prefersReducedMotion]);
 
   return (
     <div
@@ -74,13 +81,19 @@ const StatusWidget = () => {
     >
       <div className="status-item centered-text">
         <span className="status-label" style={{ color: theme.colors.text }}>
-          I'm currently...
+          I&apos;m currently...
         </span>
         <span className="status-value" aria-live="polite">
           {displayText}
           <span
             className="status-cursor"
-            style={{ opacity: cursorVisible ? 1 : 0.2 }}
+            style={{
+              opacity: prefersReducedMotion || phraseComplete
+                ? 0.2
+                : cursorVisible
+                  ? 1
+                  : 0.2,
+            }}
           >
             |
           </span>
