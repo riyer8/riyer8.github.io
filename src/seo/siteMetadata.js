@@ -12,7 +12,7 @@ export const SITE = {
     "Meet Ramya Iyer, a Stanford graduate interested in artificial intelligence, mathematics, books, hiking, and human connection. Explore her background, life goals, principles, and writing.",
   bookshelfDescription:
     "Explore Ramya Iyer's annotated reading log of essays, books, videos, and research papers, with notes on AI, psychology, careers, creativity, and life.",
-  socialImage: "/assets/pageIcon.png",
+  socialImage: "/assets/og-image.png",
   twitterHandle: "@ramya_iyer1",
   profiles: {
     github: "https://github.com/riyer8",
