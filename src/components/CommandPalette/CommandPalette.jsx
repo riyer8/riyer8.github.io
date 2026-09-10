@@ -10,6 +10,7 @@ import {
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
+import { useNowCard } from "../NowCard/NowCard";
 import { SITE } from "../../seo/siteMetadata";
 import "./CommandPalette.css";
 
@@ -27,15 +28,11 @@ const PALETTE_ITEMS = [
   { id: "about", label: "about", to: "/ramya", icon: "about" },
   { id: "reads", label: "recent reads", to: "/recent-reads", icon: "reads" },
   { id: "home", label: "home", to: "/", icon: "home" },
+  { id: "now", label: "now: what i'm up to", action: "now", icon: "now" },
   { id: "github", label: "github", href: SITE.profiles.github, icon: "github" },
   { id: "scholar", label: "scholar", href: SITE.profiles.scholar, icon: "scholar" },
   { id: "substack", label: "substack", href: SITE.profiles.substack, icon: "substack" },
-  {
-    id: "linkedin",
-    label: "linkedin",
-    href: SITE.profiles.linkedin,
-    icon: "linkedin",
-  },
+  { id: "linkedin", label: "linkedin", href: SITE.profiles.linkedin, icon: "linkedin" },
   { id: "twitter", label: "twitter", href: SITE.profiles.x, icon: "twitter" },
   { id: "email", label: "email", href: "mailto:ramya1@stanford.edu", icon: "email" },
 ];
@@ -88,6 +85,12 @@ const PaletteIcon = ({ name }) => {
             strokeWidth="1.8"
             strokeLinejoin="round"
           />
+        </svg>
+      );
+    case "now":
+      return (
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="5" fill="currentColor" />
         </svg>
       );
     case "github":
@@ -160,7 +163,11 @@ const PaletteIcon = ({ name }) => {
   }
 };
 
-const runItem = (item, navigate) => {
+const runItem = (item, navigate, openNow) => {
+  if (item.action === "now") {
+    openNow();
+    return;
+  }
   if (item.to != null) {
     navigate(item.to);
     return;
@@ -176,6 +183,7 @@ const runItem = (item, navigate) => {
 
 const CommandPalette = () => {
   const { isOpen, close, toggle } = useCommandPalette();
+  const { open: openNow } = useNowCard();
   const { theme } = useTheme();
   const navigate = useNavigate();
   const inputRef = useRef(null);
@@ -224,9 +232,9 @@ const CommandPalette = () => {
     (item) => {
       if (!item) return;
       close();
-      runItem(item, navigate);
+      runItem(item, navigate, openNow);
     },
-    [close, navigate]
+    [close, navigate, openNow]
   );
 
   if (!isOpen) return null;

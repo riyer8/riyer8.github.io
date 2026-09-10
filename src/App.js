@@ -18,6 +18,7 @@ import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
 import SeasonalToggleManager from "./features/seasonal/ToggleManager";
 import { formatPageTitle } from "./seo/pageMetadata";
 import { CommandPaletteProvider } from "./components/CommandPalette/CommandPalette";
+import { NowCardProvider } from "./components/NowCard/NowCard";
 import SiteFooter from "./components/SiteFooter/SiteFooter";
 import TabAttentionTitle from "./components/TabAttentionTitle";
 import CursorSparkles from "./components/CursorSparkles";
@@ -94,31 +95,33 @@ const App = () => {
 
   return (
     <ThemeProvider>
-      <CommandPaletteProvider>
-        <PixelatedBackground />
-        <ThemeToggle />
-        <SeasonalToggleManager />
-        <TabAttentionTitle />
-        <CursorSparkles />
-        {showLandingScreen ? (
-          <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
-            <HomeLandingScreen
-              onFadeStart={handleLandingFadeStart}
-              onComplete={handleLandingComplete}
-            />
-          </HomeIntroWall>
-        ) : null}
-        <Routes>
-          <Route element={<AnimatedLayout />}>
-            <Route path="/" element={homeRoute} />
-            <Route path="/recent-reads" element={<BookshelfRoute />} />
-            <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
-            <Route path="/ramya" element={<AboutPage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-        <SiteFooter />
-      </CommandPaletteProvider>
+      <NowCardProvider>
+        <CommandPaletteProvider>
+          <PixelatedBackground />
+          <ThemeToggle />
+          <SeasonalToggleManager />
+          <TabAttentionTitle />
+          <CursorSparkles />
+          {showLandingScreen ? (
+            <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
+              <HomeLandingScreen
+                onFadeStart={handleLandingFadeStart}
+                onComplete={handleLandingComplete}
+              />
+            </HomeIntroWall>
+          ) : null}
+          <Routes>
+            <Route element={<AnimatedLayout />}>
+              <Route path="/" element={homeRoute} />
+              <Route path="/recent-reads" element={<BookshelfRoute />} />
+              <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
+              <Route path="/ramya" element={<AboutPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+          <SiteFooter />
+        </CommandPaletteProvider>
+      </NowCardProvider>
     </ThemeProvider>
   );
 };
