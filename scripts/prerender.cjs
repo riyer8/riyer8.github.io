@@ -16,6 +16,43 @@ require("@babel/register")({
 const ROOT = path.resolve(__dirname, "..");
 const BUILD_DIR = path.join(ROOT, "build");
 const SITE_URL = "https://riyer8.github.io";
+
+const SYSTEM_CHROME_CANDIDATES = [
+  process.env.PUPPETEER_EXECUTABLE_PATH,
+  process.env.CHROME_PATH,
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
+  "/Applications/Chromium.app/Contents/MacOS/Chromium",
+  "/usr/bin/google-chrome-stable",
+  "/usr/bin/google-chrome",
+  "/usr/bin/chromium-browser",
+  "/usr/bin/chromium",
+].filter(Boolean);
+
+const resolveChromeExecutable = () => {
+  try {
+    const bundled = puppeteer.executablePath();
+    if (bundled && fs.existsSync(bundled)) return bundled;
+  } catch (_) {
+    // Puppeteer's downloaded Chrome is missing; try a system browser next.
+  }
+
+  const systemChrome = SYSTEM_CHROME_CANDIDATES.find((candidate) =>
+    fs.existsSync(candidate)
+  );
+  if (systemChrome) return systemChrome;
+
+  throw new Error(
+    "Puppeteer could not find Chrome. Install Google Chrome, set PUPPETEER_EXECUTABLE_PATH, or run `npx puppeteer browsers install chrome`."
+  );
+};
+
+const launchBrowser = () =>
+  puppeteer.launch({
+    headless: true,
+    executablePath: resolveChromeExecutable(),
+    args: ["--disable-dev-shm-usage"],
+  });
+
 const RENDER_CONCURRENCY = Math.max(
   1,
   Number.parseInt(process.env.PRERENDER_CONCURRENCY || "4", 10) || 4
@@ -342,10 +379,7 @@ const main = async () => {
   let browser;
 
   try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ["--disable-dev-shm-usage"],
-    });
+    browser = await launchBrowser();
     await renderRoutes(browser, origin, entries);
 
     const notFoundHtml = await renderRoute(browser, origin, "/__not-found__/", {

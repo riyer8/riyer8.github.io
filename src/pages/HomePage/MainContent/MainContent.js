@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import StatusWidget from "../StatusWidget/StatusWidget";
 import MobileSidebar from "../Sidebar/MobileSidebar";
+import HomeFeed from "../HomeFeed/HomeFeed";
 import { useTheme } from "../../../components/ThemeContext/ThemeContext";
 import { FaBars } from "react-icons/fa";
 
@@ -44,12 +44,12 @@ const MainContent = () => {
 
   const centeredContentStyle = {
     width: "100%",
-    maxWidth: "900px",
+    maxWidth: "68rem",
     padding: shouldCollapseSidebar ? "1.25rem" : "3rem",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center",
-    textAlign: "center",
+    alignItems: "flex-start",
+    textAlign: "left",
     boxSizing: "border-box",
   };
 
@@ -72,13 +72,6 @@ const MainContent = () => {
     transition: "transform 0.2s ease",
   };
 
-  const sectionStyle = {
-    width: "100%",
-    maxWidth: "800px",
-    marginBottom: "var(--space-section)",
-    textAlign: "center",
-  };
-
   return (
     <main style={pageLayoutStyle}>
       <div style={mainColumnStyle}>
@@ -93,9 +86,7 @@ const MainContent = () => {
             </button>
           </div>
 
-          <div style={sectionStyle}>
-            <StatusWidget />
-          </div>
+          <HomeFeed />
         </div>
       </div>
 
