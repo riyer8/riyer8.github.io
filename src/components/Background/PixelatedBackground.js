@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useTheme } from '../ThemeContext/ThemeContext';
+import { getSeason, SEASON_PALETTES } from '../../data/seasonPalettes';
 
 const STAR_COUNT = 90;
 const STAR_RGB = '232, 242, 255';
@@ -38,13 +39,17 @@ const spawnShootingStar = (width, height) => {
 const PixelatedBackground = ({ embedded = false }) => {
     const { theme } = useTheme();
     const prefersReducedMotion = useReducedMotion();
+    const [season] = useState(() => getSeason());
+    const palette = SEASON_PALETTES[season][theme.isDarkMode ? 'dark' : 'light'];
     const canvasRef = useRef(null);
     const animRef = useRef(null);
     const isDarkModeRef = useRef(theme.isDarkMode);
     const reducedMotionRef = useRef(!!prefersReducedMotion);
+    const blobBaseRef = useRef(palette.blobBase);
 
     isDarkModeRef.current = theme.isDarkMode;
     reducedMotionRef.current = !!prefersReducedMotion;
+    blobBaseRef.current = palette.blobBase;
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -118,10 +123,10 @@ const PixelatedBackground = ({ embedded = false }) => {
                     const opacity = 0.03 + Math.sin(t * 0.4) * 0.015;
 
                     const hueShift = Math.sin(time * 0.1 + i) * 10;
-
+                    const blobBase = blobBaseRef.current;
                     const base = isDarkModeRef.current
-                        ? [180 + hueShift, 200, 255]
-                        : [100, 120 + hueShift, 220];
+                        ? [blobBase[0] + hueShift, blobBase[1], blobBase[2]]
+                        : [blobBase[0], blobBase[1] + hueShift, blobBase[2]];
 
                     const color = `${base[0]}, ${base[1]}, ${base[2]}`;
 
@@ -297,8 +302,8 @@ const PixelatedBackground = ({ embedded = false }) => {
         position: 'absolute',
         inset: 0,
         backgroundImage: `
-            radial-gradient(ellipse at 20% 30%, ${theme.colors.backgroundAccentPrimary} 0%, transparent 55%),
-            radial-gradient(ellipse at 80% 70%, ${theme.colors.backgroundAccentSecondary} 0%, transparent 55%)
+            radial-gradient(ellipse at 20% 30%, ${palette.accentPrimary} 0%, transparent 55%),
+            radial-gradient(ellipse at 80% 70%, ${palette.accentSecondary} 0%, transparent 55%)
         `,
         backgroundSize: '140% 140%, 140% 140%',
         backgroundPosition: '0% 0%, 100% 100%',
@@ -320,6 +325,15 @@ const PixelatedBackground = ({ embedded = false }) => {
         pointerEvents: 'none',
     };
 
+    const overlayFadeStyle = {
+        position: 'absolute',
+        inset: 0,
+        pointerEvents: 'none',
+        ...(prefersReducedMotion
+            ? { opacity: 1 }
+            : { animation: 'seasonalTintFade 1.5s ease-out both' }),
+    };
+
     return (
         <>
             <style>{`
@@ -329,17 +343,28 @@ const PixelatedBackground = ({ embedded = false }) => {
                     100% { background-position: 0% 0%, 100% 100%; opacity: 0.95; }
                 }
 
+                @keyframes seasonalTintFade {
+                    from { opacity: 0; }
+                    to   { opacity: 1; }
+                }
+
                 @media (prefers-reduced-motion: reduce) {
                     .pixel-color {
                         animation: none !important;
+                    }
+                    .pixel-seasonal-fade {
+                        animation: none !important;
+                        opacity: 1 !important;
                     }
                 }
             `}</style>
 
             <div style={backgroundStyle}>
                 <div style={gridStyle} />
-                <div className="pixel-color" style={colorOverlayStyle} />
-                <canvas ref={canvasRef} style={canvasStyle} />
+                <div className="pixel-seasonal-fade" style={overlayFadeStyle}>
+                    <div className="pixel-color" style={colorOverlayStyle} />
+                    <canvas ref={canvasRef} style={canvasStyle} />
+                </div>
                 <div style={vignetteStyle} />
             </div>
         </>
