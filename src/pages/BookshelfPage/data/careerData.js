@@ -88,7 +88,7 @@ Hedges provides a model to get true buy-in:
     tags: ['career', 'feedback'],
     notes: `
 The article is short and sweet. Feedback is an important tool in professional careers but the method of providing feedback can be skewed. "Staying on your side of the net" is the idea that as the feedback provider, you don't assume the motivations and intentions of the other.
-Sticking to what you feel are not debatable while assuming their motivations *are*.
+Sticking to what you feel is not debatable while assuming their motivations *are*.
 
 The following are examples of crossing the net, where you are assuming the other person's intentions, things that are debatable.
 

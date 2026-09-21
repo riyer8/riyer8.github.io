@@ -10,7 +10,7 @@ import {
 import { createPortal } from "react-dom";
 import { Link } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
-import { MINDS, NOW_SECTIONS, NOW_UPDATED, USES_SECTIONS } from "./nowData";
+import { NOW_SECTIONS, NOW_UPDATED, USES_SECTIONS } from "./nowData";
 import "./NowCard.css";
 
 const NowCardContext = createContext(null);
@@ -27,23 +27,6 @@ const TABS = [
   { id: "now", label: "now" },
   { id: "uses", label: "uses" },
 ];
-
-const initialsFromName = (name) =>
-  String(name)
-    .split(/\s+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part.charAt(0).toUpperCase())
-    .join("");
-
-const hostnameFromSite = (site) => {
-  if (!site) return null;
-  try {
-    return new URL(site).hostname || null;
-  } catch {
-    return null;
-  }
-};
 
 const isInternalHref = (href) =>
   typeof href === "string" && href.startsWith("/") && !href.startsWith("//");
@@ -104,56 +87,6 @@ const UsesPane = ({ onNavigate }) => (
           >
             {section.text}
           </TextLink>
-        </span>
-      </li>
-    ))}
-  </ul>
-);
-
-const MindAvatar = ({ name, site }) => {
-  const [faviconFailed, setFaviconFailed] = useState(false);
-  const hostname = hostnameFromSite(site);
-  // Favicon from Google's s2 service so it's trivial to swap later.
-  const faviconSrc = hostname
-    ? `https://www.google.com/s2/favicons?domain=${hostname}&sz=64`
-    : null;
-  const showFavicon = Boolean(faviconSrc) && !faviconFailed;
-
-  return (
-    <span
-      className={`now-card__avatar${showFavicon ? " now-card__avatar--site" : ""}`}
-      aria-hidden="true"
-    >
-      {initialsFromName(name)}
-      {faviconSrc ? (
-        <img
-          className="now-card__favicon"
-          src={faviconSrc}
-          alt=""
-          hidden={faviconFailed}
-          onError={() => setFaviconFailed(true)}
-        />
-      ) : null}
-    </span>
-  );
-};
-
-const MindsPane = ({ onNavigate }) => (
-  <ul className="now-card__minds">
-    {MINDS.map((person, index) => (
-      <li key={person.name || person.site || index} className="now-card__mind">
-        <MindAvatar name={person.name} site={person.site} />
-        <span className="now-card__mind-copy">
-          <span className="now-card__mind-name">
-            <TextLink
-              href={person.href}
-              className="now-card__link"
-              onNavigate={onNavigate}
-            >
-              {person.name}
-            </TextLink>
-          </span>
-          <span className="now-card__mind-line">{person.line}</span>
         </span>
       </li>
     ))}
@@ -307,9 +240,6 @@ const NowCard = () => {
                 ) : null}
                 {tab === "uses" ? (
                   <UsesPane onNavigate={close} />
-                ) : null}
-                {tab === "minds" ? (
-                  <MindsPane onNavigate={close} />
                 ) : null}
               </div>
               <div className="now-card__footer" />

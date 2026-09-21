@@ -31,7 +31,7 @@ const preprocessFigures = (text) => {
     (_, alt, src, caption) => {
       return `
 <figure class="md-figure">
-  <img src="${src}" alt="${alt}" />
+  <img src="${escapeAttr(src)}" alt="${escapeAttr(alt)}" />
   <figcaption>${caption.trim()}</figcaption>
 </figure>
 `;
@@ -95,6 +95,14 @@ const escapeHtml = (value) => value
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;');
 
+// Attribute-context escaping for values interpolated into HTML attributes
+// before sanitization (defense in depth alongside DOMPurify).
+const escapeAttr = (value) => String(value ?? '')
+  .replace(/&/g, '&amp;')
+  .replace(/"/g, '&quot;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+
 // Render markdown -> HTML, then restore protected math.
 const renderMarkdownWithKatexPlaceholders = (text, placeholders) => {
   let html;
@@ -136,6 +144,55 @@ const applyKatexToNode = (node) => {
   });
 };
 
+// Video embeds are the only legitimate use of <iframe> in book notes, so only
+// these hosts may survive sanitization. Everything else — including data:,
+// blob:, and javascript: URLs — has its iframe removed entirely.
+const TRUSTED_IFRAME_HOSTS = new Set([
+  'www.youtube.com',
+  'www.youtube-nocookie.com',
+  'player.vimeo.com',
+]);
+
+// DOMPurify hook: gate every <iframe> to a trusted embed host and harden the
+// survivors (no top-level navigation or popups, lazy loading, strict referrer).
+const gateIframesToTrustedHosts = (node) => {
+  if (node.nodeName !== 'IFRAME') return;
+  let host = '';
+  try {
+    host = new URL(node.getAttribute('src') || '', 'https://riyer8.github.io').host.toLowerCase();
+  } catch {
+    host = '';
+  }
+  if (!TRUSTED_IFRAME_HOSTS.has(host)) {
+    node.remove();
+    return;
+  }
+  node.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-presentation');
+  node.setAttribute('loading', 'lazy');
+  node.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+};
+
+const sanitizeMarkdownHtml = (dirtyHtml) => {
+  DOMPurify.addHook('uponSanitizeElement', gateIframesToTrustedHosts);
+  try {
+    return DOMPurify.sanitize(dirtyHtml, {
+      ADD_TAGS: ['iframe', 'video', 'source', 'figure', 'figcaption'],
+      ADD_ATTR: [
+        'data-katex-display',
+        'data-katex-inline',
+        'src', 'alt', 'title', 'width', 'height', 'style',
+        'frameborder', 'allow', 'allowfullscreen', 'controls', 'type',
+        'sandbox', 'loading', 'referrerpolicy',
+      ],
+      // javascript: was never allowed. data: stays available for inline
+      // images, but can no longer smuggle script through an iframe (see hook).
+      ALLOWED_URI_REGEXP: /^(?:http|https|data|\/)/i
+    });
+  } finally {
+    DOMPurify.removeHook('uponSanitizeElement');
+  }
+};
+
 const MarkdownMath = ({ text }) => {
   const { theme } = useTheme();
   const rootRef = useRef(null);
@@ -151,18 +208,7 @@ const MarkdownMath = ({ text }) => {
       placeholders
     );
 
-    setHtml(
-      DOMPurify.sanitize(parsed, {
-        ADD_TAGS: ['iframe', 'video', 'source', 'figure', 'figcaption'],
-        ADD_ATTR: [
-          'data-katex-display',
-          'data-katex-inline',
-          'src', 'alt', 'title', 'width', 'height', 'style',
-          'frameborder', 'allow', 'allowfullscreen', 'controls', 'type'
-        ],
-        ALLOWED_URI_REGEXP: /^(?:http|https|data|\/)/i
-      })
-    );
+    setHtml(sanitizeMarkdownHtml(parsed));
   }, [text]);
 
   useLayoutEffect(() => {
@@ -216,7 +262,7 @@ const MarkdownMath = ({ text }) => {
     }
     #markdown-math-root blockquote::after,
     #markdown-math-root .custom-quote::after {
-      content: "Quote from Article";
+      content: "Quote from Source";
       color: ${theme.isDarkMode ? '#FFCA80' : theme.colors.textSecondary};
       font-weight: 700;
     }

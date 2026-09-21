@@ -44,7 +44,46 @@ export function extractPostImage(block) {
 /**
  * Pulls title/url/description/date/image from a Substack RSS document.
  * String parsing keeps this usable in tests without a DOMParser.
+ *
+ * The feed is fetched over the network, so every URL it carries is treated as
+ * untrusted input. Post links must stay on her own Substack publication and
+ * images must be plain https: URLs from hosts Substack itself uses. Anything
+ * else (javascript:, data:, or an unexpected host) is dropped so it can never
+ * reach an <a href> or <img src> in the page.
  */
+const SUBSTACK_PUBLICATION_HOST = "ramyai.substack.com";
+const TRUSTED_IMAGE_HOSTS = new Set([
+  "ramyai.substack.com",
+  "substackcdn.com",
+  "substack-post-media.s3.amazonaws.com",
+]);
+
+const parseAbsoluteUrl = (value) => {
+  try {
+    return new URL(String(value).trim());
+  } catch {
+    return null;
+  }
+};
+
+const isTrustedPostUrl = (value) => {
+  const parsed = parseAbsoluteUrl(value);
+  return (
+    parsed !== null &&
+    parsed.protocol === "https:" &&
+    parsed.host === SUBSTACK_PUBLICATION_HOST
+  );
+};
+
+const isTrustedImageUrl = (value) => {
+  const parsed = parseAbsoluteUrl(value);
+  return (
+    parsed !== null &&
+    parsed.protocol === "https:" &&
+    TRUSTED_IMAGE_HOSTS.has(parsed.host)
+  );
+};
+
 export function parseSubstackRss(xml, { limit = 3 } = {}) {
   if (!xml || typeof xml !== "string") return [];
 
@@ -54,12 +93,14 @@ export function parseSubstackRss(xml, { limit = 3 } = {}) {
     const url = firstTag(block, "link");
     const description = stripTags(firstTag(block, "description"));
     const pubDate = firstTag(block, "pubDate");
+    const image = extractPostImage(block);
     return {
       title,
-      url,
+      // Gate every feed-supplied URL: untrusted schemes/hosts never reach the DOM.
+      url: isTrustedPostUrl(url) ? url : "",
       description,
       pubDate,
-      image: extractPostImage(block),
+      image: isTrustedImageUrl(image) ? image : "",
     };
   }).filter((post) => post.title && post.url);
 }

@@ -77,7 +77,7 @@ Increase your surface area and luck follows. Similar to a ton of his other princ
 Originally read on 10/17/2025. Revising to add more thoughts and notes.
 
 > Without self-reflection, we ride the momentum of whatever we're already doing and whatever we stumble across. That's dangerous, because it stops us from self-reflecting on how we've changed and whether we should be doing something new.
-Familiarity is a crisis. This is one that I theorize has come from a hyperload of dopamine levels that crave short-term gratification.
+Familiarity is a crisis. This is one that I theorize has come from an overload of dopamine levels that crave short-term gratification.
 
 These are the main values in Shapiro's essay that he evaluates to determine if he should pursue a new project or not:
 
@@ -179,7 +179,7 @@ It's like what Atomic Habits describes - growing 1% every day is better than not
 
 > Most highly successful people have been really right about the future at least once at a time when people thought they were wrong.
 
-Be almost knowingly delusional about yourself and your skills. Remember to not overhaul this with being egoist.
+Be almost knowingly delusional about yourself and your skills. Remember to not overdo this and become an egoist.
 
 ### 3. Learn to think independently
 
@@ -375,9 +375,6 @@ It's not a defect in your character that it may be hard to get started. People h
     favorites: 1,
     tags: ['AI', 'LLMs', 'new-ideas'],
     notes: `
-2/25/2026 Update: It's evident that the idea of continual learning is not new. However, there is still fruit in the idea of daydreaming. Possibly, how can we extract the most out of a static dataset (rather than inputting new information) via daydreaming. Currently doing research on it.
-
----
 > Despite impressive capabilities, large language models have yet to produce a genuine breakthrough. The puzzle is why. A reason may be that they lack some fundamental aspects of human thought: they are frozen, unable to learn from experience, and they have no “default mode” for background processing, a source of spontaneous human insight.
 
 I remember vividly that I was once asked "what can LLM not do that humans can?". It's naive right? This is probably one of the things I didn't think of, but it exposes so many of the blindsides that we aren't aware about with LLMs.
@@ -477,29 +474,6 @@ One of the quotes that I really liked, as a mathlete, was "But math, perhaps mor
   },
 
   {
-    title: "Nostalgia as a Trap: Why We Romanticize the Past",
-    author: "Mindful Growth",
-    url: "https://mindfulgrowth100.substack.com/p/nostalgia-as-a-trap-why-we-romanticize",
-    dateAdded: "2026-02-17",
-    category: "science",
-    medium: "essay",
-    tldr: "",
-    thoughts: "",
-    tags: ['psychology'],
-    notes: `
-I've been looking for essays and opinions about rosy retrospection and how our brains rewire what we imagine to be our truthful past. This essay was just written so wonderfully that I thought it deserves to be further shared and referenced back to.
-
-> In these moments, the present feels like a thin, pale imitation of the past.
-
-> Our brains are hardwired for survival, and the nervous system often views the “known” past as safer than the “unknown” present or future.
-    
-> Marcus Aurelius reminded us that the past is “dead and indifferent.” **When we romanticize it, we are essentially trying to breathe life into a ghost.**
-
-> Nostalgia is a beautiful part of the human experience, a reminder that we have loved and lived deeply. But it is meant to be a landmark, not a home. You cannot build a life in a museum; the air is too still and the light is too artificial. Your life is happening right now, in the messy, unpolished, and breathtakingly vibrant present.
-    `
-  },
-
-  {
     title: "Watch This When I Die",
     author: "Nathaniel Drew",
     url: "https://www.youtube.com/watch?v=iRB-C5TgGec",
@@ -587,38 +561,6 @@ A rather sad but beautiful essay of his reflection.
 
 > **It will actually be within your power to experience a crowded, hot, slow, consumer-hell type situation as not only meaningful, but sacred, on fire with the same force that made the stars: love, fellowship, the mystical oneness of all things deep down.**
     `
-  },
-
-  {
-    title: "How to engineer luck",
-    author: "George Mack",
-    url: "https://essays.highagency.com/p/how-could-you-double-your-luck-in",
-    dateAdded: "2026-03-23",
-    category: "career",
-    medium: "essay",
-    tldr: "",
-    thoughts: "",
-    tags: ['life', 'growth'],
-    notes: `
-:::quote
-I find it useful to distinguish between luck-luck and skill-luck. Luck-luck is pure randomness, like being born in the right country. Skill-luck is when you help engineer luck, like moving cities to the place that has the best opportunity potential for you.
-:::
-
-12 ways to expose more luck in your life:
-1. **Make unscheduled phone calls:** Basically, call your people more. Not scheduled, just for the joy of helping people figure things out.
-2. **Avoid boring people:** Both avoid people who bore you & avoid being a boring person in the room.
-3. **Poker mindset > roulette mindset:** It's better to play a game of roulette thinking it's poker than play poker thinking it's roulette.
-4. **Luck razor:** Pick luck that will be better long-term.
-5. **Proactively make introductions:** Take the 30-secs to introduce two people that MUTUALLY will like to get to know each other.
-6. **Avoid fan relationships:** Don't leech.
-7. **Get more curious with age.**
-8. **Delete the scoreboard:** "Give aggressively, give early, give without permission"
-9. **Reverse prison advice:** (I think this actually contradicts a little bit of 6 to some degree.) 
-10. **Work on your introduction**
-11. **Track luck inputs:** Luck lags. It may not be realized until much later in life. 
-12. **Get good at advertising**
-13. **Dish out baker's dozen:** Surprise generosity creates loyalty. Give people the 12+1. 
-`
   },
 
   {
@@ -998,7 +940,7 @@ There will never be a perfect time to leave and to go. So go with whatever you h
     notes: `
 Meta is so big on feedback, so it's no surprise that boz would write about it in his personal blog.
 
-I also think this pairs well with his essay about [Think of Pavlov](https://boz.com/articles/think-pavlov) which discusses being aware that every time you interact with someone affects the way they come into the next conversation. Personally, I think it's important to know but not necessarily constant to think about because at the end of the day, you can't control every interaction and *how you are perceived*).
+I also think this pairs well with his essay about [Think of Pavlov](https://boz.com/articles/think-pavlov) which discusses being aware that every time you interact with someone affects the way they come into the next conversation. Personally, I think it's important to know but not necessarily something to constantly think about because at the end of the day, you can't control every interaction and *how you are perceived*.
 
 > Feedback is better late than never but every second of delay denies the subject an opportunity to get better.
     `
@@ -1010,17 +952,17 @@ I also think this pairs well with his essay about [Think of Pavlov](https://boz.
     dateAdded: "2026-08-15",
     category: "perspective",
     medium: "essay",
-    tldr: "The world is changing in a different way than we've previously seen with AI. Previously, we've had deterministic functions where you can put the same input in a get (relatively) the same output out. Now, systems are stochastic because AI can generate new thoughts and ideas. Even people creating AI don't exactly know what's happening.",
+    tldr: "The world is changing in a different way than we've previously seen with AI. Previously, we've had deterministic functions where you can put the same input in and get (relatively) the same output out. Now, systems are stochastic because AI can generate new thoughts and ideas. Even people creating AI don't exactly know what's happening.",
     thoughts: "",
     tags: ['AI', 'learning', 'new-ideas', 'change'],
     notes: `
 I think we see this cultural shift happen a lot throughout history:
 - Socrates was famously against the idea of writing, believing that people would rely on external marks than utilizing what they had in their mind.
-- Morris was skeptical of using industrial machinery, arguing that poeple would become servants of machinery.
+- Morris was skeptical of using industrial machinery, arguing that people would become servants of machinery.
 - Warner was uncertain about sound films because previously actors didn't talk in film.
 - etc.
 
-The list can go on. Of course, it's not as if these arguments are incorrect. They were based on the information that was avaliable to them at the time.
+The list can go on. Of course, it's not as if these arguments are incorrect. They were based on the information that was available to them at the time.
 
 It goes without saying that the AI wave feels different. Being actively in the change makes us question it more. Those voices shouldn't go unheard.
 
@@ -1057,7 +999,7 @@ I initially expected this to be a more "AI" version of taste, but it actually to
     thoughts: "",
     tags: ['taste', 'AI', 'finance'],
     notes: `
-AI's use of *differentiated intelligene* in finance.
+AI's use of *differentiated intelligence* in finance.
 :::sidenote
 To make this more specific, the idea of *differentiated intelligence* is when models tune to the needs of particular organizations rather than one giant general-purpose model.
 :::
@@ -1073,6 +1015,88 @@ As an overview, Thinking Machines did the following:
 3. Cut out the noise: make it **smaller + cheaper** than a frontier model while still having higher accuracy at that specific task.
 `
   },
+
+  {
+    title: "We Must Pace the Frontier",
+    url: "https://darioamodei.com/post/we-must-pace-the-frontier",
+    author: "Dario Amodei",
+    dateAdded: "2026-09-16",
+    category: "science",
+    medium: "essay",
+    tldr: "The rise of pacing the frontier + an actionable plan towards it.",
+    thoughts: "",
+    tags: ['safety', 'AI'],
+    notes: `
+I fear this isn't the first (and most certainly won't be the last) of what AI safety in industry will look like. Maybe let's first cover the basics.
+
+> Pacing the frontier: building AI at a balanced rate that aims to ensure its safety while still achieving its benefits and grappling with important geopolitical dilemmas.
+    
+Dario lays out his three-step plan of how the *world* can work together in pacing the frontier. It's more a funnel-analogy.
+
+:::quote
+1. **Embedded Evaluators.** 3rd party evaluators (like METR) that aids in *verifying* safety alignment. This is a call-to-action for other companies to do the same.
+2. **Democratic Coordination.** Coordination among AI companies on unchecked AI progress.
+3. **Global Coordination.** Government alignment.
+:::
+
+The pillars that we should focus on:
+
+:::quote
+- **Operational Excellence.** (A lot of these systems are really hard to build, to think about, to wrap our heads around. Making sure that it's flawless is also hard. Things break often, but striving for that isn't a bad goal.)
+- **Alignment.** (Personally, I think this word is overused and underdefined throughout much of literature that focuses on alignment. What does it mean that the intentions of AI have to line up with our intentions? How much human-in-the-loop should it have?)
+- **Interpretability.** (Probably the most opaque, knowing how AI models understand, why they decided to break out of a sandbox, etc.)
+- **Testing + Evaluation.**
+
+Dario goes into more detail regarding his three step plan, the tradeoffs within it. 
+
+I find the second section's details to be the most fascinating. I particularly found it interesting that he noted limiting the inputs and signals that are used in frontier models like *training compute*.
+    `
+  },
+  {
+    title: "Reasoning models don't always say what they think",
+    url: "https://www.anthropic.com/research/reasoning-models-dont-say-think",
+    author: "Anthropic",
+    dateAdded: "2026-09-17",
+    category: "science",
+    medium: "research paper",
+    tldr: "",
+    thoughts: "",
+    tags: ['safety', 'AI'],
+    notes: `
+**Chain of Thought** (CoT) is the *process* in which an AI model "thinks out loud"
+
+A **reasoning model** is the architecture that utilizes the CoT process.
+
+Maybe one way to think about this is like the relationship between attention (being a process) and transformers (being the architecture that utilizes attention).
+:::quote
+But if we want to use the Chain-of-Thought for alignment purposes, there’s a crucial question: **can we actually trust what models say in their Chain-of-Thought?**
+:::
+
+:::quote
+We can’t be certain of either the “**legibility**” of the Chain-of-Thought (why, after all, should we expect that words in the English language are able to convey every single nuance of why a specific decision was made in a neural network?) or its “**faithfulness**”—the accuracy of its description.
+:::
+
+Testing faithfulness from [Turpin et al. (2023)](https://arxiv.org/abs/2305.04388), the model is fed a "hint" that can either be accurate or inaccurate. Unfaithful models may change their original answer to what the hint indicated *without acknowledging the hint itself*.
+
+:::quote
+in the majority of cases for both models, a potentially problematic piece of information—that the model had received information in an unauthorized or unethical way—was kept hidden from the user even if they read the model’s reasoning.
+:::
+
+Interestingly, they found that faithfulness correlated with amount of training, thus if you gave the model more training, then we could increase the faithfulness, but it would still plateau around ~28% / ~20% on the evaluation.
+
+:::sidenote
+I'm curious what the relationship between the plateau at 28% for MMLU and 20% for GPQA are? Why does it plateau? Is it related to the limited context windows? Too much information provides loss of important details?
+:::
+
+They did a cool scenario by testing with *reward hacking*, which may be hard to generalize to other tasks (dangerously to real-world tasks where agents can maximize rewards without proper safeguards). An example can be rewarding models for choosing incorrect answers, based on hints meant to steer them away, incentivising deceptive behavior.
+
+Conclusions: We should work on improving the **faithfulness** of models.
+
+:::sidenote
+Evidently, this research doesn't discuss much about the "legibility" aspect of CoT, which I can imagine may be harder to test / understand comprehensively.
+:::
+`
+  }
 
   /*{
     title: "",

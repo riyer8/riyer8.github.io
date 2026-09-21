@@ -5,7 +5,7 @@ import "./SiteFooter.css";
 
 const FORTUNES = [
   "not too sure what a footer is supposed to do on websites.",
-  "probably started my recent github project as a joke, but now its burning my credits.",
+  "probably started my recent github project as a joke, but now it's burning my credits.",
   "my evals run for hours, so i code fun things on the side :)"
 ];
 

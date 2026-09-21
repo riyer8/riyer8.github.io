@@ -354,7 +354,7 @@ Some of my favorite quotes from this chapter of a much larger book:
     category: "advice",
     medium: "book",
     tldr: "Saying yes to strangers can truly change your life.",
-    thoughts: "More a true memoir than a self-improvement book (and I prefer it that way).",
+    thoughts: "More of a true memoir than a self-improvement book (and I prefer it that way).",
     tags: ['self-belief', 'learning', 'creativity'],
     notes: `
 One of the reasons why I loved this book is the beginning of it seemed almost relatable. (Granted, by the end of the book, his life experiences are wildly different than anyone - even he - can imagine at 23).
@@ -480,7 +480,7 @@ One of my favorite quotes from the book:
 About being told that he's accomplished so much:
 > My life had been building potential, potential that would now go unrealized. I had planned to do so much, and I had come so close... My carefully planned and hard-won future no longer existed. Death, so familiar to me in my work, was now paying a personal visit. (pg. 120-121)
 
-> I began to realize that coming in such close connection with my own morality had changed both nothing and everything. (pg. 131)
+> I began to realize that coming in such close contact with my own mortality had changed both nothing and everything. (pg. 131)
 
 > If the weight of mortality does not grow lighter, does it at least get more familiar? (pg. 138)
 

@@ -170,11 +170,23 @@ const buildRoutes = () => {
 const startServer = (shellHtml) =>
   new Promise((resolve) => {
     const server = http.createServer((request, response) => {
-      const pathname = decodeURIComponent(
-        new URL(request.url, "http://localhost").pathname
-      );
+      let pathname;
+      try {
+        pathname = decodeURIComponent(
+          new URL(request.url, "http://localhost").pathname
+        );
+      } catch {
+        response.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+        response.end("Bad request");
+        return;
+      }
       const requestedPath = path.resolve(BUILD_DIR, `.${pathname}`);
-      const isSafe = requestedPath.startsWith(BUILD_DIR);
+      // Separator-aware containment check: a sibling directory whose name
+      // merely starts with the build dir name must not pass.
+      const relativeToBuild = path.relative(BUILD_DIR, requestedPath);
+      const isSafe =
+        relativeToBuild === "" ||
+        (!relativeToBuild.startsWith("..") && !path.isAbsolute(relativeToBuild));
       const isAsset = path.extname(pathname);
 
       if (isSafe && isAsset && fs.existsSync(requestedPath)) {
