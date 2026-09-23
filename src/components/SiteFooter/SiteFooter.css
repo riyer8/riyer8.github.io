@@ -41,20 +41,88 @@
 .site-footer__fortune {
   position: absolute;
   left: 50%;
-  bottom: calc(100% + 0.55rem);
+  bottom: calc(100% + 0.8rem);
   z-index: 3;
-  width: 220px;
-  height: 4.6rem;
-  margin-left: -110px;
+  width: 232px;
+  margin-left: -116px;
   box-sizing: border-box;
-  padding: 0.55rem 0.65rem;
-  overflow: hidden;
-  border: 1px dashed var(--sf-accent);
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--sf-accent) 14%, var(--sf-surface));
+  padding: 0.7rem 0.85rem;
+  border: 1px solid color-mix(in srgb, var(--sf-accent) 45%, transparent);
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--sf-accent) 12%, var(--sf-surface));
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.2),
+    0 2px 6px rgba(0, 0, 0, 0.1);
   color: var(--sf-text);
   font-size: var(--text-caption);
   line-height: var(--leading-snug);
+  animation: fortune-in 0.22s ease-out;
+}
+
+.site-footer__fortune::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  margin-top: -5.5px;
+  margin-left: -4.5px;
+  background: inherit;
+  border-right: 1px solid color-mix(in srgb, var(--sf-accent) 45%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--sf-accent) 45%, transparent);
+  border-bottom-right-radius: 2px;
+  transform: rotate(45deg);
+}
+
+.site-footer__fortune.is-leaving {
+  animation: fortune-out 0.22s ease-in forwards;
+}
+
+.site-footer__fortune-text {
+  display: block;
+  animation: fortune-text-in 0.18s ease-out;
+}
+
+@keyframes fortune-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fortune-out {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(6px) scale(0.98);
+  }
+}
+
+@keyframes fortune-text-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-footer__fortune,
+  .site-footer__fortune.is-leaving,
+  .site-footer__fortune-text {
+    animation: none;
+  }
 }
 
 .site-footer__kbd {

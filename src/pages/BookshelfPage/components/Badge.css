@@ -44,3 +44,30 @@
     transform: translateX(-50%) translateY(0);
   }
 }
+
+/* Clickable badges (tag filters) */
+.badge--button {
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  border: 1px solid transparent;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.badge--button:hover {
+  border-color: var(--badge-tip-border);
+}
+
+.badge--button:active {
+  transform: scale(0.96);
+}
+
+.badge--active,
+.badge--active:hover {
+  background: var(--bs-accent);
+  border-color: var(--bs-accent);
+  color: #fff;
+}

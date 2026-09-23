@@ -50,6 +50,9 @@ const AboutPage = () => {
         "--about-text": theme.colors.text,
         "--about-muted": theme.colors.textSecondary,
         "--about-accent": theme.colors.accent,
+        "--about-shadow": theme.isDarkMode
+          ? "0 1px 12px rgba(0, 0, 0, 0.5)"
+          : "none",
       }}
     >
       <main className="about-page__content">

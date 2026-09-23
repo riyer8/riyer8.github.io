@@ -55,6 +55,19 @@ const CASCADE_SELECTOR = [
   ".home-feed__more",
 ].join(",");
 
+/**
+ * Fixed chrome that must never join the content cascade. The mobile drawer
+ * stays mounted on small screens and hides via translateX(-100%), so
+ * getBoundingClientRect() still reports it as "visible" — tagging it lets
+ * the drop-in animation override its off-screen transform and the closed
+ * drawer visibly slides open on every page transition.
+ */
+const CASCADE_IGNORE_SELECTOR = ".mobile-sidebar, .mobile-sidebar-overlay";
+
+function isCascadeEligible(el) {
+  return el instanceof HTMLElement && !el.closest(CASCADE_IGNORE_SELECTOR);
+}
+
 function isVisible(el) {
   if (!(el instanceof HTMLElement)) return false;
   const style = window.getComputedStyle(el);
@@ -101,7 +114,9 @@ function collectCascadeNodes(root) {
     return collectBookshelfCascade(root);
   }
 
-  const found = [...root.querySelectorAll(CASCADE_SELECTOR)].filter(isVisible);
+  const found = [...root.querySelectorAll(CASCADE_SELECTOR)].filter(
+    (el) => isVisible(el) && isCascadeEligible(el)
+  );
 
   const selected = found.filter((el) => {
     if (el.matches(".bookshelf-row, .bookshelf-head-row, tr, .home-feed-card"))

@@ -107,7 +107,7 @@ The idea of **regret minimization**:
     favorites: 1,
     tldr: "🕰️ Just extracting lessons from history diminishes its purpose. History is context dependent that can help build mental models for future decisions.",
     thoughts: "Really fascinating as I learn more about history and reframing history",
-    tags: ['history', 'lessons', 'entrepreneurship', 'mental-models'],
+    tags: ['history', 'lessons', 'mental-models'],
     notes: `
 This happens to be one of my favorite essays I've read about history of all time. It changed the way I looked at studying and understanding history.
 > This has always been the tricky thing about learning from history. History is context dependent.
@@ -132,10 +132,10 @@ This happens to be one of my favorite essays I've read about history of all time
     author: "Rob Henderson",
     url: "https://www.robkhenderson.com/p/experts-and-elites-play-fundamentally",
     dateAdded: "2025-11-30",
-    category: "psychology",
+    category: "career",
     medium: "essay",
-    tags: ["status", "sociology", "expertise", "elites",],
-    tldr: "⚖️ The divide between experts (technically backed) and elites (socially backed)",
+    tags: ["status", "sociology", "elites",],
+    tldr: "The divide between experts (technically backed) and elites (socially backed)",
     thoughts: "Really fascinating account of status and the tradeoffs. Definitely something I will be thinking about.",
     notes: `
 As a broad statement, Henderson introduces the archetypes below.
@@ -295,7 +295,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
   },
 
   {
-    title: "How To Do Great Work",
+    title: "How to Do Great Work",
     author: "Paul Graham",
     url: "https://paulgraham.com/greatwork.html",
     dateAdded: "2025-12-26",
@@ -303,8 +303,8 @@ This is probably even more relevant with the rise of search engines and LLMs tha
     medium: "essay",
     favorites: 1,
     tldr: "",
-    thoughts: "long essay but filled with fruits.",
-    tags: ['great-work', 'ambition'],
+    thoughts: "long essay but filled with fruit.",
+    tags: ['great-work', 'ambition', 'career'],
     notes: `
 ### What is the type of work that you should be focusing on?
 > The work you choose needs to have three qualities: it has to be something you have a **natural aptitude for**, that you have a **deep interest in**, and that offers **scope to do great work.**
@@ -357,7 +357,7 @@ It's not a defect in your character that it may be hard to get started. People h
     medium: "essay",
     tldr: "Staring into the abyss allows clarity for complex issues in life; many people don't do it because it's uncomfortable to confront the past (especially if they are decisions that you now regret).",
     thoughts: "A corollary idea to embracing 'boredom' and thinking critically about your choices. It's ok to go back on choices you once believed were good.",
-    tags: ['boredom'],
+    tags: ['boredom', 'thinking'],
     notes: `
 > Staring into the abyss means thinking reasonably about things that are uncomfortable to contemplate, like arguments against your religious beliefs, or in favor of breaking up with your partner. It’s common to procrastinate on thinking hard about these things because it might require you to acknowledge that you were very wrong about something in the past, and perhaps wasted a bunch of time based on that (e.g. dating the wrong person or praying to the wrong god).
     `
@@ -368,12 +368,12 @@ It's not a defect in your character that it may be hard to get started. People h
     author: "Gwern",
     url: "https://gwern.net/ai-daydreaming",
     dateAdded: "2026-01-09",
-    category: "science",
+    category: "AI",
     medium: "essay",
     tldr: "Why can't LLM come up with new discoveries despite having so much information? The fixed knowledge of NN provides little room for growth; Gwern proposes 'day-dreaming loops' to create unique connections among ideas.",
     thoughts: "",
     favorites: 1,
-    tags: ['AI', 'LLMs', 'new-ideas'],
+    tags: ['LLMs', 'new-ideas'],
     notes: `
 > Despite impressive capabilities, large language models have yet to produce a genuine breakthrough. The puzzle is why. A reason may be that they lack some fundamental aspects of human thought: they are frozen, unable to learn from experience, and they have no “default mode” for background processing, a source of spontaneous human insight.
 
@@ -424,7 +424,7 @@ Kyla draws a distinction between three types of friction:
     medium: "essay",
     tldr: "Essay on taste and how it influences our judgements, specifically in art.",
     thoughts: "",
-    tags: ['taste', 'psychology', 'art'],
+    tags: ['taste', 'art'],
     notes: `
 > Taste is the faculty by which we make judgments about art. 
 
@@ -479,11 +479,11 @@ One of the quotes that I really liked, as a mathlete, was "But math, perhaps mor
     url: "https://www.youtube.com/watch?v=iRB-C5TgGec",
     dateAdded: "2026-02-24",
     category: "life",
-    favorites: 1,
+    favorites: 2,
     medium: "video",
     tldr: "",
     thoughts: "Truly one of my favorite videos.",
-    tags: [],
+    tags: ['mortality', 'meaning'],
     notes: `
 Below is the full transcript of the video, bolded with some of my favorite lines. But every line is so beautiful. You have to watch it for yourself.
 
@@ -531,7 +531,7 @@ The heart doesn’t think, it isn’t strategic. It just experiences. All that c
     medium: "essay",
     tldr: "",
     thoughts: "In honor of me starting to read \"When Breath Becomes Air\", doing a deep dive into Paul Kalanithi and his writing is the truest gift. Making me feel nostalgic about Stanford and life.",
-    tags: ['life', 'growth'],
+    tags: ['mortality', 'growth'],
     notes: `
 I've just started to read *When Breath Becomes Air* (just started meaning I'm 70 pages in), and nothing warms my heart more than the fact that he went to Stanford. I naively didn't know that before I picked up the book. Reading his experiences makes me long for life even more. He talked about this essay in his Prologue and I knew I wanted to read it soon.
 
@@ -549,7 +549,7 @@ A rather sad but beautiful essay of his reflection.
     medium: "essay",
     tldr: "The real power of an education is truly not learning how to think, but learning how to choose what to think about.",
     thoughts: "",
-    tags: ['life', 'growth'],
+    tags: ['growth'],
     notes: `
 > But I’m going to posit to you that the liberal arts cliché turns out not to be insulting at all, because the really significant education in thinking that we’re supposed to get in a place like this isn’t really about the capacity to think, but **rather about the choice of what to think about.**
 
@@ -568,12 +568,12 @@ A rather sad but beautiful essay of his reflection.
     author: "Maja",
     url: "https://velvetnoise.substack.com/p/why-some-conversations-rearrange",
     dateAdded: "2026-03-23",
-    category: "life",
+    category: "connection",
     medium: "essay",
     tldr: "",
     favorites: 1,
     thoughts: "So many psychological concepts connected with conversations. I love humans.",
-    tags: ['life', 'conversations', 'friends', 'psychology'],
+    tags: ['conversations', 'friends', 'psychology'],
     notes: `
 I personally really enjoyed the psychological breakdown with the thoughts on conversation and friendship. Some of my favorite quotes below:
 > There’s a saying that “actions speak louder than words.” But words are actions. They land and rearrange. They build scaffolding for thought and memory. They shape what becomes *sayable*, and in turn, what becomes *thinkable*. It’s why a well-placed phrase can rewire your inner architecture. A question can unlock a forgotten room. A conversation can leave behind an invisible structure that you keep returning to.
@@ -616,9 +616,7 @@ Strangely, it’s often those closest to us that we stop being curious about. We
     dateAdded: "2026-03-23",
     category: "life",
     medium: "essay",
-    tldr: "",
-    thoughts: "",
-    tags: ['personality', 'growth', 'life'],
+    tags: ['personality', 'growth'],
     notes: `
 In a weird way, this was exactly the essay I needed at this time. It might be a little bit later to start taking my life seriously, but late is better than never.
 
@@ -639,11 +637,11 @@ Every day I grow older, I feel like the gap becomes more and more apparent. It's
     favorites: 1,
     url: "https://www.experimental-history.com/p/theres-a-place-for-everyone",
     dateAdded: "2026-03-26",
-    category: "life",
+    category: "connection",
     medium: "essay",
     tldr: "Everyone belongs in some niche - no one is redundant in this world.",
     thoughts: "An essay that reminded me of 'lift others while you climb'. Everyone has a niche. We fail society if we don't help ourselves, and others, find our niche.",
-    tags: ['life', 'growth', 'friends'],
+    tags: ['belonging', 'growth', 'friends'],
     notes: `
 Some of my favorite quotes.
 :::quote
@@ -670,7 +668,7 @@ That’s why “where do I fit in?” is not a private question, like the passwo
     favorites: 1,
     tldr: "",
     thoughts: "took a deeper breath after reading this one.",
-    tags: ['life', 'growth'],
+    tags: ['growth'],
     notes: `
 > i kept thinking about that line: *everything is a win when the goal is to experience* and how for the first time it didn’t feel like something pretty or philosophical, it felt practical. like instructions. like a way to survive being human without constantly grading yourself.
 
@@ -694,11 +692,10 @@ so what would it mean to stop fighting that. to stop trying to turn my life into
     url: "https://yourbrainonmoney.substack.com/p/i-make-good-money-why-do-i-still",
     author: "Hanna Horvath",
     dateAdded: "2026-04-06",
-    category: "career",
+    category: "psychology",
     medium: "essay",
-    tldr: "",
     thoughts: "Very well-articulated and data-backed opinion.",
-    tags: ['money', 'economy', 'capitalism', 'psychology'],
+    tags: ['money', 'happiness'],
     notes: `
 A really fascinating article about understanding the structural changes of capitalism and the economy - and how that affects our personal responsibility when it comes to money.
 
@@ -765,12 +762,11 @@ Understanding the **precarity** that is yours:
     url: "https://goranshbharal.substack.com/p/learn-to-belong-to-yourself-without",
     author: "Gor",
     dateAdded: "2026-04-10",
-    category: "life",
+    category: "connection",
     medium: "essay",
     favorites: 1,
-    tldr: "",
     thoughts: "Thought about archiving this because it's different than most of the other essays I have here - but I think I loved it too much.",
-    tags: ['life', 'self-love', 'friends', 'growth'],
+    tags: ['belonging', 'self-love', 'friends', 'growth'],
     notes: `
 Some of my favorite quotes, but the entire essay is a gem.
 :::quote
@@ -802,7 +798,7 @@ As a sidenote, I think this article could be a sequel to [this essay](https://me
     url: "https://carinas.substack.com/p/there-is-so-much-love-in-trying",
     author: "Carina",
     dateAdded: "2026-04-10",
-    category: "life",
+    category: "connection",
     favorites: 1,
     medium: "essay",
     tldr: "Trying is the greatest form of love.",
@@ -849,7 +845,7 @@ In fashion, maybe a precursor to this article can be [this one](https://the25res
     favorites: 1,
     tldr: "",
     thoughts: "",
-    tags: ['life', 'comparison', 'career'],
+    tags: ['comparison', 'career'],
     notes: `
 :::quote
 but how can you be behind in life when your life is only yours. there is no shared clock, no single sequence you were meant to follow.
@@ -870,11 +866,11 @@ come back to yourself. ask what you want, what you need, what actually feels tru
     url: "https://www.henrikkarlsson.xyz/p/friends-missed",
     author: "Henrik Karlsson",
     dateAdded: "2026-04-17",
-    category: "life",
+    category: "connection",
     medium: "essay",
     tldr: "There are three categories to friendship: pleasure, utility, and virtue. Sometimes, you haven't become friends with someone because you haven't asked them / talked to them about the right topics.",
     thoughts: "If you search hard enough, more often than not, people have more in common with each other than you think. The bottleneck is how long are you willing to spend to find that spark.",
-    tags: ['friends', 'life', 'psychology'],
+    tags: ['friends', 'psychology'],
     notes: `
 The three categories of friendships:
 1. **Pleasure** (personal, self-centered). Someone who makes you laugh, or makes you feel desirable.
@@ -897,12 +893,12 @@ If someone seems boring to you, or a bad fit, it might be that you don’t know 
     url: "https://museguided.substack.com/p/why-we-stay-in-rooms-we-should-leave",
     author: "Tamara",
     dateAdded: "2026-05-29",
-    category: "life",
+    category: "connection",
     favorites: 1,
     medium: "essay",
     tldr: "I hope you are able to leave the room that confines you to find air instead of walls.",
     thoughts: "",
-    tags: ['life', 'relationships', 'psychology'],
+    tags: ['relationships', 'psychology'],
     notes: `
 I haven't been putting Substacks on my website log ever since I've been restacking on Substack itself, but this one resonated with me that it only felt right to share it.
 
@@ -936,7 +932,7 @@ There will never be a perfect time to leave and to go. So go with whatever you h
     medium: "essay",
     tldr: "Every second that you decide to delay giving feedback is a lost opportunity for growth.",
     thoughts: "In a way, I actually really relate to boz + his personality and getting that hard / not-nice-to-hear feedback + criticism can be liberating.",
-    tags: ['feedback', 'life', 'career'],
+    tags: ['feedback', 'leadership'],
     notes: `
 Meta is so big on feedback, so it's no surprise that boz would write about it in his personal blog.
 
@@ -950,11 +946,11 @@ I also think this pairs well with his essay about [Think of Pavlov](https://boz.
     url: "https://giansegato.com/essays/probabilistic-era",
     author: "Gian Segato",
     dateAdded: "2026-08-15",
-    category: "perspective",
+    category: "AI",
     medium: "essay",
     tldr: "The world is changing in a different way than we've previously seen with AI. Previously, we've had deterministic functions where you can put the same input in and get (relatively) the same output out. Now, systems are stochastic because AI can generate new thoughts and ideas. Even people creating AI don't exactly know what's happening.",
     thoughts: "",
-    tags: ['AI', 'learning', 'new-ideas', 'change'],
+    tags: ['products', 'new-ideas'],
     notes: `
 I think we see this cultural shift happen a lot throughout history:
 - Socrates was famously against the idea of writing, believing that people would rely on external marks than utilizing what they had in their mind.
@@ -993,11 +989,11 @@ I initially expected this to be a more "AI" version of taste, but it actually to
     url: "https://thinkingmachines.ai/news/learning-to-replicate-expert-judgment-in-financial-tasks/",
     author: "Thinking Machines",
     dateAdded: "2026-08-24",
-    category: "science",
+    category: "AI",
     medium: "research paper",
     tldr: "",
     thoughts: "",
-    tags: ['taste', 'AI', 'finance'],
+    tags: ['taste', 'finance'],
     notes: `
 AI's use of *differentiated intelligence* in finance.
 :::sidenote
@@ -1021,11 +1017,11 @@ As an overview, Thinking Machines did the following:
     url: "https://darioamodei.com/post/we-must-pace-the-frontier",
     author: "Dario Amodei",
     dateAdded: "2026-09-16",
-    category: "science",
+    category: "AI",
     medium: "essay",
     tldr: "The rise of pacing the frontier + an actionable plan towards it.",
     thoughts: "",
-    tags: ['safety', 'AI'],
+    tags: ['safety'],
     notes: `
 I fear this isn't the first (and most certainly won't be the last) of what AI safety in industry will look like. Maybe let's first cover the basics.
 
@@ -1057,11 +1053,11 @@ I find the second section's details to be the most fascinating. I particularly f
     url: "https://www.anthropic.com/research/reasoning-models-dont-say-think",
     author: "Anthropic",
     dateAdded: "2026-09-17",
-    category: "science",
+    category: "AI",
     medium: "research paper",
     tldr: "",
     thoughts: "",
-    tags: ['safety', 'AI'],
+    tags: ['safety', 'faithfulness'],
     notes: `
 **Chain of Thought** (CoT) is the *process* in which an AI model "thinks out loud"
 

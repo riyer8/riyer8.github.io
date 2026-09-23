@@ -13,6 +13,7 @@ import FavoriteStars from './components/FavoriteStars';
 import QuoteWidget from './components/QuoteWidget/QuoteWidget';
 import { getFavoriteTier, titleToSlug } from './bookshelfUtils';
 import { countByKey, countFavoriteTiers, countTags, formatTagCount } from './tagCounts';
+import { categoryChipStyle } from './categoryColors';
 import {
   buildBookshelfPageSchema,
   itemDescription,
@@ -40,6 +41,7 @@ const BookshelfPage = () => {
   const [sortKey, setSortKey] = useState('dateAdded');
   const [sortDirection, setSortDirection] = useState('desc');
   const [favoriteTier, setFavoriteTier] = useState(null); // 1 | 2 | 3 | null
+  const [activeTag, setActiveTag] = useState(null);
   const [showArchives, setShowArchives] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 50;
@@ -64,6 +66,15 @@ const BookshelfPage = () => {
     () => bookshelfData.filter(item => item.archives).length,
     []
   );
+
+  // Tiny stats strip: shelf-wide totals (archives excluded)
+  const shelfStats = useMemo(() => {
+    const entries = bookshelfData.filter(item => !item.archives);
+    return {
+      entries: entries.length,
+      shelves: new Set(entries.map(r => r.category).filter(Boolean)).size,
+    };
+  }, []);
 
   const { slug } = useParams();
   const navigate = useNavigate();
@@ -96,16 +107,25 @@ const BookshelfPage = () => {
         if (activeCategory && r.category !== activeCategory) return false;
         if (activeMedium && r.medium !== activeMedium) return false;
         if (favoriteTier && getFavoriteTier(r) !== favoriteTier) return false;
+        if (activeTag && !(r.tags || []).includes(activeTag)) return false;
 
-        // 3. Search matching
+        // 3. Search matching across titles, notes, thoughts, and metadata
         if (q) {
-          const matches =
-            (r.title || '').toLowerCase().includes(q) ||
-            (r.category || '').toLowerCase().includes(q) ||
-            (r.medium || '').toLowerCase().includes(q) ||
-            (r.tags || []).join(' ').toLowerCase().includes(q);
+          const haystack = [
+            r.title,
+            r.category,
+            r.medium,
+            r.author,
+            r.tldr,
+            r.thoughts,
+            r.notes,
+            (r.tags || []).join(' '),
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .toLowerCase();
 
-          if (!matches) return false;
+          if (!haystack.includes(q)) return false;
         }
 
         return true;
@@ -127,12 +147,12 @@ const BookshelfPage = () => {
 
         return sortDirection === 'asc' ? comparison : -comparison;
       });
-  }, [search, activeCategory, activeMedium, sortKey, sortDirection, favoriteTier, showArchives]);
+  }, [search, activeCategory, activeMedium, sortKey, sortDirection, favoriteTier, activeTag, showArchives]);
 
   // Reset to page 1 when filters change
   useEffect(() => {
     setCurrentPage(1);
-  }, [search, activeCategory, activeMedium, sortKey, sortDirection, favoriteTier, showArchives]);
+  }, [search, activeCategory, activeMedium, sortKey, sortDirection, favoriteTier, activeTag, showArchives]);
 
   // Calculate paginated data
   const paginatedData = useMemo(() => {
@@ -156,6 +176,18 @@ const BookshelfPage = () => {
     } else {
       setSortKey(key);
       setSortDirection('asc');
+    }
+  };
+
+  // Tags are a fourth filter dimension, kept mutually exclusive with
+  // category / medium / favorites like the other filters.
+  const handleTagToggle = (tag) => {
+    const next = activeTag === tag ? null : tag;
+    setActiveTag(next);
+    if (next) {
+      setActiveCategory(null);
+      setActiveMedium(null);
+      setFavoriteTier(null);
     }
   };
 
@@ -185,6 +217,20 @@ const BookshelfPage = () => {
     navigate('/recent-reads');
   }, [navigate]);
 
+  // Flip through entries without closing the drawer. Follows the current
+  // filter/sort order; falls back to full shelf order for deep-linked entries.
+  const stepSelectedEntry = useCallback((delta) => {
+    if (!selectedItem) return;
+    const list = filtered.some(r => r.title === selectedItem.title)
+      ? filtered
+      : bookshelfData;
+    const index = list.findIndex(r => r.title === selectedItem.title);
+    if (index === -1 || list.length < 2) return;
+    const next = list[(index + delta + list.length) % list.length];
+    setSelectedItem(next);
+    navigate(`/recent-reads/${titleToSlug(next.title)}`);
+  }, [selectedItem, filtered, navigate]);
+
   const copyEntryLink = useCallback(
     async (event, item) => {
       event.preventDefault();
@@ -205,7 +251,14 @@ const BookshelfPage = () => {
   useEffect(() => {
     if (!selectedItem) return undefined;
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") closeDetail();
+      if (event.key === "Escape") {
+        closeDetail();
+        return;
+      }
+      // Don't hijack arrows while scrolling the tag strip
+      if (event.target.closest?.('.bookshelf-detail__tags')) return;
+      if (event.key === "ArrowLeft") stepSelectedEntry(-1);
+      else if (event.key === "ArrowRight") stepSelectedEntry(1);
     };
     document.addEventListener("keydown", handleKeyDown);
     closeButtonRef.current?.focus();
@@ -215,7 +268,7 @@ const BookshelfPage = () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
     };
-  }, [closeDetail, selectedItem]);
+  }, [closeDetail, selectedItem, stepSelectedEntry]);
 
 
   const tableStyle = {
@@ -322,6 +375,12 @@ const BookshelfPage = () => {
           </div>
         </div>
 
+        <div className="bookshelf-stats" aria-label="Bookshelf stats">
+          <span className="bookshelf-stats__item"><strong>{shelfStats.entries}</strong> entries</span>
+          <span className="bookshelf-stats__dot" aria-hidden="true">·</span>
+          <span className="bookshelf-stats__item"><strong>{shelfStats.shelves}</strong> shelves</span>
+        </div>
+
         <QuoteWidget />
 
         <div className="bookshelf-controls" style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
@@ -337,6 +396,7 @@ const BookshelfPage = () => {
                 setActiveCategory(null);
                 setActiveMedium(null);
                 setFavoriteTier(null);
+                setActiveTag(null);
                 setSearch('');
               }}
             >
@@ -355,6 +415,7 @@ const BookshelfPage = () => {
                     setFavoriteTier((prev) => (prev === tier ? null : tier));
                     setActiveCategory(null);
                     setActiveMedium(null);
+                    setActiveTag(null);
                     if (favoriteTier !== tier) {
                       setSortKey('favorites');
                       setSortDirection('desc');
@@ -376,18 +437,32 @@ const BookshelfPage = () => {
                 </button>
               );
             })}
+            {activeTag && (
+              <button
+                type="button"
+                key={`tag-${activeTag}`}
+                className={chipClass(true)}
+                aria-pressed="true"
+                data-tooltip={formatTagCount(`#${activeTag}`, tagCounts[activeTag] || 0)}
+                onClick={() => setActiveTag(null)}
+              >
+                #{activeTag} ×
+              </button>
+            )}
             {categoriesExpanded
               ? categories.map(c => (
                 <button
                   type="button"
                   key={c}
-                  className={chipClass(activeCategory === c)}
+                  className={`${chipClass(activeCategory === c)} bookshelf-chip--cat`}
+                  style={categoryChipStyle(c, theme.isDarkMode, activeCategory === c)}
                   aria-pressed={activeCategory === c}
                   data-tooltip={formatTagCount(c, categoryCounts[c] || 0)}
                   onClick={() => {
                     setActiveCategory(prev => prev === c ? null : c);
                     setActiveMedium(null);
                     setFavoriteTier(null);
+                    setActiveTag(null);
                   }}
                 >
                   {c}
@@ -397,13 +472,15 @@ const BookshelfPage = () => {
                 <button
                   type="button"
                   key={c}
-                  className={chipClass(activeCategory === c)}
+                  className={`${chipClass(activeCategory === c)} bookshelf-chip--cat`}
+                  style={categoryChipStyle(c, theme.isDarkMode, activeCategory === c)}
                   aria-pressed={activeCategory === c}
                   data-tooltip={formatTagCount(c, categoryCounts[c] || 0)}
                   onClick={() => {
                     setActiveCategory(prev => prev === c ? null : c);
                     setActiveMedium(null);
                     setFavoriteTier(null);
+                    setActiveTag(null);
                   }}
                 >
                   {c}
@@ -416,7 +493,7 @@ const BookshelfPage = () => {
                 className="bookshelf-chip bookshelf-chip--ghost"
                 onClick={() => setCategoriesExpanded(true)}
               >
-                more tags
+                more filters
               </button>
             )}
             {categoriesExpanded && (
@@ -432,6 +509,7 @@ const BookshelfPage = () => {
                       setActiveMedium(prev => prev === m ? null : m);
                       setActiveCategory(null);
                       setFavoriteTier(null);
+                      setActiveTag(null);
                     }}
                   >
                     {m}
@@ -457,7 +535,7 @@ const BookshelfPage = () => {
                   className="bookshelf-chip bookshelf-chip--ghost"
                   onClick={() => setCategoriesExpanded(false)}
                 >
-                  less tags
+                  fewer filters
                 </button>
               </>
             )}
@@ -613,11 +691,13 @@ const BookshelfPage = () => {
                   <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
                     <button
                       type="button"
-                      className="bookshelf-chip bookshelf-chip--cell"
+                      className="bookshelf-chip bookshelf-chip--cell bookshelf-chip--cat"
+                      style={categoryChipStyle(row.category, theme.isDarkMode, activeCategory === row.category)}
                       data-tooltip={row.category ? formatTagCount(row.category, categoryCounts[row.category] || 0) : undefined}
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveCategory(prev => prev === row.category ? null : row.category);
+                        setActiveTag(null);
                       }}
                     >
                       {row.category}
@@ -632,34 +712,29 @@ const BookshelfPage = () => {
                       onClick={(e) => {
                         e.stopPropagation();
                         setActiveMedium(prev => prev === row.medium ? null : row.medium);
+                        setActiveTag(null);
                       }}
                     >
                       {row.medium}
                     </button>
                   </td>
                   <td style={tdStyle}>
-                    {(() => {
-                      const sortedTags = (row.tags || []).slice().sort((a, b) => a.localeCompare(b));
-                      const displayTags = sortedTags.slice(0, 2);
-                      const remainingCount = sortedTags.length - 2;
-
-                      return (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
-                          {displayTags.map((t, idx) => (
-                            <Badge key={idx} theme={theme} count={tagCounts[t] || 0}>{t}</Badge>
-                          ))}
-                          {remainingCount > 0 && (
-                            <span style={{
-                              fontSize: 'var(--text-meta)',
-                              color: theme.colors.textSecondary,
-                              fontWeight: 500
-                            }}>
-                              +{remainingCount}
-                            </span>
-                          )}
-                        </div>
-                      );
-                    })()}
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', flexWrap: 'wrap' }}>
+                      {(row.tags || []).slice().sort((a, b) => a.localeCompare(b)).map((t) => (
+                        <Badge
+                          key={t}
+                          theme={theme}
+                          count={tagCounts[t] || 0}
+                          active={activeTag === t}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            handleTagToggle(t);
+                          }}
+                        >
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
                   </td>
                 </tr>
               ))}
@@ -778,7 +853,25 @@ const BookshelfPage = () => {
                     ) : null}
                   </div>
 
-                  <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+                  <div style={{ display: 'flex', gap: '0.25rem', alignItems: 'center' }}>
+                    <button
+                      type="button"
+                      onClick={() => stepSelectedEntry(-1)}
+                      aria-label="Previous entry"
+                      title="Previous entry"
+                      className="bookshelf-drawer__nav"
+                    >
+                      ‹
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => stepSelectedEntry(1)}
+                      aria-label="Next entry"
+                      title="Next entry"
+                      className="bookshelf-drawer__nav"
+                    >
+                      ›
+                    </button>
                     {selectedItem.url ? (
                       <a
                         href={selectedItem.url}
@@ -802,6 +895,27 @@ const BookshelfPage = () => {
                   </div>
                 </div>
 
+                <div className="bookshelf-detail__meta-row">
+                  {selectedItem.category ? (
+                    <span
+                      className="bookshelf-chip bookshelf-chip--cell bookshelf-chip--cat bookshelf-chip--static"
+                      style={categoryChipStyle(selectedItem.category, theme.isDarkMode, false)}
+                    >
+                      {selectedItem.category}
+                    </span>
+                  ) : null}
+                  {selectedItem.medium ? (
+                    <span className="bookshelf-chip bookshelf-chip--cell bookshelf-chip--static">
+                      {selectedItem.medium}
+                    </span>
+                  ) : null}
+                  <FavoriteStars
+                    item={selectedItem}
+                    size={12}
+                    color={theme.isDarkMode ? '#FFD700' : '#000'}
+                  />
+                </div>
+
                 <div className="bookshelf-detail__metadata" style={{ color: theme.colors.textSecondary }}>
                   {(selectedItem.tags || []).length ? (
                     <div
@@ -821,7 +935,18 @@ const BookshelfPage = () => {
                       }}
                     >
                       {selectedItem.tags.map((tag) => (
-                        <Badge key={tag} theme={theme} count={tagCounts[tag] || 0}>{tag}</Badge>
+                        <Badge
+                          key={tag}
+                          theme={theme}
+                          count={tagCounts[tag] || 0}
+                          active={activeTag === tag}
+                          onClick={() => {
+                            handleTagToggle(tag);
+                            closeDetail();
+                          }}
+                        >
+                          {tag}
+                        </Badge>
                       ))}
                     </div>
                   ) : null}

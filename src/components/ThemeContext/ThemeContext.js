@@ -35,8 +35,8 @@ export const ThemeProvider = ({ children }) => {
                 : 'rgba(255, 255, 255, 0.9)',
 
             /* Text */
-            text: isDarkMode ? '#e0e0e0' : '#333333',
-            textSecondary: isDarkMode ? '#b0b0b0' : '#666666',
+            text: isDarkMode ? '#ececec' : '#333333',
+            textSecondary: isDarkMode ? '#c6c6c6' : '#666666',
 
             /* Brand accents (DO NOT animate icons with these) */
             accent: '#4ECDC4',
