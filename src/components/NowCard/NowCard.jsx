@@ -31,24 +31,41 @@ const TABS = [
 const isInternalHref = (href) =>
   typeof href === "string" && href.startsWith("/") && !href.startsWith("//");
 
-const TextLink = ({ href, className, children, onNavigate }) => {
+// Text stays plain; the link lives in a small ↗ icon at the end of the text.
+const TextLink = ({ href, children, onNavigate }) => {
   if (!href) return children;
-  if (isInternalHref(href)) {
-    return (
-      <Link to={href} className={className} onClick={onNavigate}>
-        {children}
-      </Link>
-    );
-  }
-  return (
+  const label =
+    typeof children === "string" ? `Open link: ${children}` : "Open link";
+  const icon = (
+    <span className="now-card__link-icon" aria-hidden="true">
+      ↗
+    </span>
+  );
+  const link = isInternalHref(href) ? (
+    <Link
+      to={href}
+      className="now-card__icon-link"
+      aria-label={label}
+      onClick={onNavigate}
+    >
+      {icon}
+    </Link>
+  ) : (
     <a
       href={href}
-      className={className}
+      className="now-card__icon-link"
+      aria-label={label}
       target="_blank"
       rel="noopener noreferrer"
     >
-      {children}
+      {icon}
     </a>
+  );
+  return (
+    <>
+      {children}
+      {link}
+    </>
   );
 };
 
@@ -61,11 +78,7 @@ const NowPane = ({ onNavigate }) => (
       <div key={section.label} className="now-card__section">
         <div className="now-card__label">{section.label}</div>
         <div className="now-card__text">
-          <TextLink
-            href={section.href}
-            className="now-card__link"
-            onNavigate={onNavigate}
-          >
+          <TextLink href={section.href} onNavigate={onNavigate}>
             {section.text}
           </TextLink>
         </div>
@@ -80,11 +93,7 @@ const UsesPane = ({ onNavigate }) => (
       <li key={section.label} className="now-card__use">
         <span className="now-card__use-label">{section.label}</span>
         <span className="now-card__use-value">
-          <TextLink
-            href={section.href}
-            className="now-card__link"
-            onNavigate={onNavigate}
-          >
+          <TextLink href={section.href} onNavigate={onNavigate}>
             {section.text}
           </TextLink>
         </span>

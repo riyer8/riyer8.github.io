@@ -23,7 +23,6 @@ import { ChangelogProvider } from "./components/Changelog/ChangelogModal";
 import { SiteToastProvider } from "./components/SiteToast/SiteToast";
 import SiteFooter from "./components/SiteFooter/SiteFooter";
 import TabAttentionTitle from "./components/TabAttentionTitle";
-import CursorSparkles from "./components/CursorSparkles";
 import DaydreamMode from "./components/Daydream/DaydreamMode";
 import { logConsoleEgg } from "./components/consoleEgg";
 
@@ -108,7 +107,6 @@ const App = () => {
               <ThemeToggle />
               <SeasonalToggleManager />
               <TabAttentionTitle />
-              <CursorSparkles />
               <DaydreamMode />
               {showLandingScreen ? (
                 <HomeIntroWall blocksInteraction={landingBlocksInteraction}>

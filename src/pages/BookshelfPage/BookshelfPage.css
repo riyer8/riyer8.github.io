@@ -57,6 +57,9 @@
   flex: 0 0 auto;
   margin-right: 0;
   white-space: nowrap;
+  /* Drawer tags stay subordinate to the title */
+  font-size: var(--text-caption);
+  padding: 0.08rem 0.42rem;
 }
 
 .bookshelf-detail__date {
@@ -326,6 +329,62 @@
   }
 }
 
+/* Category-tinted chips keep their own hue on the active hover glow */
+.bookshelf-chip--cat.bookshelf-chip--active:hover {
+  box-shadow: 0 3px 10px color-mix(in srgb, var(--cat-solid) 45%, transparent);
+}
+
+/* Tiny stats strip under the hero */
+.bookshelf-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin: 0 0 1rem 0.1rem;
+  color: var(--bs-muted);
+  font-size: var(--text-caption);
+  line-height: 1.4;
+}
+
+.bookshelf-stats__item strong {
+  color: var(--bs-text);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.bookshelf-stats__dot {
+  opacity: 0.45;
+}
+
+/* Detail drawer: meta row, TL;DR callout, prev/next nav */
+.bookshelf-detail__meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.bookshelf-chip--static {
+  cursor: default;
+}
+
+.bookshelf-drawer__nav {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: var(--bs-muted);
+  line-height: 1;
+  padding: 0.25rem 0.35rem;
+  border-radius: 6px;
+  transition: color 160ms ease, background 160ms ease;
+}
+
+.bookshelf-drawer__nav:hover {
+  color: var(--bs-text);
+  background: color-mix(in srgb, var(--bs-text) 6%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .bookshelf-chip,
   .bookshelf-chip:hover,
@@ -336,6 +395,7 @@
   .bookshelf-search,
   .bookshelf-drawer__close,
   .bookshelf-drawer__source,
+  .bookshelf-drawer__nav,
   .bookshelf-detail__tags {
     transition: none;
     transform: none;

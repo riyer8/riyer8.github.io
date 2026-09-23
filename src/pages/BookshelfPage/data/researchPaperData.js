@@ -3,6 +3,7 @@
 const researchPaperData = [
   {
     title: "Neural Adaptive Video Streaming with Pensieve (2017)",
+    author: "Hongzi Mao et al.",
     url: "https://dl.acm.org/doi/10.1145/3098822.3098843",
     dateAdded: "2025-12-22",
     category: "science",
@@ -43,6 +44,7 @@ This is the image that can be found in the article, displaying the architecture 
 
   {
     title: "A Buffer-Based Approach to Rate Adaptation: Evidence from a Large Video Streaming Service (2014)",
+    author: "Te-Yuan Huang et al.",
     url: "https://yuba.stanford.edu/~nickm/papers/sigcomm2014-video.pdf",
     dateAdded: "2025-12-27",
     category: "science",
@@ -83,9 +85,10 @@ This is the image that can be found in the article, displaying the architecture 
 
   {
     title: "Language Models as Knowledge Bases? (2019)",
+    author: "Fabio Petroni et al.",
     url: "https://arxiv.org/abs/1909.01066",
     dateAdded: "2026-03-16",
-    category: "science",
+    category: "AI",
     medium: "research paper",
     tags: ['LLMs'],
     tldr: "",
@@ -124,15 +127,15 @@ This paper showed that
   },
 
   {
-    title: "Self play and autocurricula In the age of agents",
+    title: "Self-play and Autocurricula in the Age of Agents",
     url: "https://www.amplifypartners.com/blog-posts/self-play-and-autocurricula-in-the-age-of-agents",
     author: "Rohan Virani",
     dateAdded: "2026-04-18",
-    category: "science",
+    category: "AI",
     medium: "essay",
     tldr: "",
     thoughts: "",
-    tags: ['science', 'AI', 'machine-learning'],
+    tags: ['agents', 'reinforcement-learning'],
     notes: `
 ### This article is about self-play with reinforcement learning (RL), which results in autocurricula - or automatic curriculum. 
 
@@ -207,9 +210,10 @@ Here, LLMs can take an environment and mutate it (as seen in AlphaEvolve). EAs c
 
   {
     title: "Deep Reinforcement Learning from Human Preferences (2017)",
+    author: "Paul Christiano et al.",
     url: "https://arxiv.org/abs/1706.03741",
     dateAdded: "2026-07-25",
-    category: "science",
+    category: "AI",
     medium: "research paper",
     tags: ['LLMs', 'deep-rl', 'human-preferences'],
     tldr: "Integrating humans by using their feedback as the reward signal for complex goals.",

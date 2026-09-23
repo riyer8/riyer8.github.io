@@ -6,11 +6,11 @@ const archiveData = [
     author: "Amber Atherton",
     url: "https://patron.fund/blog/toward-computational-taste-llms-aesthetics-judgment",
     dateAdded: "2025-12-22",
-    category: "science",
+    category: "AI",
     medium: "essay",
     tldr: "Models are able to optimize on taste.",
     thoughts: "In a way, we want LLMs to be objectively correct. But what if we spin it around so that LLMs can learn our subjective preferences and have their own taste that influences their answers?",
-    tags: ['taste', 'LLMs', 'personalization', 'AI'],
+    tags: ['taste', 'LLMs', 'personalization'],
     notes: `
 :::figure
 ![Taste across platforms and methods](https://riyer8.github.io/assets/bookshelfImages/taste.png)
@@ -58,7 +58,7 @@ This may also include understanding how **your friends'** taste fingerprint is e
     medium: "essay",
     tldr: "",
     thoughts: "",
-    tags: ['interest', 'growth', 'career'],
+    tags: ['interest', 'growth'],
     notes: `
 :::quote
 We don’t live in the Industrial Age anymore. Specializing in one skill is almost certain death.
@@ -87,14 +87,14 @@ How to convert your own interests into a business. Image found in the original a
   },
 
   {
-    title: "A Critical Essay On the Art of Performance",
+    title: "A Critical Essay on the Art of Performance",
     author: "Gunnar de Jong",
     url: "https://medium.com/%40gunnardejong/a-critical-essay-on-the-art-of-performance-as-guided-by-work-on-improvisation-2017-58cad35eb91d",
     dateAdded: "2025-11-30",
     category: "creativity",
     medium: "essay",
     archives: true,
-    tags: ["improv", "growth", 'creativity'],
+    tags: ["improv", "growth"],
     tldr: "de Jong explores the richness of improv from the actors' and the audience's perspectives.",
     thoughts: "I truly love the depth with which this essay describes improvisers and the ways in which audiences can abstract away the hard work used to make scenes natural and believable.",
     notes: `
@@ -136,7 +136,7 @@ Just another quote that I really loved about his distinction between great impro
     archives: true,
     tldr: "Create the first draft of yourself because it makes it much easier to iterate and improve.",
     thoughts: "",
-    tags: ['be-a-fool'],
+    tags: ['courage'],
     notes: `
 A few of my favorite quotes:
 > You can iterate and fix the bad first draft. That's the most valuable thing. And so that's what you need. **You need a bad first draft of yourself.**

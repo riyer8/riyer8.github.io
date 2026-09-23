@@ -158,7 +158,7 @@ const bookData = [
     category: "creativity",
     medium: "book",
     archives: true,
-    tags: ["improv", "growth", 'creativity'],
+    tags: ["improv", "growth"],
     tldr: "The art of improv is already within you; you just have to show up!",
     thoughts: "So insightful about integrating improv into your life from someone highly respected in the field (and from Stanford Improv!).",
     notes: `Below is a laundry list of self-selected quotes from the book that I really liked.
@@ -233,7 +233,7 @@ const bookData = [
   },
 
   {
-    title: "Thinking In Bets",
+    title: "Thinking in Bets",
     author: "Annie Duke",
     url: "https://www.goodreads.com/book/show/35957157-thinking-in-bets",
     dateAdded: "2025-11-28",
@@ -333,7 +333,7 @@ const bookData = [
     category: "creativity",
     medium: "essay",
     favorites: 1,
-    tags: ["career", "creativity"],
+    tags: ["career"],
     tldr: "The best way to live is to create. Don't leave this world with ideas that could have been something out there.",
     thoughts: "Oh wow. Definitely something I'm coming back to later.",
     notes: ` 
@@ -355,7 +355,7 @@ Some of my favorite quotes from this chapter of a much larger book:
     medium: "book",
     tldr: "Saying yes to strangers can truly change your life.",
     thoughts: "More of a true memoir than a self-improvement book (and I prefer it that way).",
-    tags: ['self-belief', 'learning', 'creativity'],
+    tags: ['self-belief', 'learning', 'creativity', 'courage'],
     notes: `
 One of the reasons why I loved this book is the beginning of it seemed almost relatable. (Granted, by the end of the book, his life experiences are wildly different than anyone - even he - can imagine at 23).
 > I was a disciple of the #hustle culture, committed to success at all costs, convinced that with enough willpower, anything was possible. All I had to do was *grind*, and it would work out.
@@ -367,7 +367,7 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
   },
 
   {
-    title: "Spy The Lie",
+    title: "Spy the Lie",
     author: "Philip Houston, Michael Floyd, Susan Carnicero, Don Tennant",
     url: "https://www.goodreads.com/book/show/13167156-spy-the-lie",
     dateAdded: "2025-12-29",
@@ -375,7 +375,7 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
     medium: "book",
     tldr: "ex-CIA officers provide a handbook on how to detect deception.",
     thoughts: "While it provides good frameworks, I found that it was mostly a handbook rather than detailed frameworks.",
-    tags: ['psychology', 'deception'],
+    tags: ['deception'],
     notes: `
 > In order to determine whether a person is being untruthful, we need to look and listen for the first deceptive behavior to occur within the first five seconds after the stimulus is delivered.
 
@@ -446,9 +446,9 @@ Basically, change is coming and the quicker we move and iterate, the faster we c
     url: "https://www.goodreads.com/book/show/25614898-when-breath-becomes-air",
     dateAdded: "2026-03-11",
     category: "life",
-    tags: ['philosophy', 'morality', 'stanford'],
+    tags: ['philosophy', 'morality', 'stanford', 'mortality'],
     medium: "book",
-    favorites: 1,
+    favorites: 2,
     tldr: "",
     thoughts: "Truly has to be one of my favorite books I've ever read in my life. Apart from the fact that Kalanithi went to Stanford, his writing is so beautiful and reflective.",
     notes: `
@@ -497,7 +497,7 @@ About being told that he's accomplished so much:
 > life was lived in the first twenty years and the remainder was just reflection. (pg. 198)
 `
   },
-  
+
 ];
 
 export default bookData;

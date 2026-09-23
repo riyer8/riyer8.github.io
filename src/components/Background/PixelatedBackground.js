@@ -9,13 +9,11 @@ const FADE_RATE = 3.5;
 
 const createStars = (width, height) =>
     Array.from({ length: STAR_COUNT }, () => {
-        const bright = Math.random() < 0.14;
+        const bright = Math.random() < 0.08;
         return {
             x: Math.random() * width,
             y: Math.random() * height,
-            radius: bright
-                ? 2.2 + Math.random() * 1.2
-                : 1.15 + Math.random() * 1.05,
+            radius: bright ? 4 + Math.random() * 2.2 : 1.4 + Math.random() * 1.1,
             phase: Math.random() * Math.PI * 2,
             speed: 0.5 + Math.random() * 1.7,
             base: bright ? 1 : 0.72 + Math.random() * 0.28,
@@ -92,6 +90,25 @@ const PixelatedBackground = ({ embedded = false }) => {
 
         const lerp = (a, b, t) => a + (b - a) * t;
 
+        // Crisp 4-point sparkle — small star shapes, never circles.
+        // The star loop already sets 'lighter' composite before drawing.
+        const drawSparkle = (x, y, outerR, rgb, alpha) => {
+            if (outerR <= 0 || alpha <= 0) return;
+            const innerR = outerR * 0.2;
+            ctx.beginPath();
+            for (let i = 0; i < 8; i++) {
+                const rad = i % 2 === 0 ? outerR : innerR;
+                const a = (i / 8) * Math.PI * 2 - Math.PI / 2;
+                const px = x + Math.cos(a) * rad;
+                const py = y + Math.sin(a) * rad;
+                if (i === 0) ctx.moveTo(px, py);
+                else ctx.lineTo(px, py);
+            }
+            ctx.closePath();
+            ctx.fillStyle = `rgba(${rgb}, ${alpha})`;
+            ctx.fill();
+        };
+
         const draw = () => {
             const reduced = reducedMotionRef.current;
             const now = performance.now();
@@ -154,8 +171,14 @@ const PixelatedBackground = ({ embedded = false }) => {
                     lightRadius
                 );
 
-                lightGradient.addColorStop(0, 'rgba(255,255,255, 0.08)');
-                lightGradient.addColorStop(0.4, 'rgba(255,255,255, 0.04)');
+                // Dimmer in dark mode so the glow doesn't wash out
+                // text sitting under the cursor.
+                const lightPeak = isDarkModeRef.current ? 0.05 : 0.08;
+                lightGradient.addColorStop(0, `rgba(255,255,255, ${lightPeak})`);
+                lightGradient.addColorStop(
+                    0.4,
+                    `rgba(255,255,255, ${lightPeak * 0.5})`
+                );
                 lightGradient.addColorStop(1, 'rgba(255,255,255, 0)');
 
                 ctx.globalCompositeOperation = 'lighter';
@@ -183,6 +206,28 @@ const PixelatedBackground = ({ embedded = false }) => {
 
             if (starOpacity > 0.001) {
                 ctx.globalCompositeOperation = 'lighter';
+
+                // Cursor repulsion: nearby stars clear away from the pointer.
+                // Stars only render in dark mode, and the effect is skipped
+                // for reduced-motion users.
+                const repelActive = !reduced;
+                const repelRadius = 220;
+                const repelMax = 36;
+                const mousePx =
+                    canvas.width / 2 + mouse.x * canvas.width * 0.5;
+                const mousePy =
+                    canvas.height / 2 + mouse.y * canvas.height * 0.5;
+                const repelOffset = (star) => {
+                    if (!repelActive) return null;
+                    const dx = star.x - mousePx;
+                    const dy = star.y - mousePy;
+                    const dist = Math.hypot(dx, dy);
+                    if (dist >= repelRadius || dist === 0) return null;
+                    const t = 1 - dist / repelRadius;
+                    const push = t * t * repelMax;
+                    return { x: (dx / dist) * push, y: (dy / dist) * push };
+                };
+
                 stars.forEach((star) => {
                     const twinkle = reduced
                         ? 1
@@ -192,24 +237,22 @@ const PixelatedBackground = ({ embedded = false }) => {
                                   Math.sin(twinkleT * star.speed + star.phase)
                               );
                     const alpha = star.base * twinkle * starOpacity;
+                    const off = repelOffset(star);
+                    const sx = off ? star.x + off.x : star.x;
+                    const sy = off ? star.y + off.y : star.y;
 
                     if (star.bright) {
-                        ctx.fillStyle = `rgba(${STAR_RGB}, ${alpha * 0.28})`;
-                        ctx.beginPath();
-                        ctx.arc(
-                            star.x,
-                            star.y,
-                            star.radius * 2.3,
-                            0,
-                            Math.PI * 2
+                        drawSparkle(sx, sy, star.radius, STAR_RGB, alpha * 0.85);
+                        drawSparkle(
+                            sx,
+                            sy,
+                            star.radius * 0.42,
+                            '255, 255, 255',
+                            Math.min(1, alpha * 1.05)
                         );
-                        ctx.fill();
+                    } else {
+                        drawSparkle(sx, sy, star.radius, STAR_RGB, alpha);
                     }
-
-                    ctx.fillStyle = `rgba(${STAR_RGB}, ${alpha})`;
-                    ctx.beginPath();
-                    ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                    ctx.fill();
                 });
                 ctx.globalCompositeOperation = 'source-over';
 
@@ -295,7 +338,7 @@ const PixelatedBackground = ({ embedded = false }) => {
             linear-gradient(0deg, ${theme.colors.border} 1px, transparent 1px)
         `,
         backgroundSize: '40px 40px',
-        opacity: theme.isDarkMode ? 0.28 : 0.45,
+        opacity: theme.isDarkMode ? 0.24 : 0.45,
     };
 
     const colorOverlayStyle = {

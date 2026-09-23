@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import SidebarContent from "./SidebarContent";
 
 const Sidebar = () => {
-  const [shouldCollapseSidebar, setShouldCollapseSidebar] = useState(false);
+  const [shouldCollapseSidebar, setShouldCollapseSidebar] = useState(
+    window.innerWidth <= 900
+  );
 
   useEffect(() => {
     const checkScreenSize = () => {

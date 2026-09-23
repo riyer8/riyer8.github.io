@@ -79,6 +79,7 @@
   font-size: var(--text-meta);
   line-height: var(--leading-normal);
   color: var(--about-text);
+  text-shadow: var(--about-shadow);
 }
 
 .about-page__body em {
