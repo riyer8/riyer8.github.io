@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useReducedMotion } from "framer-motion";
 import { useTheme } from "../ThemeContext/ThemeContext";
-import { DREAM_WORDS } from "../../data/dreamWords";
+import { DREAM_WORDS } from "./dreamWords";
 import "./DaydreamMode.css";
 
 const DREAM_MS = 6000;

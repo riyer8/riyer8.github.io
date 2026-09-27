@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useTheme } from '../ThemeContext/ThemeContext';
-import { getSeason, SEASON_PALETTES } from '../../data/seasonPalettes';
+import { getSeason, SEASON_PALETTES } from '../../features/seasonal/seasonPalettes';
 
 const STAR_COUNT = 90;
 const STAR_RGB = '232, 242, 255';

@@ -9,7 +9,7 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import { useTheme } from "../ThemeContext/ThemeContext";
-import { CHANGELOG } from "../../data/changelog";
+import { CHANGELOG } from "./changelog";
 import "../NowCard/NowCard.css";
 import "./ChangelogModal.css";
 

@@ -10,3 +10,4 @@ build/
 credentials.json
 secrets.json
 .cursor/*
+todo.md

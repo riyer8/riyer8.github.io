@@ -4,16 +4,16 @@ import { Routes, Route, useLocation } from "react-router";
 import { ThemeProvider } from "./components/ThemeContext/ThemeContext";
 import { PixelatedBackground, ThemeToggle } from "./components";
 import AnimatedLayout from "./components/PageTransition/AnimatedLayout";
-import { HomePage } from "./pages/HomePage";
-import HomeLandingScreen from "./pages/HomePage/intro/HomeLandingScreen";
+import { HomePage } from "./pages/home";
+import HomeLandingScreen from "./pages/home/landing/HomeLandingScreen";
 import {
   clearHomeIntroCover,
   markHomeIntroSeen,
   shouldPlayHomeIntro,
-} from "./pages/HomePage/intro/homeIntroStorage";
-import BookshelfRoute from "./pages/BookshelfPage/BookshelfRoute";
-import AboutPage from "./pages/AboutPage/AboutPage";
-import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+} from "./pages/home/landing/homeIntroStorage";
+import BookshelfRoute from "./pages/bookshelf/BookshelfRoute";
+import AboutPage from "./pages/about/AboutPage";
+import NotFoundPage from "./pages/not-found/NotFoundPage";
 import HomeDocumentTitle from "./components/DocumentTitle/HomeDocumentTitle";
 import SeasonalToggleManager from "./features/seasonal/ToggleManager";
 import { formatPageTitle } from "./seo/pageMetadata";

@@ -62,13 +62,13 @@ const RENDER_RETRIES = Math.max(
   Number.parseInt(process.env.PRERENDER_RETRIES || "2", 10) || 2
 );
 const bookshelfData =
-  require("../src/pages/BookshelfPage/data/bookshelfData").default;
+  require("../src/pages/bookshelf/data/bookshelfData").default;
 const {
   titleToSlug,
-} = require("../src/pages/BookshelfPage/bookshelfUtils");
+} = require("../src/pages/bookshelf/bookshelfUtils");
 const {
   stripIntroSkipFromHtml,
-} = require("../src/pages/HomePage/intro/homeIntroStorage");
+} = require("../src/pages/home/landing/homeIntroStorage");
 
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",

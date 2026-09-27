@@ -1,0 +1,60 @@
+.collapsible-tags {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.tag-overflow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  border: 1px dashed var(--bs-border);
+  background: transparent;
+  color: var(--bs-muted);
+  font-family: var(--font-ui);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-medium);
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    color 160ms ease,
+    background 160ms ease;
+}
+
+.tag-overflow:hover {
+  color: var(--bs-text);
+  background: color-mix(in srgb, var(--bs-text) 6%, transparent);
+}
+
+.tag-overflow:active {
+  transform: scale(0.96);
+}
+
+/* Drawer tags stay on one line until expanded, and the control matches badge size. */
+.bookshelf-detail__tags.collapsible-tags {
+  flex-wrap: nowrap;
+  gap: 0.4rem;
+}
+
+.bookshelf-detail__tags.collapsible-tags--expanded {
+  flex-wrap: wrap;
+  overflow-x: visible;
+}
+
+.bookshelf-detail__tags .tag-overflow {
+  font-size: var(--text-caption);
+  padding: 0.08rem 0.42rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag-overflow,
+  .tag-overflow:active {
+    transition: none;
+    transform: none;
+  }
+}
