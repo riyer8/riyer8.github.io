@@ -38,7 +38,7 @@
     "form-data": "^3.0.5",
     "http-proxy-middleware": "^2.0.10",
     "webpack-dev-server": "^5.2.6",
-    "launch-editor": "^2.14.1",
+    "launch-editor": "^2.14.2",
     "js-yaml": "^4.3.2",
     "@babel/core": "^7.29.7",
     "tinyglobby": {
