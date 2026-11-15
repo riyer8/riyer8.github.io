@@ -1,14 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.7b7485ef.css",
-    "main.js": "/static/js/main.7c473da6.js",
+    "main.css": "/static/css/main.e6b59d1f.css",
+    "main.js": "/static/js/main.8bbcb70c.js",
     "static/media/waterfall.JPG": "/static/media/waterfall.7e491dc9e65c5ea478d8.JPG",
     "static/media/peak.jpg": "/static/media/peak.cda1a0e69be73bdd8cc9.jpg",
     "static/media/bookshelf.png": "/static/media/bookshelf.c98aa6c7b52893b21e82.png",
     "static/media/free.jpg": "/static/media/free.abd8bd2fec0ab35479f7.jpg",
     "static/media/photo7.png": "/static/media/photo7.584c6a5bfc527f75e0ff.png",
-    "static/media/photo4.png": "/static/media/photo4.e2b1374c2e842593eb69.png",
-    "static/media/photo5.png": "/static/media/photo5.081da57b54977c81ac52.png",
+    "static/media/palace_dark.jpg": "/static/media/palace_dark.dea1578d33e597ce3db6.jpg",
+    "static/media/stanford.png": "/static/media/stanford.e2b1374c2e842593eb69.png",
+    "static/media/katla.png": "/static/media/katla.081da57b54977c81ac52.png",
     "static/media/KaTeX_AMS-Regular.ttf": "/static/media/KaTeX_AMS-Regular.853be92419a6c3766b9a.ttf",
     "static/media/KaTeX_Main-Regular.ttf": "/static/media/KaTeX_Main-Regular.9eba1d77abcf2aa6e94e.ttf",
     "static/media/KaTeX_Main-Bold.ttf": "/static/media/KaTeX_Main-Bold.8169508bf58f8bd92ad8.ttf",
@@ -155,14 +156,14 @@
     "static/media/inter-vietnamese-600-normal.woff2": "/static/media/inter-vietnamese-600-normal.6984cf5e8583fac83be3.woff2",
     "static/media/inter-vietnamese-400-normal.woff2": "/static/media/inter-vietnamese-400-normal.44c9df135eec470b0ab6.woff2",
     "static/media/KaTeX_Size4-Regular.woff2": "/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
-    "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "index.html": "/index.html",
+    "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.7b7485ef.css.map": "/static/css/main.7b7485ef.css.map",
-    "main.7c473da6.js.map": "/static/js/main.7c473da6.js.map"
+    "main.e6b59d1f.css.map": "/static/css/main.e6b59d1f.css.map",
+    "main.8bbcb70c.js.map": "/static/js/main.8bbcb70c.js.map"
   },
   "entrypoints": [
-    "static/css/main.7b7485ef.css",
-    "static/js/main.7c473da6.js"
+    "static/css/main.e6b59d1f.css",
+    "static/js/main.8bbcb70c.js"
   ]
 }
