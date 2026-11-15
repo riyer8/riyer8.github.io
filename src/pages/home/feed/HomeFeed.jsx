@@ -3,7 +3,11 @@ import { useTheme } from "../../../components/ThemeContext/ThemeContext";
 import { SITE } from "../../../seo/siteMetadata";
 import StatusWidget from "../status/StatusWidget";
 import FavoriteStars from "../../bookshelf/components/FavoriteStars";
-import { SELECTED_BUILDS, getRecentReads } from "./homeFeedData";
+import {
+  SELECTED_BUILDS,
+  getBookshelfTotal,
+  getRecentReads,
+} from "./homeFeedData";
 import useSubstackPosts from "./useSubstackPosts";
 import "./HomeFeed.css";
 
@@ -13,10 +17,13 @@ const ExternalArrow = () => (
   </span>
 );
 
-const SectionHead = ({ id, title, href, to, linkLabel }) => (
+const SectionHead = ({ id, title, count, href, to, linkLabel }) => (
   <div className="home-feed__section-head">
     <h2 id={id} className="home-feed__section-title">
       {title}
+      {count ? (
+        <span className="home-feed__section-count"> · {count}</span>
+      ) : null}
     </h2>
     {to ? (
       <Link to={to} className="home-feed__section-link">
@@ -47,13 +54,9 @@ const BuildCard = ({ build }) => (
       <ExternalArrow />
     </h3>
     <p className="home-feed-card__body">{build.description}</p>
-    <ul className="home-feed-card__tags">
-      {build.tags.map((tag) => (
-        <li key={tag} className="home-feed-card__tag">
-          {tag}
-        </li>
-      ))}
-    </ul>
+    {build.why ? (
+      <p className="home-feed-card__why">{build.why}</p>
+    ) : null}
   </a>
 );
 
@@ -123,6 +126,7 @@ const HomeFeed = () => {
   const { theme } = useTheme();
   const posts = useSubstackPosts({ limit: 3 });
   const recentReads = getRecentReads();
+  const bookshelfTotal = getBookshelfTotal();
   const starColor = theme.isDarkMode ? "#FFD700" : "#000";
 
   return (
@@ -138,17 +142,13 @@ const HomeFeed = () => {
     >
       <section className="home-feed__intro" aria-label="Currently">
         <StatusWidget />
-        <p className="home-feed__more">
-          <Link to="/ramya" className="home-feed__more-link">
-            more about me →
-          </Link>
-        </p>
       </section>
 
       <section className="home-feed__section" aria-labelledby="home-builds">
         <SectionHead
           id="home-builds"
           title="Selected builds"
+          count="2 of 18"
           href={SITE.profiles.github}
           linkLabel="all on github →"
         />
@@ -157,10 +157,26 @@ const HomeFeed = () => {
         ))}
       </section>
 
+      <section className="home-feed__section" aria-labelledby="home-writing">
+        <SectionHead
+          id="home-writing"
+          title="Writing"
+          count={`${posts.length} ${posts.length === 1 ? "essay" : "essays"}`}
+          href={SITE.profiles.substack}
+          linkLabel="substack →"
+        />
+        <div className="home-feed__row home-feed__row--writing">
+          {posts.map((post) => (
+            <PostCard key={post.url} post={post} />
+          ))}
+        </div>
+      </section>
+
       <section className="home-feed__section" aria-labelledby="home-reads">
         <SectionHead
           id="home-reads"
-          title="Recently read"
+          title="Recent reads"
+          count={`${recentReads.length} of ${bookshelfTotal}`}
           to="/recent-reads"
           linkLabel="full bookshelf →"
         />
@@ -171,18 +187,20 @@ const HomeFeed = () => {
         </div>
       </section>
 
-      <section className="home-feed__section" aria-labelledby="home-writing">
-        <SectionHead
-          id="home-writing"
-          title="Writing"
-          href={SITE.profiles.substack}
-          linkLabel="substack →"
-        />
-        <div className="home-feed__row">
-          {posts.map((post) => (
-            <PostCard key={post.url} post={post} />
-          ))}
-        </div>
+      <section
+        className={`home-feed__email-nudge${theme.isDarkMode ? " home-feed__email-nudge--dark" : ""}`}
+        aria-label="Get in touch"
+      >
+        <p className="home-feed__email-nudge-quote">
+          &ldquo;I pride myself on replying to <em>exciting emails</em> rather
+          quickly.&rdquo;
+        </p>
+        <a
+          className="home-feed__email-nudge-link"
+          href="mailto:ramya1@alumni.stanford.edu"
+        >
+          ramya1@alumni.stanford.edu &rarr;
+        </a>
       </section>
     </div>
   );

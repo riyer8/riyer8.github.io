@@ -8,27 +8,22 @@ export const SELECTED_BUILDS = [
   {
     name: "nyc-tiny-world",
     href: "https://github.com/riyer8/nyc-tiny-world",
-    description:
-      "walkable slice of greenwich village with OSM streets + buildings, NPCs, and quests!",
-    tags: ["pygame", "openstreetmap", "python"],
-  },
-  {
-    name: "lock-in",
-    href: "https://github.com/riyer8/lock-in",
-    description:
-      "local-first chrome new tab that turns your goals into a daily plan for the winter lock in.",
-    tags: ["chrome-extension", "openai", "local-first"],
+    description: "walkable slice of greenwich village with OSM streets + buildings and quests!",
+    why: "a tiny new york i can still wander from san francisco",
   },
   {
     name: "knowledge-bases",
     href: "https://github.com/riyer8/knowledge-bases",
-    description:
-      "my personal knowledge system + graph, chat over my own data.",
-    tags: ["rag", "knowledge-graph", "ollama"],
+    description: "my personal knowledge system + graph, chat over my own data.",
+    why: "making the internet easier to take notes on",
   },
 ];
 
 export const RECENT_READ_LIMIT = 3;
+
+export function getBookshelfTotal(items = bookshelfData) {
+  return items.filter((item) => item?.title && !item.archives).length;
+}
 
 const MONTHS = [
   "Jan",

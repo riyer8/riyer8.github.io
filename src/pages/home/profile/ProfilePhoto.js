@@ -1,5 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from "react";
-import { PROFILE_PHOTOS } from "../../../assets/profile/profilePhotos";
+import {
+  PROFILE_PHOTOS,
+  PROFILE_PHOTO_CAPTIONS,
+} from "../../../assets/profile/profilePhotos";
 import "./ProfilePhoto.css";
 
 const FADE_MS = 600;
@@ -48,30 +51,35 @@ const ProfilePhoto = () => {
   }, [goToNext]);
 
   return (
-    <button
-      type="button"
-      className="profile-photo"
-      onClick={goToNext}
-      title="click to cycle!"
-      aria-label="Show the next photo of Ramya Iyer"
-    >
-      <img
-        className="profile-photo__img profile-photo__img--current"
-        src={PROFILE_PHOTOS[currentIndex]}
-        alt="Ramya Iyer"
-        draggable={false}
-      />
-      {outgoingIndex != null && (
+    <figure className="profile-photo-wrap">
+      <button
+        type="button"
+        className="profile-photo"
+        onClick={goToNext}
+        title="click to cycle!"
+        aria-label="Show the next photo of Ramya Iyer"
+      >
         <img
-          key={outgoingIndex}
-          className="profile-photo__img profile-photo__img--outgoing"
-          src={PROFILE_PHOTOS[outgoingIndex]}
-          alt=""
-          aria-hidden="true"
+          className="profile-photo__img profile-photo__img--current"
+          src={PROFILE_PHOTOS[currentIndex]}
+          alt="Ramya Iyer"
           draggable={false}
         />
-      )}
-    </button>
+        {outgoingIndex != null && (
+          <img
+            key={outgoingIndex}
+            className="profile-photo__img profile-photo__img--outgoing"
+            src={PROFILE_PHOTOS[outgoingIndex]}
+            alt=""
+            aria-hidden="true"
+            draggable={false}
+          />
+        )}
+      </button>
+      <figcaption className="profile-photo__caption">
+        {PROFILE_PHOTO_CAPTIONS[currentIndex]}
+      </figcaption>
+    </figure>
   );
 };
 

@@ -36,7 +36,7 @@ const PALETTE_ITEMS = [
   { id: "substack", label: "substack", href: SITE.profiles.substack, icon: "substack", keywords: ["essays", "writing", "updates"], },
   { id: "linkedin", label: "linkedin", href: SITE.profiles.linkedin, icon: "linkedin" },
   { id: "twitter", label: "twitter", href: SITE.profiles.x, icon: "twitter" },
-  { id: "email", label: "email", href: "mailto:ramya1@stanford.edu", icon: "email", keywords: ["contacts"], },
+  { id: "email", label: "email", href: "mailto:ramya1@alumni.stanford.edu", icon: "email", keywords: ["contacts"], },
 ];
 
 const PaletteIcon = ({ name }) => {

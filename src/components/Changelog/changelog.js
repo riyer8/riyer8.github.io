@@ -2,6 +2,7 @@
 // Newest first. One short line per entry.
 
 export const CHANGELOG = [
+  { date: "nov 2026", text: "themed backgrounds" },
   { date: "sept 2026", text: "site refresh: now tab, icon-row sidebar, dark-mode chips, first fun hacks" },
   { date: "aug 2026", text: "new sidebar, more favorites, tidier files" },
   { date: "july 2026", text: "\"lifelong goals\" section with custom imagery" },

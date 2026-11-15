@@ -22,7 +22,6 @@ import { NowCardProvider } from "./components/NowCard/NowCard";
 import { ChangelogProvider } from "./components/Changelog/ChangelogModal";
 import { SiteToastProvider } from "./components/SiteToast/SiteToast";
 import SiteFooter from "./components/SiteFooter/SiteFooter";
-import TabAttentionTitle from "./components/TabAttentionTitle";
 import DaydreamMode from "./components/Daydream/DaydreamMode";
 import { logConsoleEgg } from "./components/consoleEgg";
 
@@ -106,7 +105,6 @@ const App = () => {
               <PixelatedBackground />
               <ThemeToggle />
               <SeasonalToggleManager />
-              <TabAttentionTitle />
               <DaydreamMode />
               {showLandingScreen ? (
                 <HomeIntroWall blocksInteraction={landingBlocksInteraction}>

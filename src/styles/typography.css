@@ -2,6 +2,7 @@
   /* Font families */
   --font-brand: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-ui: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-serif: "Newsreader", Georgia, serif;
 
   /* Type scale */
   --text-brand: clamp(2.25rem, 4.5vw, 3.25rem);

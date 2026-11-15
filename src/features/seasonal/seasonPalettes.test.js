@@ -1,7 +1,7 @@
 import { getSeason, SEASON_PALETTES } from "./seasonPalettes";
 
-const LIGHT_PRIMARY_MAX = 0.12;
-const LIGHT_SECONDARY_MAX = 0.1;
+const LIGHT_PRIMARY_MAX = 0.14;
+const LIGHT_SECONDARY_MAX = 0.12;
 const DARK_PRIMARY_MAX = 0.08;
 const DARK_SECONDARY_MAX = 0.06;
 

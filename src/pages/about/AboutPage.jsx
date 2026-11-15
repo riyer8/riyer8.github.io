@@ -93,8 +93,8 @@ const AboutPage = () => {
                 I&apos;ve recently started writing as well on my Substack, which I hope
                 you&apos;ll check out! If any of that resonates with you, I can&apos;t wait
                 to hear from you. You can email me at{" "}
-                <a href="mailto:ramya1@stanford.edu" className="about-page__email">
-                  ramya1@stanford.edu
+                <a href="mailto:ramya1@alumni.stanford.edu" className="about-page__email">
+                  ramya1@alumni.stanford.edu
                 </a>
                 ; I pride myself on replying to <em>exciting</em> emails rather quickly.
               </p>

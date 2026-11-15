@@ -7,7 +7,7 @@ import { SITE } from "../../../seo/siteMetadata";
 import ProfilePhoto from "../profile";
 import "./SidebarContent.css";
 
-const EMAIL_ADDRESS = "ramya1@stanford.edu";
+const EMAIL_ADDRESS = "ramya1@alumni.stanford.edu";
 const COPY_TOAST_MS = 2000;
 
 const TAGLINES = [
@@ -298,35 +298,35 @@ const SidebarContent = () => {
         aria-label="Copy email address"
         onClick={handleCopyEmail}
       >
-        ramya1@stanford.edu
+        ramya1@alumni.stanford.edu
       </button>
 
       {copyToast !== "hidden"
         ? createPortal(
-            <div
-              className={`email-copy-toast${copyToast === "leaving" ? " is-leaving" : ""}`}
-              style={{
-                "--toast-text": theme.colors.text,
-                "--toast-muted": theme.colors.textSecondary,
-                "--toast-accent": theme.colors.accent,
-                "--toast-border": theme.colors.border,
-                "--toast-surface": theme.colors.cardBackground,
-                "--toast-shadow": theme.isDarkMode
-                  ? "0 8px 24px rgba(0, 0, 0, 0.35)"
-                  : "0 8px 24px rgba(0, 0, 0, 0.12)",
-              }}
-              role="status"
+          <div
+            className={`email-copy-toast${copyToast === "leaving" ? " is-leaving" : ""}`}
+            style={{
+              "--toast-text": theme.colors.text,
+              "--toast-muted": theme.colors.textSecondary,
+              "--toast-accent": theme.colors.accent,
+              "--toast-border": theme.colors.border,
+              "--toast-surface": theme.colors.cardBackground,
+              "--toast-shadow": theme.isDarkMode
+                ? "0 8px 24px rgba(0, 0, 0, 0.35)"
+                : "0 8px 24px rgba(0, 0, 0, 0.12)",
+            }}
+            role="status"
+          >
+            <p className="email-copy-toast__msg">copied — talk soon ✉</p>
+            <a
+              className="email-copy-toast__mail"
+              href={`mailto:${EMAIL_ADDRESS}`}
             >
-              <p className="email-copy-toast__msg">copied — talk soon ✉</p>
-              <a
-                className="email-copy-toast__mail"
-                href={`mailto:${EMAIL_ADDRESS}`}
-              >
-                or open your mail app →
-              </a>
-            </div>,
-            document.body
-          )
+              or open your mail app →
+            </a>
+          </div>,
+          document.body
+        )
         : null}
 
       <div className="sidebar-content__photo">

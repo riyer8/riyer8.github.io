@@ -12,21 +12,35 @@ export const NOW_TICKER = [
 ];
 
 // ─── Now card: "now" tab ───
-export const NOW_UPDATED = "last updated: september 2026 · san francisco, ca";
+export const NOW_UPDATED = "last updated: november 2026 · san francisco, ca";
 
 export const NOW_SECTIONS = [
-  { label: "Working on", text: "safety evals by day; gyming at night" },
-  { label: "Building", text: "new projects on my github, trying to ship every day", href: "https://github.com/riyer8" },
-  { label: "Reading", text: "whatever's on the recent-reads shelf", href: "/recent-reads" },
-  { label: "Listening to", text: "gracie abrams + billie eilish + noah kahan on loop" },
-  { label: "Thinking about", text: "llm daydreaming + consumer products" },
+  { label: "Thinking about...", text: "evals, daydreaming, & south africa ⚡️" },
+  { label: "Listening to...", text: "gracie abrams & ariana grande! 🎶" },
+  { label: "Shopping for...", text: "a hybrid bike 🚲" },
+  { label: "Reading...", text: "the nightingale & the almanack of naval ravikant 📚" }
 ];
 
-// ─── Now card: "uses" tab ───
 export const USES_SECTIONS = [
-  { label: "💻 laptop", text: "mac air m2 with so many stickers" },
-  { label: "👩‍💻 editor", text: "cursor + muse ai!" },
-  { label: "📓 notebooks", text: "three on hand: empty, lined, graphed" },
-  { label: "🍏 fuel", text: "mango tea + protein bars" },
+  {
+    label: "Matcha Tonic",
+    text: "CoffeeShop in Dogpatch",
+    href: "https://maps.app.goo.gl/dyx1B7G7DtEypQvy8",
+  },
+  {
+    label: "Thai Food",
+    text: "Up Thai in Manhattan",
+    href: "https://maps.app.goo.gl/94666xuJF3VjMarr5"
+  },
+  {
+    label: "Bookstore",
+    text: "Strand Bookstore in Manhattan",
+    href: "https://maps.app.goo.gl/CGvbCpB3ob3f86RaA",
+  },
+  {
+    label: "Viewpoint",
+    text: "Battery Spencer in SF",
+    href: "https://maps.app.goo.gl/tdQriJxheX6kydtc9",
+  },
 ];
 

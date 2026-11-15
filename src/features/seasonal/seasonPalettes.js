@@ -9,8 +9,8 @@ export function getSeason(date = new Date()) {
 export const SEASON_PALETTES = {
     spring: {
         light: {
-            accentPrimary: 'rgba(74, 222, 128, 0.12)',
-            accentSecondary: 'rgba(244, 114, 182, 0.10)',
+            accentPrimary: 'rgba(74, 222, 128, 0.14)',
+            accentSecondary: 'rgba(244, 114, 182, 0.12)',
             blobBase: [90, 210, 140],
             label: 'spring',
         },
@@ -23,8 +23,8 @@ export const SEASON_PALETTES = {
     },
     summer: {
         light: {
-            accentPrimary: 'rgba(45, 212, 191, 0.12)',
-            accentSecondary: 'rgba(56, 189, 248, 0.10)',
+            accentPrimary: 'rgba(45, 212, 191, 0.14)',
+            accentSecondary: 'rgba(56, 189, 248, 0.12)',
             blobBase: [50, 200, 220],
             label: 'summer',
         },
@@ -37,8 +37,8 @@ export const SEASON_PALETTES = {
     },
     autumn: {
         light: {
-            accentPrimary: 'rgba(251, 146, 60, 0.12)',
-            accentSecondary: 'rgba(248, 113, 113, 0.10)',
+            accentPrimary: 'rgba(251, 146, 60, 0.14)',
+            accentSecondary: 'rgba(248, 113, 113, 0.12)',
             blobBase: [230, 140, 80],
             label: 'autumn',
         },
@@ -51,8 +51,8 @@ export const SEASON_PALETTES = {
     },
     winter: {
         light: {
-            accentPrimary: 'rgba(129, 140, 248, 0.12)',
-            accentSecondary: 'rgba(56, 189, 248, 0.10)',
+            accentPrimary: 'rgba(129, 140, 248, 0.14)',
+            accentSecondary: 'rgba(56, 189, 248, 0.12)',
             blobBase: [120, 140, 240],
             label: 'winter',
         },

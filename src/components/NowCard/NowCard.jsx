@@ -23,9 +23,13 @@ export const useNowCard = () => {
   return value;
 };
 
+// The id is internal — the pane below renders UsesPane only when
+// tab === "uses" — so keep the id as "uses" and put the display text
+// in label. Renaming the id without updating the pane check leaves the
+// pane empty (that's why the renamed tab showed nothing).
 const TABS = [
   { id: "now", label: "now" },
-  { id: "uses", label: "uses" },
+  { id: "uses", label: "favorite places" },
 ];
 
 const isInternalHref = (href) =>
@@ -87,15 +91,28 @@ const NowPane = ({ onNavigate }) => (
   </div>
 );
 
-const UsesPane = ({ onNavigate }) => (
+// Favorite places: the name stays plain text, and each place gets a
+// small "map ↗" pill button that opens its Google Maps page in a
+// new tab. No hint line — the button says what it does.
+const UsesPane = () => (
   <ul className="now-card__uses">
     {USES_SECTIONS.map((section) => (
       <li key={section.label} className="now-card__use">
         <span className="now-card__use-label">{section.label}</span>
         <span className="now-card__use-value">
-          <TextLink href={section.href} onNavigate={onNavigate}>
-            {section.text}
-          </TextLink>
+          {section.text}
+          {section.href ? (
+            <a
+              href={section.href}
+              className="now-card__map-btn"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open ${section.text} in Google Maps`}
+            >
+              map
+              <span aria-hidden="true">↗</span>
+            </a>
+          ) : null}
         </span>
       </li>
     ))}
@@ -169,6 +186,15 @@ const NowCard = () => {
     "--now-shadow": theme.isDarkMode
       ? "0 8px 28px rgba(0, 0, 0, 0.35)"
       : "0 8px 24px rgba(0, 0, 0, 0.12)",
+    // "map ↗" pill: pale teal fill in light mode, a dark teal tint in
+    // dark mode — the hardcoded pale fill glared on the dark card.
+    "--now-pill-bg": theme.isDarkMode
+      ? "rgba(78, 205, 196, 0.14)"
+      : "#EFFCFA",
+    "--now-pill-text": theme.isDarkMode ? "#4ECDC4" : "#0F766E",
+    "--now-pill-hover": theme.isDarkMode
+      ? "rgba(78, 205, 196, 0.22)"
+      : "#DFF7F3",
   };
 
   return (

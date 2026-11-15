@@ -17,6 +17,21 @@
   width: 100%;
 }
 
+.home-feed .status-widget {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Writing: back to the original vertical media cards, but in two
+   columns so the two Substack posts stretch to fill the section
+   instead of leaving an empty third column. A third post wraps below.
+   Double-class on purpose: the base .home-feed__row rule comes later
+   in this file with the same specificity, so a single-class rule here
+   was losing to it and the section stayed 3 columns. */
+.home-feed__row.home-feed__row--writing {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .home-feed__section {
   display: flex;
   flex-direction: column;
@@ -51,6 +66,94 @@
 .home-feed__section-link:hover {
   text-decoration: underline;
   text-underline-offset: 3px;
+}
+
+.home-feed__section-count {
+  font-weight: var(--weight-regular);
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.home-feed-card__why {
+  margin: 0;
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--home-accent) 70%, var(--home-text));
+}
+
+/* Email nudge — white bar with a teal pill in light mode, 02A dark bar
+   in dark mode. Same flex row as the prototype: quote on the left,
+   email pill on the side, wrapping below only on narrow screens.
+   Light mode: white background, text #221C15, teal top edge + teal
+   pill #4ECDC4, "exciting emails" in Substack orange #FF6719, pill
+   text #231A14. (Was 02M tinted cream #F4EEE1 — changed to white
+   Nov 14 because the cream looked weird.) Dark mode keeps the 02A
+   dark bar: background #231A14, quote white, "exciting emails" in teal. */
+.home-feed__email-nudge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.85rem;
+  padding: 1rem 1.2rem 1.05rem;
+  border: 1px solid var(--home-border);
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: inset 0 3px 0 var(--home-accent);
+  box-sizing: border-box;
+}
+
+.home-feed__email-nudge-quote {
+  flex: 1 1 16rem;
+  min-width: 0;
+  margin: 0;
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: 1.0625rem;
+  line-height: 1.55;
+  color: #221c15;
+}
+
+.home-feed__email-nudge-quote em {
+  color: var(--home-accent);
+  font-weight: var(--weight-semibold);
+}
+
+.home-feed__email-nudge-link {
+  flex-shrink: 0;
+  display: inline-block;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  background: var(--home-accent);
+  font-size: var(--text-meta);
+  font-weight: var(--weight-medium);
+  color: #231a14;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: filter 0.2s ease;
+}
+
+.home-feed__email-nudge-link:hover {
+  filter: brightness(1.08);
+  text-decoration: none;
+}
+
+/* Dark mode: the 02A dark bar instead of the cream one. */
+.home-feed__email-nudge--dark {
+  border-color: #231a14;
+  background: #231a14;
+}
+
+.home-feed__email-nudge--dark .home-feed__email-nudge-quote {
+  color: #ffffff;
+}
+
+.home-feed__email-nudge--dark .home-feed__email-nudge-quote em {
+  color: var(--home-accent);
+  font-weight: var(--weight-semibold);
 }
 
 .home-feed__row {
@@ -206,26 +309,7 @@ a.home-feed-card:hover .home-feed-card__arrow {
   flex: 1;
 }
 
-.home-feed .status-widget {
-  width: 100%;
-  box-sizing: border-box;
-}
 
-.home-feed__more {
-  margin: 0;
-}
-
-.home-feed__more-link {
-  font-size: var(--text-meta);
-  font-weight: var(--weight-medium);
-  color: var(--home-accent);
-  text-decoration: none;
-}
-
-.home-feed__more-link:hover {
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
 
 @media (max-width: 900px) {
   .home-feed {

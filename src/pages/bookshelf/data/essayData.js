@@ -634,7 +634,7 @@ Every day I grow older, I feel like the gap becomes more and more apparent. It's
   {
     title: "There's a place for everyone",
     author: "Adam Mastroianni",
-    favorites: 1,
+    favorites: 2,
     url: "https://www.experimental-history.com/p/theres-a-place-for-everyone",
     dateAdded: "2026-03-26",
     category: "connection",
@@ -643,11 +643,12 @@ Every day I grow older, I feel like the gap becomes more and more apparent. It's
     thoughts: "An essay that reminded me of 'lift others while you climb'. Everyone has a niche. We fail society if we don't help ourselves, and others, find our niche.",
     tags: ['belonging', 'growth', 'friends'],
     notes: `
-Some of my favorite quotes.
-:::quote
-Someone once asked me, “What’s something you believe in, despite not having any evidence for it?”
+I keep coming back to this idea for a sense of belonging.
 
-Without thinking, I said **“There’s a place for everyone.”** As in: every person has a purpose, *nobody* is superfluous or redundant.
+It's in everyone's best interest to help each other grow and find where they can fit in the best.
+
+:::quote
+**“There’s a place for everyone.”** As in: every person has a purpose, *nobody* is superfluous or redundant.
 :::
 
 > When people fail to find their niche, and when we fail to help them find it, we don’t just suffer from their absence. **We also suffer from their presence in the wrong place.** People often end up doing awful things because they never figured out what else to do.
@@ -847,17 +848,21 @@ In fashion, maybe a precursor to this article can be [this one](https://the25res
     thoughts: "",
     tags: ['comparison', 'career'],
     notes: `
+One thing that Gor does incredibly well is choose every sentence with great care and detail (often using reptition to its fullest). This essay is no exception.
+
+Comparison is truly the thief of joy, but it can manifest in so many different areas of your life: not being in the right job, not being in the right friendship, not having the space to grow.
+
 :::quote
-but how can you be behind in life when your life is only yours. there is no shared clock, no single sequence you were meant to follow.
+how can you be behind in life when your life is only yours. there is no shared clock, no single sequence you were meant to follow.
 
 what you are comparing yourself to is a collection of lives shaped by different circumstances, different choices, different timing.
 :::
 
-Everything that I need to hear (internalizing is seemingly harder).
-
 :::quote
 come back to yourself. ask what you want, what you need, what actually feels true to you. you will never be behind in your own life when you stop measuring it against people who were never meant to define it. the moment you let go of that comparison, your life stops feeling like something you are chasing and starts feeling like something you are living.
 :::
+
+I truly love this essay for a perspective of dismantling external comparison. I specify external comparison because sometimes the weight that sits with you can be internal grief for the person you *could* have been (or even the person were *previously were*).
     `
   },
 

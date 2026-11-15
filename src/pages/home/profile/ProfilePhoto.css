@@ -1,3 +1,18 @@
+.profile-photo-wrap {
+  margin: 0;
+  width: min(100%, 14rem);
+}
+
+.profile-photo__caption {
+  margin: 0.5rem 0 0;
+  font-family: var(--font-serif, Georgia, serif);
+  font-style: italic;
+  font-size: var(--text-caption);
+  line-height: var(--leading-snug);
+  color: var(--sidebar-muted, #666666);
+  text-align: center;
+}
+
 .profile-photo {
   display: block;
   position: relative;
@@ -43,6 +58,7 @@
   from {
     opacity: 1;
   }
+
   to {
     opacity: 0;
   }

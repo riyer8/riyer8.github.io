@@ -1,14 +1,19 @@
 {
   "photos": [
     {
-      "file": "photo4.png",
+      "file": "stanford.png",
       "alt": "Ramya Iyer, graduation photo",
       "caption": "stanford graduation in june 2026."
     },
     {
-      "file": "photo5.png",
+      "file": "katla.png",
       "alt": "Ramya Iyer, photo in iceland",
       "caption": "iceland, hiking the katla ice cave."
+    },
+    {
+      "file": "palace_dark.jpg",
+      "alt": "Ramya Iyer, palace of fine arts",
+      "caption": "palace of fine arts in SF."
     }
   ]
 }
