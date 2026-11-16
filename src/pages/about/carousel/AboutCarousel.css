@@ -148,3 +148,21 @@
 .about-carousel__dot:active {
   transform: scale(0.95);
 }
+
+@media (max-width: 720px) {
+  /* Same 4:5 proportions as desktop: the frame keeps its
+     aspect-ratio and each photo is cropped to fit (object-fit:
+     cover), so nothing is stretched or squished. The width is a
+     fixed 19rem — not vw or % of a shifting parent — so scrolling
+     can't nudge it, and the height (which comes from the width)
+     stays put too. */
+  .about-carousel {
+    width: 19rem;
+    max-width: 100%;
+  }
+
+  .about-carousel__frame {
+    aspect-ratio: 4 / 5;
+    height: auto;
+  }
+}

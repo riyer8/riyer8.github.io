@@ -10,7 +10,8 @@ import {
 import { createPortal } from "react-dom";
 import { Link } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
-import { NOW_SECTIONS, NOW_UPDATED, USES_SECTIONS } from "./nowData";
+import { NOW_SECTIONS, NOW_UPDATED } from "./nowData";
+import PLACES_DATA from "./favoritePlaces.js";
 import "./NowCard.css";
 
 const NowCardContext = createContext(null);
@@ -75,49 +76,206 @@ const TextLink = ({ href, children, onNavigate }) => {
 
 const LiveDot = () => <span className="now-card__dot" aria-hidden="true" />;
 
+// Postcard stamp: a custom emoji image (section.stamp, from nowData.js)
+// in the slanted double-ring circle; falls back to the "NOW" text if
+// the image is missing.
+const PostcardStamp = ({ stamp }) => {
+  const [imgOk, setImgOk] = useState(true);
+  if (stamp && imgOk) {
+    return (
+      <img
+        className="now-card__postcard-stamp"
+        src={stamp}
+        alt=""
+        aria-hidden="true"
+        onError={() => setImgOk(false)}
+      />
+    );
+  }
+  return (
+    <span className="now-card__postcard-stamp" aria-hidden="true">NOW</span>
+  );
+};
+
+// Now tab — postcards, ported from matching prototype №06
+// ("Postcards from now"). Each section is a postcard: the message
+// (mono label, italic value, teal ✳) on the left, and the address
+// side (dashed divider, NOW stamp, san francisco / november 2026
+// address lines) on the right. The "last updated" line sits above
+// the grid in italics, right under the tabs; the per-card address
+// lines stay, as Ramya chose.
 const NowPane = ({ onNavigate }) => (
-  <div className="now-card__now">
+  <div className="now-card__postcards-wrap">
     <p className="now-card__updated">{NOW_UPDATED}</p>
-    {NOW_SECTIONS.map((section) => (
-      <div key={section.label} className="now-card__section">
-        <div className="now-card__label">{section.label}</div>
-        <div className="now-card__text">
-          <TextLink href={section.href} onNavigate={onNavigate}>
-            {section.text}
-          </TextLink>
+    <div className="now-card__postcards">
+      {NOW_SECTIONS.map((section) => (
+        <div key={section.label} className="now-card__postcard">
+          <div className="now-card__postcard-msg">
+            <div className="now-card__postcard-label">{section.label}</div>
+            <div className="now-card__postcard-text">
+              <TextLink href={section.href} onNavigate={onNavigate}>
+                {section.text}
+              </TextLink>
+            </div>
+            <span className="now-card__postcard-divider" aria-hidden="true">✳</span>
+          </div>
+          <div className="now-card__postcard-side">
+            <PostcardStamp stamp={section.stamp} />
+            {(section.side || []).map((line, index) => (
+              <span key={index} className="now-card__postcard-addr">{line}</span>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
+      ))}
+    </div>
   </div>
 );
 
-// Favorite places: the name stays plain text, and each place gets a
-// small "map ↗" pill button that opens its Google Maps page in a
-// new tab. No hint line — the button says what it does.
-const UsesPane = () => (
-  <ul className="now-card__uses">
-    {USES_SECTIONS.map((section) => (
-      <li key={section.label} className="now-card__use">
-        <span className="now-card__use-label">{section.label}</span>
-        <span className="now-card__use-value">
-          {section.text}
-          {section.href ? (
+// Favorite places — prototype №10 combo: mood-tagged trading cards.
+// Data lives in favoritePlaces.js (photos in public/places/): the
+// front is the photo (coast stamp at its top-right corner) with a
+// small centred strip below holding the name and mood pills, plus a
+// flip icon at the bottom-right corner;
+// tapping flips to the back, polaroid-style: name, area, quoted
+// note, one "best:" line, centred map link and a flip icon at the
+// bottom-right corner. Three cards per row in a 640px dialog.
+// The "I'm feeling…"
+// filter above the grid lights up the cards whose moods match.
+const PLACES = PLACES_DATA.places;
+
+const PlaceCard = ({ place, dimmed }) => {
+  const [flipped, setFlipped] = useState(false);
+  const [imgOk, setImgOk] = useState(true);
+  const photoSrc = place.photo ? `/places/${place.photo}` : null;
+  const bestBits = [place.bestFor, place.bestTime].filter(Boolean);
+  const flip = () => setFlipped((value) => !value);
+
+  return (
+    <div className={`now-card__place${dimmed ? " is-dimmed" : ""}`}>
+      <div
+        className={`now-card__place-inner${flipped ? " is-flipped" : ""}`}
+        role="button"
+        tabIndex={0}
+        aria-label={`${place.name}, ${place.area}. Activate to flip the card.`}
+        onClick={flip}
+        onKeyDown={(event) => {
+          // Don't flip when the keypress is on the map link inside.
+          if (event.target !== event.currentTarget) return;
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            flip();
+          }
+        }}
+      >
+        <div className="now-card__place-face now-card__place-front">
+          {place.coast ? (
+            <span className="now-card__place-stamp" aria-hidden="true">
+              {place.coast}
+            </span>
+          ) : null}
+          {photoSrc && imgOk ? (
+            <img
+              className="now-card__place-photo"
+              src={photoSrc}
+              alt=""
+              onError={() => setImgOk(false)}
+            />
+          ) : (
+            <div className="now-card__place-photo-fallback" aria-hidden="true">
+              {place.name.charAt(0)}
+            </div>
+          )}
+          <div className="now-card__place-body">
+            <div className="now-card__place-name">{place.name}</div>
+            {(place.moods || []).length > 0 ? (
+              <div className="now-card__place-moods">
+                {place.moods.map((mood) => (
+                  <span key={mood} className="now-card__mood-pill">
+                    {mood}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+            <div className="now-card__place-front-foot">
+              <span className="now-card__place-flip-icon" aria-hidden="true">
+                ↻
+              </span>
+            </div>
+          </div>
+        </div>
+        <div className="now-card__place-face now-card__place-back">
+          {place.coast ? (
+            <span className="now-card__place-stamp" aria-hidden="true">
+              {place.coast}
+            </span>
+          ) : null}
+          <div className="now-card__place-back-name">{place.name}</div>
+          <div className="now-card__place-back-area">
+            {place.label} · {place.area}
+          </div>
+          {place.note ? (
+            <p className="now-card__place-note">“{place.note}”</p>
+          ) : null}
+          <div className="now-card__place-back-divider" aria-hidden="true">✳</div>
+          {bestBits.length > 0 ? (
+            <div className="now-card__place-best-line">
+              best: {bestBits.join(" · ")}
+            </div>
+          ) : null}
+          {place.href ? (
             <a
-              href={section.href}
+              href={place.href}
               className="now-card__map-btn"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Open ${section.text} in Google Maps`}
+              aria-label={`Open ${place.name} in Google Maps`}
+              onClick={(event) => event.stopPropagation()}
             >
-              map
-              <span aria-hidden="true">↗</span>
+              <span className="now-card__map-emoji" aria-hidden="true">📍</span> map
             </a>
           ) : null}
-        </span>
-      </li>
-    ))}
-  </ul>
-);
+          <span className="now-card__place-flip-icon" aria-hidden="true">
+            ↻
+          </span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const UsesPane = () => {
+  const [mood, setMood] = useState(null);
+  const moods = Array.from(
+    new Set(PLACES.flatMap((place) => place.moods || [])),
+  );
+  return (
+    <div className="now-card__places">
+      <div className="now-card__mood-filter">
+        <span className="now-card__mood-filter-label">I&rsquo;m feeling…</span>
+        {moods.map((item) => (
+          <button
+            key={item}
+            type="button"
+            className={`now-card__mood-chip${mood === item ? " is-active" : ""}`}
+            aria-pressed={mood === item}
+            onClick={() => setMood(mood === item ? null : item)}
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+      <div className="now-card__place-grid">
+        {PLACES.map((place) => (
+          <PlaceCard
+            key={place.id}
+            place={place}
+            dimmed={mood !== null && !(place.moods || []).includes(mood)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 const NowCard = () => {
   const { isOpen, open, close } = useNowCard();
@@ -195,6 +353,16 @@ const NowCard = () => {
     "--now-pill-hover": theme.isDarkMode
       ? "rgba(78, 205, 196, 0.22)"
       : "#DFF7F3",
+    // Polaroid back: near-white paper in light mode (no yellow cast),
+    // warm dark brown in dark mode — the flipped card reads as the
+    // back of the photo.
+    "--now-paper": theme.isDarkMode ? "#241D18" : "#F5F5F3",
+    // Place-card faces: a pale border so the cards don't melt into the
+    // dialog behind them (the theme border is a faint teal that reads
+    // as nothing on the paper back).
+    "--now-card-border": theme.isDarkMode
+      ? "rgba(255, 255, 255, 0.16)"
+      : "#E4E1D8",
   };
 
   return (

@@ -9,13 +9,6 @@ import "./SidebarContent.css";
 
 const EMAIL_ADDRESS = "ramya1@alumni.stanford.edu";
 const COPY_TOAST_MS = 2000;
-
-const TAGLINES = [
-  "inspired by human connection.",
-  "professional daydreamer.",
-  "will trade candy for more Cursor credits.",
-];
-const HOME_ONELINER = TAGLINES[0];
 const FADE_MS = 200;
 
 const prefersReducedMotion = () =>
@@ -209,7 +202,6 @@ const LinkGroup = ({ title, items }) => (
 
 const SidebarContent = () => {
   const { theme } = useTheme();
-  const [oneliner, setOneliner] = useState(HOME_ONELINER);
   const [isFading, setIsFading] = useState(false);
   const [copyToast, setCopyToast] = useState("hidden");
   const hoverIndexRef = useRef(0);
@@ -264,11 +256,6 @@ const SidebarContent = () => {
     }, FADE_MS);
   };
 
-  const handleOnelinerEnter = () => {
-    hoverIndexRef.current = (hoverIndexRef.current + 1) % TAGLINES.length;
-    swapOneliner(TAGLINES[hoverIndexRef.current]);
-  };
-
   return (
     <div
       className={`sidebar-content${theme.isDarkMode ? " sidebar-content--dark" : ""}`}
@@ -284,14 +271,6 @@ const SidebarContent = () => {
         <BrandName />
       </h1>
 
-      <p
-        className={`sidebar-content__oneliner${isFading ? " is-fading" : ""}`}
-        aria-live="polite"
-        onMouseEnter={handleOnelinerEnter}
-      >
-        {oneliner}
-      </p>
-
       <button
         type="button"
         className="sidebar-content__email"
@@ -301,33 +280,35 @@ const SidebarContent = () => {
         ramya1@alumni.stanford.edu
       </button>
 
-      {copyToast !== "hidden"
-        ? createPortal(
-          <div
-            className={`email-copy-toast${copyToast === "leaving" ? " is-leaving" : ""}`}
-            style={{
-              "--toast-text": theme.colors.text,
-              "--toast-muted": theme.colors.textSecondary,
-              "--toast-accent": theme.colors.accent,
-              "--toast-border": theme.colors.border,
-              "--toast-surface": theme.colors.cardBackground,
-              "--toast-shadow": theme.isDarkMode
-                ? "0 8px 24px rgba(0, 0, 0, 0.35)"
-                : "0 8px 24px rgba(0, 0, 0, 0.12)",
-            }}
-            role="status"
-          >
-            <p className="email-copy-toast__msg">copied — talk soon ✉</p>
-            <a
-              className="email-copy-toast__mail"
-              href={`mailto:${EMAIL_ADDRESS}`}
+      {
+        copyToast !== "hidden"
+          ? createPortal(
+            <div
+              className={`email-copy-toast${copyToast === "leaving" ? " is-leaving" : ""}`}
+              style={{
+                "--toast-text": theme.colors.text,
+                "--toast-muted": theme.colors.textSecondary,
+                "--toast-accent": theme.colors.accent,
+                "--toast-border": theme.colors.border,
+                "--toast-surface": theme.colors.cardBackground,
+                "--toast-shadow": theme.isDarkMode
+                  ? "0 8px 24px rgba(0, 0, 0, 0.35)"
+                  : "0 8px 24px rgba(0, 0, 0, 0.12)",
+              }}
+              role="status"
             >
-              or open your mail app →
-            </a>
-          </div>,
-          document.body
-        )
-        : null}
+              <p className="email-copy-toast__msg">copied — talk soon ✉</p>
+              <a
+                className="email-copy-toast__mail"
+                href={`mailto:${EMAIL_ADDRESS}`}
+              >
+                or open your mail app →
+              </a>
+            </div>,
+            document.body
+          )
+          : null
+      }
 
       <div className="sidebar-content__photo">
         <ProfilePhoto />
@@ -337,7 +318,7 @@ const SidebarContent = () => {
         <LinkGroup title="here" items={ON_HERE} />
         <LinkGroup title="elsewhere" items={OTHER_PLACES} />
       </nav>
-    </div>
+    </div >
   );
 };
 

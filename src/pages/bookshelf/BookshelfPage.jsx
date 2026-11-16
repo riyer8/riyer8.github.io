@@ -575,7 +575,7 @@ const BookshelfPage = () => {
           <table style={tableStyle}>
             <thead>
               <tr className="bookshelf-head-row">
-                <th scope="col" aria-sort={sortKey === 'title' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={{
+                <th scope="col" className="bookshelf-col--title" aria-sort={sortKey === 'title' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={{
                   ...thStyle,
                   width: '50%',
                   maxWidth: '0px'
@@ -589,7 +589,7 @@ const BookshelfPage = () => {
                     )}
                   </div>
                 </th>
-                <th scope="col" aria-sort={sortKey === 'category' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={thStyle} onClick={() => handleHeaderSort('category')}>
+                <th scope="col" className="bookshelf-col--category" aria-sort={sortKey === 'category' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={thStyle} onClick={() => handleHeaderSort('category')}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Category
                     {sortKey === 'category' && (
@@ -599,7 +599,7 @@ const BookshelfPage = () => {
                     )}
                   </div>
                 </th>
-                <th scope="col" aria-sort={sortKey === 'medium' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={thStyle} onClick={() => handleHeaderSort('medium')}>
+                <th scope="col" className="bookshelf-col--medium" aria-sort={sortKey === 'medium' ? (sortDirection === 'asc' ? 'ascending' : 'descending') : 'none'} style={thStyle} onClick={() => handleHeaderSort('medium')}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                     Medium
                     {sortKey === 'medium' && (
@@ -609,7 +609,7 @@ const BookshelfPage = () => {
                     )}
                   </div>
                 </th>
-                <th scope="col" style={thStyle}>Tags</th>
+                <th scope="col" className="bookshelf-col--tags" style={thStyle}>Tags</th>
               </tr>
             </thead>
             <tbody>
@@ -622,7 +622,7 @@ const BookshelfPage = () => {
                     navigate(`/recent-reads/${titleToSlug(row.title)}`);
                   }}
                 >
-                  <td style={{
+                  <td className="bookshelf-col--title" style={{
                     ...tdStyle,
                     maxWidth: 0,
                     width: '50%'
@@ -664,12 +664,10 @@ const BookshelfPage = () => {
                         />
 
                         <span
+                          className="bookshelf-row__title-text"
                           style={{
                             flex: 1,
-                            minWidth: 0,
-                            overflow: 'hidden',
-                            textOverflow: 'ellipsis',
-                            whiteSpace: 'nowrap'
+                            minWidth: 0
                           }}
                           title={`${row.title}${row.author ? ` | ${row.author}` : ''}`}
                         >
@@ -689,10 +687,10 @@ const BookshelfPage = () => {
                     </div>
                   </td>
 
-                  <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
+                  <td className="bookshelf-col--category" style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
                     <button
                       type="button"
-                      className="bookshelf-chip bookshelf-chip--cell bookshelf-chip--cat"
+                      className="bookshelf-chip bookshelf-chip--cell bookshelf-chip--cat" 
                       style={categoryChipStyle(row.category, theme.isDarkMode, activeCategory === row.category)}
                       data-tooltip={row.category ? formatTagCount(row.category, categoryCounts[row.category] || 0) : undefined}
                       onClick={(e) => {
@@ -705,7 +703,7 @@ const BookshelfPage = () => {
                     </button>
                   </td>
 
-                  <td style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
+                  <td className="bookshelf-col--medium" style={{ ...tdStyle, whiteSpace: 'nowrap' }}>
                     <button
                       type="button"
                       className="bookshelf-chip bookshelf-chip--cell"
@@ -719,7 +717,7 @@ const BookshelfPage = () => {
                       {row.medium}
                     </button>
                   </td>
-                  <td style={tdStyle}>
+                  <td className="bookshelf-col--tags" style={tdStyle}>
                     <CollapsibleTags
                       tags={(row.tags || []).slice().sort((a, b) => a.localeCompare(b))}
                       activeTag={activeTag}

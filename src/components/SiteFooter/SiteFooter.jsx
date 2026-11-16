@@ -4,9 +4,8 @@ import { useCommandPalette } from "../CommandPalette/CommandPalette";
 import "./SiteFooter.css";
 
 const FORTUNES = [
-  "not too sure what a footer is supposed to do on websites.",
-  "probably started my recent github project as a joke, but now it's burning my credits.",
-  "my evals run for hours, so i code fun things on the side :)"
+  "i've never really understood why we have footers.",
+  "i'm just doing silly projects after my 9-5.",
 ];
 
 // Must match the .is-leaving animation duration in SiteFooter.css.

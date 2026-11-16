@@ -3,6 +3,7 @@
   --font-brand: "Playfair Display", Georgia, "Times New Roman", serif;
   --font-ui: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: "Newsreader", Georgia, serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 
   /* Type scale */
   --text-brand: clamp(2.25rem, 4.5vw, 3.25rem);

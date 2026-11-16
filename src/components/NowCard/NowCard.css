@@ -29,7 +29,9 @@
 .now-card__tab:focus-visible,
 .now-card__close:focus-visible,
 .now-card__icon-link:focus-visible,
-.now-card__map-btn:focus-visible {
+.now-card__map-btn:focus-visible,
+.now-card__mood-chip:focus-visible,
+.now-card__place-inner:focus-visible {
   outline: 2px solid var(--now-accent);
   outline-offset: 2px;
 }
@@ -70,12 +72,15 @@
   position: relative;
   z-index: 1;
   box-sizing: border-box;
-  /* A touch bigger so each favorite-places row fits on one line with
-     no wrapping at desktop widths. The 100% cap and the small-screen
-     rules below stay, so narrow screens still wrap/scroll instead of
-     overflowing. */
-  width: min(520px, 100%);
-  max-height: min(84vh, 40rem);
+  /* 640px: three favorite-places cards per row at ~186px each — the
+     strip (name, tags, footer) still fits on one line per row. The
+     100% cap and the small-screen rules below stay, so narrow screens
+     still fall back to one column instead of overflowing. */
+  width: min(640px, 100%);
+  /* Fixed height, not max-height: both tabs get the same dialog
+     height, so switching tabs doesn't resize it. The pane flexes to
+     fill the space and scrolls if its content is taller. */
+  height: min(84vh, 40rem);
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -138,7 +143,11 @@
 }
 
 .now-card__pane {
-  min-height: 240px;
+  /* Flexes to fill the fixed-height dialog, so both tabs render the
+     pane at the same height. min-height: 0 lets it shrink below its
+     content and scroll instead of overflowing the dialog. */
+  flex: 1;
+  min-height: 0;
   padding: 0;
   overflow-y: auto;
   animation: now-card-pane-in 200ms ease-out;
@@ -150,29 +159,126 @@
 }
 
 .now-card__updated {
-  margin: 0;
-  font-size: var(--text-caption);
-  color: var(--now-muted);
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
   font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--now-muted);
 }
 
-.now-card__section {
-  margin-bottom: 0;
+/* Now tab — postcards, ported from matching prototype №06
+   ("Postcards from now"). The pane is a flex column filling the
+   pane (min-height: 100%); the grid stretches (flex: 1) and its
+   rows share the height (grid-auto-rows: 1fr), so the postcards
+   fill the same height as the favorite-places tab. Each postcard splits 62% message /
+   38% address side, with a dashed divider, a NOW stamp, and the
+   san francisco / november 2026 address lines on every card.
+   Teal labels and the ✳ reuse the site's pill text colours and
+   the paper/border reuse --now-paper / --now-card-border, so the
+   cards stay in the site's palette instead of hard-coding the
+   prototype's. */
+.now-card__postcards-wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
-.now-card__label {
-  margin: 16px 0 0.22rem;
-  font-size: 0.68rem;
-  font-weight: var(--weight-medium);
-  letter-spacing: 0.08em;
+.now-card__postcards {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-auto-rows: 1fr;
+  gap: 16px;
+}
+
+.now-card__postcard {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 62% 38%;
+  min-height: 158px;
+  overflow: hidden;
+  background: var(--now-paper, #F5F5F3);
+  border: 1px solid var(--now-card-border, #E4E1D8);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+}
+
+.now-card__postcard-msg {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 15px 14px;
+}
+
+.now-card__postcard-label {
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--now-pill-text, #0F766E);
+}
+
+.now-card__postcard-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--now-text);
+}
+
+.now-card__postcard-divider {
+  margin-top: auto;
+  font-size: 13px;
+  line-height: 1;
+  color: var(--now-pill-text, #0F766E);
+}
+
+.now-card__postcard-side {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 15px 14px 14px;
+  border-left: 1.5px dashed var(--now-muted);
+}
+
+.now-card__postcard-stamp {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--now-accent);
+  outline: 1px solid var(--now-accent);
+  outline-offset: -4px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--now-paper, #F5F5F3);
+  color: var(--now-accent);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transform: rotate(8deg);
+  opacity: 0.85;
+}
+
+.now-card__postcard-addr {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--now-muted);
-}
-
-.now-card__text {
-  font-size: var(--text-meta);
-  line-height: 1.5;
-  color: var(--now-text);
 }
 
 .now-card__icon-link {
@@ -236,17 +342,18 @@
 .now-card__map-btn {
   display: inline-flex;
   align-items: center;
-  gap: 3px;
+  gap: 2px;
   /* Slimmer than prototype C's 30px — the pill was reading fat.
-     22px now: a touch slimmer still, at the request above. */
-  min-height: 22px;
+     20px / 10px now, to sit with the 10px pills and hint on the card
+     front instead of towering over them. */
+  min-height: 20px;
   margin-left: 0.6rem;
-  padding: 2px 10px;
+  padding: 2px 8px;
   border: 1px solid var(--now-accent);
   border-radius: 999px;
   background: var(--now-pill-bg, #EFFCFA);
   color: var(--now-pill-text, #0F766E);
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 600;
   line-height: 1.4;
   text-decoration: none;
@@ -258,7 +365,251 @@
   background: var(--now-pill-hover, #DFF7F3);
 }
 
+.now-card__map-btn .now-card__map-emoji {
+  font-size: 12px;
+  line-height: 1;
+}
 
+/* Favorite places — prototype №10 combo: mood-tagged trading cards.
+   Front: photo on top, small centred strip below with the name and
+   mood pills, plus a flip icon at the bottom-right corner.
+   Back (flip): polaroid-style centred stack (№ 8) on near-white
+   paper — name, area, big quoted note, ✳ divider, one "best:" line,
+   centred map link, flip icon at the bottom-right corner, plus a
+   double-ring coast stamp. Three cards per row in a 640px dialog.
+   The "I'm feeling…" filter dims cards whose moods don't match. */
+.now-card__mood-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 14px;
+}
+
+.now-card__mood-filter-label {
+  margin-right: 2px;
+  font-size: var(--text-caption);
+  font-style: italic;
+  color: var(--now-muted);
+}
+
+.now-card__mood-chip {
+  margin: 0;
+  padding: 4px 10px;
+  border: 1px solid var(--now-border);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--now-muted);
+  font-family: inherit;
+  font-size: 11px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.now-card__mood-chip.is-active {
+  border-color: var(--now-accent);
+  background: var(--now-accent);
+  color: #231A14;
+  font-weight: 600;
+}
+
+.now-card__place-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.now-card__place {
+  perspective: 900px;
+  transition: opacity 200ms ease;
+}
+
+.now-card__place.is-dimmed {
+  opacity: 0.35;
+}
+
+.now-card__place-inner {
+  position: relative;
+  height: 240px;
+  transform-style: preserve-3d;
+  transition: transform 500ms ease;
+  cursor: pointer;
+}
+
+.now-card__place-inner.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.now-card__place-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--now-card-border, #E4E1D8);
+  border-radius: 12px;
+  background: var(--now-surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.07);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.now-card__place-photo {
+  display: block;
+  width: 100%;
+  height: 158px;
+  object-fit: cover;
+}
+
+.now-card__place-photo-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 158px;
+  flex-shrink: 0;
+  background: color-mix(in srgb, var(--now-accent) 16%, transparent);
+  color: var(--now-accent);
+  font-family: var(--font-serif);
+  font-size: 2rem;
+}
+
+.now-card__place-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-height: 0;
+  gap: 2px;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.now-card__place-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--now-text);
+}
+
+.now-card__place-moods {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px;
+  margin-top: 4px;
+}
+
+.now-card__place-front-foot {
+  display: flex;
+  align-items: center;
+  align-self: stretch;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+}
+
+.now-card__mood-pill {
+  padding: 2px 8px;
+  border: 1px solid var(--now-accent);
+  border-radius: 999px;
+  color: var(--now-pill-text, #0F766E);
+  font-size: 10px;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.now-card__place-back {
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  overflow-y: auto;
+  text-align: center;
+  background: var(--now-paper, #F5F5F3);
+  /* Pre-rotated so it faces away until the card flips. Without this,
+     the back renders on the same side as the front, on top of it. */
+  transform: rotateY(180deg);
+}
+
+.now-card__place-note {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.45;
+  color: var(--now-text);
+}
+
+.now-card__place-back-name {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--now-text);
+}
+
+.now-card__place-back-area {
+  font-size: 0.65rem;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--now-muted);
+}
+
+.now-card__place-best-line {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  color: var(--now-muted);
+}
+
+.now-card__place-back .now-card__map-btn {
+  margin-left: 0;
+  align-self: center;
+}
+
+.now-card__place-stamp {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: 1.5px solid var(--now-accent);
+  outline: 1px solid var(--now-accent);
+  outline-offset: -4px;
+  border-radius: 50%;
+  background: var(--now-paper, #F5F5F3);
+  color: var(--now-accent);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transform: rotate(8deg);
+  opacity: 0.85;
+}
+
+.now-card__place-back-divider {
+  font-size: 10px;
+  line-height: 1;
+  color: var(--now-accent);
+  opacity: 0.7;
+}
+
+.now-card__place-flip-icon {
+  color: var(--now-muted);
+  font-size: 11px;
+  line-height: 1;
+}
+
+.now-card__place-back .now-card__place-flip-icon {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
 
 @keyframes now-card-pulse {
   0%,
@@ -296,6 +647,17 @@
   .now-card__use {
     gap: 0.75rem;
   }
+
+  .now-card__place-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Postcards stack to one column at narrow widths, as in the prototype. */
+@media (max-width: 560px) {
+  .now-card__postcards {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -305,5 +667,10 @@
 
   .now-card__pane {
     animation: none;
+  }
+
+  .now-card__place,
+  .now-card__place-inner {
+    transition: none;
   }
 }

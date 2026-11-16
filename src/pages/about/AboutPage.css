@@ -135,6 +135,15 @@
 }
 
 @media (max-width: 720px) {
+  /* Fixed side padding on phone: the base padding uses vw, which
+     shifts as mobile browser chrome shows/hides on scroll — that
+     moved the content width, and the photos' width with it. */
+  .about-page__content,
+  .about-page__principles {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
   .about-page__hero {
     grid-template-columns: 1fr;
     justify-items: center;

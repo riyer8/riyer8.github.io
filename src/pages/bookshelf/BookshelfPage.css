@@ -181,6 +181,53 @@
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--bs-accent) 18%, transparent);
 }
 
+/* Title text truncates with an ellipsis when the row is full.
+   NOTE: this base rule must stay above the responsive rules below —
+   same specificity, so the <=640px wrap override only wins because it
+   comes later in the file. (It used to sit below them, which silently
+   killed the wrap entirely.) */
+.bookshelf-row__title-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsive columns: as the window narrows, drop columns from the
+   right so Title — the main column — is always shown. The
+   horizontal-scroll wrap stays as a final fallback. */
+@media (max-width: 860px) {
+  .bookshelf-col--tags {
+    display: none;
+  }
+}
+
+@media (max-width: 700px) {
+  .bookshelf-col--medium {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .bookshelf-col--category {
+    display: none;
+  }
+
+  /* Title is the only column left: give it the whole table width (the
+     !important beats the inline 50% width / max-width 0 on the title
+     cells) and let it wrap onto more lines instead of cutting off
+     with an ellipsis. */
+  .bookshelf-col--title {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  .bookshelf-row__title-text {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: clip;
+  }
+}
+
 /* Table rows — color only, no translate (avoids layout jitter / flashy lift) */
 .bookshelf-row {
   cursor: pointer;

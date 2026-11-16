@@ -848,7 +848,7 @@ In fashion, maybe a precursor to this article can be [this one](https://the25res
     thoughts: "",
     tags: ['comparison', 'career'],
     notes: `
-One thing that Gor does incredibly well is choose every sentence with great care and detail (often using reptition to its fullest). This essay is no exception.
+One thing that Gor does incredibly well is choose every sentence with great care and detail (often using repetition to its fullest). This essay is no exception.
 
 Comparison is truly the thief of joy, but it can manifest in so many different areas of your life: not being in the right job, not being in the right friendship, not having the space to grow.
 
@@ -862,7 +862,7 @@ what you are comparing yourself to is a collection of lives shaped by different 
 come back to yourself. ask what you want, what you need, what actually feels true to you. you will never be behind in your own life when you stop measuring it against people who were never meant to define it. the moment you let go of that comparison, your life stops feeling like something you are chasing and starts feeling like something you are living.
 :::
 
-I truly love this essay for a perspective of dismantling external comparison. I specify external comparison because sometimes the weight that sits with you can be internal grief for the person you *could* have been (or even the person were *previously were*).
+I truly love this essay for a perspective of dismantling external comparison. I specify external comparison because sometimes the weight that sits with you can be internal grief for the person you *could* have been (or even the person you *previously were*).
     `
   },
 
@@ -1107,7 +1107,7 @@ Evidently, this research doesn't discuss much about the "legibility" aspect of C
     medium: "video",
     favorites: 3,
     tldr: "",
-    thoughts: "Truly one of my favorite speeches every given.",
+    thoughts: "Truly one of my favorite speeches ever given.",
     tags: ['meaning', 'creativity', 'career'],
     notes: `
 One of my favorite lessons: The dots connect in hindsight, so trust the process.
