@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.9b645c93.css",
-    "main.js": "/static/js/main.b7faa9c8.js",
+    "main.css": "/static/css/main.ed6a1675.css",
+    "main.js": "/static/js/main.d5afdbce.js",
     "static/media/waterfall.JPG": "/static/media/waterfall.7e491dc9e65c5ea478d8.JPG",
     "static/media/peak.jpg": "/static/media/peak.cda1a0e69be73bdd8cc9.jpg",
     "static/media/bookshelf.png": "/static/media/bookshelf.c98aa6c7b52893b21e82.png",
@@ -156,14 +156,14 @@
     "static/media/inter-vietnamese-600-normal.woff2": "/static/media/inter-vietnamese-600-normal.6984cf5e8583fac83be3.woff2",
     "static/media/inter-vietnamese-400-normal.woff2": "/static/media/inter-vietnamese-400-normal.44c9df135eec470b0ab6.woff2",
     "static/media/KaTeX_Size4-Regular.woff2": "/static/media/KaTeX_Size4-Regular.e418bf257af1052628d8.woff2",
-    "index.html": "/index.html",
     "static/media/KaTeX_Size3-Regular.woff": "/static/media/KaTeX_Size3-Regular.7947224e8a9914fa332b.woff",
+    "index.html": "/index.html",
     "static/media/KaTeX_Size3-Regular.woff2": "/static/media/KaTeX_Size3-Regular.e1951519f6f0596f7356.woff2",
-    "main.9b645c93.css.map": "/static/css/main.9b645c93.css.map",
-    "main.b7faa9c8.js.map": "/static/js/main.b7faa9c8.js.map"
+    "main.ed6a1675.css.map": "/static/css/main.ed6a1675.css.map",
+    "main.d5afdbce.js.map": "/static/js/main.d5afdbce.js.map"
   },
   "entrypoints": [
-    "static/css/main.9b645c93.css",
-    "static/js/main.b7faa9c8.js"
+    "static/css/main.ed6a1675.css",
+    "static/js/main.d5afdbce.js"
   ]
 }
