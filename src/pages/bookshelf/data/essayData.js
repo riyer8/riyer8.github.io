@@ -8,7 +8,7 @@ const essayData = [
     favorites: 1,
     medium: "essay",
     thoughts: "A piece I continue to come back to - but also one that encourages me to think about my own principles. I've been trying to replicate this on my own ever since I took ENGR 148 @ Stanford but in a more informal way.",
-    tags: ['principles', 'life'],
+    tags: ['growth'],
     notes: `
 Originally read in 10/11/2025, but each reread provides a new state of principles to focus on at this moment. Here are some of the new ones six months later :)
 
@@ -72,7 +72,7 @@ Increase your surface area and luck follows. Similar to a ton of his other princ
     medium: "essay",
     tldr: "A framework to evaluate the values of your life.",
     thoughts: "",
-    tags: ['career', 'purpose'],
+    tags: ['work', 'meaning', 'decisions'],
     notes: `
 Originally read on 10/17/2025. Revising to add more thoughts and notes.
 
@@ -107,7 +107,7 @@ The idea of **regret minimization**:
     favorites: 2,
     tldr: "🕰️ Just extracting lessons from history diminishes its purpose. History is context dependent that can help build mental models for future decisions.",
     thoughts: "Really fascinating as I learn more about history and reframing history",
-    tags: ['history', 'lessons', 'mental-models'],
+    tags: ['history', 'learning'],
     notes: `
 This happens to be one of my favorite essays I've read about history of all time. It changed the way I looked at studying and understanding history.
 > This has always been the tricky thing about learning from history. History is context dependent.
@@ -132,9 +132,9 @@ This happens to be one of my favorite essays I've read about history of all time
     author: "Rob Henderson",
     url: "https://www.robkhenderson.com/p/experts-and-elites-play-fundamentally",
     dateAdded: "2025-11-30",
-    category: "career",
+    category: "psychology",
     medium: "essay",
-    tags: ["status", "sociology", "elites",],
+    tags: ["status"],
     tldr: "The divide between experts (technically backed) and elites (socially backed)",
     thoughts: "Really fascinating account of status and the tradeoffs. Definitely something I will be thinking about.",
     notes: `
@@ -163,7 +163,7 @@ Both of these archetypes serve different functions. Henderson actually sums this
     favorites: 3,
     category: "advice",
     medium: "essay",
-    tags: ["success", 'startups'],
+    tags: ["ambition", 'startups', 'self-belief', 'courage'],
     notes: `
 ### 1. Compound Yourself
 
@@ -252,7 +252,7 @@ Nothing in standard day-to-day life prepares you for this.
     medium: "essay",
     tldr: "Solitude is where new ideas are born.",
     thoughts: "A kind reminder to provide your mind the space and activities to create new ideas",
-    tags: ['self-belief', 'solitude', 'learning', 'creativity'],
+    tags: ['self-belief', 'solitude', 'learning', 'creative-process', 'new-ideas'],
     notes: `
 
 Being alone is powerful. 
@@ -282,7 +282,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
     dateAdded: "2025-11-30",
     category: "advice",
     medium: "essay",
-    tags: ['writing', 'creativity'],
+    tags: ['writing', 'creative-process'],
     tldr: "It's okay if your first draft is shitty",
     thoughts: "Know that this has forever changed my perspective on writing, giving me the space to write drafts that no one will ever see but at least getting something onto the page.",
     notes: `
@@ -304,7 +304,7 @@ This is probably even more relevant with the rise of search engines and LLMs tha
     favorites: 3,
     tldr: "",
     thoughts: "long essay but filled with fruit.",
-    tags: ['great-work', 'ambition', 'career'],
+    tags: ['ambition', 'work', 'new-ideas', 'learning'],
     notes: `
 ### What is the type of work that you should be focusing on?
 > The work you choose needs to have three qualities: it has to be something you have a **natural aptitude for**, that you have a **deep interest in**, and that offers **scope to do great work.**
@@ -357,7 +357,7 @@ It's not a defect in your character that it may be hard to get started. People h
     medium: "essay",
     tldr: "Staring into the abyss allows clarity for complex issues in life; many people don't do it because it's uncomfortable to confront the past (especially if they are decisions that you now regret).",
     thoughts: "A corollary idea to embracing 'boredom' and thinking critically about your choices. It's ok to go back on choices you once believed were good.",
-    tags: ['boredom', 'thinking'],
+    tags: ['boredom'],
     notes: `
 > Staring into the abyss means thinking reasonably about things that are uncomfortable to contemplate, like arguments against your religious beliefs, or in favor of breaking up with your partner. It’s common to procrastinate on thinking hard about these things because it might require you to acknowledge that you were very wrong about something in the past, and perhaps wasted a bunch of time based on that (e.g. dating the wrong person or praying to the wrong god).
     `
@@ -396,11 +396,11 @@ It's obvious (and he notes) that it isn't difficult to implement this. Just toss
     author: "Kyla Scanlon",
     url: "https://kyla.substack.com/p/the-most-valuable-commodity-in-the",
     dateAdded: "2026-01-09",
-    category: "science",
+    category: "technology",
     medium: "essay",
     tldr: "Friction can be seen in three different worlds: digital, physical, and curated. In each of these worlds, the experience is different.",
     thoughts: "Love the breakdown of how friction is seen in these various circumstances.",
-    tags: ['thinking', 'boredom', 'new-ideas'],
+    tags: ['boredom', 'new-ideas'],
     notes: `
 Friction: *effort* required to move through systems
 
@@ -451,12 +451,12 @@ Impressionists had two qualities working in their favor: the paintings themselve
     url: "https://www.experimental-history.com/p/on-the-importance-of-staring-directly",
     author: "Adam Mastroianni",
     dateAdded: "2026-02-24",
-    category: "advice",
+    category: "psychology",
     archives: true,
     medium: "essay",
     tldr: "We actually know much less than we think we do. But maybe this is what helps us survive.",
     thoughts: "Fascinating article to expose the mysteries we have. There aren't many actionable takeaways. Maybe that is the point.",
-    tags: ['psychology'],
+    tags: ['mind'],
     notes: `
     
 Illusion of Explanatory Depth
@@ -531,7 +531,7 @@ The heart doesn’t think, it isn’t strategic. It just experiences. All that c
     medium: "essay",
     tldr: "",
     thoughts: "In honor of me starting to read \"When Breath Becomes Air\", doing a deep dive into Paul Kalanithi and his writing is the truest gift. Making me feel nostalgic about Stanford and life.",
-    tags: ['mortality', 'growth'],
+    tags: ['mortality', 'stanford', 'meaning'],
     notes: `
 I've just started to read *When Breath Becomes Air* (just started meaning I'm 70 pages in), and nothing warms my heart more than the fact that he went to Stanford. I naively didn't know that before I picked up the book. Reading his experiences makes me long for life even more. He talked about this essay in his Prologue and I knew I wanted to read it soon.
 
@@ -549,7 +549,7 @@ A rather sad but beautiful essay of his reflection.
     medium: "essay",
     tldr: "The real power of an education is truly not learning how to think, but learning how to choose what to think about.",
     thoughts: "",
-    tags: ['growth'],
+    tags: ['meaning', 'philosophy'],
     notes: `
 > But I’m going to posit to you that the liberal arts cliché turns out not to be insulting at all, because the really significant education in thinking that we’re supposed to get in a place like this isn’t really about the capacity to think, but **rather about the choice of what to think about.**
 
@@ -573,7 +573,7 @@ A rather sad but beautiful essay of his reflection.
     tldr: "",
     favorites: 1,
     thoughts: "So many psychological concepts connected with conversations. I love humans.",
-    tags: ['conversations', 'friends', 'psychology'],
+    tags: ['conversations', 'friends', 'mind'],
     notes: `
 I personally really enjoyed the psychological breakdown with the thoughts on conversation and friendship. Some of my favorite quotes below:
 > There’s a saying that “actions speak louder than words.” But words are actions. They land and rearrange. They build scaffolding for thought and memory. They shape what becomes *sayable*, and in turn, what becomes *thinkable*. It’s why a well-placed phrase can rewire your inner architecture. A question can unlock a forgotten room. A conversation can leave behind an invisible structure that you keep returning to.
@@ -669,7 +669,7 @@ That’s why “where do I fit in?” is not a private question, like the passwo
     favorites: 1,
     tldr: "",
     thoughts: "took a deeper breath after reading this one.",
-    tags: ['growth'],
+    tags: ['meaning'],
     notes: `
 > i kept thinking about that line: *everything is a win when the goal is to experience* and how for the first time it didn’t feel like something pretty or philosophical, it felt practical. like instructions. like a way to survive being human without constantly grading yourself.
 
@@ -804,7 +804,7 @@ As a sidenote, I think this article could be a sequel to [this essay](https://me
     medium: "essay",
     tldr: "Trying is the greatest form of love.",
     thoughts: "",
-    tags: ['love', 'trying'],
+    tags: ['love'],
     notes: `
 As a sidenote, one of my favorite quotes I used to always tell my roommate was "who would I be if I didn't try?". Who would I be if I didn't try for the many, *many* programs + jobs + clubs + everything else in the world that I applied to? Even with a subpar application, who would I be if I didn't try? This essay provides a similar thought, much more eloquently than I could have ever imagined.
 
@@ -846,7 +846,7 @@ In fashion, maybe a precursor to this article can be [this one](https://the25res
     favorites: 3,
     tldr: "",
     thoughts: "",
-    tags: ['comparison', 'career'],
+    tags: ['comparison', 'work'],
     notes: `
 One thing that Gor does incredibly well is choose every sentence with great care and detail (often using repetition to its fullest). This essay is no exception.
 
@@ -875,7 +875,7 @@ I truly love this essay for a perspective of dismantling external comparison. I 
     medium: "essay",
     tldr: "There are three categories to friendship: pleasure, utility, and virtue. Sometimes, you haven't become friends with someone because you haven't asked them / talked to them about the right topics.",
     thoughts: "If you search hard enough, more often than not, people have more in common with each other than you think. The bottleneck is how long are you willing to spend to find that spark.",
-    tags: ['friends', 'psychology'],
+    tags: ['friends', 'mind', 'conversations'],
     notes: `
 The three categories of friendships:
 1. **Pleasure** (personal, self-centered). Someone who makes you laugh, or makes you feel desirable.
@@ -903,7 +903,7 @@ If someone seems boring to you, or a bad fit, it might be that you don’t know 
     medium: "essay",
     tldr: "I hope you are able to leave the room that confines you to find air instead of walls.",
     thoughts: "",
-    tags: ['relationships', 'psychology'],
+    tags: ['relationships', 'mind'],
     notes: `
 I haven't been putting Substacks on my website log ever since I've been restacking on Substack itself, but this one resonated with me that it only felt right to share it.
 
@@ -955,7 +955,7 @@ I also think this pairs well with his essay about [Think of Pavlov](https://boz.
     medium: "essay",
     tldr: "The world is changing in a different way than we've previously seen with AI. Previously, we've had deterministic functions where you can put the same input in and get (relatively) the same output out. Now, systems are stochastic because AI can generate new thoughts and ideas. Even people creating AI don't exactly know what's happening.",
     thoughts: "",
-    tags: ['products', 'new-ideas'],
+    tags: ['products', 'new-ideas', 'LLMs'],
     notes: `
 I think we see this cultural shift happen a lot throughout history:
 - Socrates was famously against the idea of writing, believing that people would rely on external marks than utilizing what they had in their mind.
@@ -975,7 +975,7 @@ This essay really provides a nuanced view about the grey area of AI, what it mea
     url: "https://x.com/jxnlco/status/2073819508729684462",
     author: "Jason Liu",
     dateAdded: "2026-08-23",
-    category: "advice",
+    category: "psychology",
     medium: "essay",
     tldr: "You can curate taste every day. It's becoming increasingly harder with lower attention spans and fast dopamine hits, but by being more in tune with your decisions, you can curate your taste further.",
     thoughts: "",
@@ -1108,7 +1108,7 @@ Evidently, this research doesn't discuss much about the "legibility" aspect of C
     favorites: 3,
     tldr: "",
     thoughts: "Truly one of my favorite speeches ever given.",
-    tags: ['meaning', 'creativity', 'career'],
+    tags: ['meaning', 'creative-process', 'work', 'stanford', 'mortality'],
     notes: `
 One of my favorite lessons: The dots connect in hindsight, so trust the process.
 > Of course, it was impossible to connect the dots looking forward when I was in college. But it was very, very clear looking backwards ten years later.
@@ -1132,7 +1132,7 @@ Death is the destination we all share. No one has ever escaped it... death is li
     medium: "essay",
     tldr: "Being special isn't something that you owe to anyone. Not even yourself.",
     thoughts: "Mark has a more 'hard love' method to advice; this article doesn't differ.",
-    tags: ['special', 'meaning'],
+    tags: ['meaning'],
     notes: `
 :::quote
 In a bitter irony, through open-sourcing information, the internet has also open-sourced inadequacy and insecurity.
@@ -1153,11 +1153,11 @@ You don’t have to prove anything to anybody, including yourself.
     url: "https://jxnl.co/writing/2024/06/01/advice-to-young-people/",
     author: "Jason Liu",
     dateAdded: "2026-09-25",
-    category: "life",
+    category: "advice",
     medium: "essay",
     tldr: "A messy list of good life advice",
     thoughts: "",
-    tags: ['growth', 'happiness', 'mindset', 'career', 'friends', 'learning', 'meaning', 'new-ideas'],
+    tags: ['growth', 'meaning', 'learning', 'work'],
     notes: ``
   },
 
@@ -1170,7 +1170,7 @@ You don’t have to prove anything to anybody, including yourself.
     medium: "essay",
     tldr: "",
     thoughts: "",
-    tags: ['meaning', 'models'],
+    tags: ['meaning', 'AI-models', 'LLMs'],
     notes: `
 :::quote
 Nobody in Silicon Valley cares what you did a decade ago... This ecosystem runs on obsession with the future. It doesn’t matter if you started a company twenty years ago and took it public. If you’ve stopped building, you’re forgotten. 
@@ -1192,6 +1192,43 @@ The danger today is that AI’s pace can make constant reorientation look like p
     `
   },
 
+  {
+    title: "You Are How You Act",
+    url: "https://boz.com/articles/you-are-how-you-act",
+    author: "Andrew Bosworth",
+    dateAdded: "2026-11-17",
+    category: "advice",
+    medium: "essay",
+    tldr: "Foundation of the struggle between enlightenment philosophies about forgiveness vs accountaability.",
+    thoughts: "",
+    tags: ['growth', 'learning', 'new-ideas', 'feedback'],
+    notes: `
+I decided to put this on my shelf because I taps into something I've thought about a lot.
+
+There's a notion on the gen-z internet to not [LARP](https://x.com/garrytan/status/2081586567211348432?lang=en).
+
+If you don't know what LARP-ing is:
+
+:::sidenote
+LARP: live action role-playing.
+def: An interactive form of role-playing game where participants physically portray characters in a fictional setting...
+easier (noun) def: someone who is pretending to be something they are not.
+:::
+
+Basically, it's the embodiment of "fake it until you make it". And Boz address this specific phrase.
+
+:::quote
+“Fake it until you make it” is often dismissed as shallow, but it’s closer to Franklin’s truth. Faking it long enough is making it. The repetition of behavior, not the sincerity of belief, is what shapes character. You become the kind of person who does the things you repeatedly do.
+:::
+
+Which is one of the reasons why I've always questioned why people are so against LARPers. Yes, like any other thing, there are alawys extremes and Garry Tan saying it may not be far out of realm (of course, you wouldn't want falsify data and fraud investors) but for other parts of your life, I believe this motivation piece of "fake it until you make it" or being a LARPer can actually be incredibly beneficial.
+
+Any maybe part of the reason is that I think I'm a LARPer. I most certainly believe in "fake it till you make it". I believe you can rise up to the occassion if everything externally is shifted to make that happen.
+
+Don't be fooled - there are most *certainly* limitations. But maybe you don't have a shun away the idea of it.
+    `
+  },
+
   /*{
     title: "",
     url: "",
@@ -1204,6 +1241,88 @@ The danger today is that AI’s pace can make constant reorientation look like p
     tags: [''],
     notes: ``
   },*/
+
+  {
+    title: "Self-play and Autocurricula in the Age of Agents",
+    url: "https://www.amplifypartners.com/blog-posts/self-play-and-autocurricula-in-the-age-of-agents",
+    author: "Rohan Virani",
+    dateAdded: "2026-04-18",
+    category: "AI",
+    medium: "essay",
+    tldr: "",
+    thoughts: "",
+    tags: ['agents', 'reinforcement-learning'],
+    notes: `
+### This article is about self-play with reinforcement learning (RL), which results in autocurricula - or automatic curriculum. 
+
+This is more formally defined below.
+
+:::quote
+autocurricula (def): a machine learning paradigm where AI agents (usually in multi-agent environments) automatically generate increasingly complex tasks and challenges for themselves to solve, rather than relying on human-designed training scenarios.
+:::
+
+As of November 5, 2025, we hadn't employed self-play for LLMs. More specifically, LLMs aren't able to generate problems in which another LLM is learning to solve and challenging the knowledge of an LLM in that way.
+
+[Noam Brown](https://noambrown.github.io/) at OpenAI notes that
+:::quote
+“self-play works for two player zero sum games…like Go, Poker and Starcraft but is so much harder to use in real world domains”. 
+:::
+
+RL applications to help scale AI labs:
+- increasing compute spend
+- number of environments that agents are training on
+- corresponding tasks to solve
+
+### One of the key differentiators is to determine *in what order these tasks should be learned.*
+
+> When training examples are ordered from easy to hard, convergence is faster and quality of local minima is higher (Yoshua Bengio).
+
+This mimics how humans learn as well, starting from the basics and then learning harder and harder problems sequentially.
+
+:::quote
+basins of attraction (def): set of initial conditions (starting points) in a dynamical system that evolve over time towards a specific long-term behavior (known as the attractor)
+:::
+
+The following points demonstrate the bottlenecks of current AI systems.
+
+> The marginal information gain from showing tasks based on what *humans* find easy or difficult is less than the potential information gain from showing tasks based on what the *model* finds easy or difficult. Put another way, we need to zero in on what the actual model is ready to learn next based on **its own** definition of easy or difficult, a region called its **learnable frontier.**
+
+> The bottleneck is no longer maintaining the learnable frontier given a fixed set of tasks, but instead **finding new tasks to feed to the learnable frontier.**
+
+### In order to design task variations, using **language models** to parameterize the distribution of tasks and sample from them is a current methodology employed by AI labs. 
+
+This is a separate step before the training process - this is a fixed process. Possibly employing a continuous learning method can make the agents more versatile.
+
+**We want self-play for language models.** Current methods that are framing the frontier:
+- Absolute Zero - one of the first successful attempts at self-play with language models.
+- SPICE (Self Play In Corpus Environments) - expanded the tasks tackled to include general reasoning problems.
+
+However, this doesn't achieve state-of-the-art performance at larger scales. 
+
+### Unsupervised Environment Design (UED)
+
+This method automatically samples and adapts the task distribution, and even environment distribution, to the learner during training *while* introducing the second antagonist model. The multi-agent reinforcement learning setup looks like:
+- Protagonist agent: trying to minimize regret
+- Antagonist agent: helps define what is solvable
+- Task generator (teacher): generates environments to maximize the regret gap
+    
+:::quote
+This neat trick ensures that generated environments are always solvable by at least one student, the antagonist. If the protagonist (the person we really care about) ever catches up to its counterpart, the teacher will make the game more challenging again, but not so difficult that its ally can’t solve it. 
+:::
+
+While more stable, this method still has a major issue of sparse rewards since the teacher's rewards depend on the agents' actions on the task provided. This further causes a **long horizon**.
+
+### Evolutionary Algorithms (EAs)
+
+With evolutionary algorithms, we can generate new, diverse tasks. This is a method inspired by biological evolution.
+
+:::quote
+evolutionary algorithms (def): optimization techniques where population of candidate solutions evolves over time to find optimal or near-optimal solutions to a problem.
+:::
+
+Here, LLMs can take an environment and mutate it (as seen in AlphaEvolve). EAs can be used *with* learned environment generators.
+`
+  },
 ];
 
 export default essayData;

@@ -1,4 +1,4 @@
-import { useMemo, useState, useEffect, useRef, useCallback } from 'react';
+import { useMemo, useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { useTheme } from '../../components/ThemeContext/ThemeContext';
@@ -154,6 +154,19 @@ const BookshelfPage = () => {
   useEffect(() => {
     setCurrentPage(1);
   }, [search, activeCategory, activeMedium, sortKey, sortDirection, favoriteTier, activeTag, showArchives]);
+
+  // The favorites sort only applies while a favorite tier is active.
+  // Clearing the tier from any other control (All, a category/medium/tag
+  // chip) should restore the default date order instead of leaving the
+  // list sorted favorites-first. useLayoutEffect (not useEffect) so the
+  // reset happens before paint — otherwise the list flashes the
+  // favorites-first order for a frame before settling on date order.
+  useLayoutEffect(() => {
+    if (favoriteTier === null && sortKey === 'favorites') {
+      setSortKey('dateAdded');
+      setSortDirection('desc');
+    }
+  }, [favoriteTier, sortKey]);
 
   // Calculate paginated data
   const paginatedData = useMemo(() => {
@@ -360,7 +373,7 @@ const BookshelfPage = () => {
       <div>
         <div className="bookshelf-hero" style={{ display: 'flex', gap: '1rem', alignItems: 'center', marginBottom: '1.25rem' }}>
           <div style={{ width: 84, height: 84 }}>
-            <img src={bookshelfPhoto} alt="Bookshelf illustration" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
+            <img src={bookshelfPhoto} alt="Recent reads illustration" style={{ width: '100%', height: '100%', borderRadius: 8, objectFit: 'cover' }} />
           </div>
           <div style={{ flex: 1 }}>
             <h1 style={{
@@ -371,15 +384,15 @@ const BookshelfPage = () => {
               fontWeight: 'var(--weight-bold)',
               lineHeight: 'var(--leading-tight)',
               letterSpacing: '-0.01em',
-            }}>Bookshelf</h1>
+            }}>Recent Reads</h1>
             <p style={{ marginTop: '0.4rem', marginBottom: 0, color: theme.colors.textSecondary, fontSize: 'var(--text-meta)', lineHeight: 'var(--leading-normal)' }}>Every time I'm not reading, I'm thinking about reading.</p>
           </div>
         </div>
 
-        <div className="bookshelf-stats" aria-label="Bookshelf stats">
+        <div className="bookshelf-stats" aria-label="Recent reads stats">
           <span className="bookshelf-stats__item"><strong>{shelfStats.entries}</strong> entries</span>
           <span className="bookshelf-stats__dot" aria-hidden="true">·</span>
-          <span className="bookshelf-stats__item"><strong>{shelfStats.shelves}</strong> shelves</span>
+          <span className="bookshelf-stats__item"><strong>{shelfStats.shelves}</strong> categories</span>
         </div>
 
         <QuoteWidget />

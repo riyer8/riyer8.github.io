@@ -8,15 +8,65 @@ export const SELECTED_BUILDS = [
   {
     name: "nyc-tiny-world",
     href: "https://github.com/riyer8/nyc-tiny-world",
-    description: "walkable slice of greenwich village with OSM streets + buildings and quests!",
-    why: "a tiny new york i can still wander from san francisco",
+    description: "walkable slice of greenwich village with OSM buildings & quests!",
+    language: "Python",
+    updatedLabel: "Sep 2026",
+    why: "a tiny new york i can still wander from san francisco.",
+  },
+  {
+    name: "astra-paints",
+    href: "https://github.com/riyer8/astra-paints",
+    description: "simulated robotic painting with gpt-6 astra.",
+    language: "Python",
+    updatedLabel: "Sep 2026",
+    why: "simulating thijs's viral robot arm painting, without the hardware.",
   },
   {
     name: "knowledge-bases",
     href: "https://github.com/riyer8/knowledge-bases",
-    description: "my personal knowledge system + graph, chat over my own data.",
-    why: "making the internet easier to take notes on",
+    description: "my personal knowledge system + graph.",
+    language: "Python",
+    updatedLabel: "Sep 2026",
+    why: "making the internet easier to take notes on.",
   },
+  {
+    name: "cs224r-ofcp",
+    href: "https://github.com/riyer8/cs224r-ofcp",
+    description: "CS224R: Advancing Multi-Agent Reasoning in Open-Face Chinese Poker.",
+    language: "Python",
+    updatedLabel: "May 2026",
+    why: "aka pineapple poker, inspired by our probability & gambling class.",
+  },
+  {
+    name: "cs229-stockvol",
+    href: "https://github.com/riyer8/cs229-stockvol",
+    description: "CS 229: ML architecture to predict stock market volatility via sentiment analysis.",
+    language: "Jupyter Notebook",
+    updatedLabel: "Dec 2024",
+    why: "how what people say affects trading.",
+  },
+  {
+    name: "trading_data",
+    href: "https://github.com/riyer8/trading_data",
+    description: "personal bloomberg-lite, python toolkit of stock screeners, charts, fundamentals from yfinance.",
+    language: "Python",
+    updatedLabel: "Nov 2026",
+    why: "all the trading screens i look at.",
+  },
+];
+
+// Ordered allowlist for the live GitHub fetch (useGithubRepos): only the
+// repos listed here show in Selected builds, in exactly this order.
+// Reorder a name here to reorder the rail; remove one to hide it. The
+// hand-written `why` lines above stay in SELECTED_BUILDS and are merged
+// in by name, since they can't be scraped from GitHub.
+export const SELECTED_BUILD_NAMES = [
+  "nyc-tiny-world",
+  "astra-paints",
+  "knowledge-bases",
+  "cs224r-ofcp",
+  "cs229-stockvol",
+  "trading_data",
 ];
 
 export const RECENT_READ_LIMIT = 3;

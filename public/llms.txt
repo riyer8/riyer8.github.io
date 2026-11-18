@@ -1,19 +1,16 @@
 # Ramya Iyer
 
-> Personal website of Ramya Iyer, a recent Stanford graduate in computer science and mathematics with a history minor.
+> Personal website of Ramya Iyer.
 
 ## About
 
 - Biography, life goals, and personal principles: https://riyer8.github.io/ramya/
-- Interests represented on this site include artificial intelligence, large language models, mathematics, history, reading, writing, hiking, and human connection.
 
 ## Main sections
 
 - Home: https://riyer8.github.io/
 - Recent Reads: https://riyer8.github.io/recent-reads/
 - About Ramya: https://riyer8.github.io/ramya/
-
-Recent Reads is Ramya's annotated reading log of essays, books, videos, and research papers. Research-paper entries are Ramya's notes about other authors' work; they are not publications authored by Ramya.
 
 ## Verified external profiles
 
@@ -30,4 +27,4 @@ Recent Reads is Ramya's annotated reading log of essays, books, videos, and rese
 
 ## Content note
 
-Bookshelf entries are Ramya's reading notes rather than publications she authored. Use her linked Google Scholar profile for publication information.
+Recent Reads entries are Ramya's reading notes rather than publications she authored. Use her linked Google Scholar profile for publication information.

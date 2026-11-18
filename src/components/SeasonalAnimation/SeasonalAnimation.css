@@ -1,0 +1,44 @@
+.seasonal-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 10000;
+  pointer-events: none;
+  background: var(--st-paper);
+  border: 1px solid var(--st-border);
+  border-radius: 999px;
+  padding: 0.55rem 1rem;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: var(--st-text);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+  white-space: nowrap;
+  animation: seasonal-toast-in-out 3.5s ease forwards;
+}
+
+@keyframes seasonal-toast-in-out {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 8px);
+  }
+  8% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  80% {
+    opacity: 1;
+    transform: translate(-50%, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 4px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .seasonal-toast {
+    animation: none;
+  }
+}

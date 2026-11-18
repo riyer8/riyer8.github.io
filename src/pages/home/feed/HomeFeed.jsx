@@ -1,14 +1,12 @@
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router";
 import { useTheme } from "../../../components/ThemeContext/ThemeContext";
 import { SITE } from "../../../seo/siteMetadata";
 import StatusWidget from "../status/StatusWidget";
 import FavoriteStars from "../../bookshelf/components/FavoriteStars";
-import {
-  SELECTED_BUILDS,
-  getBookshelfTotal,
-  getRecentReads,
-} from "./homeFeedData";
+import { getBookshelfTotal, getRecentReads } from "./homeFeedData";
 import useSubstackPosts from "./useSubstackPosts";
+import useGithubRepos from "./useGithubRepos";
 import "./HomeFeed.css";
 
 const ExternalArrow = () => (
@@ -42,10 +40,35 @@ const SectionHead = ({ id, title, count, href, to, linkLabel }) => (
   </div>
 );
 
+// GitHub language colors for the repo meta row; anything unlisted falls
+// back to the site accent.
+const LANGUAGE_COLORS = {
+  Python: "#3572A5",
+  JavaScript: "#f1e05a",
+  TypeScript: "#3178c6",
+  CSS: "#663399",
+  HTML: "#e34c26",
+  Java: "#b07219",
+  "Jupyter Notebook": "#DA5B0B",
+  Ruby: "#701516",
+  Go: "#00ADD8",
+  Rust: "#dea584",
+  Shell: "#89e051",
+  "C++": "#f34b7d",
+  C: "#555555",
+};
+
+// Short display labels for long language names, so the language and the
+// updated date stay on one line in the meta row. The color lookup above
+// still uses the full language name.
+const LANGUAGE_LABELS = {
+  "Jupyter Notebook": "Jupyter",
+};
+
 const BuildCard = ({ build }) => (
   <a
     className="home-feed-card"
-    href={build.href}
+    href={build.url || build.href}
     target="_blank"
     rel="noopener noreferrer"
   >
@@ -57,8 +80,84 @@ const BuildCard = ({ build }) => (
     {build.why ? (
       <p className="home-feed-card__why">{build.why}</p>
     ) : null}
+    {build.language || build.updatedLabel ? (
+      <p className="home-feed-card__meta-row">
+        {build.language ? (
+          <span className="home-feed-card__meta-item">
+            <span
+              className="home-feed-card__lang-dot"
+              style={{
+                backgroundColor:
+                  LANGUAGE_COLORS[build.language] || "var(--home-accent)",
+              }}
+            />
+            {LANGUAGE_LABELS[build.language] || build.language}
+          </span>
+        ) : null}
+        {build.updatedLabel ? (
+          <span className="home-feed-card__meta-item home-feed-card__meta-item--updated">
+            updated {build.updatedLabel}
+          </span>
+        ) : null}
+      </p>
+    ) : null}
   </a>
 );
+
+// Selected builds as a horizontal shelf rail (prototype №03): a scroll-snap
+// flex row. Scrollability is signalled by a fade at the edge plus a
+// partially visible next card (the peek) — no arrow buttons. The fade is
+// scroll-aware: the right edge fades only while there is more to the
+// right, and the left edge fades only once scrolled right of the start.
+// The rail itself is keyboard-focusable so it can be scrolled with
+// arrow keys.
+const BuildsRail = ({ builds }) => {
+  const railRef = useRef(null);
+  const [scrollable, setScrollable] = useState(false);
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+
+  const updateFades = useCallback(() => {
+    const rail = railRef.current;
+    if (!rail) return;
+    const maxScroll = rail.scrollWidth - rail.clientWidth;
+    setScrollable(maxScroll > 1);
+    setAtStart(rail.scrollLeft <= 1);
+    setAtEnd(rail.scrollLeft >= maxScroll - 1);
+  }, []);
+
+  useEffect(() => {
+    updateFades();
+  }, [builds, updateFades]);
+
+  useEffect(() => {
+    window.addEventListener("resize", updateFades);
+    return () => window.removeEventListener("resize", updateFades);
+  }, [updateFades]);
+
+  const railClassName = [
+    "home-feed__rail",
+    scrollable && !atEnd ? "home-feed__rail--fade-right" : null,
+    scrollable && !atStart ? "home-feed__rail--fade-left" : null,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  return (
+    <div
+      className={railClassName}
+      ref={railRef}
+      onScroll={updateFades}
+      tabIndex={0}
+      role="region"
+      aria-label="Selected builds"
+    >
+      {builds.map((build) => (
+        <BuildCard key={build.name} build={build} />
+      ))}
+    </div>
+  );
+};
 
 const PostCard = ({ post }) => (
   <a
@@ -125,9 +224,24 @@ const BookCard = ({ book, starColor }) => (
 const HomeFeed = () => {
   const { theme } = useTheme();
   const posts = useSubstackPosts({ limit: 3 });
-  const recentReads = getRecentReads();
+  const builds = useGithubRepos();
   const bookshelfTotal = getBookshelfTotal();
   const starColor = theme.isDarkMode ? "#FFD700" : "#000";
+
+  // Recent reads: show as many as fit nicely in one row — 3 when there
+  // is room, 2 when 3 would be cramped, 1 on a narrow phone. The grid
+  // stays a single row (no wrapping); the count trims instead.
+  const [viewportWidth, setViewportWidth] = useState(
+    typeof window === "undefined" ? 1200 : window.innerWidth
+  );
+  useEffect(() => {
+    const onResize = () => setViewportWidth(window.innerWidth);
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+  const readColumns =
+    viewportWidth >= 1100 ? 3 : viewportWidth >= 600 ? 2 : 1;
+  const recentReads = getRecentReads(undefined, { limit: readColumns });
 
   return (
     <div
@@ -148,13 +262,11 @@ const HomeFeed = () => {
         <SectionHead
           id="home-builds"
           title="Selected builds"
-          count="2 of 18"
+          count={`${builds.length} of 18`}
           href={SITE.profiles.github}
           linkLabel="all on github →"
         />
-        {SELECTED_BUILDS.map((build) => (
-          <BuildCard key={build.name} build={build} />
-        ))}
+        <BuildsRail builds={builds} />
       </section>
 
       <section className="home-feed__section" aria-labelledby="home-writing">
@@ -178,9 +290,12 @@ const HomeFeed = () => {
           title="Recent reads"
           count={`${recentReads.length} of ${bookshelfTotal}`}
           to="/recent-reads"
-          linkLabel="full bookshelf →"
+          linkLabel="full recent reads →"
         />
-        <div className="home-feed__row">
+        <div
+          className="home-feed__row"
+          style={{ gridTemplateColumns: `repeat(${readColumns}, minmax(0, 1fr))` }}
+        >
           {recentReads.map((book) => (
             <BookCard key={book.title} book={book} starColor={starColor} />
           ))}

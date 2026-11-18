@@ -5,7 +5,7 @@ export const NOW_TICKER = [
   "gyming 🥊",
   "biking around San Francisco 🌉",
   "hiking in the Californian mountains 🥾",
-  "eating food at new restaurants 🍽️",
+  "eating at new restaurants 🍽️",
   "learning to play the piano 🎶"
 ];
 

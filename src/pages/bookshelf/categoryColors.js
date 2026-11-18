@@ -11,7 +11,7 @@ const CATEGORY_HUES = {
   connection: 338,
   psychology: 172,
   creativity: 16,
-  science: 196,
+  technology: 196,
 };
 
 const hueForCategory = (category) => {

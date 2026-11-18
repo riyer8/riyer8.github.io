@@ -52,6 +52,7 @@ const CASCADE_SELECTOR = [
   ".home-feed__section-head",
   ".home-feed-card",
   ".home-feed__row",
+  ".home-feed__rail",
   ".home-feed__more",
 ].join(",");
 

@@ -3,7 +3,6 @@ import {
   absoluteAssetUrl,
   canonicalUrl,
   SITE,
-  TOPICS,
 } from "./siteMetadata";
 
 const SITE_TITLE = SITE.name;
@@ -46,24 +45,6 @@ export const personSchema = {
   alternateName: SITE.shortName,
   url: `${SITE.url}/`,
   description: SITE.description,
-  alumniOf: {
-    "@type": "CollegeOrUniversity",
-    name: "Stanford University",
-    url: "https://www.stanford.edu/",
-  },
-  hasCredential: SITE.degree
-    ? {
-      "@type": "EducationalOccupationalCredential",
-      credentialCategory: "degree",
-      name: SITE.degree,
-    }
-    : undefined,
-  homeLocation: {
-    "@type": "Place",
-    name: SITE.location,
-  },
-  knowsAbout: TOPICS,
-  sameAs: Object.values(SITE.profiles),
 };
 
 export const websiteSchema = {
@@ -147,7 +128,7 @@ export function usePageMetadata({
     });
     upsertMeta('meta[name="twitter:card"]', {
       name: "twitter:card",
-      content: "summary_large_image",
+      content: "summary",
     });
     upsertMeta('meta[name="twitter:title"]', {
       name: "twitter:title",

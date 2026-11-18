@@ -225,7 +225,6 @@
   display: flex;
   align-items: center;
   font-family: var(--font-serif);
-  font-style: italic;
   font-size: 16px;
   line-height: 1.4;
   color: var(--now-text);

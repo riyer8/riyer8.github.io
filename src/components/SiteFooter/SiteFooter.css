@@ -12,8 +12,15 @@
 }
 
 .site-footer__copy {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font-family: inherit;
   font-size: var(--text-caption);
   line-height: var(--leading-normal);
+  cursor: pointer;
 }
 
 .site-footer__psst-wrap {

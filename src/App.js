@@ -20,6 +20,7 @@ import { formatPageTitle } from "./seo/pageMetadata";
 import { CommandPaletteProvider } from "./components/CommandPalette/CommandPalette";
 import { NowCardProvider } from "./components/NowCard/NowCard";
 import { ChangelogProvider } from "./components/Changelog/ChangelogModal";
+import { SeasonalAnimationProvider } from "./components/SeasonalAnimation/SeasonalAnimationContext";
 import { SiteToastProvider } from "./components/SiteToast/SiteToast";
 import SiteFooter from "./components/SiteFooter/SiteFooter";
 import DaydreamMode from "./components/Daydream/DaydreamMode";
@@ -101,30 +102,32 @@ const App = () => {
       <SiteToastProvider>
         <NowCardProvider>
           <ChangelogProvider>
-            <CommandPaletteProvider>
-              <PixelatedBackground />
-              <ThemeToggle />
-              <SeasonalToggleManager />
-              <DaydreamMode />
-              {showLandingScreen ? (
-                <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
-                  <HomeLandingScreen
-                    onFadeStart={handleLandingFadeStart}
-                    onComplete={handleLandingComplete}
-                  />
-                </HomeIntroWall>
-              ) : null}
-              <Routes>
-                <Route element={<AnimatedLayout />}>
-                  <Route path="/" element={homeRoute} />
-                  <Route path="/recent-reads" element={<BookshelfRoute />} />
-                  <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
-                  <Route path="/ramya" element={<AboutPage />} />
-                  <Route path="*" element={<NotFoundPage />} />
-                </Route>
-              </Routes>
-              <SiteFooter />
-            </CommandPaletteProvider>
+            <SeasonalAnimationProvider>
+              <CommandPaletteProvider>
+                <PixelatedBackground />
+                <ThemeToggle />
+                <SeasonalToggleManager />
+                <DaydreamMode />
+                {showLandingScreen ? (
+                  <HomeIntroWall blocksInteraction={landingBlocksInteraction}>
+                    <HomeLandingScreen
+                      onFadeStart={handleLandingFadeStart}
+                      onComplete={handleLandingComplete}
+                    />
+                  </HomeIntroWall>
+                ) : null}
+                <Routes>
+                  <Route element={<AnimatedLayout />}>
+                    <Route path="/" element={homeRoute} />
+                    <Route path="/recent-reads" element={<BookshelfRoute />} />
+                    <Route path="/recent-reads/:slug" element={<BookshelfRoute />} />
+                    <Route path="/ramya" element={<AboutPage />} />
+                    <Route path="*" element={<NotFoundPage />} />
+                  </Route>
+                </Routes>
+                <SiteFooter />
+              </CommandPaletteProvider>
+            </SeasonalAnimationProvider>
           </ChangelogProvider>
         </NowCardProvider>
       </SiteToastProvider>
