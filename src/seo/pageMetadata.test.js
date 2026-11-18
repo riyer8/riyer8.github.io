@@ -56,12 +56,15 @@ describe("makeBreadcrumbSchema", () => {
 });
 
 describe("personSchema", () => {
-  it("lists corroborating profile URLs in sameAs", () => {
-    expect(personSchema.sameAs).toEqual(
-      expect.arrayContaining([
-        SITE.profiles.integirls,
-        SITE.profiles.aclanthology,
-      ])
-    );
+  it("keeps only the minimal identity fields (no sameAs)", () => {
+    expect(personSchema).toEqual({
+      "@type": "Person",
+      "@id": `${SITE.url}/#person`,
+      name: SITE.name,
+      alternateName: SITE.shortName,
+      url: `${SITE.url}/`,
+      description: SITE.description,
+    });
+    expect(personSchema.sameAs).toBeUndefined();
   });
 });

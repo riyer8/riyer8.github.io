@@ -12,6 +12,7 @@ import { useNavigate } from "react-router";
 import { useTheme } from "../ThemeContext/ThemeContext";
 import { useNowCard } from "../NowCard/NowCard";
 import { useChangelog } from "../Changelog/ChangelogModal";
+import { useSeasonalAnimation } from "../SeasonalAnimation/SeasonalAnimationContext";
 import { SITE } from "../../seo/siteMetadata";
 import "./CommandPalette.css";
 
@@ -177,18 +178,40 @@ const PaletteIcon = ({ name }) => {
           />
         </svg>
       );
+    case "seasonal":
+      return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path
+            d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
     default:
       return null;
   }
 };
 
-const runItem = (item, navigate, openNow, openChangelog) => {
+const runItem = (item, navigate, openNow, openChangelog, toggleSeasonalAnimation) => {
   if (item.action === "now") {
     openNow();
     return;
   }
   if (item.action === "changelog") {
     openChangelog();
+    return;
+  }
+  if (item.action === "seasonal-animation") {
+    toggleSeasonalAnimation();
     return;
   }
   if (item.to != null) {
@@ -208,22 +231,50 @@ const CommandPalette = () => {
   const { isOpen, close, toggle } = useCommandPalette();
   const { open: openNow } = useNowCard();
   const { open: openChangelog } = useChangelog();
+  const { seasonalAnimationEnabled, toggleSeasonalAnimation } =
+    useSeasonalAnimation();
   const { theme } = useTheme();
   const navigate = useNavigate();
   const inputRef = useRef(null);
   const previouslyFocusedRef = useRef(null);
   const [query, setQuery] = useState("");
 
+  // The seasonal item's label reflects the current state, so the list is
+  // rebuilt whenever the flag changes.
+  const items = useMemo(
+    () => [
+      ...PALETTE_ITEMS,
+      {
+        id: "seasonal-animation",
+        label: seasonalAnimationEnabled
+          ? "disable seasonal animation"
+          : "enable seasonal animation",
+        action: "seasonal-animation",
+        icon: "seasonal",
+        keywords: [
+          "season",
+          "seasons",
+          "animation",
+          "leaves",
+          "snow",
+          "background",
+          "toggle",
+        ],
+      },
+    ],
+    [seasonalAnimationEnabled]
+  );
+
   const matches = useMemo(() => {
     const needle = query.trim().toLowerCase();
-    if (!needle) return PALETTE_ITEMS;
-    return PALETTE_ITEMS.filter((item) => {
+    if (!needle) return items;
+    return items.filter((item) => {
       const haystack = [item.label, ...(item.keywords || [])]
         .join(" ")
         .toLowerCase();
       return haystack.includes(needle);
     });
-  }, [query]);
+  }, [query, items]);
 
   const topMatch = matches[0] || null;
 
@@ -259,9 +310,9 @@ const CommandPalette = () => {
     (item) => {
       if (!item) return;
       close();
-      runItem(item, navigate, openNow, openChangelog);
+      runItem(item, navigate, openNow, openChangelog, toggleSeasonalAnimation);
     },
-    [close, navigate, openNow, openChangelog]
+    [close, navigate, openNow, openChangelog, toggleSeasonalAnimation]
   );
 
   if (!isOpen) return null;
@@ -333,6 +384,11 @@ const CommandPalette = () => {
                     <PaletteIcon name={item.icon} />
                   </span>
                   <span>{item.label}</span>
+                  {item.href?.startsWith("http") ? (
+                    <span className="command-palette__arrow" aria-hidden="true">
+                      ↗
+                    </span>
+                  ) : null}
                 </button>
               </li>
             ))

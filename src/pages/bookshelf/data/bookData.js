@@ -8,7 +8,7 @@ const bookData = [
     archives: true,
     medium: 'book',
     thoughts: "One of the main takeaways that I remember from this book is that not everything you love has to be monetized. It takes away the love of it.",
-    tags: ['growth', 'motivation', 'mindset'],
+    tags: ['growth', 'mindset'],
     notes: `Below are some quotes that I really liked from the book.
 ### I Wrote This Book Because I Needed To Read It
 > The principles apply to anyone trying to sustain a meaningful and productive creative life.
@@ -81,7 +81,7 @@ const bookData = [
     archives: true,
     medium: 'book',
     thoughts: "Lots of mental models about learning faster. Jim Kwik has such a rich background and story that makes his advice so deep.",
-    tags: ['learning', 'brain', 'productivity', 'habits'],
+    tags: ['learning', 'brain', 'productivity', 'habits', 'mental-models'],
     notes: ` This one is a long one, but here are some selected quotes I liked.
     
 ## Foreword
@@ -240,7 +240,7 @@ const bookData = [
     category: "psychology",
     archives: true,
     medium: "book",
-    tags: ["decisions", "uncertainty", "poker", "probabilities"],
+    tags: ["decisions", "uncertainty", 'mental-models', 'mind'],
     tldr: "🎲 Life is better modeled as a poker game, where there is much uncertainty about what is coming next.",
     thoughts: "Such a nice parallel between life and poker, thinking in probabilities, and decisions.",
     notes: `
@@ -333,7 +333,7 @@ const bookData = [
     category: "creativity",
     medium: "essay",
     favorites: 1,
-    tags: ["career"],
+    tags: ["work"],
     tldr: "The best way to live is to create. Don't leave this world with ideas that could have been something out there.",
     thoughts: "Oh wow. Definitely something I'm coming back to later.",
     notes: ` 
@@ -355,7 +355,7 @@ Some of my favorite quotes from this chapter of a much larger book:
     medium: "book",
     tldr: "Saying yes to strangers can truly change your life.",
     thoughts: "More of a true memoir than a self-improvement book (and I prefer it that way).",
-    tags: ['self-belief', 'learning', 'creativity', 'courage'],
+    tags: ['self-belief', 'learning', 'creative-process', 'courage'],
     notes: `
 One of the reasons why I loved this book is the beginning of it seemed almost relatable. (Granted, by the end of the book, his life experiences are wildly different than anyone - even he - can imagine at 23).
 > I was a disciple of the #hustle culture, committed to success at all costs, convinced that with enough willpower, anything was possible. All I had to do was *grind*, and it would work out.
@@ -375,7 +375,7 @@ One of the reasons why I loved this book is the beginning of it seemed almost re
     medium: "book",
     tldr: "ex-CIA officers provide a handbook on how to detect deception.",
     thoughts: "While it provides good frameworks, I found that it was mostly a handbook rather than detailed frameworks.",
-    tags: ['deception'],
+    tags: ['deception', 'mind'],
     notes: `
 > In order to determine whether a person is being untruthful, we need to look and listen for the first deceptive behavior to occur within the first five seconds after the stimulus is delivered.
 
@@ -405,7 +405,7 @@ The oath that is used when a witness is sworn to testify covers all three forms 
     author: "Spencer Johnson",
     url: "https://www.goodreads.com/book/show/4894.Who_Moved_My_Cheese_",
     dateAdded: "2025-12-20",
-    category: "career",
+    category: "advice",
     medium: "book",
     tldr: "🧀 Change is inevitable; adapt quickly and enjoy it!",
     thoughts: "A really quick read, but a good reminder that change is constant and we should continue to anticipate and adapt.",
@@ -446,7 +446,7 @@ Basically, change is coming and the quicker we move and iterate, the faster we c
     url: "https://www.goodreads.com/book/show/25614898-when-breath-becomes-air",
     dateAdded: "2026-03-11",
     category: "life",
-    tags: ['philosophy', 'morality', 'stanford', 'mortality'],
+    tags: ['philosophy', 'stanford', 'mortality', 'meaning'],
     medium: "book",
     favorites: 3,
     tldr: "",

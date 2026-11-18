@@ -6,7 +6,7 @@ const puppeteer = require("puppeteer");
 
 process.env.BABEL_ENV = "development";
 process.env.NODE_ENV = "development";
-require("@babel/register")({
+require("@babel/register").default({
   babelrc: false,
   configFile: false,
   extensions: [".js"],

@@ -6,9 +6,9 @@ const researchPaperData = [
     author: "Hongzi Mao et al.",
     url: "https://dl.acm.org/doi/10.1145/3098822.3098843",
     dateAdded: "2025-12-22",
-    category: "science",
+    category: "technology",
     medium: "research paper",
-    tags: ['video-streaming', 'adaptive-bitrate', 'reinforcement-learning'],
+    tags: ['video-streaming', 'reinforcement-learning'],
     tldr: "RL for dynamic ABR for better user experience when streaming videos.",
     notes: `
 **Main Idea: Pensieve, a reinforcement learning system for learned adaptive bitrate (ABR) algorithms**
@@ -47,9 +47,9 @@ This is the image that can be found in the article, displaying the architecture 
     author: "Te-Yuan Huang et al.",
     url: "https://yuba.stanford.edu/~nickm/papers/sigcomm2014-video.pdf",
     dateAdded: "2025-12-27",
-    category: "science",
+    category: "technology",
     medium: "research paper",
-    tags: ['video-streaming', 'adaptive-bitrate', 'reinforcement-learning'],
+    tags: ['video-streaming'],
     tldr: "The buffer occupancy is a more reliable signal than bandwidth estimation for ABR algorithms.",
     notes: `
 **Main Idea:**
@@ -127,95 +127,13 @@ This paper showed that
   },
 
   {
-    title: "Self-play and Autocurricula in the Age of Agents",
-    url: "https://www.amplifypartners.com/blog-posts/self-play-and-autocurricula-in-the-age-of-agents",
-    author: "Rohan Virani",
-    dateAdded: "2026-04-18",
-    category: "AI",
-    medium: "essay",
-    tldr: "",
-    thoughts: "",
-    tags: ['agents', 'reinforcement-learning'],
-    notes: `
-### This article is about self-play with reinforcement learning (RL), which results in autocurricula - or automatic curriculum. 
-
-This is more formally defined below.
-
-:::quote
-autocurricula (def): a machine learning paradigm where AI agents (usually in multi-agent environments) automatically generate increasingly complex tasks and challenges for themselves to solve, rather than relying on human-designed training scenarios.
-:::
-
-As of November 5, 2025, we hadn't employed self-play for LLMs. More specifically, LLMs aren't able to generate problems in which another LLM is learning to solve and challenging the knowledge of an LLM in that way.
-
-[Noam Brown](https://noambrown.github.io/) at OpenAI notes that
-:::quote
-“self-play works for two player zero sum games…like Go, Poker and Starcraft but is so much harder to use in real world domains”. 
-:::
-
-RL applications to help scale AI labs:
-- increasing compute spend
-- number of environments that agents are training on
-- corresponding tasks to solve
-
-### One of the key differentiators is to determine *in what order these tasks should be learned.*
-
-> When training examples are ordered from easy to hard, convergence is faster and quality of local minima is higher (Yoshua Bengio).
-
-This mimics how humans learn as well, starting from the basics and then learning harder and harder problems sequentially.
-
-:::quote
-basins of attraction (def): set of initial conditions (starting points) in a dynamical system that evolve over time towards a specific long-term behavior (known as the attractor)
-:::
-
-The following points demonstrate the bottlenecks of current AI systems.
-
-> The marginal information gain from showing tasks based on what *humans* find easy or difficult is less than the potential information gain from showing tasks based on what the *model* finds easy or difficult. Put another way, we need to zero in on what the actual model is ready to learn next based on **its own** definition of easy or difficult, a region called its **learnable frontier**.
-
-> The bottleneck is no longer maintaining the learnable frontier given a fixed set of tasks, but instead **finding new tasks to feed to the learnable frontier.**
-
-### In order to design task variations, using **language models** to parameterize the distribution of tasks and sample from them is a current methodology employed by AI labs. 
-
-This is a separate step before the training process - this is a fixed process. Possibly employing a continuous learning method can make the agents more versatile.
-
-**We want self-play for language models.** Current methods that are framing the frontier:
-- Absolute Zero - one of the first successful attempts at self-play with language models.
-- SPICE (Self Play In Corpus Environments) - expanded the tasks tackled to include general reasoning problems.
-
-However, this doesn't achieve state-of-the-art performance at larger scales. 
-
-### Unsupervised Environment Design (UED)
-
-This method automatically samples and adapts the task distribution, and even environment distribution, to the learner during training *while* introducing the second antagonist model. The multi-agent reinforcement learning setup looks like:
-- Protagonist agent: trying to minimize regret
-- Antagonist agent: helps define what is solvable
-- Task generator (teacher): generates environments to maximize the regret gap
-    
-:::quote
-This neat trick ensures that generated environments are always solvable by at least one student, the antagonist. If the protagonist (the person we really care about) ever catches up to its counterpart, the teacher will make the game more challenging again, but not so difficult that its ally can’t solve it. 
-:::
-
-While more stable, this method still has a major issue of sparse rewards since the teacher's rewards depend on the agents' actions on the task provided. This further causes a **long horizon**.
-
-### Evolutionary Algorithms (EAs)
-
-With evolutionary algorithms, we can generate new, diverse tasks. This is a method inspired by biological evolution.
-
-:::quote
-evolutionary algorithms (def): optimization techniques where population of candidate solutions evolves over time to find optimal or near-optimal solutions to a problem.
-:::
-
-Here, LLMs can take an environment and mutate it (as seen in AlphaEvolve). EAs can be used *with* learned environment generators.
-`
-  },
-
-  {
     title: "Deep Reinforcement Learning from Human Preferences (2017)",
     author: "Paul Christiano et al.",
     url: "https://arxiv.org/abs/1706.03741",
     dateAdded: "2026-07-25",
     category: "AI",
     medium: "research paper",
-    tags: ['LLMs', 'deep-rl', 'human-preferences'],
+    tags: ['LLMs', 'reinforcement-learning', 'safety'],
     tldr: "Integrating humans by using their feedback as the reward signal for complex goals.",
     notes: `
 This paper is proposing a new method for humans to provide feedback for complex tasks, reducing the amount of feedback by orders of magnitude (since full human feedback would require a ton of time).

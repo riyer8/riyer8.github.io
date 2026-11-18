@@ -126,6 +126,18 @@
   overflow: visible;
 }
 
+.command-palette__arrow {
+  display: inline;
+  margin-left: 0.3rem;
+  font-size: 0.82em;
+  color: var(--cp-muted);
+}
+
+.command-palette__item:hover .command-palette__arrow,
+.command-palette__item.is-active .command-palette__arrow {
+  color: var(--cp-accent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .command-palette__item {
     transition: none;

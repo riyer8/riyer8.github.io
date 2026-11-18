@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 import { useTheme } from '../ThemeContext/ThemeContext';
 import { getSeason, SEASON_PALETTES } from '../../features/seasonal/seasonPalettes';
+import { useSeasonalAnimation } from '../SeasonalAnimation/SeasonalAnimationContext';
 
 const STAR_COUNT = 90;
 const STAR_RGB = '232, 242, 255';
@@ -36,6 +37,7 @@ const spawnShootingStar = (width, height) => {
 
 const PixelatedBackground = ({ embedded = false }) => {
     const { theme } = useTheme();
+    const { seasonalAnimationEnabled } = useSeasonalAnimation();
     const prefersReducedMotion = useReducedMotion();
     const [season] = useState(() => getSeason());
     const palette = SEASON_PALETTES[season][theme.isDarkMode ? 'dark' : 'light'];
@@ -45,11 +47,13 @@ const PixelatedBackground = ({ embedded = false }) => {
     const reducedMotionRef = useRef(!!prefersReducedMotion);
     const blobBaseRef = useRef(palette.blobBase);
     const seasonRef = useRef(season);
+    const seasonalAnimationRef = useRef(seasonalAnimationEnabled);
 
     isDarkModeRef.current = theme.isDarkMode;
     reducedMotionRef.current = !!prefersReducedMotion;
     blobBaseRef.current = palette.blobBase;
     seasonRef.current = season;
+    seasonalAnimationRef.current = seasonalAnimationEnabled;
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -107,14 +111,13 @@ const PixelatedBackground = ({ embedded = false }) => {
             rotSpeed: (Math.random() - 0.5) * 1.4,
             hue: 12 + Math.random() * 30,
             alpha: 0.26 + Math.random() * 0.12,
-            // Pointer-interaction state: nudged offset, velocity,
-            // how flat the leaf has landed, and whether it has been
+            // Pointer-interaction state: nudged offset and velocity
+            // (a gust from the cursor), and whether it has been
             // disturbed since it last wrapped to the top.
             ox: 0,
             oy: 0,
             vx: 0,
             vy: 0,
-            flat: 0,
             prevFall: null,
             disturbed: false,
         }));
@@ -169,8 +172,8 @@ const PixelatedBackground = ({ embedded = false }) => {
                 band === 0
                     ? 24 + Math.random() * 12
                     : band === 1
-                      ? 40 + Math.random() * 16
-                      : 60 + Math.random() * 24;
+                        ? 40 + Math.random() * 16
+                        : 60 + Math.random() * 24;
             const type = ["daisy", "cluster", "tulip", "bell"][i % 4];
             const petalByType = {
                 daisy: ["244, 114, 182", "255, 255, 255"],
@@ -210,14 +213,31 @@ const PixelatedBackground = ({ embedded = false }) => {
         };
 
         // ---- Seasonal animation (light mode only) ----
+        // A real leaf, not a dot: a pointed oval with a centre vein
+        // and a short stem, so it reads as a leaf even at small sizes.
         const drawLeafShape = (x, y, size, rot, hue, alpha) => {
             ctx.save();
             ctx.translate(x, y);
             ctx.rotate(rot);
             ctx.fillStyle = `hsla(${hue}, 78%, 55%, ${alpha})`;
             ctx.beginPath();
-            ctx.ellipse(0, 0, size, size * 0.45, 0, 0, Math.PI * 2);
+            ctx.moveTo(size, 0);
+            ctx.quadraticCurveTo(0, -size * 0.8, -size, 0);
+            ctx.quadraticCurveTo(0, size * 0.8, size, 0);
             ctx.fill();
+            // Centre vein.
+            ctx.strokeStyle = `hsla(${hue}, 70%, 42%, ${alpha * 0.7})`;
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(-size * 0.85, 0);
+            ctx.lineTo(size * 0.85, 0);
+            ctx.stroke();
+            // Short stem.
+            ctx.strokeStyle = `hsla(${hue}, 70%, 38%, ${alpha * 0.8})`;
+            ctx.beginPath();
+            ctx.moveTo(-size, 0);
+            ctx.lineTo(-size * 1.35, 0);
+            ctx.stroke();
             ctx.restore();
         };
 
@@ -229,9 +249,9 @@ const PixelatedBackground = ({ embedded = false }) => {
             // centre and would shove leaves for no reason.
             const pointer = mouseSeen
                 ? {
-                      x: canvas.width / 2 + mouse.x * canvas.width * 0.5,
-                      y: canvas.height / 2 + mouse.y * canvas.height * 0.5,
-                  }
+                    x: canvas.width / 2 + mouse.x * canvas.width * 0.5,
+                    y: canvas.height / 2 + mouse.y * canvas.height * 0.5,
+                }
                 : null;
             // Settled piles: a leaf near the cursor gets nudged away a
             // little, then springs back into the pile.
@@ -258,10 +278,12 @@ const PixelatedBackground = ({ embedded = false }) => {
                     leaf.alpha
                 );
             });
-            // Falling leaves: slow, swaying, transparent. One near the
-            // cursor gets pushed away like the dark-mode stars, then
-            // gravity pulls it down and it lands flat on the ground
-            // until it wraps back to the top.
+            // Falling leaves: slow, swaying, transparent, always
+            // floating — they never land. Near the bottom they fade
+            // out and reappear at the top, so the loop reads as a
+            // gentle drift, not a crash. A leaf near the cursor
+            // catches a gust of wind: a soft push that lifts and
+            // drifts it, then it settles back into its fall.
             leaves.forEach((leaf, i) => {
                 const fall = (leaf.baseY + t * leaf.fallSpeed) % (h + 30);
                 // Reset the interaction state when the leaf wraps.
@@ -270,7 +292,6 @@ const PixelatedBackground = ({ embedded = false }) => {
                     leaf.oy = 0;
                     leaf.vx = 0;
                     leaf.vy = 0;
-                    leaf.flat = 0;
                     leaf.disturbed = false;
                 }
                 leaf.prevFall = fall;
@@ -278,54 +299,55 @@ const PixelatedBackground = ({ embedded = false }) => {
                     leaf.baseX +
                     Math.sin(t * 0.4 + leaf.phase) * leaf.sway +
                     Math.sin(t * 0.13 + i) * 12;
-                const y = fall - 15;
+                const y =
+                    fall -
+                    15 +
+                    Math.sin(t * 1.1 + leaf.phase * 2) * 6;
                 if (pointer) {
                     const dx = x - pointer.x;
                     const dy = y - pointer.y;
                     const dist = Math.hypot(dx, dy);
                     if (dist < 100 && dist > 0.01) {
                         const push = (100 - dist) / 100;
-                        // Kick, not launch: mostly sideways, only a
-                        // whisper of vertical, and no upward lift at all.
-                        leaf.vx += (dx / dist) * push * 1.6;
-                        leaf.vy += (dy / dist) * push * 0.35;
-                        // Never let a leaf fly up fast.
-                        leaf.vy = Math.max(leaf.vy, -1.2);
+                        // A gust, not a kick: soft, mostly sideways,
+                        // with a little lift — the wind can carry a
+                        // leaf up a touch. The push is small and the
+                        // speed is capped, so hovering can't make a
+                        // leaf run away.
+                        leaf.vx += (dx / dist) * push * 0.08;
+                        leaf.vy += (dy / dist) * push * 0.05;
+                        leaf.vx = Math.max(-0.3, Math.min(0.3, leaf.vx));
+                        leaf.vy = Math.max(-0.5, Math.min(0.3, leaf.vy));
                         leaf.disturbed = true;
                     }
                 }
                 if (leaf.disturbed) {
-                    // Stronger gravity so a kicked leaf comes back
-                    // down to the bottom quickly.
-                    leaf.vy += 0.22;
-                    leaf.vx *= 0.94;
-                    leaf.vy *= 0.96;
+                    // No gravity pulling it back down — the fall
+                    // itself carries it. The gust just decays slowly,
+                    // so the leaf floats and drifts before settling.
+                    leaf.vx *= 0.97;
+                    leaf.vy *= 0.97;
                     leaf.ox += leaf.vx;
                     leaf.oy += leaf.vy;
-                    // Cap how far up a leaf can ever go.
+                    // Keep the drift near home in both directions, so
+                    // a gust can never shove a leaf to the bottom.
                     leaf.ox = Math.max(-40, Math.min(40, leaf.ox));
-                    leaf.oy = Math.max(-30, leaf.oy);
+                    leaf.oy = Math.max(-50, Math.min(50, leaf.oy));
                 }
-                // Land + flatten at the bottom.
-                const groundY = h - 12;
-                if (y + leaf.oy >= groundY) {
-                    leaf.oy = groundY - y;
-                    leaf.vy = 0;
-                    leaf.vx *= 0.8;
-                    leaf.flat = Math.min(1, leaf.flat + 0.08);
-                } else if (leaf.flat > 0) {
-                    leaf.flat = Math.max(0, leaf.flat - 0.02);
-                }
-                // Spinning slows as the leaf flattens, ending horizontal.
-                const rot =
-                    (leaf.rot + t * leaf.rotSpeed) * (1 - leaf.flat);
+                // Fade out near the bottom and back in at the top, so
+                // the wrap is a gentle dissolve, not a pop.
+                const fadeIn = Math.min(1, fall / 60);
+                const fadeOut = Math.min(1, (h + 30 - fall) / 40);
+                const alpha = leaf.alpha * fadeIn * fadeOut;
+                // A slow, continuous tumble — it never flattens.
+                const rot = leaf.rot + t * leaf.rotSpeed;
                 drawLeafShape(
                     x + leaf.ox,
                     y + leaf.oy,
                     leaf.size,
                     rot,
                     leaf.hue,
-                    leaf.alpha
+                    alpha
                 );
             });
         };
@@ -710,9 +732,11 @@ const PixelatedBackground = ({ embedded = false }) => {
 
             ctx.filter = 'none';
 
-            // Seasonal animation — light mode only, skipped for reduced
-            // motion. Dark mode keeps just the stars.
-            if (!reduced && !isDarkModeRef.current) {
+            if (
+                seasonalAnimationRef.current &&
+                !reduced &&
+                !isDarkModeRef.current
+            ) {
                 drawSeason(twinkleT);
             }
 
@@ -755,10 +779,10 @@ const PixelatedBackground = ({ embedded = false }) => {
                     const twinkle = reduced
                         ? 1
                         : 0.6 +
-                          0.4 *
-                              Math.abs(
-                                  Math.sin(twinkleT * star.speed + star.phase)
-                              );
+                        0.4 *
+                        Math.abs(
+                            Math.sin(twinkleT * star.speed + star.phase)
+                        );
                     const alpha = star.base * twinkle * starOpacity;
                     const off = repelOffset(star);
                     const sx = off ? star.x + off.x : star.x;
@@ -880,9 +904,8 @@ const PixelatedBackground = ({ embedded = false }) => {
     const vignetteStyle = {
         position: 'absolute',
         inset: 0,
-        background: `radial-gradient(ellipse at 50% 50%, transparent 55%, ${
-            theme.isDarkMode ? 'rgba(0,0,0,0.38)' : 'rgba(0,0,0,0.10)'
-        } 100%)`,
+        background: `radial-gradient(ellipse at 50% 50%, transparent 55%, ${theme.isDarkMode ? 'rgba(0,0,0,0.38)' : 'rgba(0,0,0,0.10)'
+            } 100%)`,
         pointerEvents: 'none',
     };
 

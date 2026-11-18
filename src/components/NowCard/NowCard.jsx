@@ -287,8 +287,9 @@ const NowCard = () => {
   const tabListId = useId();
 
   useEffect(() => {
-    const onOpenNow = () => {
-      setTab("now");
+    const onOpenNow = (event) => {
+      const requested = event?.detail?.tab;
+      setTab(requested === "uses" || requested === "now" ? requested : "now");
       open();
     };
     window.addEventListener("ramya:open-now", onOpenNow);

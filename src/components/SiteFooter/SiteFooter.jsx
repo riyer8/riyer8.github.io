@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "../ThemeContext/ThemeContext";
 import { useCommandPalette } from "../CommandPalette/CommandPalette";
+import { useSeasonalAnimation } from "../SeasonalAnimation/SeasonalAnimationContext";
 import "./SiteFooter.css";
 
 const FORTUNES = [
@@ -14,6 +15,8 @@ const FORTUNE_FADE_MS = 220;
 const SiteFooter = () => {
   const { theme } = useTheme();
   const { open } = useCommandPalette();
+  const { seasonalAnimationEnabled, toggleSeasonalAnimation } =
+    useSeasonalAnimation();
   const [fortuneIndex, setFortuneIndex] = useState(null);
   const [isLeaving, setIsLeaving] = useState(false);
   const wrapRef = useRef(null);
@@ -80,7 +83,15 @@ const SiteFooter = () => {
         "--sf-surface": theme.colors.cardBackground,
       }}
     >
-      <span className="site-footer__copy">© 2026 Ramya Iyer</span>
+      <button
+        type="button"
+        className="site-footer__copy"
+        onClick={toggleSeasonalAnimation}
+        aria-label="Toggle seasonal animation"
+        aria-pressed={seasonalAnimationEnabled}
+      >
+        © 2026 Ramya Iyer
+      </button>
       <span className="site-footer__psst-wrap" ref={wrapRef}>
         <button
           type="button"

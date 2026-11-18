@@ -11,7 +11,7 @@ const archiveData = [
       "coffee",
       "hungry"
     ],
-    "note": "my favorite matcha tonic + gfdf banana bread when i'm in dogpatch."
+    "note": "my favorite matcha tonic + gf/df banana bread when i'm in dogpatch."
   },
   {
     "id": "up-thai",

@@ -10,6 +10,7 @@ const HomePage = () => {
     fontFamily: "var(--font-ui)",
     margin: 0,
     padding: 0,
+    minWidth: 0,
   };
 
   return (

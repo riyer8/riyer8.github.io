@@ -7,7 +7,7 @@ const careerData = [
     dateAdded: "2025-12-18",
     category: "career",
     medium: "essay",
-    tags: ['feedback', 'leadership', 'management'],
+    tags: ['feedback', 'leadership'],
     tldr: "Radical Candor is the intersection of personally caring for someone and challenging them directly, allowing for the most direct feedback.",
     thoughts: "A really interesting way to think about providing (and receiving) feedback.",
     notes: `
@@ -42,7 +42,7 @@ As a side note, Scott also writes an extension to this, describing the gender dy
     dateAdded: "2025-11-28",
     category: "career",
     medium: "essay",
-    tags: ["growth", 'leadership'],
+    tags: ['leadership'],
     tldr: "🤝 Getting real buy-in for an idea requires influence and co-creation.",
     thoughts: "Such an interesting take on getting people to believe in your idea — in your career or even earlier stages.",
     notes: `The article on Forbes is essentially about having influence and buy-in for your ideas. Note that this article was written in 2015, almost a decade old (is it still relevant? I'd personally assume so).
@@ -85,7 +85,7 @@ Hedges provides a model to get true buy-in:
     medium: "essay",
     tldr: "🥅 Feedback is a delicate task of expressing your feelings and not their motivations.",
     thoughts: "Short essay that reveals the importance of expressing what you can control",
-    tags: ['management', 'feedback'],
+    tags: ['leadership', 'feedback'],
     notes: `
 The article is short and sweet. Feedback is an important tool in professional careers but the method of providing feedback can be skewed. "Staying on your side of the net" is the idea that as the feedback provider, you don't assume the motivations and intentions of the other.
 Sticking to what you feel is not debatable while assuming their motivations *are*.

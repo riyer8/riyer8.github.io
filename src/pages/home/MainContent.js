@@ -33,10 +33,12 @@ const MainContent = () => {
     display: "flex",
     minHeight: "100vh",
     width: "100%",
+    minWidth: 0,
   };
 
   const mainColumnStyle = {
     flex: 1,
+    minWidth: 0,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -45,7 +47,12 @@ const MainContent = () => {
   const centeredContentStyle = {
     width: "100%",
     maxWidth: "68rem",
-    padding: shouldCollapseSidebar ? "1.25rem" : "3rem",
+    minWidth: 0,
+    // Extra left padding while the sidebar is visible, so the main
+    // content (and the currently widget) sits a clear gap away from
+    // the sidebar instead of right up against your name. Collapsed
+    // (mobile) keeps the even 1.25rem all round.
+    padding: shouldCollapseSidebar ? "1.25rem" : "3rem 3rem 3rem 4.5rem",
     display: "flex",
     flexDirection: "column",
     alignItems: "flex-start",

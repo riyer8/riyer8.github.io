@@ -35,7 +35,6 @@ LoRe compares to other recommendation engines like collaborative ranking (CR).
 LoRe will probably not be productionized as itself, but the underlying concept and foundation would be similar to how multi-user, multi-preference AI systems are built at scale.
 :::
 
-
 This can also lead to "Taste-as-a-Service APIs" that power personalized feeds across industries.
 
 As mentioned in the article, models like TAPO (Textual Aesthetics Preference Optimization) and G-Eval are pioneering ways to train LLMs on human-labeled taste preferences.
@@ -58,7 +57,7 @@ This may also include understanding how **your friends'** taste fingerprint is e
     medium: "essay",
     tldr: "",
     thoughts: "",
-    tags: ['interest', 'growth'],
+    tags: ['generalism', 'growth'],
     notes: `
 :::quote
 We don’t live in the Industrial Age anymore. Specializing in one skill is almost certain death.
@@ -94,7 +93,7 @@ How to convert your own interests into a business. Image found in the original a
     category: "creativity",
     medium: "essay",
     archives: true,
-    tags: ["improv", "growth"],
+    tags: ["improv"],
     tldr: "de Jong explores the richness of improv from the actors' and the audience's perspectives.",
     thoughts: "I truly love the depth with which this essay describes improvisers and the ways in which audiences can abstract away the hard work used to make scenes natural and believable.",
     notes: `

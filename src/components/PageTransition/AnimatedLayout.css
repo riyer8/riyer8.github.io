@@ -33,6 +33,17 @@
 }
 
 /*
+ * The status widget keeps its frosted background solid while it drops —
+ * fading its opacity would wash the background out to fully transparent
+ * at the start of the drop. Same drop, same stagger, no opacity fade.
+ */
+.page-transition__page.is-entering .status-widget.page-cascade-item {
+  animation: content-drop-solid 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--cascade-i, 0) * 70ms + 80ms);
+  will-change: transform;
+}
+
+/*
  * Table rows: transform on <tr> is unreliable — animate cells instead
  * so each bookshelf line drops as a readable row of text.
  */
@@ -58,6 +69,17 @@
   }
   100% {
     opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* Same drop as content-drop, but the opacity stays at 1 throughout, so
+   the status widget's frosted background never goes transparent. */
+@keyframes content-drop-solid {
+  0% {
+    transform: translate3d(0, -0.95rem, 0);
+  }
+  100% {
     transform: translate3d(0, 0, 0);
   }
 }
